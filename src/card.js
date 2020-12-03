@@ -43,7 +43,7 @@ export const Card = function ({item, inModal}) {
     };
 
     return (
-        <div className="card border-dark bg-light m-3">
+        <div className="card border-dark bg-light mb-3">
             <div className="card-body">
                 <h5 className="card-title">{item['title']}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">
@@ -53,15 +53,17 @@ export const Card = function ({item, inModal}) {
                     </em>
                 </h6>
                 <CardText item={item} />
-                <Badge item={item} />
-                <a
-                    href={`https://news.ycombinator.com/item?id=${item['objectID']}`}
-                    target="_blank"
-                    className="card-link float-right"
-                    onClick={openComments}
-                >
-                    {item['num_comments']} Comments
-                </a>
+                <p>
+                    <Badge item={item} />
+                    <a
+                        href={`https://news.ycombinator.com/item?id=${item['objectID']}`}
+                        target="_blank"
+                        className="card-link float-right"
+                        onClick={openComments}
+                    >
+                        {item['num_comments']} Comments
+                    </a>
+                </p>
             </div>
         </div>
     );

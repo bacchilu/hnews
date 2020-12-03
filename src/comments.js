@@ -3,8 +3,19 @@ import React from 'react';
 import {Parent} from './libs/modal.js';
 import {Card} from './card.js';
 
-const Conversations = function ({items}) {
+const CommentCard = function ({items}) {
     const [head, ...tail] = items;
+    if (head === undefined) return null;
+
+    // React.useEffect(async function () {
+    //     const res = await Promise.all(
+    //         items.map(async function (id) {
+    //             const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+    //             return await res.json();
+    //         })
+    //     );
+    //     console.log(res);
+    // }, []);
 
     const [data, setData] = React.useState(null);
     React.useEffect(async function () {
@@ -20,14 +31,17 @@ const Conversations = function ({items}) {
         );
 
     return (
-        <div className="card m-3">
-            <div className="card-body">
-                <h6 className="card-subtitle mb-2 text-muted">
-                    <strong>{data['by']}</strong> …
-                </h6>
-                <p className="card-text" dangerouslySetInnerHTML={{__html: data['text']}}></p>
+        <React.Fragment>
+            <div className="card mb-3">
+                <div className="card-body">
+                    <h6 className="card-subtitle mb-2 text-muted">
+                        <strong>{data['by']}</strong> …
+                    </h6>
+                    <p className="card-text" dangerouslySetInnerHTML={{__html: data['text']}}></p>
+                </div>
             </div>
-        </div>
+            {data['kids'] !== undefined && <CommentCard items={data['kids']} />}
+        </React.Fragment>
     );
 };
 
@@ -45,7 +59,7 @@ const Comments = function ({item}) {
             </div>
         );
 
-    return <Conversations items={data['kids']} />;
+    return <CommentCard items={data['kids']} />;
 };
 
 const CommentsModal = function ({item}) {
