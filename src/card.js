@@ -1,7 +1,7 @@
 import React from 'react';
 import hdate from 'human-date';
 
-import {openModal} from './comments.js';
+import {openModal} from './comments';
 
 const CardText = function ({item}) {
     if (item['story_text'] !== null) return <em dangerouslySetInnerHTML={{__html: item['story_text']}}></em>;
