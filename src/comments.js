@@ -4,43 +4,60 @@ import {Parent} from './libs/modal.js';
 import {Card} from './card.js';
 
 const CommentCard = function ({items}) {
-    const [head, ...tail] = items;
-    if (head === undefined) return null;
+    if (items.length === 0) return null;
 
-    // React.useEffect(async function () {
-    //     const res = await Promise.all(
-    //         items.map(async function (id) {
-    //             const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
-    //             return await res.json();
-    //         })
-    //     );
-    //     console.log(res);
-    // }, []);
+    const [comments, setComments] = React.useState(null);
+    React.useEffect(
+        async function () {
+            setComments(null);
+            const res = await Promise.all(
+                items.map(async function (id) {
+                    const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+                    return await res.json();
+                })
+            );
+            setComments(res);
+        },
+        [items]
+    );
 
-    const [data, setData] = React.useState(null);
-    React.useEffect(async function () {
-        const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${head}.json`);
-        setData(await res.json());
-    }, []);
+    const [currentIndex, setCurrentIndex] = React.useState(0);
 
-    if (data === null)
+    if (comments === null)
         return (
             <div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
             </div>
         );
 
+    const userBadges = comments.map(function (e, index) {
+        const onClick = function (e) {
+            e.preventDefault();
+            setCurrentIndex(index);
+            // Non convinto... E poi se sotto c'è qualche indice diverso da 0, così valorizzato rimane.
+        };
+
+        return index === currentIndex ? (
+            <span key={e['id']} className="badge badge-pill badge-secondary">
+                {e['by']}
+            </span>
+        ) : (
+            <a key={e['id']} href="#" className="badge badge-pill badge-light" onClick={onClick}>
+                {e['by']}
+            </a>
+        );
+    });
+    const current = comments[currentIndex];
+
     return (
         <React.Fragment>
             <div className="card mb-3">
                 <div className="card-body">
-                    <h6 className="card-subtitle mb-2 text-muted">
-                        <strong>{data['by']}</strong> …
-                    </h6>
-                    <p className="card-text" dangerouslySetInnerHTML={{__html: data['text']}}></p>
+                    <h6 className="card-subtitle mb-2 text-muted">{userBadges}</h6>
+                    <p className="card-text" dangerouslySetInnerHTML={{__html: current['text']}}></p>
                 </div>
             </div>
-            {data['kids'] !== undefined && <CommentCard items={data['kids']} />}
+            {current['kids'] !== undefined && <CommentCard items={current['kids']} />}
         </React.Fragment>
     );
 };
