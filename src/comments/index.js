@@ -18,7 +18,7 @@ const Comments = function ({item}) {
             </div>
         );
 
-    return <CommentCard items={data['kids']} />;
+    return <CommentCard id={data['id']} items={data['kids']} />;
 };
 
 const CommentsModal = function ({item}) {
