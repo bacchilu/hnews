@@ -62,9 +62,11 @@ export const CommentCard = function ({items}) {
 
     return (
         <React.Fragment>
-            <div className="card mb-3">
+            <div className="card mb-1">
                 <div className="card-body">
-                    <h6 className="card-subtitle mb-2 text-muted">{userBadges}</h6>
+                    <h6 className="card-subtitle mb-2 text-muted" style={{overflowX: 'auto', whiteSpace: 'nowrap'}}>
+                        {userBadges}
+                    </h6>
                     <p className="card-text" dangerouslySetInnerHTML={{__html: comments[currentIndex]['text']}}></p>
                 </div>
             </div>
