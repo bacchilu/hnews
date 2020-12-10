@@ -77,7 +77,7 @@ export const CommentCard = function ({id, items}) {
     if (comments === null)
         return (
             <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
+                <span className="visually-hidden">Loading...</span>
             </div>
         );
 
@@ -88,11 +88,11 @@ export const CommentCard = function ({id, items}) {
         };
 
         return index === currentIndex ? (
-            <span key={e['id']} className="badge badge-pill badge-secondary">
+            <span key={e['id']} className="badge rounded-pill bg-secondary">
                 {e['by']}
             </span>
         ) : (
-            <a key={e['id']} href="#" className="badge badge-pill badge-light" onClick={onClick}>
+            <a key={e['id']} href="#" className="badge rounded-pill bg-light text-dark" onClick={onClick}>
                 {e['by']}
             </a>
         );

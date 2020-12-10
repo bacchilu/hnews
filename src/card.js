@@ -32,7 +32,7 @@ const Badge = function ({item}) {
         return 'secondary';
     };
 
-    return <span className={`badge badge-${getColor(item['points'])}`}>{item['points']}</span>;
+    return <span className={`badge bg-${getColor(item['points'])}`}>{item['points']}</span>;
 };
 
 export const Card = function ({item, inModal}) {
@@ -48,7 +48,7 @@ export const Card = function ({item, inModal}) {
                 <h5 className="card-title">{item['title']}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">
                     {item['author']}
-                    <em className="float-right" title={toLocaleString(item['created_at'])}>
+                    <em className="float-end" title={toLocaleString(item['created_at'])}>
                         {relativeTime(item['created_at'])}
                     </em>
                 </h6>
@@ -58,7 +58,7 @@ export const Card = function ({item, inModal}) {
                     <a
                         href={`https://news.ycombinator.com/item?id=${item['objectID']}`}
                         target="_blank"
-                        className="card-link float-right"
+                        className="card-link float-end"
                         onClick={openComments}
                     >
                         {item['num_comments']} Comments
