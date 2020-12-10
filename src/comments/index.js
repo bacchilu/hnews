@@ -21,14 +21,18 @@ const Comments = function ({item}) {
     return <CommentCard id={data['id']} items={data['kids']} />;
 };
 
-const CommentsModal = function ({item}) {
+const CommentsModal = function ({hide, item}) {
     return (
         <div className="modal-content">
             <div className="modal-header">
                 <h5 className="modal-title">#{item['objectID']}</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button
+                    type="button"
+                    className="btn-close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    onClick={hide}
+                ></button>
             </div>
             <div className="modal-body">
                 <Card item={item} inModal={true} />
