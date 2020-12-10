@@ -37,7 +37,7 @@ export const Parent = (function () {
     div.setAttribute('tabindex', '-1');
     div.setAttribute('aria-hidden', 'true');
     const contentDiv = document.createElement('div');
-    contentDiv.setAttribute('class', 'modal-dialog modal-xl');
+    contentDiv.setAttribute('class', 'modal-dialog modal-xl modal-fullscreen-sm-down');
     div.appendChild(contentDiv);
     document.body.appendChild(div);
 
