@@ -23,15 +23,16 @@ export const CommentCard = function ({id, items}) {
 
     const [comments, setComments] = React.useState(null);
     const [currentIndex, setCurrentIndex] = React.useState(0);
-    const [loading, setLoading] = React.useState('Loading...');
+    const [loading, setLoading] = React.useState(0);
     React.useEffect(
         function () {
             setComments(null);
             setCurrentIndex(0);
-            let i = 1;
+            setLoading(0);
             const [controller, pComments] = fetchComments(items, function () {
-                setLoading(`${i}/${items.length}`);
-                i += 1;
+                setLoading(function (i) {
+                    return i + 1;
+                });
             });
             (async function () {
                 setComments(await pComments);
@@ -46,9 +47,15 @@ export const CommentCard = function ({id, items}) {
 
     if (comments === null)
         return (
-            <div className="d-flex align-items-center">
-                <em>{loading}</em>
-                <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+            <div className="progress" style={{height: '1px', width: '100%'}}>
+                <div
+                    className="progress-bar"
+                    role="progressbar"
+                    style={{width: `${(100 * loading) / items.length}%`}}
+                    aria-valuenow="25"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                ></div>
             </div>
         );
 
