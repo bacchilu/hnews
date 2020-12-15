@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {relativeTime, toLocaleString} from '../utils.js';
+import {ProgressBar} from './progress.js';
 
 const fetchComments = function (items, cb) {
     const controller = new AbortController();
@@ -11,8 +12,9 @@ const fetchComments = function (items, cb) {
                 const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, {
                     signal: controller.signal,
                 });
+                const data = await res.json();
                 cb();
-                return await res.json();
+                return data;
             })
         ),
     ];
@@ -23,14 +25,14 @@ export const CommentCard = function ({id, items}) {
 
     const [comments, setComments] = React.useState(null);
     const [currentIndex, setCurrentIndex] = React.useState(0);
-    const [loading, setLoading] = React.useState(0);
+    const [progress, setProgress] = React.useState(0);
     React.useEffect(
         function () {
             setComments(null);
             setCurrentIndex(0);
-            setLoading(0);
+            setProgress(0);
             const [controller, pComments] = fetchComments(items, function () {
-                setLoading(function (i) {
+                setProgress(function (i) {
                     return i + 1;
                 });
             });
@@ -45,19 +47,7 @@ export const CommentCard = function ({id, items}) {
         [items]
     );
 
-    if (comments === null)
-        return (
-            <div className="progress" style={{height: '1px', width: '100%'}}>
-                <div
-                    className="progress-bar"
-                    role="progressbar"
-                    style={{width: `${(100 * loading) / items.length}%`}}
-                    aria-valuenow="25"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                ></div>
-            </div>
-        );
+    if (comments === null) return <ProgressBar i={progress} total={items.length} />;
 
     const userBadges = comments.map(function (e, index) {
         const onClick = function (e) {
