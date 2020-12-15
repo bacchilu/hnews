@@ -1,7 +1,7 @@
 import React from 'react';
-import hdate from 'human-date';
 
 import {openModal} from './comments';
+import {relativeTime, toLocaleString} from './utils.js';
 
 const CardText = function ({item}) {
     if (item['story_text'] !== null) return <em dangerouslySetInnerHTML={{__html: item['story_text']}}></em>;
@@ -12,14 +12,6 @@ const CardText = function ({item}) {
             </a>
         </p>
     );
-};
-
-const relativeTime = function (createdAt) {
-    return hdate.relativeTime(new Date(createdAt));
-};
-
-const toLocaleString = function (createdAt) {
-    return new Date(createdAt).toLocaleString('en-US', {hour12: false});
 };
 
 const Badge = function ({item}) {

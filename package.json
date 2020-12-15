@@ -16,9 +16,9 @@
         "@babel/preset-env": "^7.12.10",
         "@babel/preset-react": "^7.12.10",
         "babel-loader": "^8.2.2",
-        "webpack": "^5.10.0",
+        "webpack": "^5.10.2",
         "webpack-cli": "^4.2.0",
-        "npm-check-updates": "^10.2.3"
+        "npm-check-updates": "^10.2.5"
     },
     "dependencies": {
         "core-js": "^3.8.1",
