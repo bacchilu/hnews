@@ -21,8 +21,6 @@ const fetchComments = function (items, cb) {
 };
 
 export const CommentCard = function ({id, items}) {
-    if (items.length === 0) return null;
-
     const [comments, setComments] = React.useState(null);
     const [currentIndex, setCurrentIndex] = React.useState(0);
     const [progress, setProgress] = React.useState(0);
@@ -46,6 +44,8 @@ export const CommentCard = function ({id, items}) {
         },
         [items]
     );
+
+    if (items.length === 0) return null;
 
     if (comments === null) return <ProgressBar i={progress} total={items.length} />;
 
