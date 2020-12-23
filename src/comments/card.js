@@ -2,45 +2,14 @@ import React from 'react';
 
 import {relativeTime, toLocaleString} from '../utils.js';
 import {ProgressBar} from './progress.js';
-
-const fetchComments = function (items, cb) {
-    const controller = new AbortController();
-    return [
-        controller,
-        Promise.all(
-            items.map(async function (id) {
-                const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, {
-                    signal: controller.signal,
-                });
-                const data = await res.json();
-                cb();
-                return data;
-            })
-        ),
-    ];
-};
+import {useCommentsGetter} from './utils.js';
 
 export const CommentCard = function ({id, items}) {
-    const [comments, setComments] = React.useState(null);
     const [currentIndex, setCurrentIndex] = React.useState(0);
-    const [progress, setProgress] = React.useState(0);
+    const [comments, progress] = useCommentsGetter(items);
     React.useEffect(
         function () {
-            setComments(null);
             setCurrentIndex(0);
-            setProgress(0);
-            const [controller, pComments] = fetchComments(items, function () {
-                setProgress(function (i) {
-                    return i + 1;
-                });
-            });
-            (async function () {
-                setComments(await pComments);
-            })();
-
-            return function () {
-                controller.abort();
-            };
         },
         [items]
     );

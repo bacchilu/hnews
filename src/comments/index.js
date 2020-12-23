@@ -4,20 +4,23 @@ import {Parent} from '../libs/modal.js';
 import {Card} from '../card.js';
 import {CommentCard} from './card.js';
 
-const Comments = function ({item}) {
+const useDetails = function (id) {
     const [data, setData] = React.useState(null);
-    React.useEffect(async function () {
-        const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${item['objectID']}.json`);
-        setData(await res.json());
-    }, []);
+    React.useEffect(
+        async function () {
+            const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+            setData(await res.json());
+        },
+        [id]
+    );
 
-    if (data === null)
-        return (
-            <div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </div>
-        );
+    return data;
+};
 
+const Comments = function ({item}) {
+    const data = useDetails(item['objectID']);
+
+    if (data === null) return null;
     return <CommentCard id={data['id']} items={data['kids']} />;
 };
 
