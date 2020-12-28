@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {Parent} from '../libs/modal.js';
-import {Card} from '../card.js';
-import {CommentCard} from './card.js';
+import {Card} from './card.js';
+import {CommentCard} from './comment_card.js';
 
 const useDetails = function (id) {
     const [data, setData] = React.useState(null);
@@ -17,14 +17,13 @@ const useDetails = function (id) {
     return data;
 };
 
-const Comments = function ({item}) {
-    const data = useDetails(item['objectID']);
-
-    if (data === null) return null;
-    return <CommentCard id={data['id']} items={data['kids']} />;
+const Comments = function ({data}) {
+    return <CommentCard items={data['kids']} />;
 };
 
 const CommentsModal = function ({hide, item}) {
+    const data = useDetails(item['objectID']);
+
     return (
         <div className="modal-content">
             <div className="modal-header">
@@ -38,8 +37,16 @@ const CommentsModal = function ({hide, item}) {
                 ></button>
             </div>
             <div className="modal-body">
-                <Card item={item} inModal={true} />
-                <Comments item={item} />
+                {(data === null && (
+                    <div className="spinner-border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                )) || (
+                    <React.Fragment>
+                        <Card item={data} />
+                        <Comments data={data} />
+                    </React.Fragment>
+                )}
             </div>
         </div>
     );
