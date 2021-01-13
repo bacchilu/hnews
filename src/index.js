@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import {Card} from './card.js';
+import {useUser, LoginButton} from './utils.js';
 
 const ajaxGet = async function (start, end, hitsPerPage) {
     const url = `https://hn.algolia.com/api/v1/search?query=&numericFilters=created_at_i>${start},created_at_i<=${end},points>=100&hitsPerPage=${hitsPerPage}`;
@@ -41,16 +42,10 @@ const App = function (props) {
 };
 
 const Auth = function (props) {
-    const onClick = function (e) {
-        e.preventDefault();
-    };
+    const user = useUser();
+    console.log(user);
 
-    return (
-        <button className="btn btn-outline-success" onClick={onClick}>
-            <i className="bi bi-box-arrow-in-right"></i>
-        </button>
-        // <button class="btn btn-outline-danger" type="submit">Logout</button>
-    );
+    return <LoginButton user={user} />;
 };
 
 ReactDOM.render(<App />, document.getElementById('app'));

@@ -1,6 +1,8 @@
 import React from 'react';
 import hdate from 'human-date';
 
+import {signIn, signOut, onAuthStateChanged} from './model';
+
 export const relativeTime = function (createdAt, isEpoch = false) {
     let d;
     if (isEpoch) {
@@ -30,4 +32,33 @@ export const Badge = function ({score}) {
     };
 
     return <span className={`badge bg-${getColor(score)}`}>{score}</span>;
+};
+
+export const useUser = function () {
+    const [user, setUser] = React.useState(null);
+    React.useEffect(function () {
+        return onAuthStateChanged(setUser);
+    }, []);
+    return user;
+};
+
+export const LoginButton = function ({user}) {
+    const login = function (e) {
+        e.preventDefault();
+        signIn();
+    };
+    const logout = function (e) {
+        e.preventDefault();
+        signOut();
+    };
+
+    return user !== null ? (
+        <button class="btn btn-outline-danger" onClick={logout}>
+            <i className="bi bi-box-arrow-in-left"></i> <em>{user['displayName']}</em>
+        </button>
+    ) : (
+        <button className="btn btn-outline-success" onClick={login}>
+            <i className="bi bi-box-arrow-in-right"></i>
+        </button>
+    );
 };
