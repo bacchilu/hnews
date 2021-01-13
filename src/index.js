@@ -40,4 +40,18 @@ const App = function (props) {
     return <Items items={items} />;
 };
 
+const Auth = function (props) {
+    const onClick = function (e) {
+        e.preventDefault();
+    };
+
+    return (
+        <button className="btn btn-outline-success" onClick={onClick}>
+            <i className="bi bi-box-arrow-in-right"></i>
+        </button>
+        // <button class="btn btn-outline-danger" type="submit">Logout</button>
+    );
+};
+
 ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<Auth />, document.getElementById('auth'));
