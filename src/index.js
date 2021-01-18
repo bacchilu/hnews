@@ -43,7 +43,6 @@ const App = function (props) {
 
 const Auth = function (props) {
     const user = useUser();
-    console.log(user);
 
     return <LoginButton user={user} />;
 };

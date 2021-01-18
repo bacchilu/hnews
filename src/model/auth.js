@@ -8,6 +8,7 @@ export const Auth = function (firebase) {
             firebase
                 .auth()
                 .signInWithRedirect(provider)
+                // .signInWithPopup(provider)
                 .then(function (result) {
                     const user = result.user;
                     console.log(user['displayName'], user['email'], user['photoURL']);

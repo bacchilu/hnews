@@ -53,7 +53,7 @@ export const LoginButton = function ({user}) {
     };
 
     return user !== null ? (
-        <button class="btn btn-outline-danger" onClick={logout}>
+        <button className="btn btn-outline-danger" onClick={logout}>
             <i className="bi bi-box-arrow-in-left"></i> <em>{user['displayName']}</em>
         </button>
     ) : (
