@@ -39,7 +39,7 @@ export const CommentCard = function ({items}) {
 
     return (
         <React.Fragment>
-            <div className="card mb-1">
+            <div className="card mb-1 shadow rounded">
                 <div className="card-body">
                     <h6 className="card-subtitle mb-2 text-muted" style={{overflowX: 'auto', whiteSpace: 'nowrap'}}>
                         <UsersList comments={comments} currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
