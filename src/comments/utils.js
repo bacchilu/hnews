@@ -17,14 +17,21 @@ const fetchComments = function (items, cb) {
     ];
 };
 
-export const useCommentsGetter = function (items) {
+export const useCommentsGetter = function (item) {
+    const kids = item['kids'] !== undefined ? item['kids'] : [];
+
     const [comments, setComments] = React.useState(null);
     const [progress, setProgress] = React.useState(0);
     React.useEffect(
         function () {
             setComments(null);
             setProgress(0);
-            const [controller, pComments] = fetchComments(items, function () {
+            if (kids.length === 0) {
+                setComments([]);
+                setProgress(0);
+                return;
+            }
+            const [controller, pComments] = fetchComments(kids, function () {
                 setProgress(function (i) {
                     return i + 1;
                 });
@@ -37,7 +44,7 @@ export const useCommentsGetter = function (items) {
                 controller.abort();
             };
         },
-        [items]
+        [item]
     );
 
     return [comments, progress];

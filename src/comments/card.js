@@ -1,27 +1,27 @@
 import React from 'react';
 
 import {relativeTime, toLocaleString, Badge} from '../utils.js';
-// import {useCommentsGetter} from './utils.js';
-// import {ProgressBar} from './progress.js';
+import {useCommentsGetter} from './utils.js';
+import {ProgressBar} from './progress.js';
 
-// const UsersList = function ({comments, currentIndex, setCurrentIndex}) {
-//     return comments.map(function (item, index) {
-//         const onClick = function (e) {
-//             e.preventDefault();
-//             setCurrentIndex(index);
-//         };
+const UsersList = function ({comments, currentIndex, setCurrentIndex}) {
+    return comments.map(function (item, index) {
+        const onClick = function (e) {
+            e.preventDefault();
+            setCurrentIndex(index);
+        };
 
-//         return index === currentIndex ? (
-//             <span key={item['id']} className="badge rounded-pill bg-secondary">
-//                 {item['by']}
-//             </span>
-//         ) : (
-//             <a key={item['id']} href="#" className="badge rounded-pill bg-light text-dark" onClick={onClick}>
-//                 {item['by']}
-//             </a>
-//         );
-//     });
-// };
+        return index === currentIndex ? (
+            <span key={item['id']} className="badge rounded-pill bg-secondary">
+                {item['by']}
+            </span>
+        ) : (
+            <a key={item['id']} href="#" className="badge rounded-pill bg-light text-dark" onClick={onClick}>
+                {item['by']}
+            </a>
+        );
+    });
+};
 
 const CardText = function ({item}) {
     if (item['text'] !== undefined) return <em dangerouslySetInnerHTML={{__html: item['text']}}></em>;
@@ -34,15 +34,15 @@ const CardText = function ({item}) {
     );
 };
 
-export const Card = function ({item}) {
-    // const [currentIndex, setCurrentIndex] = React.useState(0);
-    // const [comments, progress] = useCommentsGetter(item['kids']);
-    // React.useEffect(
-    //     function () {
-    //         setCurrentIndex(0);
-    //     },
-    //     [item]
-    // );
+export const Card = function ({item, setCurrentUser}) {
+    const [currentIndex, setCurrentIndex] = React.useState(0);
+    const [comments, progress] = useCommentsGetter(item);
+    React.useEffect(
+        function () {
+            if (comments !== null) setCurrentUser(comments[currentIndex]);
+        },
+        [comments, currentIndex]
+    );
 
     return (
         <div className="card text-dark bg-light mb-1 shadow rounded">
@@ -65,11 +65,11 @@ export const Card = function ({item}) {
                         {item['descendants']} Comments
                     </a>
                 </p>
-                {/* {(comments === null && <ProgressBar i={progress} total={item['kids'].length} />) || (
+                {(comments === null && <ProgressBar i={progress} total={item['kids'].length} />) || (
                     <h6 className="card-subtitle mb-2 text-muted" style={{overflowX: 'auto', whiteSpace: 'nowrap'}}>
                         <UsersList comments={comments} currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
                     </h6>
-                )} */}
+                )}
             </div>
         </div>
     );

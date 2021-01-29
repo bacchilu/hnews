@@ -17,12 +17,18 @@ const useDetails = function (id) {
     return data;
 };
 
-const Comments = function ({data}) {
-    return <CommentCard items={data['kids']} />;
+const CommentsThread = function ({item}) {
+    if (item === null) return null;
+    return <CommentCard item={item} />;
 };
 
 const CommentsModal = function ({hide, item}) {
     const data = useDetails(item['objectID']);
+    const [currentUser, setCurrentuser] = React.useState(null);
+
+    const setCurrentUser = function (user) {
+        setCurrentuser(user);
+    };
 
     return (
         <div className="modal-content">
@@ -43,8 +49,8 @@ const CommentsModal = function ({hide, item}) {
                     </div>
                 )) || (
                     <React.Fragment>
-                        <Card item={data} />
-                        <Comments data={data} />
+                        <Card item={data} setCurrentUser={setCurrentUser} />
+                        <CommentsThread item={currentUser} />
                     </React.Fragment>
                 )}
             </div>

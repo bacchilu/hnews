@@ -23,37 +23,41 @@ const UsersList = function ({comments, currentIndex, setCurrentIndex}) {
     });
 };
 
-export const CommentCard = function ({items}) {
+export const CommentCard = function ({item}) {
+    const kids = item['kids'] !== undefined ? item['kids'] : [];
+
     const [currentIndex, setCurrentIndex] = React.useState(0);
-    const [comments, progress] = useCommentsGetter(items);
+    const [comments, progress] = useCommentsGetter(item);
     React.useEffect(
         function () {
-            setCurrentIndex(0);
+            if (kids.length > 0) setCurrentIndex(0);
         },
-        [items]
+        [item]
     );
-
-    if (items.length === 0) return null;
-
-    if (comments === null) return <ProgressBar i={progress} total={items.length} />;
 
     return (
         <React.Fragment>
             <div className="card mb-1 shadow rounded">
                 <div className="card-body">
-                    <h6 className="card-subtitle mb-2 text-muted" style={{overflowX: 'auto', whiteSpace: 'nowrap'}}>
-                        <UsersList comments={comments} currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
-                    </h6>
                     <h6 className="card-subtitle mb-2 text-muted">
-                        {comments[currentIndex]['by']}
-                        <em className="float-end" title={toLocaleString(comments[currentIndex]['time'], true)}>
-                            {relativeTime(comments[currentIndex]['time'], true)}
+                        {item['by']}
+                        <em className="float-end" title={toLocaleString(item['time'], true)}>
+                            {relativeTime(item['time'], true)}
                         </em>
                     </h6>
-                    <p className="card-text" dangerouslySetInnerHTML={{__html: comments[currentIndex]['text']}}></p>
+                    <p className="card-text" dangerouslySetInnerHTML={{__html: item['text']}}></p>
+                    {(comments === null && <ProgressBar i={progress} total={kids.length} />) || (
+                        <h6 className="card-subtitle mb-2 text-muted" style={{overflowX: 'auto', whiteSpace: 'nowrap'}}>
+                            <UsersList
+                                comments={comments}
+                                currentIndex={currentIndex}
+                                setCurrentIndex={setCurrentIndex}
+                            />
+                        </h6>
+                    )}
                 </div>
             </div>
-            {comments[currentIndex]['kids'] !== undefined && <CommentCard items={comments[currentIndex]['kids']} />}
+            {comments !== null && comments.length > 0 && <CommentCard item={comments[currentIndex]} />}
         </React.Fragment>
     );
 };
