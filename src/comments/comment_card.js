@@ -2,7 +2,7 @@ import React from 'react';
 
 import {relativeTime, toLocaleString} from '../utils.js';
 import {ProgressBar} from './progress.js';
-import {useCommentsGetter} from './utils.js';
+import {useCommentsGetter, User} from './utils.js';
 
 const UsersList = function ({comments, currentIndex, setCurrentIndex}) {
     return comments.map(function (item, index) {
@@ -45,6 +45,7 @@ export const CommentCard = function ({item}) {
                             {relativeTime(item['time'], true)}
                         </em>
                     </h6>
+                    <User id={item['by']} />
                     <p className="card-text" dangerouslySetInnerHTML={{__html: item['text']}}></p>
                     {(comments === null && <ProgressBar i={progress} total={kids.length} />) || (
                         <h6 className="card-subtitle mb-2 text-muted" style={{overflowX: 'auto', whiteSpace: 'nowrap'}}>

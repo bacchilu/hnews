@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {relativeTime, toLocaleString} from '../utils.js';
+
 const fetchComments = function (items, cb) {
     const controller = new AbortController();
     return [
@@ -37,7 +39,12 @@ export const useCommentsGetter = function (item) {
                 });
             });
             (async function () {
-                setComments(await pComments);
+                const res = await pComments;
+                setComments(
+                    res.filter(function (item) {
+                        return item['deleted'] === undefined || !item['deleted'];
+                    })
+                );
             })();
 
             return function () {
@@ -48,4 +55,27 @@ export const useCommentsGetter = function (item) {
     );
 
     return [comments, progress];
+};
+
+export const User = function ({id}) {
+    const [details, setDetails] = React.useState(null);
+    React.useEffect(
+        async function () {
+            const res = await fetch(`https://hacker-news.firebaseio.com/v0/user/${id}.json`);
+            setDetails(await res.json());
+        },
+        [id]
+    );
+
+    if (details === null) return null;
+
+    return (
+        <p className="fw-lighter">
+            <small>
+                <em title={toLocaleString(details['created'] * 1000)}>{relativeTime(details['created'] * 1000)}</em>
+                <br />
+                {details['about']}
+            </small>
+        </p>
+    );
 };
