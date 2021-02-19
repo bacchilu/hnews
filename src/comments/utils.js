@@ -56,26 +56,3 @@ export const useCommentsGetter = function (item) {
 
     return [comments, progress];
 };
-
-export const User = function ({id}) {
-    const [details, setDetails] = React.useState(null);
-    React.useEffect(
-        async function () {
-            const res = await fetch(`https://hacker-news.firebaseio.com/v0/user/${id}.json`);
-            setDetails(await res.json());
-        },
-        [id]
-    );
-
-    if (details === null) return null;
-
-    return (
-        <p className="fw-lighter">
-            <small>
-                <em title={toLocaleString(details['created'] * 1000)}>{relativeTime(details['created'] * 1000)}</em>
-                <br />
-                {details['about']}
-            </small>
-        </p>
-    );
-};

@@ -2,7 +2,8 @@ import React from 'react';
 
 import {relativeTime, toLocaleString} from '../utils.js';
 import {ProgressBar} from './progress.js';
-import {useCommentsGetter, User} from './utils.js';
+import {useCommentsGetter} from './utils.js';
+import {useRefUserDetails} from '../utils.js';
 
 const UsersList = function ({comments, currentIndex, setCurrentIndex}) {
     return comments.map(function (item, index) {
@@ -34,18 +35,18 @@ export const CommentCard = function ({item}) {
         },
         [item]
     );
+    const userEl = useRefUserDetails(item['by']);
 
     return (
         <React.Fragment>
             <div className="card mb-1 shadow rounded">
                 <div className="card-body">
                     <h6 className="card-subtitle mb-2 text-muted">
-                        {item['by']}
+                        <span ref={userEl}>{item['by']}</span>
                         <em className="float-end" title={toLocaleString(item['time'], true)}>
                             {relativeTime(item['time'], true)}
                         </em>
                     </h6>
-                    <User id={item['by']} />
                     <p className="card-text" dangerouslySetInnerHTML={{__html: item['text']}}></p>
                     {(comments === null && <ProgressBar i={progress} total={kids.length} />) || (
                         <h6 className="card-subtitle mb-2 text-muted" style={{overflowX: 'auto', whiteSpace: 'nowrap'}}>

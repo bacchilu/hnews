@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {openModal} from './comments';
-import {relativeTime, toLocaleString, Badge} from './utils.js';
+import {relativeTime, toLocaleString, Badge, useRefUserDetails} from './utils.js';
 
 const CardText = function ({item}) {
     if (item['story_text'] !== null) return <em dangerouslySetInnerHTML={{__html: item['story_text']}}></em>;
@@ -15,6 +15,8 @@ const CardText = function ({item}) {
 };
 
 export const Card = function ({item, inModal}) {
+    const userEl = useRefUserDetails(item['author']);
+
     const openComments = function (e) {
         if (inModal) return;
         e.preventDefault();
@@ -26,7 +28,7 @@ export const Card = function ({item, inModal}) {
             <div className="card-body">
                 <h5 className="card-title">{item['title']}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">
-                    {item['author']}
+                    <span ref={userEl}>{item['author']}</span>
                     <em className="float-end" title={toLocaleString(item['created_at'])}>
                         {relativeTime(item['created_at'])}
                     </em>
