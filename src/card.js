@@ -14,6 +14,12 @@ const CardText = function ({item}) {
     );
 };
 
+// import ReactDOM from 'react-dom';
+// const modalContainer = document.body.appendChild(document.createElement('div'));
+// const ModalPortal = function (props) {
+//     return ReactDOM.createPortal(<p>Ciao</p>, modalContainer);
+// };
+
 export const Card = function ({item, inModal}) {
     const userEl = useRefUserDetails(item['author']);
 
