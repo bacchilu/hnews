@@ -1,7 +1,9 @@
 import React from 'react';
 
-import {openModal} from './comments';
+// import {openModal, CommentsModal2} from './comments';
+import {CommentsModal2} from './comments';
 import {relativeTime, toLocaleString, Badge, useRefUserDetails} from './utils.js';
+import {Modal} from './libs/modal.js';
 
 const CardText = function ({item}) {
     if (item['story_text'] !== null) return <em dangerouslySetInnerHTML={{__html: item['story_text']}}></em>;
@@ -14,23 +16,22 @@ const CardText = function ({item}) {
     );
 };
 
-// import ReactDOM from 'react-dom';
-// const modalContainer = document.body.appendChild(document.createElement('div'));
-// const ModalPortal = function (props) {
-//     return ReactDOM.createPortal(<p>Ciao</p>, modalContainer);
-// };
-
 export const Card = function ({item, inModal}) {
     const userEl = useRefUserDetails(item['author']);
+    const [modalOpened, setModalOpened] = React.useState(false);
 
     const openComments = function (e) {
         if (inModal) return;
         e.preventDefault();
-        openModal(item);
+        // openModal(item);
+        setModalOpened(true);
     };
 
     return (
         <div className="card text-dark bg-light mb-1 shadow rounded">
+            <Modal opened={modalOpened} setOpened={setModalOpened}>
+                <CommentsModal2 item={item} />
+            </Modal>
             <div className="card-body">
                 <h5 className="card-title">{item['title']}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">
