@@ -1,7 +1,6 @@
 import React from 'react';
 
-// import {openModal, CommentsModal2} from './comments';
-import {CommentsModal2} from './comments';
+import {CommentsModal} from './comments';
 import {relativeTime, toLocaleString, Badge, useRefUserDetails} from './utils.js';
 import {Modal} from './libs/modal.js';
 
@@ -23,14 +22,13 @@ export const Card = function ({item, inModal}) {
     const openComments = function (e) {
         if (inModal) return;
         e.preventDefault();
-        // openModal(item);
         setModalOpened(true);
     };
 
     return (
         <div className="card text-dark bg-light mb-1 shadow rounded">
             <Modal opened={modalOpened} setOpened={setModalOpened}>
-                <CommentsModal2 item={item} />
+                <CommentsModal item={item} />
             </Modal>
             <div className="card-body">
                 <h5 className="card-title">{item['title']}</h5>
