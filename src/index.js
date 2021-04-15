@@ -2,18 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import {Card} from './card.js';
-import {useUser, LoginButton} from './utils.js';
+import {useUser, LoginButton, Spinner} from './utils.js';
 import {useItems} from './fetcher.js';
-
-const Spinner = function (props) {
-    return (
-        <div className="d-flex justify-content-center">
-            <div className="spinner-border" style={{width: '3rem', height: '3rem'}} role="status">
-                <span className="visually-hidden">Loading...</span>
-            </div>
-        </div>
-    );
-};
 
 const Items = function ({items}) {
     return items.map(function (item) {

@@ -2,6 +2,7 @@ import React from 'react';
 
 import {Card} from './card.js';
 import {CommentCard} from './comment_card.js';
+import {Spinner} from '../utils.js';
 
 const useDetails = function (id) {
     const [data, setData] = React.useState(null);
@@ -36,11 +37,7 @@ export const CommentsModal = function ({item}) {
                 <button className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-                {(data === null && (
-                    <div className="spinner-border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </div>
-                )) || (
+                {(data === null && <Spinner />) || (
                     <React.Fragment>
                         <Card item={data} setCurrentUser={setCurrentUser} />
                         <CommentsThread item={currentUser} />
