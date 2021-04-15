@@ -7,7 +7,7 @@ import {Modal} from './libs/modal.js';
 const CardText = function ({item}) {
     if (item['story_text'] !== null) return <em dangerouslySetInnerHTML={{__html: item['story_text']}}></em>;
     return (
-        <p className="card-text">
+        <p className="card-text text-truncate">
             <a href={item['url']} target="_blank">
                 {item['url']}
             </a>

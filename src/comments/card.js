@@ -27,7 +27,7 @@ const UsersList = function ({comments, currentIndex, setCurrentIndex}) {
 const CardText = function ({item}) {
     if (item['text'] !== undefined) return <em dangerouslySetInnerHTML={{__html: item['text']}}></em>;
     return (
-        <p className="card-text">
+        <p className="card-text text-truncate">
             <a href={item['url']} target="_blank">
                 {item['url']}
             </a>
