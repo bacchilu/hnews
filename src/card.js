@@ -1,8 +1,8 @@
 import React from 'react';
 
+import {Modal} from './libs/modal.js';
 import {CommentsModal} from './comments';
 import {relativeTime, toLocaleString, Badge, useRefUserDetails} from './utils.js';
-import {Modal} from './libs/modal.js';
 
 const CardText = function ({item}) {
     if (item['story_text'] !== null) return <em dangerouslySetInnerHTML={{__html: item['story_text']}}></em>;
