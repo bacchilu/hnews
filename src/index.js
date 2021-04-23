@@ -14,7 +14,7 @@ const Items = function ({items}) {
 const App = function (props) {
     const items = useItems();
 
-    if (items === null) return <Spinner />;
+    if (items === undefined) return <Spinner />;
     return <Items items={items} />;
 };
 

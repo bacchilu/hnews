@@ -58,7 +58,7 @@ const Fetch = (function () {
 })();
 
 export const useItems = function () {
-    const [items, setItems] = React.useState(null);
+    const [items, setItems] = React.useState(undefined);
     React.useEffect(async function () {
         setItems(await Fetch.getData());
     }, []);
