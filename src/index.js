@@ -12,10 +12,17 @@ const Items = function ({items}) {
 };
 
 const App = function (props) {
-    const items = useItems();
+    const {data, error} = useItems();
 
-    if (items === undefined) return <Spinner />;
-    return <Items items={items} />;
+    if (error !== undefined)
+        return (
+            <div className="alert alert-danger" role="alert">
+                {error.message}
+            </div>
+        );
+    if (data === undefined) return <Spinner />;
+
+    return <Items items={data} />;
 };
 
 const Auth = function (props) {

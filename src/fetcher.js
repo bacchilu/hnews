@@ -1,4 +1,4 @@
-import React from 'react';
+import useSWR from 'swr';
 
 // https://github.com/minimaxir/hacker-news-undocumented
 
@@ -29,7 +29,9 @@ const Fetch = (function () {
             hitsPerPage: hitsPerPage,
         });
         const url = `https://hn.algolia.com/api/v1/search?${searchParams.toString()}`;
-        return (await fetch(url)).json();
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('An error occurred while fetching the data.');
+        return res.json();
     };
 
     const getDaysData = async function (start, end, n) {
@@ -46,6 +48,7 @@ const Fetch = (function () {
                     return getDaysData(NOW - (7 - i) * DAY, NOW - (6 - i) * DAY, 2 ** i);
                 })
             );
+
             return res
                 .reduce(function (acc, item) {
                     return [...acc, ...item];
@@ -60,10 +63,5 @@ const Fetch = (function () {
 })();
 
 export const useItems = function () {
-    const [items, setItems] = React.useState(undefined);
-    React.useEffect(async function () {
-        setItems(await Fetch.getData());
-    }, []);
-
-    return items;
+    return useSWR('items', Fetch.getData);
 };
