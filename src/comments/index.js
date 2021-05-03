@@ -5,7 +5,7 @@ import {CommentCard} from './comment_card.js';
 import {Spinner} from '../utils.js';
 
 const useDetails = function (id) {
-    const [data, setData] = React.useState(null);
+    const [data, setData] = React.useState(undefined);
     React.useEffect(
         async function () {
             const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
@@ -37,7 +37,7 @@ export const CommentsModal = function ({item}) {
                 <button className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
-                {(data === null && <Spinner />) || (
+                {(data === undefined && <Spinner />) || (
                     <React.Fragment>
                         <Card item={data} setCurrentUser={setCurrentUser} />
                         <CommentsThread item={currentUser} />
