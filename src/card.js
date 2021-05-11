@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import {Modal} from './libs/modal.js';
 import {CommentsModal} from './comments';
@@ -49,6 +50,11 @@ export const Card = function ({item, inModal}) {
                     >
                         {item['num_comments']} Comments
                     </a>
+                </p>
+                <p>
+                    <Link to={`/${item['objectID']}`} className="card-link float-end">
+                        {item['num_comments']} Comments
+                    </Link>
                 </p>
             </div>
         </div>
