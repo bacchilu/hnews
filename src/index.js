@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {HashRouter as Router, Switch, Route} from 'react-router-dom';
-import {CommentPage} from './comment_page.js';
+import {CommentPage} from './comment_page';
 
 import {Card} from './card.js';
 import {useUser, LoginButton, Spinner, Badge} from './utils.js';
