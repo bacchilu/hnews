@@ -1,28 +1,19 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
-import useSWR from 'swr';
 
-import {Spinner, Badge, useRefUserDetails, relativeTime, toLocaleString} from '../utils.js';
+import {Spinner, Badge, useRefUserDetails, relativeTime, toLocaleString} from '../utils';
 import {CommentersList} from './users';
-
-const useHNItem = function (id) {
-    return useSWR(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
-};
-
-const CardText = function ({item}) {
-    if (item['text'] !== undefined) return <em dangerouslySetInnerHTML={{__html: item['text']}}></em>;
-    return (
-        <p className="card-text text-truncate">
-            <a href={item['url']} target="_blank">
-                {item['url']}
-            </a>
-        </p>
-    );
-};
+import {useHNItem, CardText} from './utils';
 
 const Comment = function ({item}) {
     const {data, error} = useHNItem(item);
     const [childComment, setChildComment] = React.useState(null);
+    React.useEffect(
+        function () {
+            setChildComment(null);
+        },
+        [item]
+    );
 
     if (error !== undefined)
         return (
