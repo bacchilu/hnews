@@ -1,8 +1,10 @@
 import React from 'react';
 import useSWR from 'swr';
 
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
 const useHNItem = function (id) {
-    return useSWR(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+    return useSWR(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, fetcher);
 };
 
 const UserBadge = function ({item, isItemSelected, setSelected}) {
