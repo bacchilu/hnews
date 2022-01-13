@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter as Router, Switch, Route} from 'react-router-dom';
+import {HashRouter as Router, Routes, Route} from 'react-router-dom';
 import {CommentPage} from './comment_page';
 
 import {Card} from './card.js';
@@ -30,14 +30,10 @@ const Main = function (props) {
 const App = function (props) {
     return (
         <Router>
-            <Switch>
-                <Route path="/:commentId">
-                    <CommentPage />
-                </Route>
-                <Route path="/">
-                    <Main />
-                </Route>
-            </Switch>
+            <Routes>
+                <Route path="/:commentId" element={<CommentPage />}></Route>
+                <Route path="/" element={<Main />}></Route>
+            </Routes>
         </Router>
     );
 };
