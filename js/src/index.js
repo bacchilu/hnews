@@ -5,7 +5,7 @@ import {CommentPage} from './comment_page';
 
 import {Card} from './card.js';
 import {useUser, LoginButton, Spinner, Badge} from './utils.js';
-import {useItems} from './fetcher.js';
+import {useHNItems} from './fetcher.js';
 
 const Items = function ({items}) {
     return items.map(function (item) {
@@ -14,7 +14,7 @@ const Items = function ({items}) {
 };
 
 const Main = function (props) {
-    const {data, error} = useItems();
+    const {data, error} = useHNItems();
 
     if (error !== undefined)
         return (

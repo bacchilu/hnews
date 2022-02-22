@@ -62,6 +62,6 @@ const Fetch = (function () {
     };
 })();
 
-export const useItems = function () {
-    return useSWR('items', Fetch.getData);
+export const useHNItems = function () {
+    return useSWR('hn_items', Fetch.getData, {dedupingInterval: 60000});
 };
