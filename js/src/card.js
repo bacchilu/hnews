@@ -42,16 +42,20 @@ export const Card = function ({item, inModal}) {
                 <CardText item={item} />
                 <p>
                     <Badge score={item['points']} />
-                    <a
-                        href={`https://news.ycombinator.com/item?id=${item['objectID']}`}
-                        target="_blank"
-                        className="card-link float-end"
-                        onClick={openComments}
-                    >
-                        {item['num_comments']} Comments
-                    </a>
                 </p>
                 <p>
+                    <a
+                        href={`https://news.ycombinator.com/item?id=${item['objectID']}`}
+                        className="btn btn-primary btn-sm position-relative"
+                        target="_blank"
+                        onClick={openComments}
+                    >
+                        <i className="bi bi-people"></i>
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            {item['num_comments']}
+                            <span className="visually-hidden">unread messages</span>
+                        </span>
+                    </a>
                     <Link to={`/${item['objectID']}`} className="card-link float-end">
                         {item['num_comments']} Comments
                     </Link>
