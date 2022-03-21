@@ -72,6 +72,7 @@ const Comments = function ({item, inModal}) {
 };
 
 export const Card = function ({item, inModal}) {
+    console.log(item);
     const userEl = useRefUserDetails(item.author);
 
     return (
@@ -85,6 +86,16 @@ export const Card = function ({item, inModal}) {
                     </em>
                 </h6>
                 <CardText item={item} />
+                <a
+                    className="twitter-share-button"
+                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                        item.title
+                    )}&url=${encodeURIComponent(
+                        item.url !== null ? item.url : 'https://news.ycombinator.com/item?id=' + item.objectID
+                    )}&hashtags=hackernews`}
+                >
+                    Tweet
+                </a>
                 <p>
                     <Badge score={item.points} />
                     <span className="float-end">
