@@ -5,13 +5,30 @@ import {Modal} from './libs/modal.js';
 import {CommentsModal} from './comments';
 import {relativeTime, toLocaleString, Badge, useRefUserDetails} from './utils.js';
 
+const Url = function ({item}) {
+    let res = <span>{item.url}</span>;
+    if (item.url !== null) {
+        const slitted = item.url.split('/');
+        const schema = slitted.slice(0, 2).join('/');
+        const domain = slitted[2];
+        const path = slitted.slice(3).join('/');
+        res = (
+            <span>
+                {schema}/<strong>{domain}</strong>/{path}
+            </span>
+        );
+    }
+
+    return res;
+};
+
 const CardText = function ({item}) {
     if (item.story_text !== null) return <em dangerouslySetInnerHTML={{__html: item.story_text}}></em>;
 
     return (
         <p className="card-text text-truncate">
             <a href={item.url} target="_blank">
-                {item.url}
+                <Url item={item} />
             </a>
         </p>
     );
