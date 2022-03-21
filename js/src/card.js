@@ -72,7 +72,6 @@ const Comments = function ({item, inModal}) {
 };
 
 export const Card = function ({item, inModal}) {
-    console.log(item);
     const userEl = useRefUserDetails(item.author);
 
     return (
@@ -94,7 +93,7 @@ export const Card = function ({item, inModal}) {
                         item.url !== null ? item.url : 'https://news.ycombinator.com/item?id=' + item.objectID
                     )}&hashtags=hackernews`}
                 >
-                    Tweet
+                    <i className="bi bi-twitter"></i>
                 </a>
                 <p>
                     <Badge score={item.points} />
