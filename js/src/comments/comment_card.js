@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {relativeTime, toLocaleString} from '../utils.js';
+import {relativeTime, toLocaleString} from '../utils/index.js';
 import {ProgressBar} from './progress.js';
 import {useCommentsGetter} from './utils.js';
-import {useRefUserDetails} from '../utils.js';
+import {useRefUserDetails} from '../utils/index.js';
 
 const UsersList = function ({comments, currentIndex, setCurrentIndex}) {
     return comments.map(function (item, index) {

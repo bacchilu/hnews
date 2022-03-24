@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {relativeTime, toLocaleString, Badge} from '../utils.js';
+import {relativeTime, toLocaleString, Badge} from '../utils/index.js';
 import {useCommentsGetter} from './utils.js';
-import {useRefUserDetails} from '../utils.js';
+import {useRefUserDetails} from '../utils/index.js';
 import {ProgressBar} from './progress.js';
 
 const UsersList = function ({comments, currentIndex, setCurrentIndex}) {

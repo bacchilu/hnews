@@ -1,7 +1,7 @@
 import React from 'react';
 import hdate from 'human-date';
 
-import {signIn, signOut, onAuthStateChanged} from './model';
+import {signIn, signOut, onAuthStateChanged} from '../model';
 
 export const relativeTime = function (createdAt, isEpoch = false) {
     let d;

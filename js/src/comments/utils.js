@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {relativeTime, toLocaleString} from '../utils.js';
+import {relativeTime, toLocaleString} from '../utils/index.js';
 
 const fetchComments = function (items, cb) {
     const controller = new AbortController();

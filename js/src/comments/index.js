@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Card} from './card.js';
 import {CommentCard} from './comment_card.js';
-import {Spinner} from '../utils.js';
+import {Spinner} from '../utils/index.js';
 
 const useDetails = function (id) {
     const [data, setData] = React.useState(undefined);
