@@ -19,14 +19,12 @@ export const useRefUserDetails = function (user) {
         function () {
             if (user === undefined) return;
             const popover = new bootstrap.Popover(domEl.current, {
-                container: 'body',
                 content: `
                 <div class="spinner-grow spinner-grow-sm" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
             `,
                 html: true,
-                placement: 'auto',
                 trigger: 'click hover',
             });
             const listener = async function () {
