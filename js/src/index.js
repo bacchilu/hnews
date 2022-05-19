@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import {HashRouter as Router, Routes, Route} from 'react-router-dom';
 import {CommentPage} from './comment_page';
 
@@ -44,5 +44,5 @@ const Auth = function (props) {
     return <LoginButton user={user} />;
 };
 
-ReactDOM.render(<App />, document.getElementById('app'));
-ReactDOM.render(<Auth />, document.getElementById('auth'));
+createRoot(document.getElementById('app')).render(<App />);
+createRoot(document.getElementById('auth')).render(<Auth />);

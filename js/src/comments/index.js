@@ -7,9 +7,12 @@ import {Spinner} from '../utils/index.js';
 const useDetails = function (id) {
     const [data, setData] = React.useState(undefined);
     React.useEffect(
-        async function () {
-            const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
-            setData(await res.json());
+        function () {
+            const f = async function () {
+                const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+                setData(await res.json());
+            };
+            f();
         },
         [id]
     );
