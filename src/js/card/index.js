@@ -32,6 +32,22 @@ const CardText = function ({item}) {
     );
 };
 
+const Twitter = function ({item}) {
+    const twitterUrl = new URL('https://twitter.com/intent/tweet');
+    twitterUrl.searchParams.append('text', item.title);
+    twitterUrl.searchParams.append(
+        'url',
+        item.url !== null ? item.url : `https://news.ycombinator.com/item?id=${item.objectID}`
+    );
+    twitterUrl.searchParams.append('hashtags', 'hackernews');
+
+    return (
+        <a className="twitter-share-button" href={twitterUrl.href}>
+            <i className="bi bi-twitter"></i>
+        </a>
+    );
+};
+
 export const Card = function ({item, inModal}) {
     const userEl = useRefUserDetails(item.author);
 
@@ -46,16 +62,7 @@ export const Card = function ({item, inModal}) {
                     </em>
                 </h6>
                 <CardText item={item} />
-                <a
-                    className="twitter-share-button"
-                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-                        item.title
-                    )}&url=${encodeURIComponent(
-                        item.url !== null ? item.url : 'https://news.ycombinator.com/item?id=' + item.objectID
-                    )}&hashtags=hackernews`}
-                >
-                    <i className="bi bi-twitter"></i>
-                </a>
+                <Twitter item={item} />
                 <p>
                     <Badge score={item.points} />
                     <span className="float-end">
