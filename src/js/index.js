@@ -4,7 +4,7 @@ import {HashRouter as Router, Routes, Route} from 'react-router-dom';
 import {CommentPage} from './comment_page';
 
 import {Card} from './card';
-import {useUser, LoginButton, Spinner, Badge} from './utils/index.js';
+import {useUser, LoginButton, Spinner} from './utils/index.js';
 import {useHNItems} from './fetcher.js';
 
 const Items = function ({items}) {
