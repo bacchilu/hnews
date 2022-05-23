@@ -54,17 +54,21 @@ export const Card = function ({item, inModal}) {
     return (
         <div className="card text-dark bg-light mb-1 shadow rounded">
             <div className="card-body">
-                <h5 className="card-title">{item.title}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">
+                <p>
+                    <strong className="card-title">{item.title}</strong>
+                    <span className="float-end">
+                        <Badge score={item.points} />
+                    </span>
+                </p>
+                <p className="card-subtitle mb-2 text-muted">
                     <span ref={userEl}>{item.author}</span>
                     <em className="float-end" title={toLocaleString(item.created_at)}>
                         {relativeTime(item.created_at)}
                     </em>
-                </h6>
+                </p>
                 <CardText item={item} />
-                <Twitter item={item} />
                 <p>
-                    <Badge score={item.points} />
+                    <Twitter item={item} />
                     <span className="float-end">
                         <Comments item={item} inModal={inModal} />
                     </span>

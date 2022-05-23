@@ -13,7 +13,7 @@ const Items = function ({items}) {
     });
 };
 
-const Main = function (props) {
+const Main = function () {
     const {data, error} = useHNItems();
 
     if (error !== undefined)
@@ -27,7 +27,7 @@ const Main = function (props) {
     return <Items items={data} />;
 };
 
-const App = function (props) {
+const App = function () {
     return (
         <Router>
             <Routes>
@@ -38,7 +38,7 @@ const App = function (props) {
     );
 };
 
-const Auth = function (props) {
+const Auth = function () {
     const user = useUser();
 
     return <LoginButton user={user} />;
