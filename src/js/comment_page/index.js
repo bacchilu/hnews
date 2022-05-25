@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 
 import {Spinner, Badge, useRefUserDetails, relativeTime, toLocaleString, Twitter} from '../utils';
 import {CommentersList} from './users';
-import {useHNItem, CardText} from './utils';
+import {useHNItem, CardText, HNLink} from './utils';
 
 const Comment = function ({item}) {
     const {data, error} = useHNItem(item);
@@ -49,22 +49,6 @@ const Comment = function ({item}) {
             </div>
             {childComment !== null && <Comment item={childComment} />}
         </React.Fragment>
-    );
-};
-
-const HNLink = function ({item}) {
-    return (
-        <a
-            href={`https://news.ycombinator.com/item?id=${item.id}`}
-            target="_blank"
-            className="btn btn-primary btn-sm position-relative me-4 float-end"
-        >
-            <i className="bi bi-people-fill"></i>
-            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                {item.descendants}
-                <span className="visually-hidden">comments</span>
-            </span>
-        </a>
     );
 };
 

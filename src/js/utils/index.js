@@ -85,7 +85,7 @@ export const Twitter = function ({item}) {
     twitterUrl.searchParams.append('hashtags', 'hackernews');
 
     return (
-        <a className="twitter-share-button" href={twitterUrl.href}>
+        <a href={twitterUrl.href}>
             <i className="bi bi-twitter"></i>
         </a>
     );
