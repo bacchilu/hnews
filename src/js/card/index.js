@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {relativeTime, toLocaleString, Badge, useRefUserDetails} from '../utils';
+import {relativeTime, toLocaleString, Badge, useRefUserDetails, Twitter} from '../utils';
 import {Comments} from './comments.js';
 
 const Url = function ({item}) {
@@ -29,22 +29,6 @@ const CardText = function ({item}) {
                 <Url item={item} />
             </a>
         </p>
-    );
-};
-
-const Twitter = function ({item}) {
-    const twitterUrl = new URL('https://twitter.com/intent/tweet');
-    twitterUrl.searchParams.append('text', item.title);
-    twitterUrl.searchParams.append(
-        'url',
-        item.url !== null ? item.url : `https://news.ycombinator.com/item?id=${item.objectID}`
-    );
-    twitterUrl.searchParams.append('hashtags', 'hackernews');
-
-    return (
-        <a className="twitter-share-button" href={twitterUrl.href}>
-            <i className="bi bi-twitter"></i>
-        </a>
     );
 };
 

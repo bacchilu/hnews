@@ -74,3 +74,19 @@ export const Spinner = function (props) {
         </div>
     );
 };
+
+export const Twitter = function ({item}) {
+    const twitterUrl = new URL('https://twitter.com/intent/tweet');
+    twitterUrl.searchParams.append('text', item.title);
+    twitterUrl.searchParams.append(
+        'url',
+        item.url !== null ? item.url : `https://news.ycombinator.com/item?id=${item.objectID}`
+    );
+    twitterUrl.searchParams.append('hashtags', 'hackernews');
+
+    return (
+        <a className="twitter-share-button" href={twitterUrl.href}>
+            <i className="bi bi-twitter"></i>
+        </a>
+    );
+};

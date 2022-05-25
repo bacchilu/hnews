@@ -1,8 +1,8 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client';
 import {HashRouter as Router, Routes, Route} from 'react-router-dom';
-import {CommentPage} from './comment_page';
 
+import {CommentPage} from './comment_page';
 import {Card} from './card';
 import {useUser, LoginButton, Spinner} from './utils/index.js';
 import {useHNItems} from './fetcher.js';

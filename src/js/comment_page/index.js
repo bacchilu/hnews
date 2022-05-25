@@ -1,7 +1,7 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
 
-import {Spinner, Badge, useRefUserDetails, relativeTime, toLocaleString} from '../utils';
+import {Spinner, Badge, useRefUserDetails, relativeTime, toLocaleString, Twitter} from '../utils';
 import {CommentersList} from './users';
 import {useHNItem, CardText} from './utils';
 
@@ -52,7 +52,23 @@ const Comment = function ({item}) {
     );
 };
 
-export const CommentPage = function (props) {
+const HNLink = function ({item}) {
+    return (
+        <a
+            href={`https://news.ycombinator.com/item?id=${item.id}`}
+            target="_blank"
+            className="btn btn-primary btn-sm position-relative me-4 float-end"
+        >
+            <i className="bi bi-people-fill"></i>
+            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {item.descendants}
+                <span className="visually-hidden">comments</span>
+            </span>
+        </a>
+    );
+};
+
+export const CommentPage = function () {
     const {commentId} = useParams();
     const {data, error} = useHNItem(commentId);
     const userEl = useRefUserDetails(data?.by);
@@ -67,31 +83,30 @@ export const CommentPage = function (props) {
     if (data === undefined) return <Spinner />;
 
     return (
-        <React.Fragment>
+        <>
             <div className="card text-dark bg-light mb-1 shadow rounded">
                 <div className="card-body">
-                    <h5 className="card-title">{data.title}</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">
+                    <p>
+                        <strong className="card-title">{data.title}</strong>
+                        <span className="float-end">
+                            <Badge score={data.score} />
+                        </span>
+                    </p>
+                    <p className="card-subtitle mb-2 text-muted">
                         <span ref={userEl}>{data.by}</span>
                         <em className="float-end" title={toLocaleString(data.time * 1000)}>
                             {relativeTime(data.time * 1000)}
                         </em>
-                    </h6>
+                    </p>
                     <CardText item={data} />
                     <p>
-                        <Badge score={data['score']} />
-                        <a
-                            href={`https://news.ycombinator.com/item?id=${data['id']}`}
-                            target="_blank"
-                            className="float-end"
-                        >
-                            {data['descendants']} Comments
-                        </a>
+                        <Twitter item={data} />
+                        <HNLink item={data} />
                     </p>
                     <CommentersList kids={data.kids} selectComment={setChildComment} />
                 </div>
             </div>
             {childComment !== null && <Comment item={childComment} />}
-        </React.Fragment>
+        </>
     );
 };
