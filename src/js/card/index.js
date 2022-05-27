@@ -45,7 +45,9 @@ export const Card = function ({item, inModal}) {
                     </span>
                 </p>
                 <p className="card-subtitle mb-2 text-muted">
-                    <span ref={userEl}>{item.author}</span>
+                    <span ref={userEl} style={{cursor: 'pointer'}}>
+                        {item.author}
+                    </span>
                     <em className="float-end" title={toLocaleString(item.created_at)}>
                         {relativeTime(item.created_at)}
                     </em>
