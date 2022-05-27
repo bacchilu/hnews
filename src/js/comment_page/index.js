@@ -77,7 +77,9 @@ export const CommentPage = function () {
                         </span>
                     </p>
                     <p className="card-subtitle mb-2 text-muted">
-                        <span ref={userEl}>{data.by}</span>
+                        <span ref={userEl} style={{cursor: 'pointer'}}>
+                            {data.by}
+                        </span>
                         <em className="float-end" title={toLocaleString(data.time * 1000)}>
                             {relativeTime(data.time * 1000)}
                         </em>
