@@ -52,19 +52,9 @@ const Comment = function ({item}) {
     );
 };
 
-export const CommentPage = function () {
-    const {commentId} = useParams();
-    const {data, error} = useHNItem(commentId);
-    const userEl = useRefUserDetails(data?.by);
+const CommentCard = function ({data}) {
+    const userEl = useRefUserDetails(data.by);
     const [childComment, setChildComment] = React.useState(null);
-
-    if (error !== undefined)
-        return (
-            <div className="alert alert-danger" role="alert">
-                {error.message}
-            </div>
-        );
-    if (data === undefined) return <Spinner />;
 
     return (
         <>
@@ -95,4 +85,19 @@ export const CommentPage = function () {
             {childComment !== null && <Comment item={childComment} />}
         </>
     );
+};
+
+export const CommentPage = function () {
+    const {commentId} = useParams();
+    const {data, error} = useHNItem(commentId);
+
+    if (error !== undefined)
+        return (
+            <div className="alert alert-danger" role="alert">
+                {error.message}
+            </div>
+        );
+    if (data === undefined) return <Spinner />;
+
+    return <CommentCard data={data} />;
 };
