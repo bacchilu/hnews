@@ -1,9 +1,10 @@
 import React from 'react';
 
-import {relativeTime, toLocaleString, Badge, useRefUserDetails, Twitter} from '../utils';
+import {Item} from '..';
+import {Badge, relativeTime, toLocaleString, Twitter, useRefUserDetails} from '../utils';
 import {Comments} from './comments.js';
 
-const Url = function ({item}) {
+const Url = function ({item}: {item: Item}) {
     let res = <span>{item.url}</span>;
     if (item.url !== null) {
         const slitted = item.url.split('/');
@@ -20,7 +21,7 @@ const Url = function ({item}) {
     return res;
 };
 
-const CardText = function ({item}) {
+const CardText = function ({item}: {item: Item}) {
     if (item.story_text !== null) return <em dangerouslySetInnerHTML={{__html: item.story_text}}></em>;
 
     return (
@@ -32,7 +33,7 @@ const CardText = function ({item}) {
     );
 };
 
-export const Card = function ({item, inModal}) {
+export const Card = function ({item, inModal}: {item: Item; inModal: boolean}) {
     const userEl = useRefUserDetails(item.author);
 
     return (
@@ -56,7 +57,8 @@ export const Card = function ({item, inModal}) {
                 <p>
                     <Twitter item={item} />
                     <span className="float-end">
-                        <Comments item={item} inModal={inModal} />
+                        {/* <Comments item={item} inModal={inModal} /> */}
+                        <Comments item={item} />
                     </span>
                 </p>
             </div>

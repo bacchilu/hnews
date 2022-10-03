@@ -1,16 +1,27 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client';
-import {HashRouter as Router, Routes, Route} from 'react-router-dom';
+import {HashRouter as Router, Route, Routes} from 'react-router-dom';
 
-import {CommentPage} from './comment_page';
 import {Card} from './card';
-import {useUser, LoginButton, Spinner} from './utils/index.js';
+import {CommentPage} from './comment_page';
 import {useHNItems} from './fetcher.js';
+import {LoginButton, Spinner, useUser} from './utils/index.js';
 
-const Items = function ({items}) {
-    return items.map(function (item) {
-        return <Card key={item['objectID']} item={item} inModal={false} />;
+export interface Item {
+    objectID: string;
+    author: string;
+    title: string;
+    points: number;
+    created_at: string;
+    story_text: string;
+    url: string;
+}
+
+const Items = function ({items}: {items: Item[]}) {
+    const res = items.map(function (item) {
+        return <Card key={item.objectID} item={item} inModal={false} />;
     });
+    return <>{res}</>;
 };
 
 const Main = function () {
@@ -44,5 +55,5 @@ const Auth = function () {
     return <LoginButton user={user} />;
 };
 
-createRoot(document.getElementById('app')).render(<App />);
-createRoot(document.getElementById('auth')).render(<Auth />);
+createRoot(document.getElementById('app')!).render(<App />);
+createRoot(document.getElementById('auth')!).render(<Auth />);
