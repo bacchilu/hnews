@@ -47,27 +47,50 @@ const Version = function () {
     );
 };
 
-const App = function () {
-    return (
-        <Router>
-            <Routes>
-                <Route path="/:commentId" element={<CommentPage />}></Route>
-                <Route path="/" element={<Main />}></Route>
-            </Routes>
-        </Router>
-    );
-};
-
 const Auth = function () {
     const user = useUser();
 
     return <LoginButton user={user} />;
 };
 
-createRoot(document.getElementById('app')!).render(
-    <>
-        <App />
-        <Version />
-    </>
-);
-createRoot(document.getElementById('auth')!).render(<Auth />);
+const NavBar = function () {
+    const id = 'navbarCollapse';
+
+    return (
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div className="container-fluid">
+                <a className="navbar-brand" href="/">
+                    <strong style={{color: '#ff6600'}}>HN</strong>ews
+                </a>
+                <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target={`#${id}`}>
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id={id}>
+                    <ul className="navbar-nav me-auto mb-2 mb-md-0"></ul>
+                    <form className="d-flex">
+                        <Auth />
+                    </form>
+                </div>
+            </div>
+        </nav>
+    );
+};
+
+const App = function () {
+    return (
+        <>
+            <NavBar />
+            <div className="container" style={{paddingTop: '1em'}}>
+                <Router>
+                    <Routes>
+                        <Route path="/:commentId" element={<CommentPage />}></Route>
+                        <Route path="/" element={<Main />}></Route>
+                    </Routes>
+                </Router>
+                <Version />
+            </div>
+        </>
+    );
+};
+
+createRoot(document.getElementById('app')!).render(<App />);
