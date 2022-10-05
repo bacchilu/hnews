@@ -39,14 +39,6 @@ const Main = function () {
     return <Items items={data} />;
 };
 
-const Version = function () {
-    return (
-        <div style={{position: 'fixed', bottom: '0.1rem', left: '0.1rem'}} className="font-monospace">
-            {version}
-        </div>
-    );
-};
-
 const Auth = function () {
     const user = useUser();
 
@@ -60,7 +52,7 @@ const NavBar = function () {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
                 <a className="navbar-brand" href="/">
-                    <strong style={{color: '#ff6600'}}>HN</strong>ews
+                    <strong style={{color: '#ff6600'}}>HN</strong>ews <sub>{version}</sub>
                 </a>
                 <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target={`#${id}`}>
                     <span className="navbar-toggler-icon"></span>
@@ -87,7 +79,6 @@ const App = function () {
                         <Route path="/" element={<Main />}></Route>
                     </Routes>
                 </Router>
-                <Version />
             </div>
         </>
     );
