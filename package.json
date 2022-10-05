@@ -1,6 +1,6 @@
 {
     "name": "hnews",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "description": "HNews",
     "private": true,
     "source": "src/index.html",
@@ -37,7 +37,7 @@
         "@parcel/transformer-webmanifest": "^2.7.0",
         "@types/react": "^18.0.21",
         "@types/react-dom": "^18.0.6",
-        "npm-check-updates": "^16.3.7",
+        "npm-check-updates": "^16.3.8",
         "parcel": "^2.7.0",
         "process": "^0.11.10"
     },
