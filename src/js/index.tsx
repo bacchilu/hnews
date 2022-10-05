@@ -2,6 +2,7 @@ import React from 'react';
 import {createRoot} from 'react-dom/client';
 import {HashRouter as Router, Route, Routes} from 'react-router-dom';
 
+import {version} from '../../package.json';
 import {Card} from './card';
 import {CommentPage} from './comment_page';
 import {useHNItems} from './fetcher.js';
@@ -38,6 +39,14 @@ const Main = function () {
     return <Items items={data} />;
 };
 
+const Version = function () {
+    return (
+        <div style={{position: 'fixed', bottom: '0.1rem', left: '0.1rem'}} className="font-monospace">
+            {version}
+        </div>
+    );
+};
+
 const App = function () {
     return (
         <Router>
@@ -55,5 +64,10 @@ const Auth = function () {
     return <LoginButton user={user} />;
 };
 
-createRoot(document.getElementById('app')!).render(<App />);
+createRoot(document.getElementById('app')!).render(
+    <>
+        <App />
+        <Version />
+    </>
+);
 createRoot(document.getElementById('auth')!).render(<Auth />);
