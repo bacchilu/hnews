@@ -5,7 +5,7 @@ import {HashRouter as Router, Route, Routes} from 'react-router-dom';
 import {Card} from './card';
 import {CommentPage} from './comment_page';
 import {useHNItems} from './fetcher.js';
-import {LoginButton, Spinner, useUser} from './utils/index.js';
+import {LoginButton, Spinner, useUser} from './utils';
 
 export interface Item {
     objectID: string;

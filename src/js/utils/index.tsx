@@ -1,36 +1,46 @@
-import React from 'react';
 import hdate from 'human-date';
+import React from 'react';
 
-import {signIn, signOut, onAuthStateChanged} from '../model';
+import {Item} from '..';
+import {onAuthStateChanged, signIn, signOut} from '../model';
 
 export {useRefUserDetails} from './user_details';
 
-export const relativeTime = function (createdAt, isEpoch = false) {
-    let d;
+export const relativeTime = function (createdAt: string | number, isEpoch = false) {
+    let d: Date;
     if (isEpoch) {
         d = new Date(0);
-        d.setUTCSeconds(createdAt);
+        d.setUTCSeconds(createdAt as number);
     } else d = new Date(createdAt);
     return hdate.relativeTime(d);
 };
 
-export const toLocaleString = function (createdAt, isEpoch = false) {
-    let d;
+export const toLocaleString = function (createdAt: string | number, isEpoch = false) {
+    let d: Date;
     if (isEpoch) {
         d = new Date(0);
-        d.setUTCSeconds(createdAt);
+        d.setUTCSeconds(createdAt as number);
     } else d = new Date(createdAt);
     return d.toLocaleString('en-US', {hour12: false});
 };
 
-export const Badge = function ({score}) {
-    const getColor = function (points) {
-        if (points >= 3200) return 'danger';
-        if (points >= 1600) return 'warning';
-        if (points >= 800) return 'success';
-        if (points >= 400) return 'primary';
-        if (points >= 200) return 'info';
-        return 'secondary';
+enum COLOR {
+    DANGER = 'danger',
+    WARNING = 'warning',
+    SUCCESS = 'success',
+    PRIMARY = 'primary',
+    INFO = 'info',
+    SECONDARY = 'secondary',
+}
+
+export const Badge = function ({score}: {score: number}) {
+    const getColor = function (points: number) {
+        if (points >= 3200) return COLOR.DANGER;
+        if (points >= 1600) return COLOR.WARNING;
+        if (points >= 800) return COLOR.SUCCESS;
+        if (points >= 400) return COLOR.PRIMARY;
+        if (points >= 200) return COLOR.INFO;
+        return COLOR.SECONDARY;
     };
 
     return <span className={`badge bg-${getColor(score)}`}>{score}</span>;
@@ -75,7 +85,7 @@ export const Spinner = function (props) {
     );
 };
 
-export const Twitter = function ({item}) {
+export const Twitter = function ({item}: {item: Item}) {
     const twitterUrl = new URL('https://twitter.com/intent/tweet');
     twitterUrl.searchParams.append('text', item.title);
     twitterUrl.searchParams.append(
