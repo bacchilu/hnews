@@ -45,15 +45,15 @@ const UserBadge = function ({item, isItemSelected, setSelected}) {
     );
 };
 
-const UserBadgeContainer = function ({item, isItemSelected, setSelected}) {
+const UserBadgeContainer = function ({spinner, children}) {
     const {ref, isVisible} = useVisible();
 
     const visible = isVisible !== undefined && isVisible;
 
     return (
         <span ref={ref}>
-            {!visible && <Spinner />}
-            {visible && <UserBadge item={item} isItemSelected={isItemSelected} setSelected={setSelected} />}
+            {!visible && spinner}
+            {visible && children}
         </span>
     );
 };
@@ -73,7 +73,9 @@ export const CommentersList = function ({kids, selectComment}) {
         };
 
         return (
-            <UserBadgeContainer key={item} item={item} isItemSelected={selectedKids[item]} setSelected={setSelected} />
+            <UserBadgeContainer key={item} spinner={<Spinner />}>
+                <UserBadge item={item} isItemSelected={selectedKids[item]} setSelected={setSelected} />
+            </UserBadgeContainer>
         );
     });
 
