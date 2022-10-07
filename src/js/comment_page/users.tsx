@@ -1,5 +1,11 @@
 import React from 'react';
+import {useIntersectionObserver} from 'react-intersection-observer-hook';
 import useSWR from 'swr';
+
+export const useVisible = function () {
+    const [ref, {entry}] = useIntersectionObserver();
+    return {ref, isVisible: entry && entry.isIntersecting};
+};
 
 interface HNItem {
     by: string;
@@ -11,16 +17,15 @@ const useHNItem = function (id: number) {
     return useSWR(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, fetcher);
 };
 
+const Spinner = function () {
+    return <div className="spinner-grow spinner-grow-sm me-5"></div>;
+};
+
 const UserBadge = function ({item, isItemSelected, setSelected}) {
     const {data, error} = useHNItem(item);
 
     if (error !== undefined) return <span className="badge rounded-pill bg-danger">error</span>;
-    if (data === undefined)
-        return (
-            <div className="spinner-grow spinner-grow-sm" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </div>
-        );
+    if (data === undefined) return <Spinner />;
 
     const onClick = function (e) {
         e.preventDefault();
@@ -40,6 +45,19 @@ const UserBadge = function ({item, isItemSelected, setSelected}) {
     );
 };
 
+const UserBadgeContainer = function ({item, isItemSelected, setSelected}) {
+    const {ref, isVisible} = useVisible();
+
+    const visible = isVisible !== undefined && isVisible;
+
+    return (
+        <span ref={ref}>
+            {!visible && <Spinner />}
+            {visible && <UserBadge item={item} isItemSelected={isItemSelected} setSelected={setSelected} />}
+        </span>
+    );
+};
+
 export const CommentersList = function ({kids, selectComment}) {
     const getInitDict = function () {
         return kids.reduce(function (accumulator, currentValue) {
@@ -54,7 +72,9 @@ export const CommentersList = function ({kids, selectComment}) {
             selectComment(item);
         };
 
-        return <UserBadge key={item} item={item} isItemSelected={selectedKids[item]} setSelected={setSelected} />;
+        return (
+            <UserBadgeContainer key={item} item={item} isItemSelected={selectedKids[item]} setSelected={setSelected} />
+        );
     });
 
     return (
