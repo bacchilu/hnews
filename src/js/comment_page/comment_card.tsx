@@ -1,9 +1,8 @@
 import React from 'react';
-import {useParams} from 'react-router-dom';
 
-import {Spinner, Badge, useRefUserDetails, relativeTime, toLocaleString, Twitter} from '../utils';
+import {Badge, relativeTime, Spinner, toLocaleString, Twitter, useRefUserDetails} from '../utils';
 import {CommentersList} from './users';
-import {useHNItem, CardText, HNLink} from './utils';
+import {CardText, HNLink, useHNItem} from './utils';
 
 const Comment = function ({item}) {
     const {data, error} = useHNItem(item);
@@ -52,7 +51,7 @@ const Comment = function ({item}) {
     );
 };
 
-const CommentCard = function ({data}) {
+export const CommentCard = function ({data}) {
     const userEl = useRefUserDetails(data.by);
     const [childComment, setChildComment] = React.useState(null);
 
@@ -85,19 +84,4 @@ const CommentCard = function ({data}) {
             {childComment !== null && <Comment item={childComment} />}
         </>
     );
-};
-
-export const CommentPage = function () {
-    const {commentId} = useParams();
-    const {data, error} = useHNItem(commentId);
-
-    if (error !== undefined)
-        return (
-            <div className="alert alert-danger" role="alert">
-                {error.message}
-            </div>
-        );
-    if (data === undefined) return <Spinner />;
-
-    return <CommentCard data={data} />;
 };

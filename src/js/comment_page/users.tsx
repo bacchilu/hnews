@@ -1,9 +1,13 @@
 import React from 'react';
 import useSWR from 'swr';
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+interface HNItem {
+    by: string;
+}
 
-const useHNItem = function (id) {
+const fetcher = (k: string) => fetch(k).then((res) => res.json() as Promise<HNItem>);
+
+const useHNItem = function (id: number) {
     return useSWR(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, fetcher);
 };
 
@@ -44,7 +48,7 @@ export const CommentersList = function ({kids, selectComment}) {
     };
     const [selectedKids, setSelectedKids] = React.useState(getInitDict);
 
-    const items = kids.map(function (item) {
+    const items = kids.map(function (item: number) {
         const setSelected = function () {
             setSelectedKids({...getInitDict(), [item]: true});
             selectComment(item);
