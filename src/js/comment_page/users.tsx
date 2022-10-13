@@ -14,7 +14,7 @@ interface HNItem {
 const fetcher = (k: string) => fetch(k).then((res) => res.json() as Promise<HNItem>);
 
 const useHNItem = function (id: number) {
-    return useSWR(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, fetcher);
+    return useSWR(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, fetcher, {dedupingInterval: 60000});
 };
 
 const Spinner = function () {
@@ -45,15 +45,38 @@ const UserBadge = function ({item, isItemSelected, setSelected}) {
     );
 };
 
-const UserBadgeContainer = function ({spinner, children}) {
+const visitedKeys = {};
+const useVisited = function (key: number, isVisible: boolean | undefined) {
+    React.useEffect(
+        function () {
+            const v: boolean | undefined = visitedKeys[key];
+            if (v === true) return;
+            visitedKeys[key] = isVisible === true;
+        },
+        [isVisible]
+    );
+
+    const v: boolean | undefined = visitedKeys[key];
+    return v;
+};
+
+const VisibilityContainer = function ({spinner, key2, children}) {
     const {ref, isVisible} = useVisible();
+    React.useEffect(
+        function () {
+            if (visitedKeys[key2] === true) return;
+            visitedKeys[key2] = isVisible === true;
+        },
+        [isVisible]
+    );
 
     const visible = isVisible !== undefined && isVisible;
+    const visited = visitedKeys[key2] === undefined ? false : visitedKeys[key2];
 
     return (
         <span ref={ref}>
-            {!visible && spinner}
-            {visible && children}
+            {!visible && !visited && spinner}
+            {(visible || visited) && children}
         </span>
     );
 };
@@ -73,9 +96,9 @@ export const CommentersList = function ({kids, selectComment}) {
         };
 
         return (
-            <UserBadgeContainer key={item} spinner={<Spinner />}>
+            <VisibilityContainer key={item} key2={item} spinner={<Spinner />}>
                 <UserBadge item={item} isItemSelected={selectedKids[item]} setSelected={setSelected} />
-            </UserBadgeContainer>
+            </VisibilityContainer>
         );
     });
 
