@@ -56,7 +56,7 @@ export const CommentersList = function ({kids, selectComment}) {
         };
 
         return (
-            <VisibilityContainer key={item} key2={item} spinner={<Spinner />}>
+            <VisibilityContainer key={item} spinner={<Spinner />}>
                 <UserBadge item={item} isItemSelected={selectedKids[item]} setSelected={setSelected} />
             </VisibilityContainer>
         );
