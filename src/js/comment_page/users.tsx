@@ -42,22 +42,17 @@ const UserBadge = function ({item, isItemSelected, setSelected}) {
 };
 
 export const CommentersList = function ({kids, selectComment}) {
-    const getInitDict = function () {
-        return kids.reduce(function (accumulator, currentValue) {
-            return {...accumulator, [currentValue]: false};
-        }, {});
-    };
-    const [selectedKids, setSelectedKids] = React.useState(getInitDict);
+    const [selectedKid, setSelectedKid] = React.useState<number | null>(null);
 
     const items = kids.map(function (item: number) {
         const setSelected = function () {
-            setSelectedKids({...getInitDict(), [item]: true});
+            setSelectedKid(item);
             selectComment(item);
         };
 
         return (
             <VisibilityContainer key={item} spinner={<Spinner />}>
-                <UserBadge item={item} isItemSelected={selectedKids[item]} setSelected={setSelected} />
+                <UserBadge item={item} isItemSelected={item === selectedKid} setSelected={setSelected} />
             </VisibilityContainer>
         );
     });
