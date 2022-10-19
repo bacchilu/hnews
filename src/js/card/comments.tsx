@@ -1,7 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const LinkTo = function ({to, disabled, children}) {
+import {Item} from '..';
+
+const LinkTo = function ({to, disabled, children}: {to: string; disabled: boolean; children: JSX.Element}) {
     return disabled ? (
         <Link to={`/${to}`} style={{pointerEvents: 'none'}}>
             {children}
@@ -11,7 +13,7 @@ const LinkTo = function ({to, disabled, children}) {
     );
 };
 
-export const Comments = function ({item}) {
+export const Comments = function ({item}: {item: Item}) {
     return (
         <LinkTo to={`/${item.objectID}`} disabled={item.num_comments === null}>
             <span className="btn btn-primary btn-sm position-relative me-4">

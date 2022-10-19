@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Item} from '..';
 import {Badge, relativeTime, toLocaleString, Twitter, useRefUserDetails} from '../utils';
-import {Comments} from './comments.js';
+import {Comments} from './comments';
 
 const Url = function ({item}: {item: Item}) {
     let res = <span>{item.url}</span>;

@@ -16,6 +16,7 @@ export interface Item {
     created_at: string;
     story_text: string;
     url: string;
+    num_comments: number | null;
 }
 
 const Items = function ({items}: {items: Item[]}) {
