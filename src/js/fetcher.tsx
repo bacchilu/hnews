@@ -14,7 +14,7 @@ export interface HNItem {
 }
 
 const Fetch = (function () {
-    const getDaysData = async function (start: number, end: number, hitsPerPage: number): Promise<HNItem[]> {
+    const getDaysHits = async function (start: number, end: number, hitsPerPage: number): Promise<HNItem[]> {
         const searchParams = new URLSearchParams({
             query: '',
             numericFilters: `created_at_i>${start},created_at_i<=${end}`,
@@ -34,7 +34,7 @@ const Fetch = (function () {
 
             const res = await Promise.all(
                 [0, 1, 2, 3, 4, 5, 6].map(function (i) {
-                    return getDaysData(NOW - (7 - i) * DAY, NOW - (6 - i) * DAY, 2 ** i);
+                    return getDaysHits(NOW - (7 - i) * DAY, NOW - (6 - i) * DAY, 2 ** i);
                 })
             );
 
