@@ -2,26 +2,34 @@ import useSWR from 'swr';
 
 // https://github.com/minimaxir/hacker-news-undocumented
 
+export interface HNItem {
+    objectID: string;
+    author: string;
+    title: string;
+    points: number;
+    created_at: string;
+    story_text: string;
+    url: string;
+    num_comments: number | null;
+}
+
 const Fetch = (function () {
-    const ajaxGet = async function (start, end, hitsPerPage) {
+    const getDaysData = async function (start: number, end: number, hitsPerPage: number): Promise<HNItem[]> {
         const searchParams = new URLSearchParams({
             query: '',
             numericFilters: `created_at_i>${start},created_at_i<=${end}`,
-            hitsPerPage: hitsPerPage,
+            hitsPerPage: `${hitsPerPage}`,
         });
         const url = `https://hn.algolia.com/api/v1/search?${searchParams.toString()}`;
         const res = await fetch(url);
         if (!res.ok) throw new Error('An error occurred while fetching the data.');
-        return res.json();
-    };
-
-    const getDaysData = async function (start, end, n) {
-        return (await ajaxGet(start, end, n))['hits'];
+        const response = await res.json();
+        return response.hits;
     };
 
     return {
         getData: async function () {
-            const NOW = new Date() / 1000;
+            const NOW = Date.now() / 1000;
             const DAY = 60 * 60 * 24;
 
             const res = await Promise.all(
@@ -35,8 +43,8 @@ const Fetch = (function () {
                     return [...acc, ...item];
                 }, [])
                 .sort(function (a, b) {
-                    if (a['points'] < b['points']) return 1;
-                    if (a['points'] > b['points']) return -1;
+                    if (a.points < b.points) return 1;
+                    if (a.points > b.points) return -1;
                     return 0;
                 });
         },
@@ -44,5 +52,5 @@ const Fetch = (function () {
 })();
 
 export const useHNItems = function () {
-    return useSWR('hn_items', Fetch.getData, {dedupingInterval: 60000});
+    return useSWR('HN_ITEMS', Fetch.getData, {dedupingInterval: 60000});
 };

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {Item} from '..';
+import {HNItem} from '../fetcher';
 import {Badge, relativeTime, toLocaleString, Twitter, useRefUserDetails} from '../utils';
 import {Comments} from './comments';
 
-const Url = function ({item}: {item: Item}) {
+const Url = function ({item}: {item: HNItem}) {
     let res = <span>{item.url}</span>;
     if (item.url !== null) {
         const slitted = item.url.split('/');
@@ -21,7 +21,7 @@ const Url = function ({item}: {item: Item}) {
     return res;
 };
 
-const CardText = function ({item}: {item: Item}) {
+const CardText = function ({item}: {item: HNItem}) {
     if (item.story_text !== null) return <em dangerouslySetInnerHTML={{__html: item.story_text}}></em>;
 
     return (
@@ -33,7 +33,7 @@ const CardText = function ({item}: {item: Item}) {
     );
 };
 
-export const Card = function ({item, inModal}: {item: Item; inModal: boolean}) {
+export const Card = function ({item, inModal}: {item: HNItem; inModal: boolean}) {
     const userEl = useRefUserDetails(item.author);
 
     return (

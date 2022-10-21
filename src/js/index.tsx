@@ -5,21 +5,10 @@ import {HashRouter as Router, Route, Routes} from 'react-router-dom';
 import {version} from '../../package.json';
 import {Card} from './card';
 import {CommentPage} from './comment_page';
-import {useHNItems} from './fetcher.js';
+import {HNItem, useHNItems} from './fetcher';
 import {LoginButton, Spinner, useUser} from './utils';
 
-export interface Item {
-    objectID: string;
-    author: string;
-    title: string;
-    points: number;
-    created_at: string;
-    story_text: string;
-    url: string;
-    num_comments: number | null;
-}
-
-const Items = function ({items}: {items: Item[]}) {
+const Items = function ({items}: {items: HNItem[]}) {
     const res = items.map(function (item) {
         return <Card key={item.objectID} item={item} inModal={false} />;
     });

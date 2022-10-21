@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import {Item} from '..';
+import {HNItem} from '../fetcher';
 
 const LinkTo = function ({to, disabled, children}: {to: string; disabled: boolean; children: JSX.Element}) {
     return disabled ? (
@@ -13,7 +13,7 @@ const LinkTo = function ({to, disabled, children}: {to: string; disabled: boolea
     );
 };
 
-export const Comments = function ({item}: {item: Item}) {
+export const Comments = function ({item}: {item: HNItem}) {
     return (
         <LinkTo to={`/${item.objectID}`} disabled={item.num_comments === null}>
             <span className="btn btn-primary btn-sm position-relative me-4">
