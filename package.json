@@ -1,6 +1,6 @@
 {
     "name": "hnews",
-    "version": "3.2.2",
+    "version": "3.2.3",
     "description": "HNews",
     "private": true,
     "source": "src/index.html",
@@ -36,9 +36,9 @@
         "@parcel/packager-raw-url": "^2.7.0",
         "@parcel/transformer-webmanifest": "^2.7.0",
         "@types/human-date": "^1.4.2",
-        "@types/react": "^18.0.21",
-        "@types/react-dom": "^18.0.6",
-        "npm-check-updates": "^16.3.14",
+        "@types/react": "^18.0.22",
+        "@types/react-dom": "^18.0.7",
+        "npm-check-updates": "^16.3.15",
         "parcel": "^2.7.0",
         "process": "^0.11.10"
     },
