@@ -9,7 +9,7 @@ const LinkTo = function ({to, disabled, children}: {to: string; disabled: boolea
             {children}
         </Link>
     ) : (
-        <Link to={`/${to}`}>{children}</Link>
+        <Link to={to}>{children}</Link>
     );
 };
 
