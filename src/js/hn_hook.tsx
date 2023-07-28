@@ -14,7 +14,7 @@ export interface HNItem {
 }
 
 const Fetch = (function () {
-    const getDaysHits = async function (start: number, end: number, hitsPerPage: number): Promise<HNItem[]> {
+    const getDaysHits = async function (start: number, end: number, hitsPerPage: number, cb: () => void) {
         const searchParams = new URLSearchParams({
             query: '',
             numericFilters: `created_at_i>${start},created_at_i<=${end}`,
@@ -23,8 +23,8 @@ const Fetch = (function () {
         const url = `https://hn.algolia.com/api/v1/search?${searchParams.toString()}`;
         const res = await fetch(url);
         if (!res.ok) throw new Error('An error occurred while fetching the data.');
-        const response = await res.json();
-        return response.hits;
+        cb();
+        return (await res.json()).hits as HNItem[];
     };
 
     return {
@@ -32,17 +32,19 @@ const Fetch = (function () {
             const NOW = Date.now() / 1000;
             const DAY = 60 * 60 * 24;
 
+            const data = [0, 1, 2, 3, 4, 5, 6];
+            let progress = 0;
+            const cb = function () {
+                progress += 1;
+                console.log(progress);
+            };
             const res = await Promise.all(
-                [0, 1, 2, 3, 4, 5, 6].map(function (i) {
-                    return getDaysHits(NOW - (7 - i) * DAY, NOW - (6 - i) * DAY, 2 ** i);
-                })
+                data.map((i) => getDaysHits(NOW - (7 - i) * DAY, NOW - (6 - i) * DAY, 2 ** i, cb))
             );
 
             return res
-                .reduce(function (acc, item) {
-                    return [...acc, ...item];
-                }, [])
-                .sort(function (a, b) {
+                .reduce((acc, item) => [...acc, ...item], [])
+                .sort((a, b) => {
                     if (a.points < b.points) return 1;
                     if (a.points > b.points) return -1;
                     return 0;

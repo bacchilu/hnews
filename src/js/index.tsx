@@ -1,11 +1,11 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client';
-import {HashRouter as Router, Route, Routes} from 'react-router-dom';
+import {Route, HashRouter as Router, Routes} from 'react-router-dom';
 
 import {version} from '../../package.json';
 import {Card} from './card';
 import {CommentPage} from './comment_page';
-import {HNItem, useHNItems} from './fetcher';
+import {HNItem, useHNItems} from './hn_hook';
 import {LoginButton, Spinner, useUser} from './utils';
 
 const Items = function ({items}: {items: HNItem[]}) {
