@@ -1,7 +1,7 @@
 import hdate from 'human-date';
 import React from 'react';
 
-import {Item} from '..';
+import {HNItem} from '../hn_hook';
 import {onAuthStateChanged, signIn, signOut} from '../model';
 
 export {useRefUserDetails} from './user_details';
@@ -75,7 +75,7 @@ export const LoginButton = function ({user}) {
     );
 };
 
-export const Spinner = function (props) {
+export const Spinner: React.FC = function () {
     return (
         <div className="d-flex justify-content-center">
             <div className="spinner-border" style={{width: '3rem', height: '3rem'}} role="status">
@@ -85,7 +85,7 @@ export const Spinner = function (props) {
     );
 };
 
-export const Twitter = function ({item}: {item: Item}) {
+export const Twitter = function ({item}: {item: HNItem}) {
     const twitterUrl = new URL('https://twitter.com/intent/tweet');
     twitterUrl.searchParams.append('text', item.title);
     twitterUrl.searchParams.append(

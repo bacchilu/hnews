@@ -65,9 +65,11 @@ const Fetch = (function () {
     };
 })();
 
-export const useHNItems = function () {
+export const useHNItems = function (cb_perc?: (perc: number) => void) {
     const progressCb = function (data: [number, number]) {
-        console.log(data);
+        const [index, length] = data;
+        const perc = Math.trunc((100 * index) / length);
+        if (cb_perc !== undefined) cb_perc(perc);
     };
     return useSWR('HN_ITEMS', Fetch.getData(progressCb), {dedupingInterval: 60000});
 };

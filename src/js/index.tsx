@@ -16,7 +16,9 @@ const Items = function ({items}: {items: HNItem[]}) {
 };
 
 const Main = function () {
-    const {data, error} = useHNItems();
+    const {data, error} = useHNItems((cb_perc) => {
+        console.log(cb_perc);
+    });
 
     if (error !== undefined)
         return (
