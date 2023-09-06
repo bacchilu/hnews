@@ -38,12 +38,12 @@ export const useRefUserDetails = function (user) {
                     </small>
                 </p>
             `;
-            popover.tip.getElementsByClassName('popover-body')[0].innerHTML = t;
+            if (popover.tip !== null) popover.tip.getElementsByClassName('popover-body')[0].innerHTML = t;
         };
         domEl.current.addEventListener('inserted.bs.popover', listener);
 
         return function () {
-            // domEl.current.removeEventListener('inserted.bs.popover', listener);
+            domEl.current.removeEventListener('inserted.bs.popover', listener);
             popover.dispose();
         };
     }, []);

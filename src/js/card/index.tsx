@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {HNItem} from '../fetcher';
+import {HNItem} from '../hn_hook';
 import {Badge, relativeTime, toLocaleString, Twitter, useRefUserDetails} from '../utils';
 import {Comments} from './comments';
 
@@ -21,19 +21,24 @@ const Url = function ({item}: {item: HNItem}) {
     return res;
 };
 
-const CardText = function ({item}: {item: HNItem}) {
-    if (item.story_text !== null) return <em dangerouslySetInnerHTML={{__html: item.story_text}}></em>;
-
+const CardText: React.FC<{item: HNItem}> = function ({item}) {
     return (
-        <p className="card-text text-truncate">
-            <a href={item.url} target="_blank">
-                <Url item={item} />
-            </a>
-        </p>
+        <>
+            {item.story_text !== null && (
+                <p>
+                    <em dangerouslySetInnerHTML={{__html: item.story_text}}></em>
+                </p>
+            )}
+            <p className="card-text text-truncate">
+                <a href={item.url} target="_blank">
+                    <Url item={item} />
+                </a>
+            </p>
+        </>
     );
 };
 
-export const Card = function ({item, inModal}: {item: HNItem; inModal: boolean}) {
+export const Card: React.FC<{item: HNItem; inModal: boolean}> = function ({item, inModal}) {
     const userEl = useRefUserDetails(item.author);
 
     return (
