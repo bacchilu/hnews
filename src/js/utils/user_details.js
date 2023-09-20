@@ -43,7 +43,7 @@ export const useRefUserDetails = function (user) {
         domEl.current.addEventListener('inserted.bs.popover', listener);
 
         return function () {
-            domEl.current.removeEventListener('inserted.bs.popover', listener);
+            // domEl.current.removeEventListener('inserted.bs.popover', listener);
             popover.dispose();
         };
     }, []);
