@@ -1,6 +1,6 @@
 {
     "name": "hnews",
-    "version": "4.2.0",
+    "version": "4.2.1",
     "description": "HNews",
     "private": true,
     "source": "src/index.html",
@@ -36,9 +36,9 @@
         "@parcel/packager-raw-url": "^2.9.3",
         "@parcel/transformer-webmanifest": "^2.9.3",
         "@types/human-date": "^1.4.3",
-        "@types/react": "^18.2.22",
-        "@types/react-dom": "^18.2.7",
-        "npm-check-updates": "^16.14.4",
+        "@types/react": "^18.2.25",
+        "@types/react-dom": "^18.2.10",
+        "npm-check-updates": "^16.14.5",
         "parcel": "^2.9.3",
         "process": "^0.11.10"
     },
@@ -49,6 +49,6 @@
         "react-dom": "^18.2.0",
         "react-intersection-observer-hook": "^2.1.1",
         "react-router-dom": "^6.16.0",
-        "swr": "^2.2.2"
+        "swr": "^2.2.4"
     }
 }
