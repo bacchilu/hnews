@@ -31,7 +31,7 @@ const Fetch = (function () {
             hitsPerPage: `${hitsPerPage}`,
         });
         const url = `https://hn.algolia.com/api/v1/search?${searchParams.toString()}`;
-        const res = await fetch(url);
+        const res = await fetch('https://corsproxy.io/?' + encodeURIComponent(url));
         if (!res.ok) throw new Error('An error occurred while fetching the data.');
         cb();
         return (await res.json()).hits as HNItem[];

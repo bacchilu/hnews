@@ -4,9 +4,9 @@ import {HNItem} from '../hn_hook';
 import {Badge, relativeTime, toLocaleString, Twitter, useRefUserDetails} from '../utils';
 import {Comments} from './comments';
 
-const Url = function ({item}: {item: HNItem}) {
+const Url: React.FC<{item: HNItem}> = function ({item}) {
     let res = <span>{item.url}</span>;
-    if (item.url !== null) {
+    if (item.url !== undefined) {
         const slitted = item.url.split('/');
         const schema = slitted.slice(0, 2).join('/');
         const domain = slitted[2];
