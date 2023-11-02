@@ -1,5 +1,6 @@
 import useSWR from 'swr';
 
+// https://hn.algolia.com/api
 // https://github.com/minimaxir/hacker-news-undocumented
 
 export interface HNItem {
@@ -13,46 +14,22 @@ export interface HNItem {
     num_comments: number | null;
 }
 
-const createCounter = function () {
-    let progress = 0;
-    return {
-        incr: function () {
-            progress += 1;
-            return progress;
-        },
-    };
-};
-
 const Fetch = (function () {
-    const getDaysHits = async function (start: number, end: number, hitsPerPage: number, cb: () => void) {
-        const searchParams = new URLSearchParams({
-            query: '',
-            numericFilters: `created_at_i>${start},created_at_i<=${end}`,
-            hitsPerPage: `${hitsPerPage}`,
-        });
+    const getDaysHits = async function (from: number, to: number, hitsPerPage: number) {
+        const searchParams = new URLSearchParams({ query: '', numericFilters: `created_at_i>${from},created_at_i<=${to}`, hitsPerPage: `${hitsPerPage}` });
         const url = `https://hn.algolia.com/api/v1/search?${searchParams.toString()}`;
-        const res = await fetch('https://corsproxy.io/?' + encodeURIComponent(url));
+        const res = await fetch(url);
         if (!res.ok) throw new Error('An error occurred while fetching the data.');
-        cb();
         return (await res.json()).hits as HNItem[];
     };
 
     return {
-        getData: function (progressCb: (data: [number, number]) => void) {
+        getData: function () {
             return async () => {
                 const NOW = Date.now() / 1000;
                 const DAY = 60 * 60 * 24;
 
-                const data = [0, 1, 2, 3, 4, 5, 6];
-                const counter = createCounter();
-                const cb = function () {
-                    const res: [number, number] = [counter.incr(), data.length];
-                    progressCb(res);
-                };
-                const res = await Promise.all(
-                    data.map((i) => getDaysHits(NOW - (7 - i) * DAY, NOW - (6 - i) * DAY, 2 ** i, cb))
-                );
-
+                const res = await Promise.all([0, 1, 2, 3, 4, 5, 6].map(i => getDaysHits(NOW - (7 - i) * DAY, NOW - (6 - i) * DAY, 2 ** i)));
                 return res
                     .reduce((acc, item) => [...acc, ...item], [])
                     .sort((a, b) => {
@@ -65,11 +42,6 @@ const Fetch = (function () {
     };
 })();
 
-export const useHNItems = function (cb_perc?: (perc: number) => void) {
-    const progressCb = function (data: [number, number]) {
-        const [index, length] = data;
-        const perc = Math.trunc((100 * index) / length);
-        if (cb_perc !== undefined) cb_perc(perc);
-    };
-    return useSWR('HN_ITEMS', Fetch.getData(progressCb), {dedupingInterval: 60000});
+export const useHNItems = function () {
+    return useSWR('HN_ITEMS', Fetch.getData(), { dedupingInterval: 60000 });
 };

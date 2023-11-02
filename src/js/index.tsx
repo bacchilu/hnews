@@ -1,14 +1,14 @@
 import React from 'react';
-import {createRoot} from 'react-dom/client';
-import {Route, HashRouter as Router, Routes} from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
+import { Route, HashRouter as Router, Routes } from 'react-router-dom';
 
-import {version} from '../../package.json';
-import {Card} from './card';
-import {CommentPage} from './comment_page';
-import {HNItem, useHNItems} from './hn_hook';
-import {LoginButton, Spinner, useUser} from './utils';
+import { version } from '../../package.json';
+import { Card } from './card';
+import { CommentPage } from './comment_page';
+import { HNItem, useHNItems } from './hn_hook';
+import { LoginButton, Spinner, useUser } from './utils';
 
-const Items = function ({items}: {items: HNItem[]}) {
+const Items = function ({ items }: { items: HNItem[] }) {
     const res = items.map(function (item) {
         return <Card key={item.objectID} item={item} inModal={false} />;
     });
@@ -16,9 +16,7 @@ const Items = function ({items}: {items: HNItem[]}) {
 };
 
 const Main = function () {
-    const {data, error} = useHNItems((cb_perc) => {
-        console.log(cb_perc);
-    });
+    const { data, error } = useHNItems();
 
     if (error !== undefined)
         return (
@@ -44,7 +42,7 @@ const NavBar = function () {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
                 <a className="navbar-brand" href="/">
-                    <strong style={{color: '#ff6600'}}>HN</strong>ews <sub>{version}</sub>
+                    <strong style={{ color: '#ff6600' }}>HN</strong>ews <sub>{version}</sub>
                 </a>
                 <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target={`#${id}`}>
                     <span className="navbar-toggler-icon"></span>
@@ -64,7 +62,7 @@ const App = function () {
     return (
         <>
             <NavBar />
-            <div className="container" style={{paddingTop: '1em'}}>
+            <div className="container" style={{ paddingTop: '1em' }}>
                 <Router>
                     <Routes>
                         <Route path="/:commentId" element={<CommentPage />}></Route>
