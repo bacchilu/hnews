@@ -4,7 +4,7 @@ function e(){/* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */if("undefined"!=typeof _
 __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(e)}catch(e){// DevTools shouldn't crash React, no matter what.
 // We should still report in case we break this code.
 console.error(e)}}(),v=(L=P("a9mMY")).createRoot,L.hydrateRoot;/**
- * React Router DOM v6.17.0
+ * React Router DOM v6.18.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -13,7 +13,7 @@ console.error(e)}}(),v=(L=P("a9mMY")).createRoot,L.hydrateRoot;/**
  *
  * @license MIT
  */var D=P("6SgHj");/**
- * @remix-run/router v1.10.0
+ * @remix-run/router v1.11.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -102,7 +102,7 @@ a=e>=0?t[e]:"/"}let l=/**
  */function(e,t){let n;void 0===t&&(t="/");let{pathname:r,search:i="",hash:a=""}="string"==typeof e?H(e):e;return{pathname:r?r.startsWith("/")?r:(n=t.replace(/\/+$/,"").split("/"),r.split("/").forEach(e=>{".."===e?n.length>1&&n.pop():"."!==e&&n.push(e)}),n.length>1?n.join("/"):"/"):t,search:Y(i),hash:X(a)}}(i,a),u=s&&"/"!==s&&s.endsWith("/"),c=(o||"."===s)&&n.endsWith("/");return!l.pathname.endsWith("/")&&(u||c)&&(l.pathname+="/"),l}/**
  * @private
  */const G=e=>e.join("/").replace(/\/\/+/g,"/"),J=e=>e.replace(/\/+$/,"").replace(/^\/*/,"/"),Y=e=>e&&"?"!==e?e.startsWith("?")?e:"?"+e:"",X=e=>e&&"#"!==e?e.startsWith("#")?e:"#"+e:"";Symbol("deferred");/**
- * React Router v6.17.0
+ * React Router v6.18.0
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -203,17 +203,17 @@ n[n.length-1]-r[r.length-1]:// so they sort equally.
  * @see https://reactrouter.com/utils/match-path
  */function(e,t){var n,r,i;let a,o;"string"==typeof e&&(e={path:e,caseSensitive:!1,end:!0});let[s,l]=(n=e.path,r=e.caseSensitive,i=e.end,void 0===r&&(r=!1),void 0===i&&(i=!0),U("*"===n||!n.endsWith("*")||n.endsWith("/*"),'Route path "'+n+'" will be treated as if it were "'+n.replace(/\*$/,"/*")+'" because the `*` character must always follow a `/` in the pattern. To get rid of this warning, please change the route path to "'+n.replace(/\*$/,"/*")+'".'),a=[],o="^"+n.replace(/\/*\*?$/,"")// Ignore trailing / and /*, we'll handle it below
 .replace(/^\/*/,"/")// Make sure it has a leading /
-.replace(/[\\.*+^$?{}|()[\]]/g,"\\$&")// Escape special regex chars
-.replace(/\/:(\w+)/g,(e,t)=>(a.push(t),"/([^\\/]+)")),n.endsWith("*")?(a.push("*"),o+="*"===n||"/*"===n?"(.*)$"// Already matched the initial /, just match the rest
+.replace(/[\\.*+^${}|()[\]]/g,"\\$&")// Escape special regex chars
+.replace(/\/:(\w+)(\?)?/g,(e,t,n)=>(a.push({paramName:t,isOptional:null!=n}),n?"/?([^\\/]+)?":"/([^\\/]+)")),n.endsWith("*")?(a.push({paramName:"*"}),o+="*"===n||"/*"===n?"(.*)$"// Already matched the initial /, just match the rest
 :"(?:\\/(.+)|\\/*)$"):i?o+="\\/*$":""!==n&&"/"!==n&&// then we have _some_ form of path in our regex, so we should expect to
 // match only if we find the end of this path segment.  Look for an optional
 // non-captured trailing slash (to match a portion of the URL) or the end
 // of the path (if we've matched to the end).  We used to do this with a
 // word boundary but that gives false positives on routes like
 // /user-preferences since `-` counts as a word boundary.
-(o+="(?:(?=\\/|$))"),[new RegExp(o,r?void 0:"i"),a]),u=t.match(s);if(!u)return null;let c=u[0],d=c.replace(/(.)\/+$/,"$1"),f=u.slice(1);return{params:l.reduce((e,t,n)=>{// We need to compute the pathnameBase here using the raw splat value
+(o+="(?:(?=\\/|$))"),[new RegExp(o,r?void 0:"i"),a]),u=t.match(s);if(!u)return null;let c=u[0],d=c.replace(/(.)\/+$/,"$1"),f=u.slice(1);return{params:l.reduce((e,t,n)=>{let{paramName:r,isOptional:i}=t;// We need to compute the pathnameBase here using the raw splat value
 // instead of using params["*"] later because it will be decoded then
-if("*"===t){let e=f[n]||"";d=c.slice(0,c.length-e.length).replace(/(.)\/+$/,"$1")}return e[t]=function(e,t){try{return decodeURIComponent(e)}catch(n){return U(!1,'The value for the URL param "'+t+'" will not be decoded because the string "'+e+'" is a malformed URL segment. This is probably due to a bad percent encoding ('+n+")."),e}}(f[n]||"",t),e},{}),pathname:c,pathnameBase:d,pattern:e}}({path:o.relativePath,caseSensitive:o.caseSensitive,end:s},l);if(!u)return null;Object.assign(r,u.params);let c=o.route;a.push({// TODO: Can this as be avoided?
+if("*"===r){let e=f[n]||"";d=c.slice(0,c.length-e.length).replace(/(.)\/+$/,"$1")}let a=f[n];return i&&!a?e[r]=void 0:e[r]=function(e,t){try{return decodeURIComponent(e)}catch(n){return U(!1,'The value for the URL param "'+t+'" will not be decoded because the string "'+e+'" is a malformed URL segment. This is probably due to a bad percent encoding ('+n+")."),e}}(a||"",r),e},{}),pathname:c,pathnameBase:d,pattern:e}}({path:o.relativePath,caseSensitive:o.caseSensitive,end:s},l);if(!u)return null;Object.assign(r,u.params);let c=o.route;a.push({// TODO: Can this as be avoided?
 params:r,pathname:G([i,u.pathname]),pathnameBase:J(G([i,u.pathnameBase])),route:c}),"/"!==u.pathnameBase&&(i=G([i,u.pathnameBase]))}return a}(i[e],// or from router.navigate, but we want to match against the unencoded
 // paths in the route definitions.  Memory router locations won't be
 // encoded here but there also shouldn't be anything to decode so this
@@ -239,10 +239,10 @@ t&&h?/*#__PURE__*/D.createElement(er.Provider,{value:{location:Z({pathname:"/",s
  * @see https://reactrouter.com/utils/create-routes-from-children
  */function e(t,n){void 0===n&&(n=[]);let r=[];return D.Children.forEach(t,(t,i)=>{if(!/*#__PURE__*/D.isValidElement(t))// conditionals in their route config.
 return;let a=[...n,i];if(t.type===D.Fragment){// Transparently support React.Fragment and its children.
-r.push.apply(r,e(t.props.children,a));return}t.type!==eg&&j(!1),t.props.index&&t.props.children&&j(!1);let o={id:t.props.id||a.join("-"),caseSensitive:t.props.caseSensitive,element:t.props.element,Component:t.props.Component,index:t.props.index,path:t.props.path,loader:t.props.loader,action:t.props.action,errorElement:t.props.errorElement,ErrorBoundary:t.props.ErrorBoundary,hasErrorBoundary:null!=t.props.ErrorBoundary||null!=t.props.errorElement,shouldRevalidate:t.props.shouldRevalidate,handle:t.props.handle,lazy:t.props.lazy};t.props.children&&(o.children=e(t.props.children,a)),r.push(o)}),r}(t),n))}D.startTransition;var eb=((u=eb||{})[u.pending=0]="pending",u[u.success=1]="success",u[u.error=2]="error",u);function ew(){return(ew=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}function e_(e,t){if(null==e)return{};var n,r,i={},a=Object.keys(e);for(r=0;r<a.length;r++)n=a[r],t.indexOf(n)>=0||(i[n]=e[n]);return i}new Promise(()=>{});const ek=["onClick","relative","reloadDocument","replace","state","target","to","preventScrollReset","unstable_viewTransition"],eS=["reloadDocument","replace","state","method","action","onSubmit","submit","relative","preventScrollReset","unstable_viewTransition"],eE=D.startTransition;/**
+r.push.apply(r,e(t.props.children,a));return}t.type!==eg&&j(!1),t.props.index&&t.props.children&&j(!1);let o={id:t.props.id||a.join("-"),caseSensitive:t.props.caseSensitive,element:t.props.element,Component:t.props.Component,index:t.props.index,path:t.props.path,loader:t.props.loader,action:t.props.action,errorElement:t.props.errorElement,ErrorBoundary:t.props.ErrorBoundary,hasErrorBoundary:null!=t.props.ErrorBoundary||null!=t.props.errorElement,shouldRevalidate:t.props.shouldRevalidate,handle:t.props.handle,lazy:t.props.lazy};t.props.children&&(o.children=e(t.props.children,a)),r.push(o)}),r}(t),n))}D.startTransition;var eb=((u=eb||{})[u.pending=0]="pending",u[u.success=1]="success",u[u.error=2]="error",u);function ew(){return(ew=Object.assign?Object.assign.bind():function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}new Promise(()=>{});const e_=["onClick","relative","reloadDocument","replace","state","target","to","preventScrollReset","unstable_viewTransition"],ek=D.startTransition;/**
  * A `<Router>` for use in web browsers. Stores the location in the hash
  * portion of the URL so it is not sent to the server.
- */function eI(e){let{basename:t,children:n,future:r,window:i}=e,a=D.useRef();null==a.current&&(a.current=function(e,t,n,r){void 0===r&&(r={});let{window:i=document.defaultView,v5Compat:a=!1}=r,o=i.history,s=y.Pop,l=null,u=c();function c(){return(o.state||{idx:null}).idx}function d(){s=y.Pop;let e=c(),t=null==e?null:e-u;u=e,l&&l({action:s,location:h.location,delta:t})}function f(e){// window.location.origin is "null" (the literal string value) in Firefox
+ */function eS(e){let{basename:t,children:n,future:r,window:i}=e,a=D.useRef();null==a.current&&(a.current=function(e,t,n,r){void 0===r&&(r={});let{window:i=document.defaultView,v5Compat:a=!1}=r,o=i.history,s=y.Pop,l=null,u=c();function c(){return(o.state||{idx:null}).idx}function d(){s=y.Pop;let e=c(),t=null==e?null:e-u;u=e,l&&l({action:s,location:h.location,delta:t})}function f(e){// window.location.origin is "null" (the literal string value) in Firefox
 // under certain conditions, notably when serving from a local HTML file
 // See https://bugzilla.mozilla.org/show_bug.cgi?id=878297
 let t="null"!==i.location.origin?i.location.origin:i.location.href,n="string"==typeof e?e:V(e);return j(t,"No window.location.(origin|href) available to create URL for href: "+n),new URL(n,t)}null==u&&(u=0,o.replaceState(A({},o.state,{idx:u}),""));let h={get action(){return s},get location(){return e(i,o)},listen(e){if(l)throw Error("A history only accepts one active listener");return i.addEventListener(M,d),l=e,()=>{i.removeEventListener(M,d),l=null}},createHref:e=>t(i,e),createURL:f,encodeLocation(e){// Encode a Location the same way window.location would
@@ -253,14 +253,15 @@ try{o.pushState(d,"",f)}catch(e){// If the exception is because `state` can't be
 // https://html.spec.whatwg.org/multipage/structured-data.html#structuredserializeinternal
 if(e instanceof DOMException&&"DataCloneError"===e.name)throw e;// They are going to lose state here, but there is no real
 // way to warn them about it since the page will refresh...
-i.location.assign(f)}a&&l&&l({action:s,location:h.location,delta:1})},replace:function(e,t){s=y.Replace;let r=F(h.location,e,t);n&&n(r,e);let i=z(r,u=c()),d=h.createHref(r);o.replaceState(i,"",d),a&&l&&l({action:s,location:h.location,delta:0})},go:e=>o.go(e)};return h}(function(e,t){let{pathname:n="/",search:r="",hash:i=""}=H(e.location.hash.substr(1));return n.startsWith("/")||n.startsWith(".")||(n="/"+n),F("",{pathname:n,search:r,hash:i},t.state&&t.state.usr||null,t.state&&t.state.key||"default")},function(e,t){let n=e.document.querySelector("base"),r="";if(n&&n.getAttribute("href")){let t=e.location.href,n=t.indexOf("#");r=-1===n?t:t.slice(0,n)}return r+"#"+("string"==typeof t?t:V(t))},function(e,t){U("/"===e.pathname.charAt(0),"relative pathnames are not supported in hash history.push("+JSON.stringify(t)+")")},{window:i,v5Compat:!0}));let o=a.current,[s,l]=D.useState({action:o.action,location:o.location}),{v7_startTransition:u}=r||{},c=D.useCallback(e=>{u&&eE?eE(()=>l(e)):l(e)},[l,u]);return D.useLayoutEffect(()=>o.listen(c),[o,c]),/*#__PURE__*/D.createElement(ev,{basename:t,children:n,location:s.location,navigationType:s.action,navigator:o})}const eC="undefined"!=typeof window&&void 0!==window.document&&void 0!==window.document.createElement,eT=/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i,ex=/*#__PURE__*/D.forwardRef(function(e,t){let n,{onClick:r,relative:i,reloadDocument:a,replace:o,state:s,target:l,to:u,preventScrollReset:c,unstable_viewTransition:d}=e,f=e_(e,ek),{basename:h}=D.useContext(en),p=!1;if("string"==typeof u&&eT.test(u)&&(// Render the absolute href server- and client-side
-n=u,eC))try{let e=new URL(window.location.href),t=new URL(u.startsWith("//")?e.protocol+u:u),n=W(t.pathname,h);t.origin===e.origin&&null!=n?u=n+t.search+t.hash:p=!0}catch(e){}// Rendered into <a href> for relative URLs
+i.location.assign(f)}a&&l&&l({action:s,location:h.location,delta:1})},replace:function(e,t){s=y.Replace;let r=F(h.location,e,t);n&&n(r,e);let i=z(r,u=c()),d=h.createHref(r);o.replaceState(i,"",d),a&&l&&l({action:s,location:h.location,delta:0})},go:e=>o.go(e)};return h}(function(e,t){let{pathname:n="/",search:r="",hash:i=""}=H(e.location.hash.substr(1));return n.startsWith("/")||n.startsWith(".")||(n="/"+n),F("",{pathname:n,search:r,hash:i},t.state&&t.state.usr||null,t.state&&t.state.key||"default")},function(e,t){let n=e.document.querySelector("base"),r="";if(n&&n.getAttribute("href")){let t=e.location.href,n=t.indexOf("#");r=-1===n?t:t.slice(0,n)}return r+"#"+("string"==typeof t?t:V(t))},function(e,t){U("/"===e.pathname.charAt(0),"relative pathnames are not supported in hash history.push("+JSON.stringify(t)+")")},{window:i,v5Compat:!0}));let o=a.current,[s,l]=D.useState({action:o.action,location:o.location}),{v7_startTransition:u}=r||{},c=D.useCallback(e=>{u&&ek?ek(()=>l(e)):l(e)},[l,u]);return D.useLayoutEffect(()=>o.listen(c),[o,c]),/*#__PURE__*/D.createElement(ev,{basename:t,children:n,location:s.location,navigationType:s.action,navigator:o})}const eE="undefined"!=typeof window&&void 0!==window.document&&void 0!==window.document.createElement,eI=/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i,eC=/*#__PURE__*/D.forwardRef(function(e,t){let n,{onClick:r,relative:i,reloadDocument:a,replace:o,state:s,target:l,to:u,preventScrollReset:c,unstable_viewTransition:d}=e,f=function(e,t){if(null==e)return{};var n,r,i={},a=Object.keys(e);for(r=0;r<a.length;r++)n=a[r],t.indexOf(n)>=0||(i[n]=e[n]);return i}(e,e_),{basename:h}=D.useContext(en),p=!1;if("string"==typeof u&&eI.test(u)&&(// Render the absolute href server- and client-side
+n=u,eE))try{let e=new URL(window.location.href),t=new URL(u.startsWith("//")?e.protocol+u:u),n=W(t.pathname,h);t.origin===e.origin&&null!=n?u=n+t.search+t.hash:p=!0}catch(e){}// Rendered into <a href> for relative URLs
 let m=/**
  * Returns the full href for the given "to" value. This is useful for building
  * custom links that are also accessible and preserve right-click behavior.
  *
  * @see https://reactrouter.com/hooks/use-href
- */function(e,t){let{relative:n}=void 0===t?{}:t;eo()||j(!1);let{basename:r,navigator:i}=D.useContext(en),{hash:a,pathname:o,search:s}=eu(e,{relative:n}),l=o;return"/"!==r&&(l="/"===o?r:G([r,o])),i.createHref({pathname:l,search:s,hash:a})}(u,{relative:i}),g=/**
+ */function(e,t){let{relative:n}=void 0===t?{}:t;eo()||j(!1);let{basename:r,navigator:i}=D.useContext(en),{hash:a,pathname:o,search:s}=eu(e,{relative:n}),l=o;return"/"!==r&&(l="/"===o?r:G([r,o])),i.createHref({pathname:l,search:s,hash:a})}(u,{relative:i}),g=// External hooks
+/**
  * Handles the click behavior for router `<Link>` components. This is useful if
  * you need to create custom `<Link>` components with the same click behavior we
  * use in our exported `<Link>`.
@@ -277,17 +278,17 @@ return e?/**
  */function(){let e;let{router:t}=(eh.UseNavigateStable,(e=D.useContext(ee))||j(!1),e),n=em(ep.UseNavigateStable),r=D.useRef(!1);return el(()=>{r.current=!0}),D.useCallback(function(e,i){void 0===i&&(i={}),r.current&&("number"==typeof e?t.navigate(e):t.navigate(e,Z({fromRouteId:n},i)))},[t,n])}():function(){eo()||j(!1);let e=D.useContext(ee),{basename:t,navigator:n}=D.useContext(en),{matches:r}=D.useContext(ei),{pathname:i}=es(),a=JSON.stringify(q(r).map(e=>e.pathnameBase)),o=D.useRef(!1);return el(()=>{o.current=!0}),D.useCallback(function(r,s){// Short circuit here since if this happens on first render the navigate
 // is useless because we haven't wired up our history listener yet
 if(void 0===s&&(s={}),!o.current)return;if("number"==typeof r){n.go(r);return}let l=Q(r,JSON.parse(a),i,"path"===s.relative);null==e&&"/"!==t&&(l.pathname="/"===l.pathname?t:G([t,l.pathname])),(s.replace?n.replace:n.push)(l,s.state,s)},[t,n,a,i,e])}()}(),u=es(),c=eu(e,{relative:o});return D.useCallback(t=>{0!==t.button||// Ignore everything but left clicks
-n&&"_self"!==n||t.metaKey||t.altKey||t.ctrlKey||t.shiftKey||(t.preventDefault(),l(e,{replace:void 0!==r?r:V(u)===V(c),state:i,preventScrollReset:a,relative:o,unstable_viewTransition:s}))},[u,l,c,r,i,n,e,a,o,s])}(u,{replace:o,state:s,target:l,preventScrollReset:c,relative:i,unstable_viewTransition:d});return /*#__PURE__*/D.createElement("a",ew({},f,{href:n||m,onClick:p||a?r:function(e){r&&r(e),e.defaultPrevented||g(e)},ref:t,target:l}))});(c=w||(w={})).UseScrollRestoration="useScrollRestoration",c.UseSubmit="useSubmit",c.UseSubmitFetcher="useSubmitFetcher",c.UseFetcher="useFetcher",c.useViewTransitionState="useViewTransitionState",(d=_||(_={})).UseFetchers="useFetchers",d.UseScrollRestoration="useScrollRestoration";var eN={};eN=JSON.parse('{"name":"hnews","version":"4.4.0","description":"HNews","private":true,"source":"src/index.html","browserslist":"defaults","scripts":{"update":"ncu -u","serve":"parcel -p 8000 --lazy","watch":"parcel watch","build":"rm -rf dist && rm -rf docs && parcel build --no-source-maps --dist-dir docs --public-url=/hnews"},"author":"Luca Bacchi <bacchilu@gmail.com> (http://www.lucabacchi.it)","license":"ISC","prettier":{"arrowParens":"always","bracketSpacing":false,"embeddedLanguageFormatting":"auto","htmlWhitespaceSensitivity":"css","insertPragma":false,"jsxBracketSameLine":false,"jsxSingleQuote":false,"printWidth":120,"proseWrap":"preserve","quoteProps":"as-needed","requirePragma":false,"semi":true,"singleQuote":true,"tabWidth":4,"trailingComma":"es5","useTabs":false,"vueIndentScriptAndStyle":false},"devDependencies":{"@parcel/packager-raw-url":"^2.10.0","@parcel/transformer-webmanifest":"^2.10.0","@types/human-date":"^1.4.4","@types/react":"^18.2.31","@types/react-dom":"^18.2.14","npm-check-updates":"^16.14.6","parcel":"^2.10.0","process":"^0.11.10"},"dependencies":{"firebase":"^10.5.0","human-date":"^1.4.0","react":"^18.2.0","react-dom":"^18.2.0","react-intersection-observer-hook":"^2.1.1","react-router-dom":"^6.17.0","swr":"^2.2.4"}}'),P("6SgHj");var eP={};!function(){var e={months:["January","February","March","April","May","June","July","August","September","October","November","December"],toUTC:function(e){var t=e?new Date(e):new Date;return new Date(t.getUTCFullYear(),t.getUTCMonth(),t.getUTCDate(),t.getUTCHours(),t.getUTCMinutes(),t.getUTCSeconds())},monthName:function(t){var n;return n="number"==typeof t?t:new Date(t).getMonth()+1,e.months[n-1]},relativeTime:function(e,t){var n,r,i,a,o,s,l=[];if("number"==typeof e?n=e:(a=new Date(e).getTime(),n=-((new Date().getTime()-a)/1e3*1)),t||(t={}),t.futureSuffix||(t.futureSuffix="from now"),t.pastSuffix||(t.pastSuffix="ago"),t.presentText||(t.presentText="now"),t.returnObject||(t.returnObject=!1),o=n<0,r={seconds:Math.floor((n=Math.abs(n))%31536e3%86400%3600%60),minutes:Math.floor(n%31536e3%86400%3600/60),hours:Math.floor(n%31536e3%86400/3600),days:Math.floor(n%31536e3/86400),years:Math.floor(n/31536e3),past:o},t.returnObject)return r;if(0===n)return t.presentText;function u(e,n){s&&(s=t.allUnits,l.push(e+" "+n+(e>1?"s":"")))}return i=r.past?t.pastSuffix:t.futureSuffix,s=!0,r.years&&u(r.years,"year"),r.days&&u(r.days,"day"),r.hours&&u(r.hours,"hour"),r.minutes&&u(r.minutes,"minute"),r.seconds&&u(r.seconds,"second"),l.join(", ")+" "+i},prettyPrint:function(e,t){var n,r,i,a,o,s,l,u,c;return e?"number"==typeof e&&(e=new Date().setSeconds(e)):e=new Date,t||(t={}),t.showTime||(t.showTime=!1),a=(i=(n=new Date(e)).getDate())>3&&i<21?i+"th":i%10==1?i+"st":i%10==2?i+"nd":i%10==3?i+"rd":i+"th",o=n.getFullYear(),r=this.monthName(n.getMonth()+1)+" "+a+", "+o,l=n.getHours(),u=n.getMinutes(),c=l>=12?"pm":"am",s=(l=l%12?l%12:12)+":"+(u=u<10?"0"+u:u)+" "+c,t.showTime?r+" at "+s:r}};/* istanbul ignore next: code loaders */if(eP)eP=e;else{if("function"==typeof define&&define.amd)return define([],function(){return e});this.humandate=e}}();var D=P("6SgHj"),eR={},eO=eR={};function eL(){throw Error("setTimeout has not been defined")}function eD(){throw Error("clearTimeout has not been defined")}function eA(e){if(k===setTimeout)return setTimeout(e,0);// if setTimeout wasn't available but was latter defined
-if((k===eL||!k)&&setTimeout)return k=setTimeout,setTimeout(e,0);try{// when when somebody has screwed with setTimeout but no I.E. maddness
+n&&"_self"!==n||t.metaKey||t.altKey||t.ctrlKey||t.shiftKey||(t.preventDefault(),l(e,{replace:void 0!==r?r:V(u)===V(c),state:i,preventScrollReset:a,relative:o,unstable_viewTransition:s}))},[u,l,c,r,i,n,e,a,o,s])}(u,{replace:o,state:s,target:l,preventScrollReset:c,relative:i,unstable_viewTransition:d});return /*#__PURE__*/D.createElement("a",ew({},f,{href:n||m,onClick:p||a?r:function(e){r&&r(e),e.defaultPrevented||g(e)},ref:t,target:l}))});(c=w||(w={})).UseScrollRestoration="useScrollRestoration",c.UseSubmit="useSubmit",c.UseSubmitFetcher="useSubmitFetcher",c.UseFetcher="useFetcher",c.useViewTransitionState="useViewTransitionState",(d=_||(_={})).UseFetcher="useFetcher",d.UseFetchers="useFetchers",d.UseScrollRestoration="useScrollRestoration";var eT={};eT=JSON.parse('{"name":"hnews","version":"4.5.0","description":"HNews","private":true,"source":"src/index.html","browserslist":"defaults","scripts":{"update":"ncu -u","serve":"parcel -p 8000 --lazy","watch":"parcel watch","build":"rm -rf dist && rm -rf docs && parcel build --no-source-maps --dist-dir docs --public-url=/hnews"},"author":"Luca Bacchi <bacchilu@gmail.com> (http://www.lucabacchi.it)","license":"ISC","prettier":{"arrowParens":"always","bracketSpacing":false,"embeddedLanguageFormatting":"auto","htmlWhitespaceSensitivity":"css","insertPragma":false,"jsxBracketSameLine":false,"jsxSingleQuote":false,"printWidth":120,"proseWrap":"preserve","quoteProps":"as-needed","requirePragma":false,"semi":true,"singleQuote":true,"tabWidth":4,"trailingComma":"es5","useTabs":false,"vueIndentScriptAndStyle":false},"devDependencies":{"@types/human-date":"^1.4.4","@types/react":"^18.2.34","@types/react-dom":"^18.2.14","npm-check-updates":"^16.14.6","parcel":"^2.10.2","process":"^0.11.10"},"dependencies":{"firebase":"^10.5.2","human-date":"^1.4.0","react":"^18.2.0","react-dom":"^18.2.0","react-intersection-observer-hook":"^2.1.1","react-router-dom":"^6.18.0","swr":"^2.2.4"}}'),P("6SgHj");var ex={};!function(){var e={months:["January","February","March","April","May","June","July","August","September","October","November","December"],toUTC:function(e){var t=e?new Date(e):new Date;return new Date(t.getUTCFullYear(),t.getUTCMonth(),t.getUTCDate(),t.getUTCHours(),t.getUTCMinutes(),t.getUTCSeconds())},monthName:function(t){var n;return n="number"==typeof t?t:new Date(t).getMonth()+1,e.months[n-1]},relativeTime:function(e,t){var n,r,i,a,o,s,l=[];if("number"==typeof e?n=e:(a=new Date(e).getTime(),n=-((new Date().getTime()-a)/1e3*1)),t||(t={}),t.futureSuffix||(t.futureSuffix="from now"),t.pastSuffix||(t.pastSuffix="ago"),t.presentText||(t.presentText="now"),t.returnObject||(t.returnObject=!1),o=n<0,r={seconds:Math.floor((n=Math.abs(n))%31536e3%86400%3600%60),minutes:Math.floor(n%31536e3%86400%3600/60),hours:Math.floor(n%31536e3%86400/3600),days:Math.floor(n%31536e3/86400),years:Math.floor(n/31536e3),past:o},t.returnObject)return r;if(0===n)return t.presentText;function u(e,n){s&&(s=t.allUnits,l.push(e+" "+n+(e>1?"s":"")))}return i=r.past?t.pastSuffix:t.futureSuffix,s=!0,r.years&&u(r.years,"year"),r.days&&u(r.days,"day"),r.hours&&u(r.hours,"hour"),r.minutes&&u(r.minutes,"minute"),r.seconds&&u(r.seconds,"second"),l.join(", ")+" "+i},prettyPrint:function(e,t){var n,r,i,a,o,s,l,u,c;return e?"number"==typeof e&&(e=new Date().setSeconds(e)):e=new Date,t||(t={}),t.showTime||(t.showTime=!1),a=(i=(n=new Date(e)).getDate())>3&&i<21?i+"th":i%10==1?i+"st":i%10==2?i+"nd":i%10==3?i+"rd":i+"th",o=n.getFullYear(),r=this.monthName(n.getMonth()+1)+" "+a+", "+o,l=n.getHours(),u=n.getMinutes(),c=l>=12?"pm":"am",s=(l=l%12?l%12:12)+":"+(u=u<10?"0"+u:u)+" "+c,t.showTime?r+" at "+s:r}};/* istanbul ignore next: code loaders */if(ex)ex=e;else{if("function"==typeof define&&define.amd)return define([],function(){return e});this.humandate=e}}();var D=P("6SgHj"),eN={},eP=eN={};function eR(){throw Error("setTimeout has not been defined")}function eO(){throw Error("clearTimeout has not been defined")}function eL(e){if(k===setTimeout)return setTimeout(e,0);// if setTimeout wasn't available but was latter defined
+if((k===eR||!k)&&setTimeout)return k=setTimeout,setTimeout(e,0);try{// when when somebody has screwed with setTimeout but no I.E. maddness
 return k(e,0)}catch(t){try{// When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
 return k.call(null,e,0)}catch(t){// same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-return k.call(this,e,0)}}}!function(){try{k="function"==typeof setTimeout?setTimeout:eL}catch(e){k=eL}try{S="function"==typeof clearTimeout?clearTimeout:eD}catch(e){S=eD}}();var eM=[],ej=!1,eU=-1;function ez(){ej&&E&&(ej=!1,E.length?eM=E.concat(eM):eU=-1,eM.length&&eF())}function eF(){if(!ej){var e=eA(ez);ej=!0;for(var t=eM.length;t;){for(E=eM,eM=[];++eU<t;)E&&E[eU].run();eU=-1,t=eM.length}E=null,ej=!1,function(e){if(S===clearTimeout)return clearTimeout(e);// if clearTimeout wasn't available but was latter defined
-if((S===eD||!S)&&clearTimeout)return S=clearTimeout,clearTimeout(e);try{// when when somebody has screwed with setTimeout but no I.E. maddness
+return k.call(this,e,0)}}}!function(){try{k="function"==typeof setTimeout?setTimeout:eR}catch(e){k=eR}try{S="function"==typeof clearTimeout?clearTimeout:eO}catch(e){S=eO}}();var eD=[],eA=!1,eM=-1;function ej(){eA&&E&&(eA=!1,E.length?eD=E.concat(eD):eM=-1,eD.length&&eU())}function eU(){if(!eA){var e=eL(ej);eA=!0;for(var t=eD.length;t;){for(E=eD,eD=[];++eM<t;)E&&E[eM].run();eM=-1,t=eD.length}E=null,eA=!1,function(e){if(S===clearTimeout)return clearTimeout(e);// if clearTimeout wasn't available but was latter defined
+if((S===eO||!S)&&clearTimeout)return S=clearTimeout,clearTimeout(e);try{// when when somebody has screwed with setTimeout but no I.E. maddness
 S(e)}catch(t){try{// When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
 return S.call(null,e)}catch(t){// same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
 // Some versions of I.E. have different rules for clearTimeout vs setTimeout
 return S.call(this,e)}}}(e)}}// v8 likes predictible objects
-function eV(e,t){this.fun=e,this.array=t}function eH(){}eO.nextTick=function(e){var t=Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)t[n-1]=arguments[n];eM.push(new eV(e,t)),1!==eM.length||ej||eA(eF)},eV.prototype.run=function(){this.fun.apply(null,this.array)},eO.title="browser",eO.browser=!0,eO.env={},eO.argv=[],eO.version="",eO.versions={},eO.on=eH,eO.addListener=eH,eO.once=eH,eO.off=eH,eO.removeListener=eH,eO.removeAllListeners=eH,eO.emit=eH,eO.prependListener=eH,eO.prependOnceListener=eH,eO.listeners=function(e){return[]},eO.binding=function(e){throw Error("process.binding is not supported")},eO.cwd=function(){return"/"},eO.chdir=function(e){throw Error("process.chdir is not supported")},eO.umask=function(){return 0};/**
+function ez(e,t){this.fun=e,this.array=t}function eF(){}eP.nextTick=function(e){var t=Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)t[n-1]=arguments[n];eD.push(new ez(e,t)),1!==eD.length||eA||eL(eU)},ez.prototype.run=function(){this.fun.apply(null,this.array)},eP.title="browser",eP.browser=!0,eP.env={},eP.argv=[],eP.version="",eP.versions={},eP.on=eF,eP.addListener=eF,eP.once=eF,eP.off=eF,eP.removeListener=eF,eP.removeAllListeners=eF,eP.emit=eF,eP.prependListener=eF,eP.prependOnceListener=eF,eP.listeners=function(e){return[]},eP.binding=function(e){throw Error("process.binding is not supported")},eP.cwd=function(){return"/"},eP.chdir=function(e){throw Error("process.chdir is not supported")},eP.umask=function(){return 0};/**
  * @license
  * Copyright 2017 Google LLC
  *
@@ -302,11 +303,11 @@ function eV(e,t){this.fun=e,this.array=t}function eH(){}eO.nextTick=function(e){
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */const e$=function(e){// TODO(user): Use native implementations if/when available
+ */const eV=function(e){// TODO(user): Use native implementations if/when available
 let t=[],n=0;for(let r=0;r<e.length;r++){let i=e.charCodeAt(r);i<128?t[n++]=i:(i<2048?t[n++]=i>>6|192:((64512&i)==55296&&r+1<e.length&&(64512&e.charCodeAt(r+1))==56320?(// Surrogate Pair
-i=65536+((1023&i)<<10)+(1023&e.charCodeAt(++r)),t[n++]=i>>18|240,t[n++]=i>>12&63|128):t[n++]=i>>12|224,t[n++]=i>>6&63|128),t[n++]=63&i|128)}return t},eB=function(e){// TODO(user): Use native implementations if/when available
+i=65536+((1023&i)<<10)+(1023&e.charCodeAt(++r)),t[n++]=i>>18|240,t[n++]=i>>12&63|128):t[n++]=i>>12|224,t[n++]=i>>6&63|128),t[n++]=63&i|128)}return t},eH=function(e){// TODO(user): Use native implementations if/when available
 let t=[],n=0,r=0;for(;n<e.length;){let i=e[n++];if(i<128)t[r++]=String.fromCharCode(i);else if(i>191&&i<224){let a=e[n++];t[r++]=String.fromCharCode((31&i)<<6|63&a)}else if(i>239&&i<365){// Surrogate Pair
-let a=e[n++],o=e[n++],s=e[n++],l=((7&i)<<18|(63&a)<<12|(63&o)<<6|63&s)-65536;t[r++]=String.fromCharCode(55296+(l>>10)),t[r++]=String.fromCharCode(56320+(1023&l))}else{let a=e[n++],o=e[n++];t[r++]=String.fromCharCode((15&i)<<12|(63&a)<<6|63&o)}}return t.join("")},eW={/**
+let a=e[n++],o=e[n++],s=e[n++],l=((7&i)<<18|(63&a)<<12|(63&o)<<6|63&s)-65536;t[r++]=String.fromCharCode(55296+(l>>10)),t[r++]=String.fromCharCode(56320+(1023&l))}else{let a=e[n++],o=e[n++];t[r++]=String.fromCharCode((15&i)<<12|(63&a)<<6|63&o)}}return t.join("")},e$={/**
      * Maps bytes to characters.
      */byteToCharMap_:null,/**
      * Maps characters to bytes.
@@ -346,7 +347,7 @@ let a=e[n++],o=e[n++],s=e[n++],l=((7&i)<<18|(63&a)<<12|(63&o)<<6|63&s)-65536;t[r
      * @return The base64 encoded string.
      */encodeString(e,t){return(// Shortcut for Mozilla browsers that implement
 // a native base64 encoder in the form of "btoa/atob"
-this.HAS_NATIVE_SUPPORT&&!t?btoa(e):this.encodeByteArray(e$(e),t))},/**
+this.HAS_NATIVE_SUPPORT&&!t?btoa(e):this.encodeByteArray(eV(e),t))},/**
      * Base64-decode a string.
      *
      * @param input to decode.
@@ -355,7 +356,7 @@ this.HAS_NATIVE_SUPPORT&&!t?btoa(e):this.encodeByteArray(e$(e),t))},/**
      * @return string representing the decoded value.
      */decodeString(e,t){return(// Shortcut for Mozilla browsers that implement
 // a native base64 encoder in the form of "btoa/atob"
-this.HAS_NATIVE_SUPPORT&&!t?atob(e):eB(this.decodeStringToByteArray(e,t)))},/**
+this.HAS_NATIVE_SUPPORT&&!t?atob(e):eH(this.decodeStringToByteArray(e,t)))},/**
      * Base64-decode a string.
      *
      * In base-64 decoding, groups of four characters are converted into three
@@ -369,17 +370,17 @@ this.HAS_NATIVE_SUPPORT&&!t?atob(e):eB(this.decodeStringToByteArray(e,t)))},/**
      * @param input Input to decode.
      * @param webSafe True if we should use the web-safe alphabet.
      * @return bytes representing the decoded value.
-     */decodeStringToByteArray(e,t){this.init_();let n=t?this.charToByteMapWebSafe_:this.charToByteMap_,r=[];for(let t=0;t<e.length;){let i=n[e.charAt(t++)],a=t<e.length,o=a?n[e.charAt(t)]:0;++t;let s=t<e.length,l=s?n[e.charAt(t)]:64;++t;let u=t<e.length,c=u?n[e.charAt(t)]:64;if(++t,null==i||null==o||null==l||null==c)throw new eK;let d=i<<2|o>>4;if(r.push(d),64!==l){let e=o<<4&240|l>>2;if(r.push(e),64!==c){let e=l<<6&192|c;r.push(e)}}}return r},/**
+     */decodeStringToByteArray(e,t){this.init_();let n=t?this.charToByteMapWebSafe_:this.charToByteMap_,r=[];for(let t=0;t<e.length;){let i=n[e.charAt(t++)],a=t<e.length,o=a?n[e.charAt(t)]:0;++t;let s=t<e.length,l=s?n[e.charAt(t)]:64;++t;let u=t<e.length,c=u?n[e.charAt(t)]:64;if(++t,null==i||null==o||null==l||null==c)throw new eB;let d=i<<2|o>>4;if(r.push(d),64!==l){let e=o<<4&240|l>>2;if(r.push(e),64!==c){let e=l<<6&192|c;r.push(e)}}}return r},/**
      * Lazy static initialization function. Called before
      * accessing any of the static map variables.
      * @private
      */init_(){if(!this.byteToCharMap_){this.byteToCharMap_={},this.charToByteMap_={},this.byteToCharMapWebSafe_={},this.charToByteMapWebSafe_={};// We want quick mappings back and forth, so we precompute two maps.
 for(let e=0;e<this.ENCODED_VALS.length;e++)this.byteToCharMap_[e]=this.ENCODED_VALS.charAt(e),this.charToByteMap_[this.byteToCharMap_[e]]=e,this.byteToCharMapWebSafe_[e]=this.ENCODED_VALS_WEBSAFE.charAt(e),this.charToByteMapWebSafe_[this.byteToCharMapWebSafe_[e]]=e,e>=this.ENCODED_VALS_BASE.length&&(this.charToByteMap_[this.ENCODED_VALS_WEBSAFE.charAt(e)]=e,this.charToByteMapWebSafe_[this.ENCODED_VALS.charAt(e)]=e)}}};/**
  * An error encountered while decoding base64 string.
- */class eK extends Error{constructor(){super(...arguments),this.name="DecodeBase64StringError"}}/**
+ */class eB extends Error{constructor(){super(...arguments),this.name="DecodeBase64StringError"}}/**
  * URL-safe base64 encoding
- */const eq=function(e){let t=e$(e);return eW.encodeByteArray(t,!0)},eQ=function(e){// Use base64url encoding and remove padding in the end (dot characters).
-return eq(e).replace(/\./g,"")},eG=function(e){try{return eW.decodeString(e,!0)}catch(e){console.error("base64Decode failed: ",e)}return null},eJ=()=>/**
+ */const eW=function(e){let t=eV(e);return e$.encodeByteArray(t,!0)},eK=function(e){// Use base64url encoding and remove padding in the end (dot characters).
+return eW(e).replace(/\./g,"")},eq=function(e){try{return e$.decodeString(e,!0)}catch(e){console.error("base64Decode failed: ",e)}return null},eQ=()=>/**
  * @license
  * Copyright 2022 Google LLC
  *
@@ -398,14 +399,14 @@ return eq(e).replace(/\./g,"")},eG=function(e){try{return eW.decodeString(e,!0)}
  * Polyfill for `globalThis` object.
  * @returns the `globalThis` object for the given environment.
  * @public
- */(function(){if("undefined"!=typeof self)return self;if("undefined"!=typeof window)return window;if(void 0!==T)return T;throw Error("Unable to locate global object.")})().__FIREBASE_DEFAULTS__,eY=()=>{if(void 0===eR||void 0===eR.env)return;let e=void 0;if(e)return JSON.parse(e)},eX=()=>{let e;if("undefined"==typeof document)return;try{e=document.cookie.match(/__FIREBASE_DEFAULTS__=([^;]+)/)}catch(e){// Some environments such as Angular Universal SSR have a
+ */(function(){if("undefined"!=typeof self)return self;if("undefined"!=typeof window)return window;if(void 0!==T)return T;throw Error("Unable to locate global object.")})().__FIREBASE_DEFAULTS__,eG=()=>{if(void 0===eN||void 0===eN.env)return;let e=void 0;if(e)return JSON.parse(e)},eJ=()=>{let e;if("undefined"==typeof document)return;try{e=document.cookie.match(/__FIREBASE_DEFAULTS__=([^;]+)/)}catch(e){// Some environments such as Angular Universal SSR have a
 // `document` object but error on accessing `document.cookie`.
-return}let t=e&&eG(e[1]);return t&&JSON.parse(t)},eZ=()=>{try{return eJ()||eY()||eX()}catch(e){/**
+return}let t=e&&eq(e[1]);return t&&JSON.parse(t)},eY=()=>{try{return eQ()||eG()||eJ()}catch(e){/**
          * Catch-all for being unable to get __FIREBASE_DEFAULTS__ due
          * to any environment case we have not accounted for. Log to
          * info instead of swallowing so we can find these unknown cases
          * and add paths for them if needed.
-         */console.info(`Unable to get __FIREBASE_DEFAULTS__ due to: ${e}`);return}},e0=e=>{var t,n;return null===(n=null===(t=eZ())||void 0===t?void 0:t.emulatorHosts)||void 0===n?void 0:n[e]},e1=()=>{var e;return null===(e=eZ())||void 0===e?void 0:e.config},e2=e=>{var t;return null===(t=eZ())||void 0===t?void 0:t[`_${e}`]};/**
+         */console.info(`Unable to get __FIREBASE_DEFAULTS__ due to: ${e}`);return}},eX=e=>{var t,n;return null===(n=null===(t=eY())||void 0===t?void 0:t.emulatorHosts)||void 0===n?void 0:n[e]},eZ=()=>{var e;return null===(e=eY())||void 0===e?void 0:e.config},e0=e=>{var t;return null===(t=eY())||void 0===t?void 0:t[`_${e}`]};/**
  * @license
  * Copyright 2017 Google LLC
  *
@@ -420,7 +421,7 @@ return}let t=e&&eG(e[1]);return t&&JSON.parse(t)},eZ=()=>{try{return eJ()||eY()|
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class e3{constructor(){this.reject=()=>{},this.resolve=()=>{},this.promise=new Promise((e,t)=>{this.resolve=e,this.reject=t})}/**
+ */class e1{constructor(){this.reject=()=>{},this.resolve=()=>{},this.promise=new Promise((e,t)=>{this.resolve=e,this.reject=t})}/**
      * Our API internals are not promiseified and cannot because our callback APIs have subtle expectations around
      * invoking promises inline, which Promises are forbidden to do. This method accepts an optional node-style callback
      * and returns a node-style callback which will resolve or reject the Deferred's promise.
@@ -444,13 +445,13 @@ this.promise.catch(()=>{}),1===e.length?e(t):e(t,n))}}}/**
  *//**
  * Returns navigator.userAgent string or '' if it's not defined.
  * @return user agent string
- */function e4(){return"undefined"!=typeof navigator&&"string"==typeof navigator.userAgent?navigator.userAgent:""}// Based on code from:
+ */function e2(){return"undefined"!=typeof navigator&&"string"==typeof navigator.userAgent?navigator.userAgent:""}// Based on code from:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error#Custom_Error_Types
-class e6 extends Error{constructor(/** The error code for this error. */e,t,/** Custom data for this error. */n){super(t),this.code=e,this.customData=n,/** The custom name for all FirebaseErrors. */this.name="FirebaseError",// Fix For ES5
+class e3 extends Error{constructor(/** The error code for this error. */e,t,/** Custom data for this error. */n){super(t),this.code=e,this.customData=n,/** The custom name for all FirebaseErrors. */this.name="FirebaseError",// Fix For ES5
 // https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work
-Object.setPrototypeOf(this,e6.prototype),Error.captureStackTrace&&Error.captureStackTrace(this,e8.prototype.create)}}class e8{constructor(e,t,n){this.service=e,this.serviceName=t,this.errors=n}create(e,...t){let n=t[0]||{},r=`${this.service}/${e}`,i=this.errors[e],a=i?i.replace(e5,(e,t)=>{let r=n[t];return null!=r?String(r):`<${t}?>`}):"Error",o=`${this.serviceName}: ${a} (${r}).`,s=new e6(r,o,n);return s}}const e5=/\{\$([^}]+)}/g;/**
+Object.setPrototypeOf(this,e3.prototype),Error.captureStackTrace&&Error.captureStackTrace(this,e4.prototype.create)}}class e4{constructor(e,t,n){this.service=e,this.serviceName=t,this.errors=n}create(e,...t){let n=t[0]||{},r=`${this.service}/${e}`,i=this.errors[e],a=i?i.replace(e6,(e,t)=>{let r=n[t];return null!=r?String(r):`<${t}?>`}):"Error",o=`${this.serviceName}: ${a} (${r}).`,s=new e3(r,o,n);return s}}const e6=/\{\$([^}]+)}/g;/**
  * Deep equal two objects. Support Arrays and Objects.
- */function e9(e,t){if(e===t)return!0;let n=Object.keys(e),r=Object.keys(t);for(let i of n){if(!r.includes(i))return!1;let n=e[i],a=t[i];if(e7(n)&&e7(a)){if(!e9(n,a))return!1}else if(n!==a)return!1}for(let e of r)if(!n.includes(e))return!1;return!0}function e7(e){return null!==e&&"object"==typeof e}/**
+ */function e8(e,t){if(e===t)return!0;let n=Object.keys(e),r=Object.keys(t);for(let i of n){if(!r.includes(i))return!1;let n=e[i],a=t[i];if(e5(n)&&e5(a)){if(!e8(n,a))return!1}else if(n!==a)return!1}for(let e of r)if(!n.includes(e))return!1;return!0}function e5(e){return null!==e&&"object"==typeof e}/**
  * @license
  * Copyright 2017 Google LLC
  *
@@ -469,15 +470,15 @@ Object.setPrototypeOf(this,e6.prototype),Error.captureStackTrace&&Error.captureS
  * Returns a querystring-formatted string (e.g. &arg=val&arg2=val2) from a
  * params object (e.g. {arg: 'val', arg2: 'val2'})
  * Note: You must prepend it with ? when adding it to a URL.
- */function te(e){let t=[];for(let[n,r]of Object.entries(e))Array.isArray(r)?r.forEach(e=>{t.push(encodeURIComponent(n)+"="+encodeURIComponent(e))}):t.push(encodeURIComponent(n)+"="+encodeURIComponent(r));return t.length?"&"+t.join("&"):""}/**
+ */function e9(e){let t=[];for(let[n,r]of Object.entries(e))Array.isArray(r)?r.forEach(e=>{t.push(encodeURIComponent(n)+"="+encodeURIComponent(e))}):t.push(encodeURIComponent(n)+"="+encodeURIComponent(r));return t.length?"&"+t.join("&"):""}/**
  * Decodes a querystring (e.g. ?arg=val&arg2=val2) into a params object
  * (e.g. {arg: 'val', arg2: 'val2'})
- */function tt(e){let t={},n=e.replace(/^\?/,"").split("&");return n.forEach(e=>{if(e){let[n,r]=e.split("=");t[decodeURIComponent(n)]=decodeURIComponent(r)}}),t}/**
+ */function e7(e){let t={},n=e.replace(/^\?/,"").split("&");return n.forEach(e=>{if(e){let[n,r]=e.split("=");t[decodeURIComponent(n)]=decodeURIComponent(r)}}),t}/**
  * Extract the query string part of a URL, including the leading question mark (if present).
- */function tn(e){let t=e.indexOf("?");if(!t)return"";let n=e.indexOf("#",t);return e.substring(t,n>0?n:void 0)}/**
+ */function te(e){let t=e.indexOf("?");if(!t)return"";let n=e.indexOf("#",t);return e.substring(t,n>0?n:void 0)}/**
  * Implement fan-out for any number of Observers attached via a subscribe
  * function.
- */class tr{/**
+ */class tt{/**
      * @param executor Function which can make calls to a single Observer
      *     as a proxy.
      * @param onNoObservers Callback when count of Observers goes to zero.
@@ -492,7 +493,7 @@ this.task.then(()=>{e(this)}).catch(e=>{this.error(e)})}next(e){this.forEachObse
      *   call to subscribe().
      */subscribe(e,t,n){let r;if(void 0===e&&void 0===t&&void 0===n)throw Error("Missing Observer.");void 0===(r=!/**
  * Return true if the object passed in implements any of the named methods.
- */function(e,t){if("object"!=typeof e||null===e)return!1;for(let n of t)if(n in e&&"function"==typeof e[n])return!0;return!1}(e,["next","error","complete"])?{next:e,error:t,complete:n}:e).next&&(r.next=ti),void 0===r.error&&(r.error=ti),void 0===r.complete&&(r.complete=ti);let i=this.unsubscribeOne.bind(this,this.observers.length);return this.finalized&&this.task.then(()=>{try{this.finalError?r.error(this.finalError):r.complete()}catch(e){// nothing
+ */function(e,t){if("object"!=typeof e||null===e)return!1;for(let n of t)if(n in e&&"function"==typeof e[n])return!0;return!1}(e,["next","error","complete"])?{next:e,error:t,complete:n}:e).next&&(r.next=tn),void 0===r.error&&(r.error=tn),void 0===r.complete&&(r.complete=tn);let i=this.unsubscribeOne.bind(this,this.observers.length);return this.finalized&&this.task.then(()=>{try{this.finalError?r.error(this.finalError):r.complete()}catch(e){// nothing
 }}),this.observers.push(r),i}// Unsubscribe is synchronous - we guarantee that no events are sent to
 // any unsubscribed Observer.
 unsubscribeOne(e){void 0!==this.observers&&void 0!==this.observers[e]&&(delete this.observers[e],this.observerCount-=1,0===this.observerCount&&void 0!==this.onNoObservers&&this.onNoObservers(this))}forEachObserver(e){if(!this.finalized)// Since sendOne calls asynchronously - there is no chance that
@@ -507,7 +508,7 @@ this.task.then(()=>{if(void 0!==this.observers&&void 0!==this.observers[e])try{t
 // Log error to console. b/31404806
 "undefined"!=typeof console&&console.error&&console.error(e)}})}close(e){this.finalized||(this.finalized=!0,void 0!==e&&(this.finalError=e),// Proxy is no longer needed - garbage collect references
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
-this.task.then(()=>{this.observers=void 0,this.onNoObservers=void 0}))}}function ti(){// do nothing
+this.task.then(()=>{this.observers=void 0,this.onNoObservers=void 0}))}}function tn(){// do nothing
 }/**
  * @license
  * Copyright 2021 Google LLC
@@ -523,9 +524,9 @@ this.task.then(()=>{this.observers=void 0,this.onNoObservers=void 0}))}}function
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function ta(e){return e&&e._delegate?e._delegate:e}/**
+ */function tr(e){return e&&e._delegate?e._delegate:e}/**
  * Component for service name T, e.g. `auth`, `auth-internal`
- */class to{/**
+ */class ti{/**
      *
      * @param name The public service name, e.g. app, auth, firestore, database
      * @param instanceFactory Service factory responsible for creating the public interface
@@ -547,7 +548,7 @@ this.task.then(()=>{this.observers=void 0,this.onNoObservers=void 0}))}}function
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */const ts="[DEFAULT]";/**
+ */const ta="[DEFAULT]";/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -565,17 +566,17 @@ this.task.then(()=>{this.observers=void 0,this.onNoObservers=void 0}))}}function
  *//**
  * Provider for instance for service name T, e.g. 'auth', 'auth-internal'
  * NameServiceMapping[T] is an alias for the type of the instance
- */class tl{constructor(e,t){this.name=e,this.container=t,this.component=null,this.instances=new Map,this.instancesDeferred=new Map,this.instancesOptions=new Map,this.onInitCallbacks=new Map}/**
+ */class to{constructor(e,t){this.name=e,this.container=t,this.component=null,this.instances=new Map,this.instancesDeferred=new Map,this.instancesOptions=new Map,this.onInitCallbacks=new Map}/**
      * @param identifier A provider can provide mulitple instances of a service
      * if this.component.multipleInstances is true.
      */get(e){// if multipleInstances is not supported, use the default name
-let t=this.normalizeInstanceIdentifier(e);if(!this.instancesDeferred.has(t)){let e=new e3;if(this.instancesDeferred.set(t,e),this.isInitialized(t)||this.shouldAutoInitialize())try{let n=this.getOrInitializeService({instanceIdentifier:t});n&&e.resolve(n)}catch(e){// when the instance factory throws an exception during get(), it should not cause
+let t=this.normalizeInstanceIdentifier(e);if(!this.instancesDeferred.has(t)){let e=new e1;if(this.instancesDeferred.set(t,e),this.isInitialized(t)||this.shouldAutoInitialize())try{let n=this.getOrInitializeService({instanceIdentifier:t});n&&e.resolve(n)}catch(e){// when the instance factory throws an exception during get(), it should not cause
 // a fatal error. We just return the unresolved promise in this case.
 }}return this.instancesDeferred.get(t).promise}getImmediate(e){var t;// if multipleInstances is not supported, use the default name
 let n=this.normalizeInstanceIdentifier(null==e?void 0:e.identifier),r=null!==(t=null==e?void 0:e.optional)&&void 0!==t&&t;if(this.isInitialized(n)||this.shouldAutoInitialize())try{return this.getOrInitializeService({instanceIdentifier:n})}catch(e){if(r)return null;throw e}else{// In case a component is not initialized and should/can not be auto-initialized at the moment, return null if the optional flag is set, or throw
 if(r)return null;throw Error(`Service ${this.name} is not available`)}}getComponent(){return this.component}setComponent(e){if(e.name!==this.name)throw Error(`Mismatching Component ${e.name} for Provider ${this.name}.`);if(this.component)throw Error(`Component for ${this.name} has already been provided`);// return early without attempting to initialize the component if the component requires explicit initialization (calling `Provider.initialize()`)
 if(this.component=e,this.shouldAutoInitialize()){// if the service is eager, initialize the default instance
-if("EAGER"/* InstantiationMode.EAGER */===e.instantiationMode)try{this.getOrInitializeService({instanceIdentifier:ts})}catch(e){// when the instance factory for an eager Component throws an exception during the eager
+if("EAGER"/* InstantiationMode.EAGER */===e.instantiationMode)try{this.getOrInitializeService({instanceIdentifier:ta})}catch(e){// when the instance factory for an eager Component throws an exception during the eager
 // initialization, it should not cause a fatal error.
 // TODO: Investigate if we need to make it configurable, because some component may want to cause
 // a fatal error in this case?
@@ -585,13 +586,13 @@ if("EAGER"/* InstantiationMode.EAGER */===e.instantiationMode)try{this.getOrInit
 for(let[e,t]of this.instancesDeferred.entries()){let n=this.normalizeInstanceIdentifier(e);try{// `getOrInitializeService()` should always return a valid instance since a component is guaranteed. use ! to make typescript happy.
 let e=this.getOrInitializeService({instanceIdentifier:n});t.resolve(e)}catch(e){// when the instance factory throws an exception, it should not cause
 // a fatal error. We just leave the promise unresolved.
-}}}}clearInstance(e=ts){this.instancesDeferred.delete(e),this.instancesOptions.delete(e),this.instances.delete(e)}// app.delete() will call this method on every provider to delete the services
+}}}}clearInstance(e=ta){this.instancesDeferred.delete(e),this.instancesOptions.delete(e),this.instances.delete(e)}// app.delete() will call this method on every provider to delete the services
 // TODO: should we mark the provider as deleted?
 async delete(){let e=Array.from(this.instances.values());await Promise.all([...e.filter(e=>"INTERNAL"in e)// legacy services
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 .map(e=>e.INTERNAL.delete()),...e.filter(e=>"_delete"in e)// modularized services
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-.map(e=>e._delete())])}isComponentSet(){return null!=this.component}isInitialized(e=ts){return this.instances.has(e)}getOptions(e=ts){return this.instancesOptions.get(e)||{}}initialize(e={}){let{options:t={}}=e,n=this.normalizeInstanceIdentifier(e.instanceIdentifier);if(this.isInitialized(n))throw Error(`${this.name}(${n}) has already been initialized`);if(!this.isComponentSet())throw Error(`Component ${this.name} has not been registered yet`);let r=this.getOrInitializeService({instanceIdentifier:n,options:t});// resolve any pending promise waiting for the service instance
+.map(e=>e._delete())])}isComponentSet(){return null!=this.component}isInitialized(e=ta){return this.instances.has(e)}getOptions(e=ta){return this.instancesOptions.get(e)||{}}initialize(e={}){let{options:t={}}=e,n=this.normalizeInstanceIdentifier(e.instanceIdentifier);if(this.isInitialized(n))throw Error(`${this.name}(${n}) has already been initialized`);if(!this.isComponentSet())throw Error(`Component ${this.name} has not been registered yet`);let r=this.getOrInitializeService({instanceIdentifier:n,options:t});// resolve any pending promise waiting for the service instance
 for(let[e,t]of this.instancesDeferred.entries()){let i=this.normalizeInstanceIdentifier(e);n===i&&t.resolve(r)}return r}/**
      *
      * @param callback - a function that will be invoked  after the provider has been initialized by calling provider.initialize().
@@ -603,12 +604,12 @@ for(let[e,t]of this.instancesDeferred.entries()){let i=this.normalizeInstanceIde
      * Invoke onInit callbacks synchronously
      * @param instance the service instance`
      */invokeOnInitCallbacks(e,t){let n=this.onInitCallbacks.get(t);if(n)for(let r of n)try{r(e,t)}catch(e){// ignore errors in the onInit callback
-}}getOrInitializeService({instanceIdentifier:e,options:t={}}){let n=this.instances.get(e);if(!n&&this.component&&(n=this.component.instanceFactory(this.container,{instanceIdentifier:e===ts?void 0:e,options:t}),this.instances.set(e,n),this.instancesOptions.set(e,t),/**
+}}getOrInitializeService({instanceIdentifier:e,options:t={}}){let n=this.instances.get(e);if(!n&&this.component&&(n=this.component.instanceFactory(this.container,{instanceIdentifier:e===ta?void 0:e,options:t}),this.instances.set(e,n),this.instancesOptions.set(e,t),/**
              * Invoke onInit listeners.
              * Note this.component.onInstanceCreated is different, which is used by the component creator,
              * while onInit listeners are registered by consumers of the provider.
              */this.invokeOnInitCallbacks(n,e),this.component.onInstanceCreated))try{this.component.onInstanceCreated(this.container,e,n)}catch(e){// ignore errors in the onInstanceCreatedCallback
-}return n||null}normalizeInstanceIdentifier(e=ts){return this.component?this.component.multipleInstances?e:ts:e// assume multiple instances are supported before the component is provided.
+}return n||null}normalizeInstanceIdentifier(e=ta){return this.component?this.component.multipleInstances?e:ta:e// assume multiple instances are supported before the component is provided.
 }shouldAutoInitialize(){return!!this.component&&"EXPLICIT"/* InstantiationMode.EXPLICIT */!==this.component.instantiationMode}}/**
  * @license
  * Copyright 2019 Google LLC
@@ -626,7 +627,7 @@ for(let[e,t]of this.instancesDeferred.entries()){let i=this.normalizeInstanceIde
  * limitations under the License.
  *//**
  * ComponentContainer that provides Providers for service name T, e.g. `auth`, `auth-internal`
- */class tu{constructor(e){this.name=e,this.providers=new Map}/**
+ */class ts{constructor(e){this.name=e,this.providers=new Map}/**
      *
      * @param component Component being added
      * @param overwrite When a component with the same name has already been registered,
@@ -641,7 +642,7 @@ for(let[e,t]of this.instancesDeferred.entries()){let i=this.normalizeInstanceIde
      * Firebase SDKs providing services should extend NameServiceMapping interface to register
      * themselves.
      */getProvider(e){if(this.providers.has(e))return this.providers.get(e);// create a Provider for a service that hasn't registered with Firebase
-let t=new tl(e,this);return this.providers.set(e,t),t}getProviders(){return Array.from(this.providers.values())}}/**
+let t=new to(e,this);return this.providers.set(e,t),t}getProviders(){return Array.from(this.providers.values())}}/**
  * @license
  * Copyright 2017 Google LLC
  *
@@ -658,52 +659,52 @@ let t=new tl(e,this);return this.providers.set(e,t),t}getProviders(){return Arra
  * limitations under the License.
  *//**
  * A container for all of the Logger instances
- */const tc=[];(f=I||(I={}))[f.DEBUG=0]="DEBUG",f[f.VERBOSE=1]="VERBOSE",f[f.INFO=2]="INFO",f[f.WARN=3]="WARN",f[f.ERROR=4]="ERROR",f[f.SILENT=5]="SILENT";const td={debug:I.DEBUG,verbose:I.VERBOSE,info:I.INFO,warn:I.WARN,error:I.ERROR,silent:I.SILENT},tf=I.INFO,th={[I.DEBUG]:"log",[I.VERBOSE]:"log",[I.INFO]:"info",[I.WARN]:"warn",[I.ERROR]:"error"},tp=(e,t,...n)=>{if(t<e.logLevel)return;let r=new Date().toISOString(),i=th[t];if(i)console[i](`[${r}]  ${e.name}:`,...n);else throw Error(`Attempted to log a message with an invalid logType (value: ${t})`)};class tm{/**
+ */const tl=[];(f=I||(I={}))[f.DEBUG=0]="DEBUG",f[f.VERBOSE=1]="VERBOSE",f[f.INFO=2]="INFO",f[f.WARN=3]="WARN",f[f.ERROR=4]="ERROR",f[f.SILENT=5]="SILENT";const tu={debug:I.DEBUG,verbose:I.VERBOSE,info:I.INFO,warn:I.WARN,error:I.ERROR,silent:I.SILENT},tc=I.INFO,td={[I.DEBUG]:"log",[I.VERBOSE]:"log",[I.INFO]:"info",[I.WARN]:"warn",[I.ERROR]:"error"},tf=(e,t,...n)=>{if(t<e.logLevel)return;let r=new Date().toISOString(),i=td[t];if(i)console[i](`[${r}]  ${e.name}:`,...n);else throw Error(`Attempted to log a message with an invalid logType (value: ${t})`)};class th{/**
      * Gives you an instance of a Logger to capture messages according to
      * Firebase's logging scheme.
      *
      * @param name The name that the logs will be associated with
      */constructor(e){this.name=e,/**
          * The log level of the given Logger instance.
-         */this._logLevel=tf,/**
+         */this._logLevel=tc,/**
          * The main (internal) log handler for the Logger instance.
          * Can be set to a new function in internal package code but not by user.
-         */this._logHandler=tp,/**
+         */this._logHandler=tf,/**
          * The optional, additional, user-defined log handler for the Logger instance.
          */this._userLogHandler=null,/**
          * Capture the current instance for later use
-         */tc.push(this)}get logLevel(){return this._logLevel}set logLevel(e){if(!(e in I))throw TypeError(`Invalid value "${e}" assigned to \`logLevel\``);this._logLevel=e}// Workaround for setter/getter having to be the same type.
-setLogLevel(e){this._logLevel="string"==typeof e?td[e]:e}get logHandler(){return this._logHandler}set logHandler(e){if("function"!=typeof e)throw TypeError("Value assigned to `logHandler` must be a function");this._logHandler=e}get userLogHandler(){return this._userLogHandler}set userLogHandler(e){this._userLogHandler=e}/**
+         */tl.push(this)}get logLevel(){return this._logLevel}set logLevel(e){if(!(e in I))throw TypeError(`Invalid value "${e}" assigned to \`logLevel\``);this._logLevel=e}// Workaround for setter/getter having to be the same type.
+setLogLevel(e){this._logLevel="string"==typeof e?tu[e]:e}get logHandler(){return this._logHandler}set logHandler(e){if("function"!=typeof e)throw TypeError("Value assigned to `logHandler` must be a function");this._logHandler=e}get userLogHandler(){return this._userLogHandler}set userLogHandler(e){this._userLogHandler=e}/**
      * The functions below are all based on the `console` interface
-     */debug(...e){this._userLogHandler&&this._userLogHandler(this,I.DEBUG,...e),this._logHandler(this,I.DEBUG,...e)}log(...e){this._userLogHandler&&this._userLogHandler(this,I.VERBOSE,...e),this._logHandler(this,I.VERBOSE,...e)}info(...e){this._userLogHandler&&this._userLogHandler(this,I.INFO,...e),this._logHandler(this,I.INFO,...e)}warn(...e){this._userLogHandler&&this._userLogHandler(this,I.WARN,...e),this._logHandler(this,I.WARN,...e)}error(...e){this._userLogHandler&&this._userLogHandler(this,I.ERROR,...e),this._logHandler(this,I.ERROR,...e)}}const tg=(e,t)=>t.some(t=>e instanceof t),tv=new WeakMap,ty=new WeakMap,tb=new WeakMap,tw=new WeakMap,t_=new WeakMap;let tk={get(e,t,n){if(e instanceof IDBTransaction){// Special handling for transaction.done.
-if("done"===t)return ty.get(e);// Polyfill for objectStoreNames because of Edge.
-if("objectStoreNames"===t)return e.objectStoreNames||tb.get(e);// Make tx.store return the only store in the transaction, or undefined if there are many.
+     */debug(...e){this._userLogHandler&&this._userLogHandler(this,I.DEBUG,...e),this._logHandler(this,I.DEBUG,...e)}log(...e){this._userLogHandler&&this._userLogHandler(this,I.VERBOSE,...e),this._logHandler(this,I.VERBOSE,...e)}info(...e){this._userLogHandler&&this._userLogHandler(this,I.INFO,...e),this._logHandler(this,I.INFO,...e)}warn(...e){this._userLogHandler&&this._userLogHandler(this,I.WARN,...e),this._logHandler(this,I.WARN,...e)}error(...e){this._userLogHandler&&this._userLogHandler(this,I.ERROR,...e),this._logHandler(this,I.ERROR,...e)}}const tp=(e,t)=>t.some(t=>e instanceof t),tm=new WeakMap,tg=new WeakMap,tv=new WeakMap,ty=new WeakMap,tb=new WeakMap;let tw={get(e,t,n){if(e instanceof IDBTransaction){// Special handling for transaction.done.
+if("done"===t)return tg.get(e);// Polyfill for objectStoreNames because of Edge.
+if("objectStoreNames"===t)return e.objectStoreNames||tv.get(e);// Make tx.store return the only store in the transaction, or undefined if there are many.
 if("store"===t)return n.objectStoreNames[1]?void 0:n.objectStore(n.objectStoreNames[0])}// Else transform whatever we get back.
-return tS(e[t])},set:(e,t,n)=>(e[t]=n,!0),has:(e,t)=>e instanceof IDBTransaction&&("done"===t||"store"===t)||t in e};function tS(n){var r;// We sometimes generate multiple promises from a single IDBRequest (eg when cursoring), because
+return t_(e[t])},set:(e,t,n)=>(e[t]=n,!0),has:(e,t)=>e instanceof IDBTransaction&&("done"===t||"store"===t)||t in e};function t_(n){var r;// We sometimes generate multiple promises from a single IDBRequest (eg when cursoring), because
 // IDB is weird and a single IDBRequest can yield many responses, so these can't be cached.
-if(n instanceof IDBRequest)return function(e){let t=new Promise((t,n)=>{let r=()=>{e.removeEventListener("success",i),e.removeEventListener("error",a)},i=()=>{t(tS(e.result)),r()},a=()=>{n(e.error),r()};e.addEventListener("success",i),e.addEventListener("error",a)});return t.then(t=>{// Since cursoring reuses the IDBRequest (*sigh*), we cache it for later retrieval
+if(n instanceof IDBRequest)return function(e){let t=new Promise((t,n)=>{let r=()=>{e.removeEventListener("success",i),e.removeEventListener("error",a)},i=()=>{t(t_(e.result)),r()},a=()=>{n(e.error),r()};e.addEventListener("success",i),e.addEventListener("error",a)});return t.then(t=>{// Since cursoring reuses the IDBRequest (*sigh*), we cache it for later retrieval
 // (see wrapFunction).
-t instanceof IDBCursor&&tv.set(t,e);// Catching to avoid "Uncaught Promise exceptions"
+t instanceof IDBCursor&&tm.set(t,e);// Catching to avoid "Uncaught Promise exceptions"
 }).catch(()=>{}),// This mapping exists in reverseTransformCache but doesn't doesn't exist in transformCache. This
 // is because we create many promises from a single IDBRequest.
-t_.set(t,e),t}(n);// If we've already transformed this value before, reuse the transformed value.
+tb.set(t,e),t}(n);// If we've already transformed this value before, reuse the transformed value.
 // This is faster, but it also provides object equality.
-if(tw.has(n))return tw.get(n);let i="function"==typeof(r=n)?// Due to expected object equality (which is enforced by the caching in `wrap`), we
+if(ty.has(n))return ty.get(n);let i="function"==typeof(r=n)?// Due to expected object equality (which is enforced by the caching in `wrap`), we
 // only create one new func per func.
 // Edge doesn't support objectStoreNames (booo), so we polyfill it here.
 r!==IDBDatabase.prototype.transaction||"objectStoreNames"in IDBTransaction.prototype?(t||(t=[IDBCursor.prototype.advance,IDBCursor.prototype.continue,IDBCursor.prototype.continuePrimaryKey])).includes(r)?function(...e){return(// Calling the original function with the proxy as 'this' causes ILLEGAL INVOCATION, so we use
 // the original object.
-r.apply(tE(this),e),tS(tv.get(this)))}:function(...e){// Calling the original function with the proxy as 'this' causes ILLEGAL INVOCATION, so we use
+r.apply(tk(this),e),t_(tm.get(this)))}:function(...e){// Calling the original function with the proxy as 'this' causes ILLEGAL INVOCATION, so we use
 // the original object.
-return tS(r.apply(tE(this),e))}:function(e,...t){let n=r.call(tE(this),e,...t);return tb.set(n,e.sort?e.sort():[e]),tS(n)}:(r instanceof IDBTransaction&&function(e){// Early bail if we've already created a done promise for this transaction.
-if(ty.has(e))return;let t=new Promise((t,n)=>{let r=()=>{e.removeEventListener("complete",i),e.removeEventListener("error",a),e.removeEventListener("abort",a)},i=()=>{t(),r()},a=()=>{n(e.error||new DOMException("AbortError","AbortError")),r()};e.addEventListener("complete",i),e.addEventListener("error",a),e.addEventListener("abort",a)});// Cache it for later retrieval.
-ty.set(e,t)}(r),tg(r,e||(e=[IDBDatabase,IDBObjectStore,IDBIndex,IDBCursor,IDBTransaction])))?new Proxy(r,tk):r;return i!==n&&(tw.set(n,i),t_.set(i,n)),i}const tE=e=>t_.get(e),tI=["get","getKey","getAll","getAllKeys","count"],tC=["put","add","delete","clear"],tT=new Map;function tx(e,t){if(!(e instanceof IDBDatabase&&!(t in e)&&"string"==typeof t))return;if(tT.get(t))return tT.get(t);let n=t.replace(/FromIndex$/,""),r=t!==n,i=tC.includes(n);if(!(n in(r?IDBIndex:IDBObjectStore).prototype)||!(i||tI.includes(n)))return;let a=async function(e,...t){// isWrite ? 'readwrite' : undefined gzipps better, but fails in Edge :(
+return t_(r.apply(tk(this),e))}:function(e,...t){let n=r.call(tk(this),e,...t);return tv.set(n,e.sort?e.sort():[e]),t_(n)}:(r instanceof IDBTransaction&&function(e){// Early bail if we've already created a done promise for this transaction.
+if(tg.has(e))return;let t=new Promise((t,n)=>{let r=()=>{e.removeEventListener("complete",i),e.removeEventListener("error",a),e.removeEventListener("abort",a)},i=()=>{t(),r()},a=()=>{n(e.error||new DOMException("AbortError","AbortError")),r()};e.addEventListener("complete",i),e.addEventListener("error",a),e.addEventListener("abort",a)});// Cache it for later retrieval.
+tg.set(e,t)}(r),tp(r,e||(e=[IDBDatabase,IDBObjectStore,IDBIndex,IDBCursor,IDBTransaction])))?new Proxy(r,tw):r;return i!==n&&(ty.set(n,i),tb.set(i,n)),i}const tk=e=>tb.get(e),tS=["get","getKey","getAll","getAllKeys","count"],tE=["put","add","delete","clear"],tI=new Map;function tC(e,t){if(!(e instanceof IDBDatabase&&!(t in e)&&"string"==typeof t))return;if(tI.get(t))return tI.get(t);let n=t.replace(/FromIndex$/,""),r=t!==n,i=tE.includes(n);if(!(n in(r?IDBIndex:IDBObjectStore).prototype)||!(i||tS.includes(n)))return;let a=async function(e,...t){// isWrite ? 'readwrite' : undefined gzipps better, but fails in Edge :(
 let a=this.transaction(e,i?"readwrite":"readonly"),o=a.store;// Must reject if op rejects.
 // If it's a write operation, must reject if tx.done rejects.
 // Must reject with op rejection first.
 // Must resolve with op value.
 // Must handle both promises (no unhandled rejections)
-return r&&(o=o.index(t.shift())),(await Promise.all([o[n](...t),i&&a.done]))[0]};return tT.set(t,a),a}tk={...i=tk,get:(e,t,n)=>tx(e,t)||i.get(e,t,n),has:(e,t)=>!!tx(e,t)||i.has(e,t)};/**
+return r&&(o=o.index(t.shift())),(await Promise.all([o[n](...t),i&&a.done]))[0]};return tI.set(t,a),a}tw={...i=tw,get:(e,t,n)=>tC(e,t)||i.get(e,t,n),has:(e,t)=>!!tC(e,t)||i.has(e,t)};/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -718,7 +719,7 @@ return r&&(o=o.index(t.shift())),(await Promise.all([o[n](...t),i&&a.done]))[0]}
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class tN{constructor(e){this.container=e}// In initial implementation, this will be called by installations on
+ */class tT{constructor(e){this.container=e}// In initial implementation, this will be called by installations on
 // auth token refresh, and installations will send this string.
 getPlatformInfoString(){let e=this.container.getProviders();// Loop through providers and get library/version pairs from any that are
 // version components.
@@ -729,18 +730,18 @@ return e.map(e=>{if(!/**
  * NOTE: Using Provider<'app-version'> is a hack to indicate that the provider
  * provides VersionService. The provider is not necessarily a 'app-version'
  * provider.
- */function(e){let t=e.getComponent();return(null==t?void 0:t.type)==="VERSION"/* ComponentType.VERSION */}(e))return null;{let t=e.getImmediate();return`${t.library}/${t.version}`}}).filter(e=>e).join(" ")}}const tP="@firebase/app",tR="0.9.20",tO=new tm("@firebase/app"),tL="[DEFAULT]",tD={[tP]:"fire-core","@firebase/app-compat":"fire-core-compat","@firebase/analytics":"fire-analytics","@firebase/analytics-compat":"fire-analytics-compat","@firebase/app-check":"fire-app-check","@firebase/app-check-compat":"fire-app-check-compat","@firebase/auth":"fire-auth","@firebase/auth-compat":"fire-auth-compat","@firebase/database":"fire-rtdb","@firebase/database-compat":"fire-rtdb-compat","@firebase/functions":"fire-fn","@firebase/functions-compat":"fire-fn-compat","@firebase/installations":"fire-iid","@firebase/installations-compat":"fire-iid-compat","@firebase/messaging":"fire-fcm","@firebase/messaging-compat":"fire-fcm-compat","@firebase/performance":"fire-perf","@firebase/performance-compat":"fire-perf-compat","@firebase/remote-config":"fire-rc","@firebase/remote-config-compat":"fire-rc-compat","@firebase/storage":"fire-gcs","@firebase/storage-compat":"fire-gcs-compat","@firebase/firestore":"fire-fst","@firebase/firestore-compat":"fire-fst-compat","fire-js":"fire-js",firebase:"fire-js-all"},tA=new Map,tM=new Map;/**
+ */function(e){let t=e.getComponent();return(null==t?void 0:t.type)==="VERSION"/* ComponentType.VERSION */}(e))return null;{let t=e.getImmediate();return`${t.library}/${t.version}`}}).filter(e=>e).join(" ")}}const tx="@firebase/app",tN="0.9.22",tP=new th("@firebase/app"),tR="[DEFAULT]",tO={[tx]:"fire-core","@firebase/app-compat":"fire-core-compat","@firebase/analytics":"fire-analytics","@firebase/analytics-compat":"fire-analytics-compat","@firebase/app-check":"fire-app-check","@firebase/app-check-compat":"fire-app-check-compat","@firebase/auth":"fire-auth","@firebase/auth-compat":"fire-auth-compat","@firebase/database":"fire-rtdb","@firebase/database-compat":"fire-rtdb-compat","@firebase/functions":"fire-fn","@firebase/functions-compat":"fire-fn-compat","@firebase/installations":"fire-iid","@firebase/installations-compat":"fire-iid-compat","@firebase/messaging":"fire-fcm","@firebase/messaging-compat":"fire-fcm-compat","@firebase/performance":"fire-perf","@firebase/performance-compat":"fire-perf-compat","@firebase/remote-config":"fire-rc","@firebase/remote-config-compat":"fire-rc-compat","@firebase/storage":"fire-gcs","@firebase/storage-compat":"fire-gcs-compat","@firebase/firestore":"fire-fst","@firebase/firestore-compat":"fire-fst-compat","fire-js":"fire-js",firebase:"fire-js-all"},tL=new Map,tD=new Map;/**
  *
  * @param component - the component to register
  * @returns whether or not the component is registered successfully
  *
  * @internal
- */function tj(e){let t=e.name;if(tM.has(t))return tO.debug(`There were multiple attempts to register component ${t}.`),!1;// add the component to existing app instances
-for(let n of(tM.set(t,e),tA.values()))!/**
+ */function tA(e){let t=e.name;if(tD.has(t))return tP.debug(`There were multiple attempts to register component ${t}.`),!1;// add the component to existing app instances
+for(let n of(tD.set(t,e),tL.values()))!/**
  * @param component - the component being added to this app's container
  *
  * @internal
- */function(e,t){try{e.container.addComponent(t)}catch(n){tO.debug(`Component ${t.name} failed to register with FirebaseApp ${e.name}`,n)}}(n,e);return!0}/**
+ */function(e,t){try{e.container.addComponent(t)}catch(n){tP.debug(`Component ${t.name} failed to register with FirebaseApp ${e.name}`,n)}}(n,e);return!0}/**
  *
  * @param app - FirebaseApp instance
  * @param name - service name
@@ -748,7 +749,7 @@ for(let n of(tM.set(t,e),tA.values()))!/**
  * @returns the provider for the service with the matching name
  *
  * @internal
- */function tU(e,t){let n=e.container.getProvider("heartbeat").getImmediate({optional:!0});return n&&n.triggerHeartbeat(),e.container.getProvider(t)}const tz=new e8("app","Firebase",{"no-app":"No Firebase App '{$appName}' has been created - call initializeApp() first","bad-app-name":"Illegal App name: '{$appName}","duplicate-app":"Firebase App named '{$appName}' already exists with different options or config","app-deleted":"Firebase App named '{$appName}' already deleted","no-options":"Need to provide options, when not being deployed to hosting via source.","invalid-app-argument":"firebase.{$appName}() takes either no argument or a Firebase App instance.","invalid-log-argument":"First argument to `onLog` must be null or a function.","idb-open":"Error thrown when opening IndexedDB. Original error: {$originalErrorMessage}.","idb-get":"Error thrown when reading from IndexedDB. Original error: {$originalErrorMessage}.","idb-set":"Error thrown when writing to IndexedDB. Original error: {$originalErrorMessage}.","idb-delete":"Error thrown when deleting from IndexedDB. Original error: {$originalErrorMessage}."});/**
+ */function tM(e,t){let n=e.container.getProvider("heartbeat").getImmediate({optional:!0});return n&&n.triggerHeartbeat(),e.container.getProvider(t)}const tj=new e4("app","Firebase",{"no-app":"No Firebase App '{$appName}' has been created - call initializeApp() first","bad-app-name":"Illegal App name: '{$appName}","duplicate-app":"Firebase App named '{$appName}' already exists with different options or config","app-deleted":"Firebase App named '{$appName}' already deleted","no-options":"Need to provide options, when not being deployed to hosting via source.","invalid-app-argument":"firebase.{$appName}() takes either no argument or a Firebase App instance.","invalid-log-argument":"First argument to `onLog` must be null or a function.","idb-open":"Error thrown when opening IndexedDB. Original error: {$originalErrorMessage}.","idb-get":"Error thrown when reading from IndexedDB. Original error: {$originalErrorMessage}.","idb-set":"Error thrown when writing to IndexedDB. Original error: {$originalErrorMessage}.","idb-delete":"Error thrown when deleting from IndexedDB. Original error: {$originalErrorMessage}."});/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -763,10 +764,10 @@ for(let n of(tM.set(t,e),tA.values()))!/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class tF{constructor(e,t,n){this._isDeleted=!1,this._options=Object.assign({},e),this._config=Object.assign({},t),this._name=t.name,this._automaticDataCollectionEnabled=t.automaticDataCollectionEnabled,this._container=n,this.container.addComponent(new to("app",()=>this,"PUBLIC"/* ComponentType.PUBLIC */))}get automaticDataCollectionEnabled(){return this.checkDestroyed(),this._automaticDataCollectionEnabled}set automaticDataCollectionEnabled(e){this.checkDestroyed(),this._automaticDataCollectionEnabled=e}get name(){return this.checkDestroyed(),this._name}get options(){return this.checkDestroyed(),this._options}get config(){return this.checkDestroyed(),this._config}get container(){return this._container}get isDeleted(){return this._isDeleted}set isDeleted(e){this._isDeleted=e}/**
+ */class tU{constructor(e,t,n){this._isDeleted=!1,this._options=Object.assign({},e),this._config=Object.assign({},t),this._name=t.name,this._automaticDataCollectionEnabled=t.automaticDataCollectionEnabled,this._container=n,this.container.addComponent(new ti("app",()=>this,"PUBLIC"/* ComponentType.PUBLIC */))}get automaticDataCollectionEnabled(){return this.checkDestroyed(),this._automaticDataCollectionEnabled}set automaticDataCollectionEnabled(e){this.checkDestroyed(),this._automaticDataCollectionEnabled=e}get name(){return this.checkDestroyed(),this._name}get options(){return this.checkDestroyed(),this._options}get config(){return this.checkDestroyed(),this._config}get container(){return this._container}get isDeleted(){return this._isDeleted}set isDeleted(e){this._isDeleted=e}/**
      * This function will throw an Error if the App has already been deleted -
      * use before performing API actions on the App.
-     */checkDestroyed(){if(this.isDeleted)throw tz.create("app-deleted"/* AppError.APP_DELETED */,{appName:this._name})}}/**
+     */checkDestroyed(){if(this.isDeleted)throw tj.create("app-deleted"/* AppError.APP_DELETED */,{appName:this._name})}}/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -785,28 +786,28 @@ for(let n of(tM.set(t,e),tA.values()))!/**
  * The current SDK version.
  *
  * @public
- */const tV="10.5.0";function tH(e,t={}){let n=e;if("object"!=typeof t){let e=t;t={name:e}}let r=Object.assign({name:tL,automaticDataCollectionEnabled:!1},t),i=r.name;if("string"!=typeof i||!i)throw tz.create("bad-app-name"/* AppError.BAD_APP_NAME */,{appName:String(i)});if(n||(n=e1()),!n)throw tz.create("no-options"/* AppError.NO_OPTIONS */);let a=tA.get(i);if(a){// return the existing app if options and config deep equal the ones in the existing app.
-if(e9(n,a.options)&&e9(r,a.config))return a;throw tz.create("duplicate-app"/* AppError.DUPLICATE_APP */,{appName:i})}let o=new tu(i);for(let e of tM.values())o.addComponent(e);let s=new tF(n,r,o);return tA.set(i,s),s}/**
+ */const tz="10.5.2";function tF(e,t={}){let n=e;if("object"!=typeof t){let e=t;t={name:e}}let r=Object.assign({name:tR,automaticDataCollectionEnabled:!1},t),i=r.name;if("string"!=typeof i||!i)throw tj.create("bad-app-name"/* AppError.BAD_APP_NAME */,{appName:String(i)});if(n||(n=eZ()),!n)throw tj.create("no-options"/* AppError.NO_OPTIONS */);let a=tL.get(i);if(a){// return the existing app if options and config deep equal the ones in the existing app.
+if(e8(n,a.options)&&e8(r,a.config))return a;throw tj.create("duplicate-app"/* AppError.DUPLICATE_APP */,{appName:i})}let o=new ts(i);for(let e of tD.values())o.addComponent(e);let s=new tU(n,r,o);return tL.set(i,s),s}/**
  * Registers a library's name and version for platform logging purposes.
  * @param library - Name of 1p or 3p library (e.g. firestore, angularfire)
  * @param version - Current version of that library.
  * @param variant - Bundle variant, e.g., node, rn, etc.
  *
  * @public
- */function t$(e,t,n){var r;// TODO: We can use this check to whitelist strings when/if we set up
+ */function tV(e,t,n){var r;// TODO: We can use this check to whitelist strings when/if we set up
 // a good whitelist system.
-let i=null!==(r=tD[e])&&void 0!==r?r:e;n&&(i+=`-${n}`);let a=i.match(/\s|\//),o=t.match(/\s|\//);if(a||o){let e=[`Unable to register library "${i}" with version "${t}":`];a&&e.push(`library name "${i}" contains illegal characters (whitespace or "/")`),a&&o&&e.push("and"),o&&e.push(`version name "${t}" contains illegal characters (whitespace or "/")`),tO.warn(e.join(" "));return}tj(new to(`${i}-version`,()=>({library:i,version:t}),"VERSION"/* ComponentType.VERSION */))}const tB="firebase-heartbeat-store";let tW=null;function tK(){return tW||(tW=/**
+let i=null!==(r=tO[e])&&void 0!==r?r:e;n&&(i+=`-${n}`);let a=i.match(/\s|\//),o=t.match(/\s|\//);if(a||o){let e=[`Unable to register library "${i}" with version "${t}":`];a&&e.push(`library name "${i}" contains illegal characters (whitespace or "/")`),a&&o&&e.push("and"),o&&e.push(`version name "${t}" contains illegal characters (whitespace or "/")`),tP.warn(e.join(" "));return}tA(new ti(`${i}-version`,()=>({library:i,version:t}),"VERSION"/* ComponentType.VERSION */))}const tH="firebase-heartbeat-store";let t$=null;function tB(){return t$||(t$=/**
  * Open a database.
  *
  * @param name Name of the database.
  * @param version Schema version.
  * @param callbacks Additional callbacks.
- */(function(e,t,{blocked:n,upgrade:r,blocking:i,terminated:a}={}){let o=indexedDB.open(e,1),s=tS(o);return r&&o.addEventListener("upgradeneeded",e=>{r(tS(o.result),e.oldVersion,e.newVersion,tS(o.transaction),e)}),n&&o.addEventListener("blocked",e=>n(e.oldVersion,e.newVersion,e)),s.then(e=>{a&&e.addEventListener("close",()=>a()),i&&e.addEventListener("versionchange",e=>i(e.oldVersion,e.newVersion,e))}).catch(()=>{}),s})("firebase-heartbeat-database",0,{upgrade:(e,t)=>{// We don't use 'break' in this switch statement, the fall-through
+ */(function(e,t,{blocked:n,upgrade:r,blocking:i,terminated:a}={}){let o=indexedDB.open(e,1),s=t_(o);return r&&o.addEventListener("upgradeneeded",e=>{r(t_(o.result),e.oldVersion,e.newVersion,t_(o.transaction),e)}),n&&o.addEventListener("blocked",e=>n(e.oldVersion,e.newVersion,e)),s.then(e=>{a&&e.addEventListener("close",()=>a()),i&&e.addEventListener("versionchange",e=>i(e.oldVersion,e.newVersion,e))}).catch(()=>{}),s})("firebase-heartbeat-database",0,{upgrade:(e,t)=>{// We don't use 'break' in this switch statement, the fall-through
 // behavior is what we want, because if there are multiple versions between
 // the old version and the current version, we want ALL the migrations
 // that correspond to those versions to run, not only the last one.
 // eslint-disable-next-line default-case
-0===t&&e.createObjectStore(tB)}}).catch(e=>{throw tz.create("idb-open"/* AppError.IDB_OPEN */,{originalErrorMessage:e.message})})),tW}async function tq(e){try{let t=await tK(),n=await t.transaction(tB).objectStore(tB).get(tG(e));return n}catch(e){if(e instanceof e6)tO.warn(e.message);else{let t=tz.create("idb-get"/* AppError.IDB_GET */,{originalErrorMessage:null==e?void 0:e.message});tO.warn(t.message)}}}async function tQ(e,t){try{let n=await tK(),r=n.transaction(tB,"readwrite"),i=r.objectStore(tB);await i.put(t,tG(e)),await r.done}catch(e){if(e instanceof e6)tO.warn(e.message);else{let t=tz.create("idb-set"/* AppError.IDB_WRITE */,{originalErrorMessage:null==e?void 0:e.message});tO.warn(t.message)}}}function tG(e){return`${e.name}!${e.options.appId}`}class tJ{constructor(e){this.container=e,/**
+0===t&&e.createObjectStore(tH)}}).catch(e=>{throw tj.create("idb-open"/* AppError.IDB_OPEN */,{originalErrorMessage:e.message})})),t$}async function tW(e){try{let t=await tB(),n=await t.transaction(tH).objectStore(tH).get(tq(e));return n}catch(e){if(e instanceof e3)tP.warn(e.message);else{let t=tj.create("idb-get"/* AppError.IDB_GET */,{originalErrorMessage:null==e?void 0:e.message});tP.warn(t.message)}}}async function tK(e,t){try{let n=await tB(),r=n.transaction(tH,"readwrite"),i=r.objectStore(tH);await i.put(t,tq(e)),await r.done}catch(e){if(e instanceof e3)tP.warn(e.message);else{let t=tj.create("idb-set"/* AppError.IDB_WRITE */,{originalErrorMessage:null==e?void 0:e.message});tP.warn(t.message)}}}function tq(e){return`${e.name}!${e.options.appId}`}class tQ{constructor(e){this.container=e,/**
          * In-memory cache for heartbeats, used by getHeartbeatsHeader() to generate
          * the header string.
          * Stores one record per date. This will be consolidated into the standard
@@ -814,13 +815,13 @@ let i=null!==(r=tD[e])&&void 0!==r?r:e;n&&(i+=`-${n}`);let a=i.match(/\s|\//),o=
          * Populated from indexedDB when the controller is instantiated and should
          * be kept in sync with indexedDB.
          * Leave public for easier testing.
-         */this._heartbeatsCache=null;let t=this.container.getProvider("app").getImmediate();this._storage=new tX(t),this._heartbeatsCachePromise=this._storage.read().then(e=>(this._heartbeatsCache=e,e))}/**
+         */this._heartbeatsCache=null;let t=this.container.getProvider("app").getImmediate();this._storage=new tJ(t),this._heartbeatsCachePromise=this._storage.read().then(e=>(this._heartbeatsCache=e,e))}/**
      * Called to report a heartbeat. The function will generate
      * a HeartbeatsByUserAgent object, update heartbeatsCache, and persist it
      * to IndexedDB.
      * Note that we only store one heartbeat per day. So if a heartbeat for today is
      * already logged, subsequent calls to this function in the same day will be ignored.
-     */async triggerHeartbeat(){let e=this.container.getProvider("platform-logger").getImmediate(),t=e.getPlatformInfoString(),n=tY();return(// Do not store a heartbeat if one is already stored for this day
+     */async triggerHeartbeat(){let e=this.container.getProvider("platform-logger").getImmediate(),t=e.getPlatformInfoString(),n=tG();return(// Do not store a heartbeat if one is already stored for this day
 // or if a header has already been sent today.
 (null===this._heartbeatsCache&&(this._heartbeatsCache=await this._heartbeatsCachePromise),this._heartbeatsCache.lastSentHeartbeatDate===n||this._heartbeatsCache.heartbeats.some(e=>e.date===n))?void 0:(this._heartbeatsCache.heartbeats.push({date:n,agent:t}),// Remove entries older than 30 days.
 this._heartbeatsCache.heartbeats=this._heartbeatsCache.heartbeats.filter(e=>{let t=new Date(e.date).valueOf(),n=Date.now();return n-t<=2592e6}),this._storage.overwrite(this._heartbeatsCache)))}/**
@@ -830,47 +831,42 @@ this._heartbeatsCache.heartbeats=this._heartbeatsCache.heartbeats.filter(e=>{let
      * NOTE: Consuming product SDKs should not send the header if this method
      * returns an empty string.
      */async getHeartbeatsHeader(){// If it's still null or the array is empty, there is no data to send.
-if(null===this._heartbeatsCache&&await this._heartbeatsCachePromise,null===this._heartbeatsCache||0===this._heartbeatsCache.heartbeats.length)return"";let e=tY(),{heartbeatsToSend:t,unsentEntries:n}=function(e,t=1024){// Heartbeats grouped by user agent in the standard format to be sent in
+if(null===this._heartbeatsCache&&await this._heartbeatsCachePromise,null===this._heartbeatsCache||0===this._heartbeatsCache.heartbeats.length)return"";let e=tG(),{heartbeatsToSend:t,unsentEntries:n}=function(e,t=1024){// Heartbeats grouped by user agent in the standard format to be sent in
 // the header.
 let n=[],r=e.slice();for(let i of e){// Look for an existing entry with the same user agent.
 let e=n.find(e=>e.agent===i.agent);if(e)// If the header would exceed max size, remove the added date
 // and stop adding to the header.
-{if(e.dates.push(i.date),tZ(n)>t){e.dates.pop();break}}else if(// If no entry for this user agent exists, create one.
-n.push({agent:i.agent,dates:[i.date]}),tZ(n)>t){// If the header would exceed max size, remove the added heartbeat
+{if(e.dates.push(i.date),tY(n)>t){e.dates.pop();break}}else if(// If no entry for this user agent exists, create one.
+n.push({agent:i.agent,dates:[i.date]}),tY(n)>t){// If the header would exceed max size, remove the added heartbeat
 // entry and stop adding to the header.
 n.pop();break}// Pop unsent entry from queue. (Skipped if adding the entry exceeded
 // quota and the loop breaks early.)
-r=r.slice(1)}return{heartbeatsToSend:n,unsentEntries:r}}(this._heartbeatsCache.heartbeats),r=eQ(JSON.stringify({version:2,heartbeats:t}));return(// Store last sent date to prevent another being logged/sent for the same day.
+r=r.slice(1)}return{heartbeatsToSend:n,unsentEntries:r}}(this._heartbeatsCache.heartbeats),r=eK(JSON.stringify({version:2,heartbeats:t}));return(// Store last sent date to prevent another being logged/sent for the same day.
 this._heartbeatsCache.lastSentHeartbeatDate=e,n.length>0?(// Store any unsent entries if they exist.
 this._heartbeatsCache.heartbeats=n,// This seems more likely than emptying the array (below) to lead to some odd state
 // since the cache isn't empty and this will be called again on the next request,
 // and is probably safest if we await it.
 await this._storage.overwrite(this._heartbeatsCache)):(this._heartbeatsCache.heartbeats=[],// Do not wait for this, to reduce latency.
-this._storage.overwrite(this._heartbeatsCache)),r)}}function tY(){let e=new Date;// Returns date format 'YYYY-MM-DD'
-return e.toISOString().substring(0,10)}class tX{constructor(e){this.app=e,this._canUseIndexedDBPromise=this.runIndexedDBEnvironmentCheck()}async runIndexedDBEnvironmentCheck(){return!!/**
+this._storage.overwrite(this._heartbeatsCache)),r)}}function tG(){let e=new Date;// Returns date format 'YYYY-MM-DD'
+return e.toISOString().substring(0,10)}class tJ{constructor(e){this.app=e,this._canUseIndexedDBPromise=this.runIndexedDBEnvironmentCheck()}async runIndexedDBEnvironmentCheck(){return!!/**
  * This method checks if indexedDB is supported by current browser/service worker context
  * @return true if indexedDB is supported by current browser/service worker context
  */function(){try{return"object"==typeof indexedDB}catch(e){return!1}}()&&new Promise((e,t)=>{try{let n=!0,r="validate-browser-context-for-indexeddb-analytics-module",i=self.indexedDB.open(r);i.onsuccess=()=>{i.result.close(),n||self.indexedDB.deleteDatabase(r),e(!0)},i.onupgradeneeded=()=>{n=!1},i.onerror=()=>{var e;t((null===(e=i.error)||void 0===e?void 0:e.message)||"")}}catch(e){t(e)}}).then(()=>!0).catch(()=>!1)}/**
      * Read all heartbeats.
-     */async read(){let e=await this._canUseIndexedDBPromise;if(!e)return{heartbeats:[]};{let e=await tq(this.app);return e||{heartbeats:[]}}}// overwrite the storage with the provided heartbeats
-async overwrite(e){var t;let n=await this._canUseIndexedDBPromise;if(n){let n=await this.read();return tQ(this.app,{lastSentHeartbeatDate:null!==(t=e.lastSentHeartbeatDate)&&void 0!==t?t:n.lastSentHeartbeatDate,heartbeats:e.heartbeats})}}// add heartbeats
-async add(e){var t;let n=await this._canUseIndexedDBPromise;if(n){let n=await this.read();return tQ(this.app,{lastSentHeartbeatDate:null!==(t=e.lastSentHeartbeatDate)&&void 0!==t?t:n.lastSentHeartbeatDate,heartbeats:[...n.heartbeats,...e.heartbeats]})}}}/**
+     */async read(){let e=await this._canUseIndexedDBPromise;if(!e)return{heartbeats:[]};{let e=await tW(this.app);return e||{heartbeats:[]}}}// overwrite the storage with the provided heartbeats
+async overwrite(e){var t;let n=await this._canUseIndexedDBPromise;if(n){let n=await this.read();return tK(this.app,{lastSentHeartbeatDate:null!==(t=e.lastSentHeartbeatDate)&&void 0!==t?t:n.lastSentHeartbeatDate,heartbeats:e.heartbeats})}}// add heartbeats
+async add(e){var t;let n=await this._canUseIndexedDBPromise;if(n){let n=await this.read();return tK(this.app,{lastSentHeartbeatDate:null!==(t=e.lastSentHeartbeatDate)&&void 0!==t?t:n.lastSentHeartbeatDate,heartbeats:[...n.heartbeats,...e.heartbeats]})}}}/**
  * Calculate bytes of a HeartbeatsByUserAgent array after being wrapped
  * in a platform logging header JSON object, stringified, and converted
  * to base 64.
- */function tZ(e){// base64 has a restricted set of characters, all of which should be 1 byte.
-return eQ(JSON.stringify({version:2,heartbeats:e})).length}function t0(e,t){var n={};for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&0>t.indexOf(r)&&(n[r]=e[r]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols)for(var i=0,r=Object.getOwnPropertySymbols(e);i<r.length;i++)0>t.indexOf(r[i])&&Object.prototype.propertyIsEnumerable.call(e,r[i])&&(n[r[i]]=e[r[i]]);return n}function t1(e){return void 0!==e&&void 0!==e.enterprise}tj(new to("platform-logger",e=>new tN(e),"PRIVATE"/* ComponentType.PRIVATE */)),tj(new to("heartbeat",e=>new tJ(e),"PRIVATE"/* ComponentType.PRIVATE */)),// Register `app` package.
-t$(tP,tR,""),// BUILD_TARGET will be replaced by values like esm5, esm2017, cjs5, etc during the compilation
-t$(tP,tR,"esm2017"),// Register platform SDK identifier (no version).
-t$("fire-js",""),t$("firebase","10.5.0","app"),"function"==typeof SuppressedError&&SuppressedError;class t2{constructor(e){if(/**
-         * The reCAPTCHA site key.
-         */this.siteKey="",/**
-         * The reCAPTCHA enablement status of the {@link EmailAuthProvider} for the current tenant.
-         */this.emailPasswordEnabled=!1,void 0===e.recaptchaKey)throw Error("recaptchaKey undefined");// Example response.recaptchaKey: "projects/proj123/keys/sitekey123"
-this.siteKey=e.recaptchaKey.split("/")[3],this.emailPasswordEnabled=e.recaptchaEnforcementState.some(e=>"EMAIL_PASSWORD_PROVIDER"===e.provider&&"OFF"!==e.enforcementState)}}function t3(){// We will include this one message in the prod error map since by the very
+ */function tY(e){// base64 has a restricted set of characters, all of which should be 1 byte.
+return eK(JSON.stringify({version:2,heartbeats:e})).length}function tX(e,t){var n={};for(var r in e)Object.prototype.hasOwnProperty.call(e,r)&&0>t.indexOf(r)&&(n[r]=e[r]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols)for(var i=0,r=Object.getOwnPropertySymbols(e);i<r.length;i++)0>t.indexOf(r[i])&&Object.prototype.propertyIsEnumerable.call(e,r[i])&&(n[r[i]]=e[r[i]]);return n}function tZ(){// We will include this one message in the prod error map since by the very
 // nature of this error, developers will never be able to see the message
 // using the debugErrorMap (which is installed during auth initialization).
-return{"dependent-sdk-initialized-before-auth":"Another Firebase SDK was initialized and is trying to use Auth before Auth is initialized. Please be sure to call `initializeAuth` or `getAuth` before starting any other Firebase SDK."}}const t4=new e8("auth","Firebase",t3()),t6=new tm("@firebase/auth");function t8(e,...t){t6.logLevel<=I.ERROR&&t6.error(`Auth (${tV}): ${e}`,...t)}/**
+return{"dependent-sdk-initialized-before-auth":"Another Firebase SDK was initialized and is trying to use Auth before Auth is initialized. Please be sure to call `initializeAuth` or `getAuth` before starting any other Firebase SDK."}}tA(new ti("platform-logger",e=>new tT(e),"PRIVATE"/* ComponentType.PRIVATE */)),tA(new ti("heartbeat",e=>new tQ(e),"PRIVATE"/* ComponentType.PRIVATE */)),// Register `app` package.
+tV(tx,tN,""),// BUILD_TARGET will be replaced by values like esm5, esm2017, cjs5, etc during the compilation
+tV(tx,tN,"esm2017"),// Register platform SDK identifier (no version).
+tV("fire-js",""),tV("firebase","10.5.2","app"),"function"==typeof SuppressedError&&SuppressedError;const t0=new e4("auth","Firebase",tZ()),t1=new th("@firebase/auth");function t2(e,...t){t1.logLevel<=I.ERROR&&t1.error(`Auth (${tz}): ${e}`,...t)}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -885,17 +881,17 @@ return{"dependent-sdk-initialized-before-auth":"Another Firebase SDK was initial
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function t5(e,...t){throw ne(e,...t)}function t9(e,...t){return ne(e,...t)}function t7(e,t,n){let r=Object.assign(Object.assign({},t3()),{[t]:n}),i=new e8("auth","Firebase",r);return i.create(t,{appName:e.name})}function ne(e,...t){if("string"!=typeof e){let n=t[0],r=[...t.slice(1)];return r[0]&&(r[0].appName=e.name),e._errorFactory.create(n,...r)}return t4.create(e,...t)}function nt(e,t,...n){if(!e)throw ne(t,...n)}/**
+ */function t3(e,...t){throw t8(e,...t)}function t4(e,...t){return t8(e,...t)}function t6(e,t,n){let r=Object.assign(Object.assign({},tZ()),{[t]:n}),i=new e4("auth","Firebase",r);return i.create(t,{appName:e.name})}function t8(e,...t){if("string"!=typeof e){let n=t[0],r=[...t.slice(1)];return r[0]&&(r[0].appName=e.name),e._errorFactory.create(n,...r)}return t0.create(e,...t)}function t5(e,t,...n){if(!e)throw t8(t,...n)}/**
  * Unconditionally fails, throwing an internal error with the given message.
  *
  * @param failure type of failure encountered
  * @throws Error
- */function nn(e){// Log the failure in addition to throw an exception, just in case the
+ */function t9(e){// Log the failure in addition to throw an exception, just in case the
 // exception is swallowed.
 let t="INTERNAL ASSERTION FAILED: "+e;// NOTE: We don't use FirebaseError here because these are internal failures
 // that cannot be handled by the user. (Also it would create a circular
 // dependency between the error and assert modules which doesn't work.)
-throw t8(t),Error(t)}/**
+throw t2(t),Error(t)}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -910,7 +906,7 @@ throw t8(t),Error(t)}/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function nr(){var e;return"undefined"!=typeof self&&(null===(e=self.location)||void 0===e?void 0:e.href)||""}function ni(){var e;return"undefined"!=typeof self&&(null===(e=self.location)||void 0===e?void 0:e.protocol)||null}/**
+ */function t7(){var e;return"undefined"!=typeof self&&(null===(e=self.location)||void 0===e?void 0:e.href)||""}function ne(){var e;return"undefined"!=typeof self&&(null===(e=self.location)||void 0===e?void 0:e.protocol)||null}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -929,14 +925,14 @@ throw t8(t),Error(t)}/**
  * A structure to help pick between a range of long and short delay durations
  * depending on the current environment. In general, the long delay is used for
  * mobile environments whereas short delays are used for desktop environments.
- */class na{constructor(e,t){this.shortDelay=e,this.longDelay=t,t>e||nn("Short delay should be less than long delay!"),this.isMobile="undefined"!=typeof window&&// @ts-ignore Setting up an broadly applicable index signature for Window
+ */class nt{constructor(e,t){this.shortDelay=e,this.longDelay=t,t>e||t9("Short delay should be less than long delay!"),this.isMobile="undefined"!=typeof window&&// @ts-ignore Setting up an broadly applicable index signature for Window
 // just to deal with this case would probably be a bad idea.
-!!(window.cordova||window.phonegap||window.PhoneGap)&&/ios|iphone|ipod|ipad|android|blackberry|iemobile/i.test(e4())||"object"==typeof navigator&&"ReactNative"===navigator.product}get(){return!("undefined"!=typeof navigator&&navigator&&"onLine"in navigator&&"boolean"==typeof navigator.onLine&&// Apply only for traditional web apps and Chrome extensions.
+!!(window.cordova||window.phonegap||window.PhoneGap)&&/ios|iphone|ipod|ipad|android|blackberry|iemobile/i.test(e2())||"object"==typeof navigator&&"ReactNative"===navigator.product}get(){return!("undefined"!=typeof navigator&&navigator&&"onLine"in navigator&&"boolean"==typeof navigator.onLine&&// Apply only for traditional web apps and Chrome extensions.
 // This is especially true for Cordova apps which have unreliable
 // navigator.onLine behavior unless cordova-plugin-network-information is
 // installed which overwrites the native navigator.onLine value and
 // defines navigator.connection.
-("http:"===ni()||"https:"===ni()||function(){let e="object"==typeof chrome?chrome.runtime:"object"==typeof browser?browser.runtime:void 0;return"object"==typeof e&&void 0!==e.id}()||"connection"in navigator))||navigator.onLine?this.isMobile?this.longDelay:this.shortDelay:Math.min(5e3/* DelayMin.OFFLINE */,this.shortDelay)}}/**
+("http:"===ne()||"https:"===ne()||function(){let e="object"==typeof chrome?chrome.runtime:"object"==typeof browser?browser.runtime:void 0;return"object"==typeof e&&void 0!==e.id}()||"connection"in navigator))||navigator.onLine?this.isMobile?this.longDelay:this.shortDelay:Math.min(5e3/* DelayMin.OFFLINE */,this.shortDelay)}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -951,7 +947,7 @@ throw t8(t),Error(t)}/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function no(e,t){e.emulator||nn("Emulator should always be set here");let{url:n}=e.emulator;return t?`${n}${t.startsWith("/")?t.slice(1):t}`:n}/**
+ */function nn(e,t){e.emulator||t9("Emulator should always be set here");let{url:n}=e.emulator;return t?`${n}${t.startsWith("/")?t.slice(1):t}`:n}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -966,7 +962,7 @@ throw t8(t),Error(t)}/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class ns{static initialize(e,t,n){this.fetchImpl=e,t&&(this.headersImpl=t),n&&(this.responseImpl=n)}static fetch(){return this.fetchImpl?this.fetchImpl:"undefined"!=typeof self&&"fetch"in self?self.fetch:void nn("Could not find fetch implementation, make sure you call FetchProvider.initialize() with an appropriate polyfill")}static headers(){return this.headersImpl?this.headersImpl:"undefined"!=typeof self&&"Headers"in self?self.Headers:void nn("Could not find Headers implementation, make sure you call FetchProvider.initialize() with an appropriate polyfill")}static response(){return this.responseImpl?this.responseImpl:"undefined"!=typeof self&&"Response"in self?self.Response:void nn("Could not find Response implementation, make sure you call FetchProvider.initialize() with an appropriate polyfill")}}/**
+ */class nr{static initialize(e,t,n){this.fetchImpl=e,t&&(this.headersImpl=t),n&&(this.responseImpl=n)}static fetch(){return this.fetchImpl?this.fetchImpl:"undefined"!=typeof self&&"fetch"in self?self.fetch:"undefined"!=typeof globalThis&&globalThis.fetch?globalThis.fetch:"undefined"!=typeof fetch?fetch:void t9("Could not find fetch implementation, make sure you call FetchProvider.initialize() with an appropriate polyfill")}static headers(){return this.headersImpl?this.headersImpl:"undefined"!=typeof self&&"Headers"in self?self.Headers:"undefined"!=typeof globalThis&&globalThis.Headers?globalThis.Headers:"undefined"!=typeof Headers?Headers:void t9("Could not find Headers implementation, make sure you call FetchProvider.initialize() with an appropriate polyfill")}static response(){return this.responseImpl?this.responseImpl:"undefined"!=typeof self&&"Response"in self?self.Response:"undefined"!=typeof globalThis&&globalThis.Response?globalThis.Response:"undefined"!=typeof Response?Response:void t9("Could not find Response implementation, make sure you call FetchProvider.initialize() with an appropriate polyfill")}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -983,16 +979,31 @@ throw t8(t),Error(t)}/**
  * limitations under the License.
  *//**
  * Map from errors returned by the server to errors to developer visible errors
- */const nl={CREDENTIAL_MISMATCH:"custom-token-mismatch"/* AuthErrorCode.CREDENTIAL_MISMATCH */,MISSING_CUSTOM_TOKEN:"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,INVALID_IDENTIFIER:"invalid-email"/* AuthErrorCode.INVALID_EMAIL */,MISSING_CONTINUE_URI:"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,INVALID_PASSWORD:"wrong-password"/* AuthErrorCode.INVALID_PASSWORD */,MISSING_PASSWORD:"missing-password"/* AuthErrorCode.MISSING_PASSWORD */,EMAIL_EXISTS:"email-already-in-use"/* AuthErrorCode.EMAIL_EXISTS */,PASSWORD_LOGIN_DISABLED:"operation-not-allowed"/* AuthErrorCode.OPERATION_NOT_ALLOWED */,INVALID_IDP_RESPONSE:"invalid-credential"/* AuthErrorCode.INVALID_IDP_RESPONSE */,INVALID_PENDING_TOKEN:"invalid-credential"/* AuthErrorCode.INVALID_IDP_RESPONSE */,FEDERATED_USER_ID_ALREADY_LINKED:"credential-already-in-use"/* AuthErrorCode.CREDENTIAL_ALREADY_IN_USE */,MISSING_REQ_TYPE:"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,EMAIL_NOT_FOUND:"user-not-found"/* AuthErrorCode.USER_DELETED */,RESET_PASSWORD_EXCEED_LIMIT:"too-many-requests"/* AuthErrorCode.TOO_MANY_ATTEMPTS_TRY_LATER */,EXPIRED_OOB_CODE:"expired-action-code"/* AuthErrorCode.EXPIRED_OOB_CODE */,INVALID_OOB_CODE:"invalid-action-code"/* AuthErrorCode.INVALID_OOB_CODE */,MISSING_OOB_CODE:"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,CREDENTIAL_TOO_OLD_LOGIN_AGAIN:"requires-recent-login"/* AuthErrorCode.CREDENTIAL_TOO_OLD_LOGIN_AGAIN */,INVALID_ID_TOKEN:"invalid-user-token"/* AuthErrorCode.INVALID_AUTH */,TOKEN_EXPIRED:"user-token-expired"/* AuthErrorCode.TOKEN_EXPIRED */,USER_NOT_FOUND:"user-token-expired"/* AuthErrorCode.TOKEN_EXPIRED */,TOO_MANY_ATTEMPTS_TRY_LATER:"too-many-requests"/* AuthErrorCode.TOO_MANY_ATTEMPTS_TRY_LATER */,PASSWORD_DOES_NOT_MEET_REQUIREMENTS:"password-does-not-meet-requirements"/* AuthErrorCode.PASSWORD_DOES_NOT_MEET_REQUIREMENTS */,INVALID_CODE:"invalid-verification-code"/* AuthErrorCode.INVALID_CODE */,INVALID_SESSION_INFO:"invalid-verification-id"/* AuthErrorCode.INVALID_SESSION_INFO */,INVALID_TEMPORARY_PROOF:"invalid-credential"/* AuthErrorCode.INVALID_IDP_RESPONSE */,MISSING_SESSION_INFO:"missing-verification-id"/* AuthErrorCode.MISSING_SESSION_INFO */,SESSION_EXPIRED:"code-expired"/* AuthErrorCode.CODE_EXPIRED */,MISSING_ANDROID_PACKAGE_NAME:"missing-android-pkg-name"/* AuthErrorCode.MISSING_ANDROID_PACKAGE_NAME */,UNAUTHORIZED_DOMAIN:"unauthorized-continue-uri"/* AuthErrorCode.UNAUTHORIZED_DOMAIN */,INVALID_OAUTH_CLIENT_ID:"invalid-oauth-client-id"/* AuthErrorCode.INVALID_OAUTH_CLIENT_ID */,ADMIN_ONLY_OPERATION:"admin-restricted-operation"/* AuthErrorCode.ADMIN_ONLY_OPERATION */,INVALID_MFA_PENDING_CREDENTIAL:"invalid-multi-factor-session"/* AuthErrorCode.INVALID_MFA_SESSION */,MFA_ENROLLMENT_NOT_FOUND:"multi-factor-info-not-found"/* AuthErrorCode.MFA_INFO_NOT_FOUND */,MISSING_MFA_ENROLLMENT_ID:"missing-multi-factor-info"/* AuthErrorCode.MISSING_MFA_INFO */,MISSING_MFA_PENDING_CREDENTIAL:"missing-multi-factor-session"/* AuthErrorCode.MISSING_MFA_SESSION */,SECOND_FACTOR_EXISTS:"second-factor-already-in-use"/* AuthErrorCode.SECOND_FACTOR_ALREADY_ENROLLED */,SECOND_FACTOR_LIMIT_EXCEEDED:"maximum-second-factor-count-exceeded"/* AuthErrorCode.SECOND_FACTOR_LIMIT_EXCEEDED */,BLOCKING_FUNCTION_ERROR_RESPONSE:"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,RECAPTCHA_NOT_ENABLED:"recaptcha-not-enabled"/* AuthErrorCode.RECAPTCHA_NOT_ENABLED */,MISSING_RECAPTCHA_TOKEN:"missing-recaptcha-token"/* AuthErrorCode.MISSING_RECAPTCHA_TOKEN */,INVALID_RECAPTCHA_TOKEN:"invalid-recaptcha-token"/* AuthErrorCode.INVALID_RECAPTCHA_TOKEN */,INVALID_RECAPTCHA_ACTION:"invalid-recaptcha-action"/* AuthErrorCode.INVALID_RECAPTCHA_ACTION */,MISSING_CLIENT_TYPE:"missing-client-type"/* AuthErrorCode.MISSING_CLIENT_TYPE */,MISSING_RECAPTCHA_VERSION:"missing-recaptcha-version"/* AuthErrorCode.MISSING_RECAPTCHA_VERSION */,INVALID_RECAPTCHA_VERSION:"invalid-recaptcha-version"/* AuthErrorCode.INVALID_RECAPTCHA_VERSION */,INVALID_REQ_TYPE:"invalid-req-type"/* AuthErrorCode.INVALID_REQ_TYPE */},nu=new na(3e4,6e4);function nc(e,t){return e.tenantId&&!t.tenantId?Object.assign(Object.assign({},t),{tenantId:e.tenantId}):t}async function nd(e,t,n,r,i={}){return nf(e,i,async()=>{let i={},a={};r&&("GET"/* HttpMethod.GET */===t?a=r:i={body:JSON.stringify(r)});let o=te(Object.assign({key:e.config.apiKey},a)).slice(1),s=await e._getAdditionalHeaders();return s["Content-Type"/* HttpHeader.CONTENT_TYPE */]="application/json",e.languageCode&&(s["X-Firebase-Locale"/* HttpHeader.X_FIREBASE_LOCALE */]=e.languageCode),ns.fetch()(np(e,e.config.apiHost,n,o),Object.assign({method:t,headers:s,referrerPolicy:"no-referrer"},i))})}async function nf(e,t,n){e._canInitEmulator=!1;let r=Object.assign(Object.assign({},nl),t);try{let t=new nm(e),i=await Promise.race([n(),t.promise]);// If we've reached this point, the fetch succeeded and the networkTimeout
+ */const ni={CREDENTIAL_MISMATCH:"custom-token-mismatch"/* AuthErrorCode.CREDENTIAL_MISMATCH */,MISSING_CUSTOM_TOKEN:"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,INVALID_IDENTIFIER:"invalid-email"/* AuthErrorCode.INVALID_EMAIL */,MISSING_CONTINUE_URI:"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,INVALID_PASSWORD:"wrong-password"/* AuthErrorCode.INVALID_PASSWORD */,MISSING_PASSWORD:"missing-password"/* AuthErrorCode.MISSING_PASSWORD */,EMAIL_EXISTS:"email-already-in-use"/* AuthErrorCode.EMAIL_EXISTS */,PASSWORD_LOGIN_DISABLED:"operation-not-allowed"/* AuthErrorCode.OPERATION_NOT_ALLOWED */,INVALID_IDP_RESPONSE:"invalid-credential"/* AuthErrorCode.INVALID_IDP_RESPONSE */,INVALID_PENDING_TOKEN:"invalid-credential"/* AuthErrorCode.INVALID_IDP_RESPONSE */,FEDERATED_USER_ID_ALREADY_LINKED:"credential-already-in-use"/* AuthErrorCode.CREDENTIAL_ALREADY_IN_USE */,MISSING_REQ_TYPE:"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,EMAIL_NOT_FOUND:"user-not-found"/* AuthErrorCode.USER_DELETED */,RESET_PASSWORD_EXCEED_LIMIT:"too-many-requests"/* AuthErrorCode.TOO_MANY_ATTEMPTS_TRY_LATER */,EXPIRED_OOB_CODE:"expired-action-code"/* AuthErrorCode.EXPIRED_OOB_CODE */,INVALID_OOB_CODE:"invalid-action-code"/* AuthErrorCode.INVALID_OOB_CODE */,MISSING_OOB_CODE:"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,CREDENTIAL_TOO_OLD_LOGIN_AGAIN:"requires-recent-login"/* AuthErrorCode.CREDENTIAL_TOO_OLD_LOGIN_AGAIN */,INVALID_ID_TOKEN:"invalid-user-token"/* AuthErrorCode.INVALID_AUTH */,TOKEN_EXPIRED:"user-token-expired"/* AuthErrorCode.TOKEN_EXPIRED */,USER_NOT_FOUND:"user-token-expired"/* AuthErrorCode.TOKEN_EXPIRED */,TOO_MANY_ATTEMPTS_TRY_LATER:"too-many-requests"/* AuthErrorCode.TOO_MANY_ATTEMPTS_TRY_LATER */,PASSWORD_DOES_NOT_MEET_REQUIREMENTS:"password-does-not-meet-requirements"/* AuthErrorCode.PASSWORD_DOES_NOT_MEET_REQUIREMENTS */,INVALID_CODE:"invalid-verification-code"/* AuthErrorCode.INVALID_CODE */,INVALID_SESSION_INFO:"invalid-verification-id"/* AuthErrorCode.INVALID_SESSION_INFO */,INVALID_TEMPORARY_PROOF:"invalid-credential"/* AuthErrorCode.INVALID_IDP_RESPONSE */,MISSING_SESSION_INFO:"missing-verification-id"/* AuthErrorCode.MISSING_SESSION_INFO */,SESSION_EXPIRED:"code-expired"/* AuthErrorCode.CODE_EXPIRED */,MISSING_ANDROID_PACKAGE_NAME:"missing-android-pkg-name"/* AuthErrorCode.MISSING_ANDROID_PACKAGE_NAME */,UNAUTHORIZED_DOMAIN:"unauthorized-continue-uri"/* AuthErrorCode.UNAUTHORIZED_DOMAIN */,INVALID_OAUTH_CLIENT_ID:"invalid-oauth-client-id"/* AuthErrorCode.INVALID_OAUTH_CLIENT_ID */,ADMIN_ONLY_OPERATION:"admin-restricted-operation"/* AuthErrorCode.ADMIN_ONLY_OPERATION */,INVALID_MFA_PENDING_CREDENTIAL:"invalid-multi-factor-session"/* AuthErrorCode.INVALID_MFA_SESSION */,MFA_ENROLLMENT_NOT_FOUND:"multi-factor-info-not-found"/* AuthErrorCode.MFA_INFO_NOT_FOUND */,MISSING_MFA_ENROLLMENT_ID:"missing-multi-factor-info"/* AuthErrorCode.MISSING_MFA_INFO */,MISSING_MFA_PENDING_CREDENTIAL:"missing-multi-factor-session"/* AuthErrorCode.MISSING_MFA_SESSION */,SECOND_FACTOR_EXISTS:"second-factor-already-in-use"/* AuthErrorCode.SECOND_FACTOR_ALREADY_ENROLLED */,SECOND_FACTOR_LIMIT_EXCEEDED:"maximum-second-factor-count-exceeded"/* AuthErrorCode.SECOND_FACTOR_LIMIT_EXCEEDED */,BLOCKING_FUNCTION_ERROR_RESPONSE:"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,RECAPTCHA_NOT_ENABLED:"recaptcha-not-enabled"/* AuthErrorCode.RECAPTCHA_NOT_ENABLED */,MISSING_RECAPTCHA_TOKEN:"missing-recaptcha-token"/* AuthErrorCode.MISSING_RECAPTCHA_TOKEN */,INVALID_RECAPTCHA_TOKEN:"invalid-recaptcha-token"/* AuthErrorCode.INVALID_RECAPTCHA_TOKEN */,INVALID_RECAPTCHA_ACTION:"invalid-recaptcha-action"/* AuthErrorCode.INVALID_RECAPTCHA_ACTION */,MISSING_CLIENT_TYPE:"missing-client-type"/* AuthErrorCode.MISSING_CLIENT_TYPE */,MISSING_RECAPTCHA_VERSION:"missing-recaptcha-version"/* AuthErrorCode.MISSING_RECAPTCHA_VERSION */,INVALID_RECAPTCHA_VERSION:"invalid-recaptcha-version"/* AuthErrorCode.INVALID_RECAPTCHA_VERSION */,INVALID_REQ_TYPE:"invalid-req-type"/* AuthErrorCode.INVALID_REQ_TYPE */},na=new nt(3e4,6e4);function no(e,t){return e.tenantId&&!t.tenantId?Object.assign(Object.assign({},t),{tenantId:e.tenantId}):t}async function ns(e,t,n,r,i={}){return nl(e,i,async()=>{let i={},a={};r&&("GET"/* HttpMethod.GET */===t?a=r:i={body:JSON.stringify(r)});let o=e9(Object.assign({key:e.config.apiKey},a)).slice(1),s=await e._getAdditionalHeaders();return s["Content-Type"/* HttpHeader.CONTENT_TYPE */]="application/json",e.languageCode&&(s["X-Firebase-Locale"/* HttpHeader.X_FIREBASE_LOCALE */]=e.languageCode),nr.fetch()(nc(e,e.config.apiHost,n,o),Object.assign({method:t,headers:s,referrerPolicy:"no-referrer"},i))})}async function nl(e,t,n){e._canInitEmulator=!1;let r=Object.assign(Object.assign({},ni),t);try{let t=new nd(e),i=await Promise.race([n(),t.promise]);// If we've reached this point, the fetch succeeded and the networkTimeout
 // didn't throw; clear the network timeout delay so that Node won't hang
-t.clearNetworkTimeout();let a=await i.json();if("needConfirmation"in a)throw ng(e,"account-exists-with-different-credential"/* AuthErrorCode.NEED_CONFIRMATION */,a);if(i.ok&&!("errorMessage"in a))return a;{let t=i.ok?a.errorMessage:a.error.message,[n,o]=t.split(" : ");if("FEDERATED_USER_ID_ALREADY_LINKED"/* ServerError.FEDERATED_USER_ID_ALREADY_LINKED */===n)throw ng(e,"credential-already-in-use"/* AuthErrorCode.CREDENTIAL_ALREADY_IN_USE */,a);if("EMAIL_EXISTS"/* ServerError.EMAIL_EXISTS */===n)throw ng(e,"email-already-in-use"/* AuthErrorCode.EMAIL_EXISTS */,a);if("USER_DISABLED"/* ServerError.USER_DISABLED */===n)throw ng(e,"user-disabled"/* AuthErrorCode.USER_DISABLED */,a);let s=r[n]||n.toLowerCase().replace(/[_\s]+/g,"-");if(o)throw t7(e,s,o);t5(e,s)}}catch(t){if(t instanceof e6)throw t;// Changing this to a different error code will log user out when there is a network error
+t.clearNetworkTimeout();let a=await i.json();if("needConfirmation"in a)throw nf(e,"account-exists-with-different-credential"/* AuthErrorCode.NEED_CONFIRMATION */,a);if(i.ok&&!("errorMessage"in a))return a;{let t=i.ok?a.errorMessage:a.error.message,[n,o]=t.split(" : ");if("FEDERATED_USER_ID_ALREADY_LINKED"/* ServerError.FEDERATED_USER_ID_ALREADY_LINKED */===n)throw nf(e,"credential-already-in-use"/* AuthErrorCode.CREDENTIAL_ALREADY_IN_USE */,a);if("EMAIL_EXISTS"/* ServerError.EMAIL_EXISTS */===n)throw nf(e,"email-already-in-use"/* AuthErrorCode.EMAIL_EXISTS */,a);if("USER_DISABLED"/* ServerError.USER_DISABLED */===n)throw nf(e,"user-disabled"/* AuthErrorCode.USER_DISABLED */,a);let s=r[n]||n.toLowerCase().replace(/[_\s]+/g,"-");if(o)throw t6(e,s,o);t3(e,s)}}catch(t){if(t instanceof e3)throw t;// Changing this to a different error code will log user out when there is a network error
 // because we treat any error other than NETWORK_REQUEST_FAILED as token is invalid.
 // https://github.com/firebase/firebase-js-sdk/blob/4fbc73610d70be4e0852e7de63a39cb7897e8546/packages/auth/src/core/auth/auth_impl.ts#L309-L316
-t5(e,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */,{message:String(t)})}}async function nh(e,t,n,r,i={}){let a=await nd(e,t,n,r,i);return"mfaPendingCredential"in a&&t5(e,"multi-factor-auth-required"/* AuthErrorCode.MFA_REQUIRED */,{_serverResponse:a}),a}function np(e,t,n,r){let i=`${t}${n}?${r}`;return e.config.emulator?no(e.config,i):`${e.config.apiScheme}://${i}`}class nm{constructor(e){this.auth=e,// Node timers and browser timers are fundamentally incompatible, but we
+t3(e,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */,{message:String(t)})}}async function nu(e,t,n,r,i={}){let a=await ns(e,t,n,r,i);return"mfaPendingCredential"in a&&t3(e,"multi-factor-auth-required"/* AuthErrorCode.MFA_REQUIRED */,{_serverResponse:a}),a}function nc(e,t,n,r){let i=`${t}${n}?${r}`;return e.config.emulator?nn(e.config,i):`${e.config.apiScheme}://${i}`}class nd{constructor(e){this.auth=e,// Node timers and browser timers are fundamentally incompatible, but we
 // don't care about the value here
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-this.timer=null,this.promise=new Promise((e,t)=>{this.timer=setTimeout(()=>t(t9(this.auth,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */)),nu.get())})}clearNetworkTimeout(){clearTimeout(this.timer)}}function ng(e,t,n){let r={appName:e.name};n.email&&(r.email=n.email),n.phoneNumber&&(r.phoneNumber=n.phoneNumber);let i=t9(e,t,r);return(// We know customData is defined on error because errorParams is defined
-i.customData._tokenResponse=n,i)}async function nv(e,t){return nd(e,"GET"/* HttpMethod.GET */,"/v2/recaptchaConfig"/* Endpoint.GET_RECAPTCHA_CONFIG */,nc(e,t))}/**
+this.timer=null,this.promise=new Promise((e,t)=>{this.timer=setTimeout(()=>t(t4(this.auth,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */)),na.get())})}clearNetworkTimeout(){clearTimeout(this.timer)}}function nf(e,t,n){let r={appName:e.name};n.email&&(r.email=n.email),n.phoneNumber&&(r.phoneNumber=n.phoneNumber);let i=t4(e,t,r);return(// We know customData is defined on error because errorParams is defined
+i.customData._tokenResponse=n,i)}function nh(e){return void 0!==e&&void 0!==e.enterprise}class np{constructor(e){if(/**
+         * The reCAPTCHA site key.
+         */this.siteKey="",/**
+         * The list of providers and their enablement status for reCAPTCHA Enterprise.
+         */this.recaptchaEnforcementState=[],void 0===e.recaptchaKey)throw Error("recaptchaKey undefined");// Example response.recaptchaKey: "projects/proj123/keys/sitekey123"
+this.siteKey=e.recaptchaKey.split("/")[3],this.recaptchaEnforcementState=e.recaptchaEnforcementState}/**
+     * Returns the reCAPTCHA Enterprise enforcement state for the given provider.
+     *
+     * @param providerStr - The provider whose enforcement state is to be returned.
+     * @returns The reCAPTCHA Enterprise enforcement state for the given provider.
+     */getProviderEnforcementState(e){if(!this.recaptchaEnforcementState||0===this.recaptchaEnforcementState.length)return null;for(let t of this.recaptchaEnforcementState)if(t.provider&&t.provider===e)return function(e){switch(e){case"ENFORCE":return"ENFORCE"/* EnforcementState.ENFORCE */;case"AUDIT":return"AUDIT"/* EnforcementState.AUDIT */;case"OFF":return"OFF"/* EnforcementState.OFF */;default:return"ENFORCEMENT_STATE_UNSPECIFIED"/* EnforcementState.ENFORCEMENT_STATE_UNSPECIFIED */}}(t.enforcementState);return null}/**
+     * Returns true if the reCAPTCHA Enterprise enforcement state for the provider is set to ENFORCE or AUDIT.
+     *
+     * @param providerStr - The provider whose enablement state is to be returned.
+     * @returns Whether or not reCAPTCHA Enterprise protection is enabled for the given provider.
+     */isProviderEnabled(e){return"ENFORCE"/* EnforcementState.ENFORCE */===this.getProviderEnforcementState(e)||"AUDIT"/* EnforcementState.AUDIT */===this.getProviderEnforcementState(e)}}async function nm(e,t){return ns(e,"GET"/* HttpMethod.GET */,"/v2/recaptchaConfig"/* Endpoint.GET_RECAPTCHA_CONFIG */,no(e,t))}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1007,7 +1018,7 @@ i.customData._tokenResponse=n,i)}async function nv(e,t){return nd(e,"GET"/* Http
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function ny(e,t){return nd(e,"POST"/* HttpMethod.POST */,"/v1/accounts:delete"/* Endpoint.DELETE_ACCOUNT */,t)}async function nb(e,t){return nd(e,"POST"/* HttpMethod.POST */,"/v1/accounts:lookup"/* Endpoint.GET_ACCOUNT_INFO */,t)}/**
+ */async function ng(e,t){return ns(e,"POST"/* HttpMethod.POST */,"/v1/accounts:delete"/* Endpoint.DELETE_ACCOUNT */,t)}async function nv(e,t){return ns(e,"POST"/* HttpMethod.POST */,"/v1/accounts:lookup"/* Endpoint.GET_ACCOUNT_INFO */,t)}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1022,7 +1033,7 @@ i.customData._tokenResponse=n,i)}async function nv(e,t){return nd(e,"GET"/* Http
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function nw(e){if(e)try{// Convert to date object.
+ */function ny(e){if(e)try{// Convert to date object.
 let t=new Date(Number(e));// Test date is valid.
 if(!isNaN(t.getTime()))return t.toUTCString()}catch(e){// Do nothing. undefined will be returned.
 }}/**
@@ -1036,7 +1047,7 @@ if(!isNaN(t.getTime()))return t.toUTCString()}catch(e){// Do nothing. undefined 
  * @param forceRefresh - Force refresh regardless of token expiration.
  *
  * @public
- */async function n_(e,t=!1){let n=ta(e),r=await n.getIdToken(t),i=nS(r);nt(i&&i.exp&&i.auth_time&&i.iat,n.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let a="object"==typeof i.firebase?i.firebase:void 0,o=null==a?void 0:a.sign_in_provider;return{claims:i,token:r,authTime:nw(nk(i.auth_time)),issuedAtTime:nw(nk(i.iat)),expirationTime:nw(nk(i.exp)),signInProvider:o||null,signInSecondFactor:(null==a?void 0:a.sign_in_second_factor)||null}}function nk(e){return 1e3*Number(e)}function nS(e){let[t,n,r]=e.split(".");if(void 0===t||void 0===n||void 0===r)return t8("JWT malformed, contained fewer than 3 sections"),null;try{let e=eG(n);if(!e)return t8("Failed to decode base64 JWT payload"),null;return JSON.parse(e)}catch(e){return t8("Caught error parsing JWT payload as JSON",null==e?void 0:e.toString()),null}}/**
+ */async function nb(e,t=!1){let n=tr(e),r=await n.getIdToken(t),i=n_(r);t5(i&&i.exp&&i.auth_time&&i.iat,n.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let a="object"==typeof i.firebase?i.firebase:void 0,o=null==a?void 0:a.sign_in_provider;return{claims:i,token:r,authTime:ny(nw(i.auth_time)),issuedAtTime:ny(nw(i.iat)),expirationTime:ny(nw(i.exp)),signInProvider:o||null,signInSecondFactor:(null==a?void 0:a.sign_in_second_factor)||null}}function nw(e){return 1e3*Number(e)}function n_(e){let[t,n,r]=e.split(".");if(void 0===t||void 0===n||void 0===r)return t2("JWT malformed, contained fewer than 3 sections"),null;try{let e=eq(n);if(!e)return t2("Failed to decode base64 JWT payload"),null;return JSON.parse(e)}catch(e){return t2("Caught error parsing JWT payload as JSON",null==e?void 0:e.toString()),null}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1051,7 +1062,7 @@ if(!isNaN(t.getTime()))return t.toUTCString()}catch(e){// Do nothing. undefined 
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function nE(e,t,n=!1){if(n)return t;try{return await t}catch(t){throw t instanceof e6&&function({code:e}){return"auth/user-disabled"===e||"auth/user-token-expired"===e}(t)&&e.auth.currentUser===e&&await e.auth.signOut(),t}}/**
+ */async function nk(e,t,n=!1){if(n)return t;try{return await t}catch(t){throw t instanceof e3&&function({code:e}){return"auth/user-disabled"===e||"auth/user-token-expired"===e}(t)&&e.auth.currentUser===e&&await e.auth.signOut(),t}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1066,7 +1077,7 @@ if(!isNaN(t.getTime()))return t.toUTCString()}catch(e){// Do nothing. undefined 
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class nI{constructor(e){this.user=e,this.isRunning=!1,// Node timers and browser timers return fundamentally different types.
+ */class nS{constructor(e){this.user=e,this.isRunning=!1,// Node timers and browser timers return fundamentally different types.
 // We don't actually care what the value is but TS won't accept unknown and
 // we can't cast properly in both environments.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -1087,7 +1098,7 @@ this.errorBackoff=3e4/* Duration.RETRY_BACKOFF_MIN */;let e=null!==(t=this.user.
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class nC{constructor(e,t){this.createdAt=e,this.lastLoginAt=t,this._initializeTime()}_initializeTime(){this.lastSignInTime=nw(this.lastLoginAt),this.creationTime=nw(this.createdAt)}_copy(e){this.createdAt=e.createdAt,this.lastLoginAt=e.lastLoginAt,this._initializeTime()}toJSON(){return{createdAt:this.createdAt,lastLoginAt:this.lastLoginAt}}}/**
+ */class nE{constructor(e,t){this.createdAt=e,this.lastLoginAt=t,this._initializeTime()}_initializeTime(){this.lastSignInTime=ny(this.lastLoginAt),this.creationTime=ny(this.createdAt)}_copy(e){this.createdAt=e.createdAt,this.lastLoginAt=e.lastLoginAt,this._initializeTime()}toJSON(){return{createdAt:this.createdAt,lastLoginAt:this.lastLoginAt}}}/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -1102,13 +1113,13 @@ this.errorBackoff=3e4/* Duration.RETRY_BACKOFF_MIN */;let e=null!==(t=this.user.
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function nT(e){var t;let n=e.auth,r=await e.getIdToken(),i=await nE(e,nb(n,{idToken:r}));nt(null==i?void 0:i.users.length,n,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let a=i.users[0];e._notifyReloadListener(a);let o=(null===(t=a.providerUserInfo)||void 0===t?void 0:t.length)?a.providerUserInfo.map(e=>{var{providerId:t}=e,n=t0(e,["providerId"]);return{providerId:t,uid:n.rawId||"",displayName:n.displayName||null,email:n.email||null,phoneNumber:n.phoneNumber||null,photoURL:n.photoUrl||null}}):[],s=function(e,t){let n=e.filter(e=>!t.some(t=>t.providerId===e.providerId));return[...n,...t]}(e.providerData,o),l=e.isAnonymous,u=!(e.email&&a.passwordHash)&&!(null==s?void 0:s.length),c={uid:a.localId,displayName:a.displayName||null,photoURL:a.photoUrl||null,email:a.email||null,emailVerified:a.emailVerified||!1,phoneNumber:a.phoneNumber||null,tenantId:a.tenantId||null,providerData:s,metadata:new nC(a.createdAt,a.lastLoginAt),isAnonymous:!!l&&u};Object.assign(e,c)}/**
+ */async function nI(e){var t;let n=e.auth,r=await e.getIdToken(),i=await nk(e,nv(n,{idToken:r}));t5(null==i?void 0:i.users.length,n,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let a=i.users[0];e._notifyReloadListener(a);let o=(null===(t=a.providerUserInfo)||void 0===t?void 0:t.length)?a.providerUserInfo.map(e=>{var{providerId:t}=e,n=tX(e,["providerId"]);return{providerId:t,uid:n.rawId||"",displayName:n.displayName||null,email:n.email||null,phoneNumber:n.phoneNumber||null,photoURL:n.photoUrl||null}}):[],s=function(e,t){let n=e.filter(e=>!t.some(t=>t.providerId===e.providerId));return[...n,...t]}(e.providerData,o),l=e.isAnonymous,u=!(e.email&&a.passwordHash)&&!(null==s?void 0:s.length),c={uid:a.localId,displayName:a.displayName||null,photoURL:a.photoUrl||null,email:a.email||null,emailVerified:a.emailVerified||!1,phoneNumber:a.phoneNumber||null,tenantId:a.tenantId||null,providerData:s,metadata:new nE(a.createdAt,a.lastLoginAt),isAnonymous:!!l&&u};Object.assign(e,c)}/**
  * Reloads user account data, if signed in.
  *
  * @param user - The user.
  *
  * @public
- */async function nx(e){let t=ta(e);await nT(t),// Even though the current user hasn't changed, update
+ */async function nC(e){let t=tr(e);await nI(t),// Even though the current user hasn't changed, update
 // current user will trigger a persistence update w/ the
 // new info.
 await t.auth._persistUserIfCurrent(t),t.auth._notifyListenersIfCurrent(t)}/**
@@ -1126,7 +1137,7 @@ await t.auth._persistUserIfCurrent(t),t.auth._notifyListenersIfCurrent(t)}/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function nN(e,t){let n=await nf(e,{},async()=>{let n=te({grant_type:"refresh_token",refresh_token:t}).slice(1),{tokenApiHost:r,apiKey:i}=e.config,a=np(e,r,"/v1/token"/* Endpoint.TOKEN */,`key=${i}`),o=await e._getAdditionalHeaders();return o["Content-Type"/* HttpHeader.CONTENT_TYPE */]="application/x-www-form-urlencoded",ns.fetch()(a,{method:"POST"/* HttpMethod.POST */,headers:o,body:n})});// The response comes back in snake_case. Convert to camel:
+ */async function nT(e,t){let n=await nl(e,{},async()=>{let n=e9({grant_type:"refresh_token",refresh_token:t}).slice(1),{tokenApiHost:r,apiKey:i}=e.config,a=nc(e,r,"/v1/token"/* Endpoint.TOKEN */,`key=${i}`),o=await e._getAdditionalHeaders();return o["Content-Type"/* HttpHeader.CONTENT_TYPE */]="application/x-www-form-urlencoded",nr.fetch()(a,{method:"POST"/* HttpMethod.POST */,headers:o,body:n})});// The response comes back in snake_case. Convert to camel:
 return{accessToken:n.access_token,expiresIn:n.expires_in,refreshToken:n.refresh_token}}/**
  * @license
  * Copyright 2020 Google LLC
@@ -1147,9 +1158,9 @@ return{accessToken:n.access_token,expiresIn:n.expires_in,refreshToken:n.refresh_
  * it references AuthInternal which has a circular dependency with UserInternal.
  *
  * @internal
- */class nP{constructor(){this.refreshToken=null,this.accessToken=null,this.expirationTime=null}get isExpired(){return!this.expirationTime||Date.now()>this.expirationTime-3e4/* Buffer.TOKEN_REFRESH */}updateFromServerResponse(e){nt(e.idToken,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),nt(void 0!==e.idToken,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),nt(void 0!==e.refreshToken,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let t="expiresIn"in e&&void 0!==e.expiresIn?Number(e.expiresIn):/**
+ */class nx{constructor(){this.refreshToken=null,this.accessToken=null,this.expirationTime=null}get isExpired(){return!this.expirationTime||Date.now()>this.expirationTime-3e4/* Buffer.TOKEN_REFRESH */}updateFromServerResponse(e){t5(e.idToken,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t5(void 0!==e.idToken,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t5(void 0!==e.refreshToken,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let t="expiresIn"in e&&void 0!==e.expiresIn?Number(e.expiresIn):/**
  * Extract expiresIn TTL from a token by subtracting the expiration from the issuance.
- */function(e){let t=nS(e);return nt(t,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),nt(void 0!==t.exp,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),nt(void 0!==t.iat,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),Number(t.exp)-Number(t.iat)}(e.idToken);this.updateTokensAndExpiration(e.idToken,e.refreshToken,t)}async getToken(e,t=!1){return(nt(!this.accessToken||this.refreshToken,e,"user-token-expired"/* AuthErrorCode.TOKEN_EXPIRED */),t||!this.accessToken||this.isExpired)?this.refreshToken?(await this.refresh(e,this.refreshToken),this.accessToken):null:this.accessToken}clearRefreshToken(){this.refreshToken=null}async refresh(e,t){let{accessToken:n,refreshToken:r,expiresIn:i}=await nN(e,t);this.updateTokensAndExpiration(n,r,Number(i))}updateTokensAndExpiration(e,t,n){this.refreshToken=t||null,this.accessToken=e||null,this.expirationTime=Date.now()+1e3*n}static fromJSON(e,t){let{refreshToken:n,accessToken:r,expirationTime:i}=t,a=new nP;return n&&(nt("string"==typeof n,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:e}),a.refreshToken=n),r&&(nt("string"==typeof r,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:e}),a.accessToken=r),i&&(nt("number"==typeof i,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:e}),a.expirationTime=i),a}toJSON(){return{refreshToken:this.refreshToken,accessToken:this.accessToken,expirationTime:this.expirationTime}}_assign(e){this.accessToken=e.accessToken,this.refreshToken=e.refreshToken,this.expirationTime=e.expirationTime}_clone(){return Object.assign(new nP,this.toJSON())}_performRefresh(){return nn("not implemented")}}/**
+ */function(e){let t=n_(e);return t5(t,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t5(void 0!==t.exp,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t5(void 0!==t.iat,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),Number(t.exp)-Number(t.iat)}(e.idToken);this.updateTokensAndExpiration(e.idToken,e.refreshToken,t)}async getToken(e,t=!1){return(t5(!this.accessToken||this.refreshToken,e,"user-token-expired"/* AuthErrorCode.TOKEN_EXPIRED */),t||!this.accessToken||this.isExpired)?this.refreshToken?(await this.refresh(e,this.refreshToken),this.accessToken):null:this.accessToken}clearRefreshToken(){this.refreshToken=null}async refresh(e,t){let{accessToken:n,refreshToken:r,expiresIn:i}=await nT(e,t);this.updateTokensAndExpiration(n,r,Number(i))}updateTokensAndExpiration(e,t,n){this.refreshToken=t||null,this.accessToken=e||null,this.expirationTime=Date.now()+1e3*n}static fromJSON(e,t){let{refreshToken:n,accessToken:r,expirationTime:i}=t,a=new nx;return n&&(t5("string"==typeof n,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:e}),a.refreshToken=n),r&&(t5("string"==typeof r,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:e}),a.accessToken=r),i&&(t5("number"==typeof i,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:e}),a.expirationTime=i),a}toJSON(){return{refreshToken:this.refreshToken,accessToken:this.accessToken,expirationTime:this.expirationTime}}_assign(e){this.accessToken=e.accessToken,this.refreshToken=e.refreshToken,this.expirationTime=e.expirationTime}_clone(){return Object.assign(new nx,this.toJSON())}_performRefresh(){return t9("not implemented")}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1164,20 +1175,20 @@ return{accessToken:n.access_token,expiresIn:n.expires_in,refreshToken:n.refresh_
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function nR(e,t){nt("string"==typeof e||void 0===e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:t})}class nO{constructor(e){var{uid:t,auth:n,stsTokenManager:r}=e,i=t0(e,["uid","auth","stsTokenManager"]);// For the user object, provider is always Firebase.
-this.providerId="firebase"/* ProviderId.FIREBASE */,this.proactiveRefresh=new nI(this),this.reloadUserInfo=null,this.reloadListener=null,this.uid=t,this.auth=n,this.stsTokenManager=r,this.accessToken=r.accessToken,this.displayName=i.displayName||null,this.email=i.email||null,this.emailVerified=i.emailVerified||!1,this.phoneNumber=i.phoneNumber||null,this.photoURL=i.photoURL||null,this.isAnonymous=i.isAnonymous||!1,this.tenantId=i.tenantId||null,this.providerData=i.providerData?[...i.providerData]:[],this.metadata=new nC(i.createdAt||void 0,i.lastLoginAt||void 0)}async getIdToken(e){let t=await nE(this,this.stsTokenManager.getToken(this.auth,e));return nt(t,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.accessToken!==t&&(this.accessToken=t,await this.auth._persistUserIfCurrent(this),this.auth._notifyListenersIfCurrent(this)),t}getIdTokenResult(e){return n_(this,e)}reload(){return nx(this)}_assign(e){this!==e&&(nt(this.uid===e.uid,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.displayName=e.displayName,this.photoURL=e.photoURL,this.email=e.email,this.emailVerified=e.emailVerified,this.phoneNumber=e.phoneNumber,this.isAnonymous=e.isAnonymous,this.tenantId=e.tenantId,this.providerData=e.providerData.map(e=>Object.assign({},e)),this.metadata._copy(e.metadata),this.stsTokenManager._assign(e.stsTokenManager))}_clone(e){let t=new nO(Object.assign(Object.assign({},this),{auth:e,stsTokenManager:this.stsTokenManager._clone()}));return t.metadata._copy(this.metadata),t}_onReload(e){// There should only ever be one listener, and that is a single instance of MultiFactorUser
-nt(!this.reloadListener,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.reloadListener=e,this.reloadUserInfo&&(this._notifyReloadListener(this.reloadUserInfo),this.reloadUserInfo=null)}_notifyReloadListener(e){this.reloadListener?this.reloadListener(e):this.reloadUserInfo=e}_startProactiveRefresh(){this.proactiveRefresh._start()}_stopProactiveRefresh(){this.proactiveRefresh._stop()}async _updateTokensIfNecessary(e,t=!1){let n=!1;e.idToken&&e.idToken!==this.stsTokenManager.accessToken&&(this.stsTokenManager.updateFromServerResponse(e),n=!0),t&&await nT(this),await this.auth._persistUserIfCurrent(this),n&&this.auth._notifyListenersIfCurrent(this)}async delete(){let e=await this.getIdToken();// TODO: Determine if cancellable-promises are necessary to use in this class so that delete()
+ */function nN(e,t){t5("string"==typeof e||void 0===e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:t})}class nP{constructor(e){var{uid:t,auth:n,stsTokenManager:r}=e,i=tX(e,["uid","auth","stsTokenManager"]);// For the user object, provider is always Firebase.
+this.providerId="firebase"/* ProviderId.FIREBASE */,this.proactiveRefresh=new nS(this),this.reloadUserInfo=null,this.reloadListener=null,this.uid=t,this.auth=n,this.stsTokenManager=r,this.accessToken=r.accessToken,this.displayName=i.displayName||null,this.email=i.email||null,this.emailVerified=i.emailVerified||!1,this.phoneNumber=i.phoneNumber||null,this.photoURL=i.photoURL||null,this.isAnonymous=i.isAnonymous||!1,this.tenantId=i.tenantId||null,this.providerData=i.providerData?[...i.providerData]:[],this.metadata=new nE(i.createdAt||void 0,i.lastLoginAt||void 0)}async getIdToken(e){let t=await nk(this,this.stsTokenManager.getToken(this.auth,e));return t5(t,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.accessToken!==t&&(this.accessToken=t,await this.auth._persistUserIfCurrent(this),this.auth._notifyListenersIfCurrent(this)),t}getIdTokenResult(e){return nb(this,e)}reload(){return nC(this)}_assign(e){this!==e&&(t5(this.uid===e.uid,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.displayName=e.displayName,this.photoURL=e.photoURL,this.email=e.email,this.emailVerified=e.emailVerified,this.phoneNumber=e.phoneNumber,this.isAnonymous=e.isAnonymous,this.tenantId=e.tenantId,this.providerData=e.providerData.map(e=>Object.assign({},e)),this.metadata._copy(e.metadata),this.stsTokenManager._assign(e.stsTokenManager))}_clone(e){let t=new nP(Object.assign(Object.assign({},this),{auth:e,stsTokenManager:this.stsTokenManager._clone()}));return t.metadata._copy(this.metadata),t}_onReload(e){// There should only ever be one listener, and that is a single instance of MultiFactorUser
+t5(!this.reloadListener,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.reloadListener=e,this.reloadUserInfo&&(this._notifyReloadListener(this.reloadUserInfo),this.reloadUserInfo=null)}_notifyReloadListener(e){this.reloadListener?this.reloadListener(e):this.reloadUserInfo=e}_startProactiveRefresh(){this.proactiveRefresh._start()}_stopProactiveRefresh(){this.proactiveRefresh._stop()}async _updateTokensIfNecessary(e,t=!1){let n=!1;e.idToken&&e.idToken!==this.stsTokenManager.accessToken&&(this.stsTokenManager.updateFromServerResponse(e),n=!0),t&&await nI(this),await this.auth._persistUserIfCurrent(this),n&&this.auth._notifyListenersIfCurrent(this)}async delete(){let e=await this.getIdToken();// TODO: Determine if cancellable-promises are necessary to use in this class so that delete()
 //       cancels pending actions...
-return await nE(this,ny(this.auth,{idToken:e})),this.stsTokenManager.clearRefreshToken(),this.auth.signOut()}toJSON(){return Object.assign(Object.assign({uid:this.uid,email:this.email||void 0,emailVerified:this.emailVerified,displayName:this.displayName||void 0,isAnonymous:this.isAnonymous,photoURL:this.photoURL||void 0,phoneNumber:this.phoneNumber||void 0,tenantId:this.tenantId||void 0,providerData:this.providerData.map(e=>Object.assign({},e)),stsTokenManager:this.stsTokenManager.toJSON(),// Redirect event ID must be maintained in case there is a pending
+return await nk(this,ng(this.auth,{idToken:e})),this.stsTokenManager.clearRefreshToken(),this.auth.signOut()}toJSON(){return Object.assign(Object.assign({uid:this.uid,email:this.email||void 0,emailVerified:this.emailVerified,displayName:this.displayName||void 0,isAnonymous:this.isAnonymous,photoURL:this.photoURL||void 0,phoneNumber:this.phoneNumber||void 0,tenantId:this.tenantId||void 0,providerData:this.providerData.map(e=>Object.assign({},e)),stsTokenManager:this.stsTokenManager.toJSON(),// Redirect event ID must be maintained in case there is a pending
 // redirect event.
 _redirectEventId:this._redirectEventId},this.metadata.toJSON()),{// Required for compatibility with the legacy SDK (go/firebase-auth-sdk-persistence-parsing):
-apiKey:this.auth.config.apiKey,appName:this.auth.name})}get refreshToken(){return this.stsTokenManager.refreshToken||""}static _fromJSON(e,t){var n,r,i,a,o,s,l,u;let c=null!==(n=t.displayName)&&void 0!==n?n:void 0,d=null!==(r=t.email)&&void 0!==r?r:void 0,f=null!==(i=t.phoneNumber)&&void 0!==i?i:void 0,h=null!==(a=t.photoURL)&&void 0!==a?a:void 0,p=null!==(o=t.tenantId)&&void 0!==o?o:void 0,m=null!==(s=t._redirectEventId)&&void 0!==s?s:void 0,g=null!==(l=t.createdAt)&&void 0!==l?l:void 0,v=null!==(u=t.lastLoginAt)&&void 0!==u?u:void 0,{uid:y,emailVerified:b,isAnonymous:w,providerData:_,stsTokenManager:k}=t;nt(y&&k,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let S=nP.fromJSON(this.name,k);nt("string"==typeof y,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),nR(c,e.name),nR(d,e.name),nt("boolean"==typeof b,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),nt("boolean"==typeof w,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),nR(f,e.name),nR(h,e.name),nR(p,e.name),nR(m,e.name),nR(g,e.name),nR(v,e.name);let E=new nO({uid:y,auth:e,email:d,emailVerified:b,displayName:c,isAnonymous:w,photoURL:h,phoneNumber:f,tenantId:p,stsTokenManager:S,createdAt:g,lastLoginAt:v});return _&&Array.isArray(_)&&(E.providerData=_.map(e=>Object.assign({},e))),m&&(E._redirectEventId=m),E}/**
+apiKey:this.auth.config.apiKey,appName:this.auth.name})}get refreshToken(){return this.stsTokenManager.refreshToken||""}static _fromJSON(e,t){var n,r,i,a,o,s,l,u;let c=null!==(n=t.displayName)&&void 0!==n?n:void 0,d=null!==(r=t.email)&&void 0!==r?r:void 0,f=null!==(i=t.phoneNumber)&&void 0!==i?i:void 0,h=null!==(a=t.photoURL)&&void 0!==a?a:void 0,p=null!==(o=t.tenantId)&&void 0!==o?o:void 0,m=null!==(s=t._redirectEventId)&&void 0!==s?s:void 0,g=null!==(l=t.createdAt)&&void 0!==l?l:void 0,v=null!==(u=t.lastLoginAt)&&void 0!==u?u:void 0,{uid:y,emailVerified:b,isAnonymous:w,providerData:_,stsTokenManager:k}=t;t5(y&&k,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let S=nx.fromJSON(this.name,k);t5("string"==typeof y,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),nN(c,e.name),nN(d,e.name),t5("boolean"==typeof b,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t5("boolean"==typeof w,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),nN(f,e.name),nN(h,e.name),nN(p,e.name),nN(m,e.name),nN(g,e.name),nN(v,e.name);let E=new nP({uid:y,auth:e,email:d,emailVerified:b,displayName:c,isAnonymous:w,photoURL:h,phoneNumber:f,tenantId:p,stsTokenManager:S,createdAt:g,lastLoginAt:v});return _&&Array.isArray(_)&&(E.providerData=_.map(e=>Object.assign({},e))),m&&(E._redirectEventId=m),E}/**
      * Initialize a User from an idToken server response
      * @param auth
      * @param idTokenResponse
-     */static async _fromIdTokenResponse(e,t,n=!1){let r=new nP;r.updateFromServerResponse(t);// Initialize the Firebase Auth user.
-let i=new nO({uid:t.localId,auth:e,stsTokenManager:r,isAnonymous:n});return(// Updates the user info and data and resolves with a user instance.
-await nT(i),i)}}/**
+     */static async _fromIdTokenResponse(e,t,n=!1){let r=new nx;r.updateFromServerResponse(t);// Initialize the Firebase Auth user.
+let i=new nP({uid:t.localId,auth:e,stsTokenManager:r,isAnonymous:n});return(// Updates the user info and data and resolves with a user instance.
+await nI(i),i)}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1192,7 +1203,7 @@ await nT(i),i)}}/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */const nL=new Map;function nD(e){e instanceof Function||nn("Expected a class definition");let t=nL.get(e);return t?t instanceof e||nn("Instance stored in cache mismatched with class"):(t=new e,nL.set(e,t)),t}/**
+ */const nR=new Map;function nO(e){e instanceof Function||t9("Expected a class definition");let t=nR.get(e);return t?t instanceof e||t9("Instance stored in cache mismatched with class"):(t=new e,nR.set(e,t)),t}/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -1207,7 +1218,7 @@ await nT(i),i)}}/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class nA{constructor(){this.type="NONE"/* PersistenceType.NONE */,this.storage={}}async _isAvailable(){return!0}async _set(e,t){this.storage[e]=t}async _get(e){let t=this.storage[e];return void 0===t?null:t}async _remove(e){delete this.storage[e]}_addListener(e,t){}_removeListener(e,t){}}/**
+ */class nL{constructor(){this.type="NONE"/* PersistenceType.NONE */,this.storage={}}async _isAvailable(){return!0}async _set(e,t){this.storage[e]=t}async _get(e){let t=this.storage[e];return void 0===t?null:t}async _remove(e){delete this.storage[e]}_addListener(e,t){}_removeListener(e,t){}}/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -1222,17 +1233,17 @@ await nT(i),i)}}/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function nM(e,t,n){return`firebase:${e}:${t}:${n}`}nA.type="NONE";class nj{constructor(e,t,n){this.persistence=e,this.auth=t,this.userKey=n;let{config:r,name:i}=this.auth;this.fullUserKey=nM(this.userKey,r.apiKey,i),this.fullPersistenceKey=nM("persistence"/* KeyName.PERSISTENCE_USER */,r.apiKey,i),this.boundEventHandler=t._onStorageEvent.bind(t),this.persistence._addListener(this.fullUserKey,this.boundEventHandler)}setCurrentUser(e){return this.persistence._set(this.fullUserKey,e.toJSON())}async getCurrentUser(){let e=await this.persistence._get(this.fullUserKey);return e?nO._fromJSON(this.auth,e):null}removeCurrentUser(){return this.persistence._remove(this.fullUserKey)}savePersistenceForRedirect(){return this.persistence._set(this.fullPersistenceKey,this.persistence.type)}async setPersistence(e){if(this.persistence===e)return;let t=await this.getCurrentUser();if(await this.removeCurrentUser(),this.persistence=e,t)return this.setCurrentUser(t)}delete(){this.persistence._removeListener(this.fullUserKey,this.boundEventHandler)}static async create(e,t,n="authUser"/* KeyName.AUTH_USER */){if(!t.length)return new nj(nD(nA),e,n);// Eliminate any persistences that are not available
-let r=(await Promise.all(t.map(async e=>{if(await e._isAvailable())return e}))).filter(e=>e),i=r[0]||nD(nA),a=nM(n,e.config.apiKey,e.name),o=null;// Note, here we check for a user in _all_ persistences, not just the
+ */function nD(e,t,n){return`firebase:${e}:${t}:${n}`}nL.type="NONE";class nA{constructor(e,t,n){this.persistence=e,this.auth=t,this.userKey=n;let{config:r,name:i}=this.auth;this.fullUserKey=nD(this.userKey,r.apiKey,i),this.fullPersistenceKey=nD("persistence"/* KeyName.PERSISTENCE_USER */,r.apiKey,i),this.boundEventHandler=t._onStorageEvent.bind(t),this.persistence._addListener(this.fullUserKey,this.boundEventHandler)}setCurrentUser(e){return this.persistence._set(this.fullUserKey,e.toJSON())}async getCurrentUser(){let e=await this.persistence._get(this.fullUserKey);return e?nP._fromJSON(this.auth,e):null}removeCurrentUser(){return this.persistence._remove(this.fullUserKey)}savePersistenceForRedirect(){return this.persistence._set(this.fullPersistenceKey,this.persistence.type)}async setPersistence(e){if(this.persistence===e)return;let t=await this.getCurrentUser();if(await this.removeCurrentUser(),this.persistence=e,t)return this.setCurrentUser(t)}delete(){this.persistence._removeListener(this.fullUserKey,this.boundEventHandler)}static async create(e,t,n="authUser"/* KeyName.AUTH_USER */){if(!t.length)return new nA(nO(nL),e,n);// Eliminate any persistences that are not available
+let r=(await Promise.all(t.map(async e=>{if(await e._isAvailable())return e}))).filter(e=>e),i=r[0]||nO(nL),a=nD(n,e.config.apiKey,e.name),o=null;// Note, here we check for a user in _all_ persistences, not just the
 // ones deemed available. If we can migrate a user out of a broken
 // persistence, we will (but only if that persistence supports migration).
-for(let n of t)try{let t=await n._get(a);if(t){let r=nO._fromJSON(e,t);// throws for unparsable blob (wrong format)
+for(let n of t)try{let t=await n._get(a);if(t){let r=nP._fromJSON(e,t);// throws for unparsable blob (wrong format)
 n!==i&&(o=r),i=n;break}}catch(e){}// If we find the user in a persistence that does support migration, use
 // that migration path (of only persistences that support migration)
 let s=r.filter(e=>e._shouldAllowMigration);return i._shouldAllowMigration&&s.length&&(i=s[0],o&&// we'll just let it bubble to surface the error.
 await i._set(a,o.toJSON()),// Attempt to clear the key in other persistences but ignore errors. This helps prevent issues
 // such as users getting stuck with a previous account after signing out and refreshing the tab.
-await Promise.all(t.map(async e=>{if(e!==i)try{await e._remove(a)}catch(e){}}))),new nj(i,e,n)}}/**
+await Promise.all(t.map(async e=>{if(e!==i)try{await e._remove(a)}catch(e){}}))),new nA(i,e,n)}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1249,8 +1260,8 @@ await Promise.all(t.map(async e=>{if(e!==i)try{await e._remove(a)}catch(e){}})))
  * limitations under the License.
  *//**
  * Determine the browser for the purposes of reporting usage to the API
- */function nU(e){let t=e.toLowerCase();if(t.includes("opera/")||t.includes("opr/")||t.includes("opios/"))return"Opera"/* BrowserName.OPERA */;{if(nH(t))return"IEMobile"/* BrowserName.IEMOBILE */;if(t.includes("msie")||t.includes("trident/"))return"IE"/* BrowserName.IE */;if(t.includes("edge/"))return"Edge"/* BrowserName.EDGE */;if(nz(t))return"Firefox"/* BrowserName.FIREFOX */;if(t.includes("silk/"))return"Silk"/* BrowserName.SILK */;if(nB(t))return"Blackberry"/* BrowserName.BLACKBERRY */;if(nW(t))return"Webos"/* BrowserName.WEBOS */;if(nF(t))return"Safari"/* BrowserName.SAFARI */;if((t.includes("chrome/")||nV(t))&&!t.includes("edge/"))return"Chrome"/* BrowserName.CHROME */;if(n$(t))return"Android"/* BrowserName.ANDROID */;let n=e.match(/([a-zA-Z\d\.]+)\/[a-zA-Z\d\.]*$/);if((null==n?void 0:n.length)===2)return n[1]}return"Other"/* BrowserName.OTHER */}function nz(e=e4()){return/firefox\//i.test(e)}function nF(e=e4()){let t=e.toLowerCase();return t.includes("safari/")&&!t.includes("chrome/")&&!t.includes("crios/")&&!t.includes("android")}function nV(e=e4()){return/crios\//i.test(e)}function nH(e=e4()){return/iemobile/i.test(e)}function n$(e=e4()){return/android/i.test(e)}function nB(e=e4()){return/blackberry/i.test(e)}function nW(e=e4()){return/webos/i.test(e)}function nK(e=e4()){return/iphone|ipad|ipod/i.test(e)||/macintosh/i.test(e)&&/mobile/i.test(e)}function nq(e=e4()){// TODO: implement getBrowserName equivalent for OS.
-return nK(e)||n$(e)||nW(e)||nB(e)||/windows phone/i.test(e)||nH(e)}/**
+ */function nM(e){let t=e.toLowerCase();if(t.includes("opera/")||t.includes("opr/")||t.includes("opios/"))return"Opera"/* BrowserName.OPERA */;{if(nF(t))return"IEMobile"/* BrowserName.IEMOBILE */;if(t.includes("msie")||t.includes("trident/"))return"IE"/* BrowserName.IE */;if(t.includes("edge/"))return"Edge"/* BrowserName.EDGE */;if(nj(t))return"Firefox"/* BrowserName.FIREFOX */;if(t.includes("silk/"))return"Silk"/* BrowserName.SILK */;if(nH(t))return"Blackberry"/* BrowserName.BLACKBERRY */;if(n$(t))return"Webos"/* BrowserName.WEBOS */;if(nU(t))return"Safari"/* BrowserName.SAFARI */;if((t.includes("chrome/")||nz(t))&&!t.includes("edge/"))return"Chrome"/* BrowserName.CHROME */;if(nV(t))return"Android"/* BrowserName.ANDROID */;let n=e.match(/([a-zA-Z\d\.]+)\/[a-zA-Z\d\.]*$/);if((null==n?void 0:n.length)===2)return n[1]}return"Other"/* BrowserName.OTHER */}function nj(e=e2()){return/firefox\//i.test(e)}function nU(e=e2()){let t=e.toLowerCase();return t.includes("safari/")&&!t.includes("chrome/")&&!t.includes("crios/")&&!t.includes("android")}function nz(e=e2()){return/crios\//i.test(e)}function nF(e=e2()){return/iemobile/i.test(e)}function nV(e=e2()){return/android/i.test(e)}function nH(e=e2()){return/blackberry/i.test(e)}function n$(e=e2()){return/webos/i.test(e)}function nB(e=e2()){return/iphone|ipad|ipod/i.test(e)||/macintosh/i.test(e)&&/mobile/i.test(e)}function nW(e=e2()){// TODO: implement getBrowserName equivalent for OS.
+return nB(e)||nV(e)||n$(e)||nH(e)||/windows phone/i.test(e)||nF(e)}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1267,11 +1278,11 @@ return nK(e)||n$(e)||nW(e)||nB(e)||/windows phone/i.test(e)||nH(e)}/**
  * limitations under the License.
  *//*
  * Determine the SDK version string
- */function nQ(e,t=[]){let n;switch(e){case"Browser"/* ClientPlatform.BROWSER */:// In a browser environment, report the browser name.
-n=nU(e4());break;case"Worker"/* ClientPlatform.WORKER */:// Technically a worker runs from a browser but we need to differentiate a
+ */function nK(e,t=[]){let n;switch(e){case"Browser"/* ClientPlatform.BROWSER */:// In a browser environment, report the browser name.
+n=nM(e2());break;case"Worker"/* ClientPlatform.WORKER */:// Technically a worker runs from a browser but we need to differentiate a
 // worker from a browser.
 // For example: Chrome-Worker/JsCore/4.9.1/FirebaseCore-web.
-n=`${nU(e4())}-${e}`;break;default:n=e}let r=t.length?t.join(","):"FirebaseCore-web";/* default value if no other framework is used */return`${n}/JsCore/${tV}/${r}`}/**
+n=`${nM(e2())}-${e}`;break;default:n=e}let r=t.length?t.join(","):"FirebaseCore-web";/* default value if no other framework is used */return`${n}/JsCore/${tz}/${r}`}/**
  * @license
  * Copyright 2022 Google LLC
  *
@@ -1286,7 +1297,7 @@ n=`${nU(e4())}-${e}`;break;default:n=e}let r=t.length?t.join(","):"FirebaseCore-
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class nG{constructor(e){this.auth=e,this.queue=[]}pushCallback(e,t){// The callback could be sync or async. Wrap it into a
+ */class nq{constructor(e){this.auth=e,this.queue=[]}pushCallback(e,t){// The callback could be sync or async. Wrap it into a
 // function that is always async.
 let n=t=>new Promise((n,r)=>{try{let r=e(t);// Either resolve with existing promise or wrap a non-promise
     // return value into a promise.
@@ -1319,11 +1330,11 @@ t.reverse(),t))try{e()}catch(e){/* swallow error */}throw this.auth._errorFactor
  * @param auth Auth object.
  * @param request Password policy request.
  * @returns Password policy response.
- */async function nJ(e,t={}){return nd(e,"GET"/* HttpMethod.GET */,"/v2/passwordPolicy"/* Endpoint.GET_PASSWORD_POLICY */,nc(e,t))}/**
+ */async function nQ(e,t={}){return ns(e,"GET"/* HttpMethod.GET */,"/v2/passwordPolicy"/* Endpoint.GET_PASSWORD_POLICY */,no(e,t))}/**
  * Stores password policy requirements and provides password validation against the policy.
  *
  * @internal
- */class nY{constructor(e){var t,n,r,i;// Only include custom strength options defined in the response.
+ */class nG{constructor(e){var t,n,r,i;// Only include custom strength options defined in the response.
 let a=e.customStrengthOptions;this.customStrengthOptions={},// TODO: Remove once the backend is updated to include the minimum min password length instead of undefined when there is no minimum length set.
 this.customStrengthOptions.minPasswordLength=null!==(t=a.minPasswordLength)&&void 0!==t?t:6,a.maxPasswordLength&&(this.customStrengthOptions.maxPasswordLength=a.maxPasswordLength),void 0!==a.containsLowercaseCharacter&&(this.customStrengthOptions.containsLowercaseLetter=a.containsLowercaseCharacter),void 0!==a.containsUppercaseCharacter&&(this.customStrengthOptions.containsUppercaseLetter=a.containsUppercaseCharacter),void 0!==a.containsNumericCharacter&&(this.customStrengthOptions.containsNumericCharacter=a.containsNumericCharacter),void 0!==a.containsNonAlphanumericCharacter&&(this.customStrengthOptions.containsNonAlphanumericCharacter=a.containsNonAlphanumericCharacter),this.enforcementState=e.enforcementState,"ENFORCEMENT_STATE_UNSPECIFIED"===this.enforcementState&&(this.enforcementState="OFF"),// Use an empty string if no non-alphanumeric characters are specified in the response.
 this.allowedNonAlphanumericCharacters=null!==(r=null===(n=e.allowedNonAlphanumericCharacters)||void 0===n?void 0:n.join(""))&&void 0!==r?r:"",this.forceUpgradeOnSignin=null!==(i=e.forceUpgradeOnSignin)&&void 0!==i&&i,this.schemaVersion=e.schemaVersion}validatePassword(e){var t,n,r,i,a,o;let s={isValid:!0,passwordPolicy:this};return(// Check the password length and character options.
@@ -1364,14 +1375,14 @@ this.updatePasswordCharacterOptionsStatuses(t,/* containsLowercaseCharacter= */!
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class nX{constructor(e,t,n,r){this.app=e,this.heartbeatServiceProvider=t,this.appCheckServiceProvider=n,this.config=r,this.currentUser=null,this.emulatorConfig=null,this.operations=Promise.resolve(),this.authStateSubscription=new nZ(this),this.idTokenSubscription=new nZ(this),this.beforeStateQueue=new nG(this),this.redirectUser=null,this.isProactiveRefreshEnabled=!1,this.EXPECTED_PASSWORD_POLICY_SCHEMA_VERSION=1,// Any network calls will set this to true and prevent subsequent emulator
+ */class nJ{constructor(e,t,n,r){this.app=e,this.heartbeatServiceProvider=t,this.appCheckServiceProvider=n,this.config=r,this.currentUser=null,this.emulatorConfig=null,this.operations=Promise.resolve(),this.authStateSubscription=new nY(this),this.idTokenSubscription=new nY(this),this.beforeStateQueue=new nq(this),this.redirectUser=null,this.isProactiveRefreshEnabled=!1,this.EXPECTED_PASSWORD_POLICY_SCHEMA_VERSION=1,// Any network calls will set this to true and prevent subsequent emulator
 // initialization
-this._canInitEmulator=!0,this._isInitialized=!1,this._deleted=!1,this._initializationPromise=null,this._popupRedirectResolver=null,this._errorFactory=t4,this._agentRecaptchaConfig=null,this._tenantRecaptchaConfigs={},this._projectPasswordPolicy=null,this._tenantPasswordPolicies={},// Tracks the last notified UID for state change listeners to prevent
+this._canInitEmulator=!0,this._isInitialized=!1,this._deleted=!1,this._initializationPromise=null,this._popupRedirectResolver=null,this._errorFactory=t0,this._agentRecaptchaConfig=null,this._tenantRecaptchaConfigs={},this._projectPasswordPolicy=null,this._tenantPasswordPolicies={},// Tracks the last notified UID for state change listeners to prevent
 // repeated calls to the callbacks. Undefined means it's never been
 // called, whereas null means it's been called with a signed out user
-this.lastNotifiedUid=void 0,this.languageCode=null,this.tenantId=null,this.settings={appVerificationDisabledForTesting:!1},this.frameworks=[],this.name=e.name,this.clientVersion=r.sdkClientVersion}_initializeWithPersistence(e,t){return t&&(this._popupRedirectResolver=nD(t)),// Have to check for app deletion throughout initialization (after each
+this.lastNotifiedUid=void 0,this.languageCode=null,this.tenantId=null,this.settings={appVerificationDisabledForTesting:!1},this.frameworks=[],this.name=e.name,this.clientVersion=r.sdkClientVersion}_initializeWithPersistence(e,t){return t&&(this._popupRedirectResolver=nO(t)),// Have to check for app deletion throughout initialization (after each
 // promise resolution)
-this._initializationPromise=this.queue(async()=>{var n,r;if(!this._deleted&&(this.persistenceManager=await nj.create(this,e),!this._deleted)){// Initialize the resolver early if necessary (only applicable to web:
+this._initializationPromise=this.queue(async()=>{var n,r;if(!this._deleted&&(this.persistenceManager=await nA.create(this,e),!this._deleted)){// Initialize the resolver early if necessary (only applicable to web:
 // this will cause the iframe to load immediately in certain cases)
 if(null===(n=this._popupRedirectResolver)||void 0===n?void 0:n._shouldInitProactively)try{await this._popupRedirectResolver._initialize(this)}catch(e){/* Ignore the error */}await this.initializeCurrentUser(t),this.lastNotifiedUid=(null===(r=this.currentUser)||void 0===r?void 0:r.uid)||null,this._deleted||(this._isInitialized=!0)}}),this._initializationPromise}/**
      * If the persistence is changed in another window, the user manager will let us know
@@ -1394,7 +1405,7 @@ if(i)try{await this.beforeStateQueue.runMiddleware(r)}catch(e){r=n,// We know th
 this._popupRedirectResolver._overrideRedirectResult(this,()=>Promise.reject(e))}return r?this.reloadAndSetCurrentUserOrClear(r):this.directlySetCurrentUser(null)}return(// If the redirect user's event ID matches the current user's event ID,
 // DO NOT reload the current user, otherwise they'll be cleared from storage.
 // This is important for the reauthenticateWithRedirect() flow.
-(nt(this._popupRedirectResolver,this,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),await this.getOrInitRedirectPersistenceManager(),this.redirectUser&&this.redirectUser._redirectEventId===r._redirectEventId)?this.directlySetCurrentUser(r):this.reloadAndSetCurrentUserOrClear(r))}async tryRedirectSignIn(e){// The redirect user needs to be checked (and signed in if available)
+(t5(this._popupRedirectResolver,this,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),await this.getOrInitRedirectPersistenceManager(),this.redirectUser&&this.redirectUser._redirectEventId===r._redirectEventId)?this.directlySetCurrentUser(r):this.reloadAndSetCurrentUserOrClear(r))}async tryRedirectSignIn(e){// The redirect user needs to be checked (and signed in if available)
 // during auth initialization. All of the normal sign in and link/reauth
 // flows call back into auth and push things onto the promise queue. We
 // need to await the result of the redirect sign in *inside the promise
@@ -1413,19 +1424,19 @@ let t=null;try{// We know this._popupRedirectResolver is set since redirectResol
 // is passed in. The _completeRedirectFn expects the unwrapped extern.
 t=await this._popupRedirectResolver._completeRedirectFn(this,e,!0)}catch(e){// Swallow any errors here; the code can retrieve them in
 // getRedirectResult().
-await this._setRedirectUser(null)}return t}async reloadAndSetCurrentUserOrClear(e){try{await nT(e)}catch(e){if((null==e?void 0:e.code)!=="auth/network-request-failed")// them from storage
+await this._setRedirectUser(null)}return t}async reloadAndSetCurrentUserOrClear(e){try{await nI(e)}catch(e){if((null==e?void 0:e.code)!=="auth/network-request-failed")// them from storage
 return this.directlySetCurrentUser(null)}return this.directlySetCurrentUser(e)}useDeviceLanguage(){this.languageCode=function(){if("undefined"==typeof navigator)return null;let e=navigator;return e.languages&&e.languages[0]||// Supported in most browsers, but returns the language of the browser
 // UI, not the language set in browser settings.
 e.language||// Couldn't determine language.
 null}()}async _delete(){this._deleted=!0}async updateCurrentUser(e){// The public updateCurrentUser method needs to make a copy of the user,
 // and also check that the project matches
-let t=e?ta(e):null;return t&&nt(t.auth.config.apiKey===this.config.apiKey,this,"invalid-user-token"/* AuthErrorCode.INVALID_AUTH */),this._updateCurrentUser(t&&t._clone(this))}async _updateCurrentUser(e,t=!1){if(!this._deleted)return e&&nt(this.tenantId===e.tenantId,this,"tenant-id-mismatch"/* AuthErrorCode.TENANT_ID_MISMATCH */),t||await this.beforeStateQueue.runMiddleware(e),this.queue(async()=>{await this.directlySetCurrentUser(e),this.notifyAuthListeners()})}async signOut(){// Prevent callbacks from being called again in _updateCurrentUser, as
+let t=e?tr(e):null;return t&&t5(t.auth.config.apiKey===this.config.apiKey,this,"invalid-user-token"/* AuthErrorCode.INVALID_AUTH */),this._updateCurrentUser(t&&t._clone(this))}async _updateCurrentUser(e,t=!1){if(!this._deleted)return e&&t5(this.tenantId===e.tenantId,this,"tenant-id-mismatch"/* AuthErrorCode.TENANT_ID_MISMATCH */),t||await this.beforeStateQueue.runMiddleware(e),this.queue(async()=>{await this.directlySetCurrentUser(e),this.notifyAuthListeners()})}async signOut(){// Prevent callbacks from being called again in _updateCurrentUser, as
 // they were already called in the first line.
 return(// Run first, to block _setRedirectUser() if any callbacks fail.
-await this.beforeStateQueue.runMiddleware(null),(this.redirectPersistenceManager||this._popupRedirectResolver)&&await this._setRedirectUser(null),this._updateCurrentUser(null,/* skipBeforeStateCallbacks */!0))}setPersistence(e){return this.queue(async()=>{await this.assertedPersistence.setPersistence(nD(e))})}_getRecaptchaConfig(){return null==this.tenantId?this._agentRecaptchaConfig:this._tenantRecaptchaConfigs[this.tenantId]}async validatePassword(e){this._getPasswordPolicyInternal()||await this._updatePasswordPolicy();// Password policy will be defined after fetching.
+await this.beforeStateQueue.runMiddleware(null),(this.redirectPersistenceManager||this._popupRedirectResolver)&&await this._setRedirectUser(null),this._updateCurrentUser(null,/* skipBeforeStateCallbacks */!0))}setPersistence(e){return this.queue(async()=>{await this.assertedPersistence.setPersistence(nO(e))})}_getRecaptchaConfig(){return null==this.tenantId?this._agentRecaptchaConfig:this._tenantRecaptchaConfigs[this.tenantId]}async validatePassword(e){this._getPasswordPolicyInternal()||await this._updatePasswordPolicy();// Password policy will be defined after fetching.
 let t=this._getPasswordPolicyInternal();return(// Check that the policy schema version is supported by the SDK.
 // TODO: Update this logic to use a max supported policy schema version once we have multiple schema versions.
-t.schemaVersion!==this.EXPECTED_PASSWORD_POLICY_SCHEMA_VERSION?Promise.reject(this._errorFactory.create("unsupported-password-policy-schema-version"/* AuthErrorCode.UNSUPPORTED_PASSWORD_POLICY_SCHEMA_VERSION */,{})):t.validatePassword(e))}_getPasswordPolicyInternal(){return null===this.tenantId?this._projectPasswordPolicy:this._tenantPasswordPolicies[this.tenantId]}async _updatePasswordPolicy(){let e=await nJ(this),t=new nY(e);null===this.tenantId?this._projectPasswordPolicy=t:this._tenantPasswordPolicies[this.tenantId]=t}_getPersistence(){return this.assertedPersistence.persistence.type}_updateErrorMap(e){this._errorFactory=new e8("auth","Firebase",e())}onAuthStateChanged(e,t,n){return this.registerStateListener(this.authStateSubscription,e,t,n)}beforeAuthStateChanged(e,t){return this.beforeStateQueue.pushCallback(e,t)}onIdTokenChanged(e,t,n){return this.registerStateListener(this.idTokenSubscription,e,t,n)}authStateReady(){return new Promise((e,t)=>{if(this.currentUser)e();else{let n=this.onAuthStateChanged(()=>{n(),e()},t)}})}toJSON(){var e;return{apiKey:this.config.apiKey,authDomain:this.config.authDomain,appName:this.name,currentUser:null===(e=this._currentUser)||void 0===e?void 0:e.toJSON()}}async _setRedirectUser(e,t){let n=await this.getOrInitRedirectPersistenceManager(t);return null===e?n.removeCurrentUser():n.setCurrentUser(e)}async getOrInitRedirectPersistenceManager(e){if(!this.redirectPersistenceManager){let t=e&&nD(e)||this._popupRedirectResolver;nt(t,this,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.redirectPersistenceManager=await nj.create(this,[nD(t._redirectPersistence)],"redirectUser"/* KeyName.REDIRECT_USER */),this.redirectUser=await this.redirectPersistenceManager.getCurrentUser()}return this.redirectPersistenceManager}async _redirectUserForId(e){var t,n;return(this._isInitialized&&await this.queue(async()=>{}),(null===(t=this._currentUser)||void 0===t?void 0:t._redirectEventId)===e)?this._currentUser:(null===(n=this.redirectUser)||void 0===n?void 0:n._redirectEventId)===e?this.redirectUser:null}async _persistUserIfCurrent(e){if(e===this.currentUser)return this.queue(async()=>this.directlySetCurrentUser(e))}/** Notifies listeners only if the user is current */_notifyListenersIfCurrent(e){e===this.currentUser&&this.notifyAuthListeners()}_key(){return`${this.config.authDomain}:${this.config.apiKey}:${this.name}`}_startProactiveRefresh(){this.isProactiveRefreshEnabled=!0,this.currentUser&&this._currentUser._startProactiveRefresh()}_stopProactiveRefresh(){this.isProactiveRefreshEnabled=!1,this.currentUser&&this._currentUser._stopProactiveRefresh()}/** Returns the current user cast as the internal type */get _currentUser(){return this.currentUser}notifyAuthListeners(){var e,t;if(!this._isInitialized)return;this.idTokenSubscription.next(this.currentUser);let n=null!==(t=null===(e=this.currentUser)||void 0===e?void 0:e.uid)&&void 0!==t?t:null;this.lastNotifiedUid!==n&&(this.lastNotifiedUid=n,this.authStateSubscription.next(this.currentUser))}registerStateListener(e,t,n,r){if(this._deleted)return()=>{};let i="function"==typeof t?t:t.next.bind(t),a=!1,o=this._isInitialized?Promise.resolve():this._initializationPromise;if(nt(o,this,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),// The callback needs to be called asynchronously per the spec.
+t.schemaVersion!==this.EXPECTED_PASSWORD_POLICY_SCHEMA_VERSION?Promise.reject(this._errorFactory.create("unsupported-password-policy-schema-version"/* AuthErrorCode.UNSUPPORTED_PASSWORD_POLICY_SCHEMA_VERSION */,{})):t.validatePassword(e))}_getPasswordPolicyInternal(){return null===this.tenantId?this._projectPasswordPolicy:this._tenantPasswordPolicies[this.tenantId]}async _updatePasswordPolicy(){let e=await nQ(this),t=new nG(e);null===this.tenantId?this._projectPasswordPolicy=t:this._tenantPasswordPolicies[this.tenantId]=t}_getPersistence(){return this.assertedPersistence.persistence.type}_updateErrorMap(e){this._errorFactory=new e4("auth","Firebase",e())}onAuthStateChanged(e,t,n){return this.registerStateListener(this.authStateSubscription,e,t,n)}beforeAuthStateChanged(e,t){return this.beforeStateQueue.pushCallback(e,t)}onIdTokenChanged(e,t,n){return this.registerStateListener(this.idTokenSubscription,e,t,n)}authStateReady(){return new Promise((e,t)=>{if(this.currentUser)e();else{let n=this.onAuthStateChanged(()=>{n(),e()},t)}})}toJSON(){var e;return{apiKey:this.config.apiKey,authDomain:this.config.authDomain,appName:this.name,currentUser:null===(e=this._currentUser)||void 0===e?void 0:e.toJSON()}}async _setRedirectUser(e,t){let n=await this.getOrInitRedirectPersistenceManager(t);return null===e?n.removeCurrentUser():n.setCurrentUser(e)}async getOrInitRedirectPersistenceManager(e){if(!this.redirectPersistenceManager){let t=e&&nO(e)||this._popupRedirectResolver;t5(t,this,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.redirectPersistenceManager=await nA.create(this,[nO(t._redirectPersistence)],"redirectUser"/* KeyName.REDIRECT_USER */),this.redirectUser=await this.redirectPersistenceManager.getCurrentUser()}return this.redirectPersistenceManager}async _redirectUserForId(e){var t,n;return(this._isInitialized&&await this.queue(async()=>{}),(null===(t=this._currentUser)||void 0===t?void 0:t._redirectEventId)===e)?this._currentUser:(null===(n=this.redirectUser)||void 0===n?void 0:n._redirectEventId)===e?this.redirectUser:null}async _persistUserIfCurrent(e){if(e===this.currentUser)return this.queue(async()=>this.directlySetCurrentUser(e))}/** Notifies listeners only if the user is current */_notifyListenersIfCurrent(e){e===this.currentUser&&this.notifyAuthListeners()}_key(){return`${this.config.authDomain}:${this.config.apiKey}:${this.name}`}_startProactiveRefresh(){this.isProactiveRefreshEnabled=!0,this.currentUser&&this._currentUser._startProactiveRefresh()}_stopProactiveRefresh(){this.isProactiveRefreshEnabled=!1,this.currentUser&&this._currentUser._stopProactiveRefresh()}/** Returns the current user cast as the internal type */get _currentUser(){return this.currentUser}notifyAuthListeners(){var e,t;if(!this._isInitialized)return;this.idTokenSubscription.next(this.currentUser);let n=null!==(t=null===(e=this.currentUser)||void 0===e?void 0:e.uid)&&void 0!==t?t:null;this.lastNotifiedUid!==n&&(this.lastNotifiedUid=n,this.authStateSubscription.next(this.currentUser))}registerStateListener(e,t,n,r){if(this._deleted)return()=>{};let i="function"==typeof t?t:t.next.bind(t),a=!1,o=this._isInitialized?Promise.resolve():this._initializationPromise;if(t5(o,this,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),// The callback needs to be called asynchronously per the spec.
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 o.then(()=>{a||i(this.currentUser)}),"function"==typeof t){let i=e.addObserver(t,n,r);return()=>{a=!0,i()}}{let n=e.addObserver(t);return()=>{a=!0,n()}}}/**
      * Unprotected (from race conditions) method to set the current user. This
@@ -1433,33 +1444,33 @@ o.then(()=>{a||i(this.currentUser)}),"function"==typeof t){let i=e.addObserver(t
      * because the queue shouldn't rely on another queued callback.
      */async directlySetCurrentUser(e){this.currentUser&&this.currentUser!==e&&this._currentUser._stopProactiveRefresh(),e&&this.isProactiveRefreshEnabled&&e._startProactiveRefresh(),this.currentUser=e,e?await this.assertedPersistence.setCurrentUser(e):await this.assertedPersistence.removeCurrentUser()}queue(e){return(// In case something errors, the callback still should be called in order
 // to keep the promise chain alive
-this.operations=this.operations.then(e,e),this.operations)}get assertedPersistence(){return nt(this.persistenceManager,this,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.persistenceManager}_logFramework(e){!e||this.frameworks.includes(e)||(this.frameworks.push(e),// Sort alphabetically so that "FirebaseCore-web,FirebaseUI-web" and
+this.operations=this.operations.then(e,e),this.operations)}get assertedPersistence(){return t5(this.persistenceManager,this,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.persistenceManager}_logFramework(e){!e||this.frameworks.includes(e)||(this.frameworks.push(e),// Sort alphabetically so that "FirebaseCore-web,FirebaseUI-web" and
 // "FirebaseUI-web,FirebaseCore-web" aren't viewed as different.
-this.frameworks.sort(),this.clientVersion=nQ(this.config.clientPlatform,this._getFrameworks()))}_getFrameworks(){return this.frameworks}async _getAdditionalHeaders(){var e;// Additional headers on every request
+this.frameworks.sort(),this.clientVersion=nK(this.config.clientPlatform,this._getFrameworks()))}_getFrameworks(){return this.frameworks}async _getAdditionalHeaders(){var e;// Additional headers on every request
 let t={"X-Client-Version":this.clientVersion};this.app.options.appId&&(t["X-Firebase-gmpid"/* HttpHeader.X_FIREBASE_GMPID */]=this.app.options.appId);// If the heartbeat service exists, add the heartbeat string
 let n=await (null===(e=this.heartbeatServiceProvider.getImmediate({optional:!0}))||void 0===e?void 0:e.getHeartbeatsHeader());n&&(t["X-Firebase-Client"/* HttpHeader.X_FIREBASE_CLIENT */]=n);// If the App Check service exists, add the App Check token in the headers
 let r=await this._getAppCheckToken();return r&&(t["X-Firebase-AppCheck"/* HttpHeader.X_FIREBASE_APP_CHECK */]=r),t}async _getAppCheckToken(){var e;let t=await (null===(e=this.appCheckServiceProvider.getImmediate({optional:!0}))||void 0===e?void 0:e.getToken());return(null==t?void 0:t.error)&&// In the error case, a dummy token will be returned along with an error field describing
 // the error. In general, we shouldn't care about the error condition and just use
 // the token (actual or dummy) to send requests.
-function(e,...t){t6.logLevel<=I.WARN&&t6.warn(`Auth (${tV}): ${e}`,...t)}(`Error while retrieving App Check token: ${t.error}`),null==t?void 0:t.token}}/** Helper class to wrap subscriber logic */class nZ{constructor(e){this.auth=e,this.observer=null,this.addObserver=/**
+function(e,...t){t1.logLevel<=I.WARN&&t1.warn(`Auth (${tz}): ${e}`,...t)}(`Error while retrieving App Check token: ${t.error}`),null==t?void 0:t.token}}/** Helper class to wrap subscriber logic */class nY{constructor(e){this.auth=e,this.observer=null,this.addObserver=/**
  * Helper to make a Subscribe function (just like Promise helps make a
  * Thenable).
  *
  * @param executor Function which can make calls to a single Observer
  *     as a proxy.
  * @param onNoObservers Callback when count of Observers goes to zero.
- */function(e,t){let n=new tr(e,void 0);return n.subscribe.bind(n)}(e=>this.observer=e)}get next(){return nt(this.observer,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.observer.next.bind(this.observer)}}function n0(e){// TODO: consider adding timeout support & cancellation
-return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setAttribute("src",e),a.onload=t,a.onerror=e=>{let t=t9("internal-error"/* AuthErrorCode.INTERNAL_ERROR */);t.customData=e,n(t)},a.type="text/javascript",a.charset="UTF-8",(null!==(i=null===(r=document.getElementsByTagName("head"))||void 0===r?void 0:r[0])&&void 0!==i?i:document).appendChild(a)})}function n1(e){return`__${e}${Math.floor(1e6*Math.random())}`}class n2{/**
+ */function(e,t){let n=new tt(e,void 0);return n.subscribe.bind(n)}(e=>this.observer=e)}get next(){return t5(this.observer,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.observer.next.bind(this.observer)}}function nX(e){// TODO: consider adding timeout support & cancellation
+return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setAttribute("src",e),a.onload=t,a.onerror=e=>{let t=t4("internal-error"/* AuthErrorCode.INTERNAL_ERROR */);t.customData=e,n(t)},a.type="text/javascript",a.charset="UTF-8",(null!==(i=null===(r=document.getElementsByTagName("head"))||void 0===r?void 0:r[0])&&void 0!==i?i:document).appendChild(a)})}function nZ(e){return`__${e}${Math.floor(1e6*Math.random())}`}class n0{/**
      *
      * @param authExtern - The corresponding Firebase {@link Auth} instance.
      *
      */constructor(e){/**
          * Identifies the type of application verifier (e.g. "recaptcha-enterprise").
-         */this.type="recaptcha-enterprise",this.auth=ta(e)}/**
+         */this.type="recaptcha-enterprise",this.auth=tr(e)}/**
      * Executes the verification process.
      *
      * @returns A Promise for a token that can be used to assert the validity of a request.
-     */async verify(e="verify",t=!1){async function n(e){if(!t){if(null==e.tenantId&&null!=e._agentRecaptchaConfig)return e._agentRecaptchaConfig.siteKey;if(null!=e.tenantId&&void 0!==e._tenantRecaptchaConfigs[e.tenantId])return e._tenantRecaptchaConfigs[e.tenantId].siteKey}return new Promise(async(t,n)=>{nv(e,{clientType:"CLIENT_TYPE_WEB"/* RecaptchaClientType.WEB */,version:"RECAPTCHA_ENTERPRISE"/* RecaptchaVersion.ENTERPRISE */}).then(r=>{if(void 0===r.recaptchaKey)n(Error("recaptcha Enterprise site key undefined"));else{let n=new t2(r);return null==e.tenantId?e._agentRecaptchaConfig=n:e._tenantRecaptchaConfigs[e.tenantId]=n,t(n.siteKey)}}).catch(e=>{n(e)})})}function r(t,n,r){let i=window.grecaptcha;t1(i)?i.enterprise.ready(()=>{i.enterprise.execute(t,{action:e}).then(e=>{n(e)}).catch(()=>{n("NO_RECAPTCHA")})}):r(Error("No reCAPTCHA enterprise script loaded."))}return new Promise((e,i)=>{n(this.auth).then(n=>{if(!t&&t1(window.grecaptcha))r(n,e,i);else{if("undefined"==typeof window){i(Error("RecaptchaVerifier is only supported in browser"));return}n0("https://www.google.com/recaptcha/enterprise.js?render="+n).then(()=>{r(n,e,i)}).catch(e=>{i(e)})}}).catch(e=>{i(e)})})}}async function n3(e,t,n,r=!1){let i;let a=new n2(e);try{i=await a.verify(n)}catch(e){i=await a.verify(n,!0)}let o=Object.assign({},t);return r?Object.assign(o,{captchaResp:i}):Object.assign(o,{captchaResponse:i}),Object.assign(o,{clientType:"CLIENT_TYPE_WEB"/* RecaptchaClientType.WEB */}),Object.assign(o,{recaptchaVersion:"RECAPTCHA_ENTERPRISE"/* RecaptchaVersion.ENTERPRISE */}),o}function n4(e){let t=e.indexOf(":");return t<0?"":e.substr(0,t+1)}function n6(e){if(!e)return null;let t=Number(e);return isNaN(t)?null:t}/**
+     */async verify(e="verify",t=!1){async function n(e){if(!t){if(null==e.tenantId&&null!=e._agentRecaptchaConfig)return e._agentRecaptchaConfig.siteKey;if(null!=e.tenantId&&void 0!==e._tenantRecaptchaConfigs[e.tenantId])return e._tenantRecaptchaConfigs[e.tenantId].siteKey}return new Promise(async(t,n)=>{nm(e,{clientType:"CLIENT_TYPE_WEB"/* RecaptchaClientType.WEB */,version:"RECAPTCHA_ENTERPRISE"/* RecaptchaVersion.ENTERPRISE */}).then(r=>{if(void 0===r.recaptchaKey)n(Error("recaptcha Enterprise site key undefined"));else{let n=new np(r);return null==e.tenantId?e._agentRecaptchaConfig=n:e._tenantRecaptchaConfigs[e.tenantId]=n,t(n.siteKey)}}).catch(e=>{n(e)})})}function r(t,n,r){let i=window.grecaptcha;nh(i)?i.enterprise.ready(()=>{i.enterprise.execute(t,{action:e}).then(e=>{n(e)}).catch(()=>{n("NO_RECAPTCHA")})}):r(Error("No reCAPTCHA enterprise script loaded."))}return new Promise((e,i)=>{n(this.auth).then(n=>{if(!t&&nh(window.grecaptcha))r(n,e,i);else{if("undefined"==typeof window){i(Error("RecaptchaVerifier is only supported in browser"));return}nX("https://www.google.com/recaptcha/enterprise.js?render="+n).then(()=>{r(n,e,i)}).catch(e=>{i(e)})}}).catch(e=>{i(e)})})}}async function n1(e,t,n,r=!1){let i;let a=new n0(e);try{i=await a.verify(n)}catch(e){i=await a.verify(n,!0)}let o=Object.assign({},t);return r?Object.assign(o,{captchaResp:i}):Object.assign(o,{captchaResponse:i}),Object.assign(o,{clientType:"CLIENT_TYPE_WEB"/* RecaptchaClientType.WEB */}),Object.assign(o,{recaptchaVersion:"RECAPTCHA_ENTERPRISE"/* RecaptchaVersion.ENTERPRISE */}),o}async function n2(e,t,n,r){var i;if(null===(i=e._getRecaptchaConfig())||void 0===i||!i.isProviderEnabled("EMAIL_PASSWORD_PROVIDER"/* RecaptchaProvider.EMAIL_PASSWORD_PROVIDER */))return r(e,t).catch(async i=>{if("auth/missing-recaptcha-token"!==i.code)return Promise.reject(i);{console.log(`${n} is protected by reCAPTCHA Enterprise for this project. Automatically triggering the reCAPTCHA flow and restarting the flow.`);let i=await n1(e,t,n,"getOobCode"/* RecaptchaActionName.GET_OOB_CODE */===n);return r(e,i)}});{let i=await n1(e,t,n,"getOobCode"/* RecaptchaActionName.GET_OOB_CODE */===n);return r(e,i)}}function n3(e){let t=e.indexOf(":");return t<0?"":e.substr(0,t+1)}function n4(e){if(!e)return null;let t=Number(e);return isNaN(t)?null:t}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1481,7 +1492,7 @@ return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setA
  * Implementations specify the details about each auth provider's credential requirements.
  *
  * @public
- */class n8{/** @internal */constructor(/**
+ */class n6{/** @internal */constructor(/**
      * The authentication provider ID for the credential.
      *
      * @remarks
@@ -1497,7 +1508,7 @@ return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setA
      * Returns a JSON-serializable representation of this object.
      *
      * @returns a JSON-serializable representation of this object.
-     */toJSON(){return nn("not implemented")}/** @internal */_getIdTokenResponse(e){return nn("not implemented")}/** @internal */_linkToIdToken(e,t){return nn("not implemented")}/** @internal */_getReauthenticationResolver(e){return nn("not implemented")}}async function n5(e,t){return nd(e,"POST"/* HttpMethod.POST */,"/v1/accounts:update"/* Endpoint.SET_ACCOUNT_INFO */,t)}/**
+     */toJSON(){return t9("not implemented")}/** @internal */_getIdTokenResponse(e){return t9("not implemented")}/** @internal */_linkToIdToken(e,t){return t9("not implemented")}/** @internal */_getReauthenticationResolver(e){return t9("not implemented")}}async function n8(e,t){return ns(e,"POST"/* HttpMethod.POST */,"/v1/accounts:update"/* Endpoint.SET_ACCOUNT_INFO */,t)}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1512,7 +1523,7 @@ return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setA
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function n9(e,t){return nh(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPassword"/* Endpoint.SIGN_IN_WITH_PASSWORD */,nc(e,t))}/**
+ */async function n5(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPassword"/* Endpoint.SIGN_IN_WITH_PASSWORD */,no(e,t))}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1527,7 +1538,7 @@ return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setA
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function n7(e,t){return nh(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithEmailLink"/* Endpoint.SIGN_IN_WITH_EMAIL_LINK */,nc(e,t))}async function re(e,t){return nh(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithEmailLink"/* Endpoint.SIGN_IN_WITH_EMAIL_LINK */,nc(e,t))}/**
+ */async function n9(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithEmailLink"/* Endpoint.SIGN_IN_WITH_EMAIL_LINK */,no(e,t))}async function n7(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithEmailLink"/* Endpoint.SIGN_IN_WITH_EMAIL_LINK */,no(e,t))}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1551,14 +1562,14 @@ return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setA
  * {@link SignInMethod}.EMAIL_LINK.
  *
  * @public
- */class rt extends n8{/** @internal */constructor(/** @internal */e,/** @internal */t,n,/** @internal */r=null){super("password"/* ProviderId.PASSWORD */,n),this._email=e,this._password=t,this._tenantId=r}/** @internal */static _fromEmailAndPassword(e,t){return new rt(e,t,"password"/* SignInMethod.EMAIL_PASSWORD */)}/** @internal */static _fromEmailAndCode(e,t,n=null){return new rt(e,t,"emailLink"/* SignInMethod.EMAIL_LINK */,n)}/** {@inheritdoc AuthCredential.toJSON} */toJSON(){return{email:this._email,password:this._password,signInMethod:this.signInMethod,tenantId:this._tenantId}}/**
+ */class re extends n6{/** @internal */constructor(/** @internal */e,/** @internal */t,n,/** @internal */r=null){super("password"/* ProviderId.PASSWORD */,n),this._email=e,this._password=t,this._tenantId=r}/** @internal */static _fromEmailAndPassword(e,t){return new re(e,t,"password"/* SignInMethod.EMAIL_PASSWORD */)}/** @internal */static _fromEmailAndCode(e,t,n=null){return new re(e,t,"emailLink"/* SignInMethod.EMAIL_LINK */,n)}/** {@inheritdoc AuthCredential.toJSON} */toJSON(){return{email:this._email,password:this._password,signInMethod:this.signInMethod,tenantId:this._tenantId}}/**
      * Static method to deserialize a JSON representation of an object into an {@link  AuthCredential}.
      *
      * @param json - Either `object` or the stringified representation of the object. When string is
      * provided, `JSON.parse` would be called first.
      *
      * @returns If the JSON input does not represent an {@link AuthCredential}, null is returned.
-     */static fromJSON(e){let t="string"==typeof e?JSON.parse(e):e;if((null==t?void 0:t.email)&&(null==t?void 0:t.password)){if("password"/* SignInMethod.EMAIL_PASSWORD */===t.signInMethod)return this._fromEmailAndPassword(t.email,t.password);if("emailLink"/* SignInMethod.EMAIL_LINK */===t.signInMethod)return this._fromEmailAndCode(t.email,t.password,t.tenantId)}return null}/** @internal */async _getIdTokenResponse(e){var t;switch(this.signInMethod){case"password"/* SignInMethod.EMAIL_PASSWORD */:let n={returnSecureToken:!0,email:this._email,password:this._password,clientType:"CLIENT_TYPE_WEB"/* RecaptchaClientType.WEB */};if(null===(t=e._getRecaptchaConfig())||void 0===t||!t.emailPasswordEnabled)return n9(e,n).catch(async t=>{if("auth/missing-recaptcha-token"!==t.code)return Promise.reject(t);{console.log("Sign-in with email address and password is protected by reCAPTCHA for this project. Automatically triggering the reCAPTCHA flow and restarting the sign-in flow.");let t=await n3(e,n,"signInWithPassword"/* RecaptchaActionName.SIGN_IN_WITH_PASSWORD */);return n9(e,t)}});{let t=await n3(e,n,"signInWithPassword"/* RecaptchaActionName.SIGN_IN_WITH_PASSWORD */);return n9(e,t)}case"emailLink"/* SignInMethod.EMAIL_LINK */:return n7(e,{email:this._email,oobCode:this._password});default:t5(e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)}}/** @internal */async _linkToIdToken(e,t){switch(this.signInMethod){case"password"/* SignInMethod.EMAIL_PASSWORD */:return n5(e,{idToken:t,returnSecureToken:!0,email:this._email,password:this._password});case"emailLink"/* SignInMethod.EMAIL_LINK */:return re(e,{idToken:t,email:this._email,oobCode:this._password});default:t5(e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)}}/** @internal */_getReauthenticationResolver(e){return this._getIdTokenResponse(e)}}/**
+     */static fromJSON(e){let t="string"==typeof e?JSON.parse(e):e;if((null==t?void 0:t.email)&&(null==t?void 0:t.password)){if("password"/* SignInMethod.EMAIL_PASSWORD */===t.signInMethod)return this._fromEmailAndPassword(t.email,t.password);if("emailLink"/* SignInMethod.EMAIL_LINK */===t.signInMethod)return this._fromEmailAndCode(t.email,t.password,t.tenantId)}return null}/** @internal */async _getIdTokenResponse(e){switch(this.signInMethod){case"password"/* SignInMethod.EMAIL_PASSWORD */:let t={returnSecureToken:!0,email:this._email,password:this._password,clientType:"CLIENT_TYPE_WEB"/* RecaptchaClientType.WEB */};return n2(e,t,"signInWithPassword"/* RecaptchaActionName.SIGN_IN_WITH_PASSWORD */,n5);case"emailLink"/* SignInMethod.EMAIL_LINK */:return n9(e,{email:this._email,oobCode:this._password});default:t3(e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)}}/** @internal */async _linkToIdToken(e,t){switch(this.signInMethod){case"password"/* SignInMethod.EMAIL_PASSWORD */:return n8(e,{idToken:t,returnSecureToken:!0,email:this._email,password:this._password});case"emailLink"/* SignInMethod.EMAIL_LINK */:return n7(e,{idToken:t,email:this._email,oobCode:this._password});default:t3(e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)}}/** @internal */_getReauthenticationResolver(e){return this._getIdTokenResponse(e)}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1573,15 +1584,15 @@ return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setA
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function rn(e,t){return nh(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithIdp"/* Endpoint.SIGN_IN_WITH_IDP */,nc(e,t))}/**
+ */async function rt(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithIdp"/* Endpoint.SIGN_IN_WITH_IDP */,no(e,t))}/**
  * Represents the OAuth credentials returned by an {@link OAuthProvider}.
  *
  * @remarks
  * Implementations specify the details about each auth provider's credential requirements.
  *
  * @public
- */class rr extends n8{constructor(){super(...arguments),this.pendingToken=null}/** @internal */static _fromParams(e){let t=new rr(e.providerId,e.signInMethod);return e.idToken||e.accessToken?(e.idToken&&(t.idToken=e.idToken),e.accessToken&&(t.accessToken=e.accessToken),e.nonce&&!e.pendingToken&&(t.nonce=e.nonce),e.pendingToken&&(t.pendingToken=e.pendingToken)):e.oauthToken&&e.oauthTokenSecret?(// OAuth 1 and OAuth token with token secret
-t.accessToken=e.oauthToken,t.secret=e.oauthTokenSecret):t5("argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),t}/** {@inheritdoc AuthCredential.toJSON}  */toJSON(){return{idToken:this.idToken,accessToken:this.accessToken,secret:this.secret,nonce:this.nonce,pendingToken:this.pendingToken,providerId:this.providerId,signInMethod:this.signInMethod}}/**
+ */class rn extends n6{constructor(){super(...arguments),this.pendingToken=null}/** @internal */static _fromParams(e){let t=new rn(e.providerId,e.signInMethod);return e.idToken||e.accessToken?(e.idToken&&(t.idToken=e.idToken),e.accessToken&&(t.accessToken=e.accessToken),e.nonce&&!e.pendingToken&&(t.nonce=e.nonce),e.pendingToken&&(t.pendingToken=e.pendingToken)):e.oauthToken&&e.oauthTokenSecret?(// OAuth 1 and OAuth token with token secret
+t.accessToken=e.oauthToken,t.secret=e.oauthTokenSecret):t3("argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),t}/** {@inheritdoc AuthCredential.toJSON}  */toJSON(){return{idToken:this.idToken,accessToken:this.accessToken,secret:this.secret,nonce:this.nonce,pendingToken:this.pendingToken,providerId:this.providerId,signInMethod:this.signInMethod}}/**
      * Static method to deserialize a JSON representation of an object into an
      * {@link  AuthCredential}.
      *
@@ -1589,7 +1600,7 @@ t.accessToken=e.oauthToken,t.secret=e.oauthTokenSecret):t5("argument-error"/* Au
      * When string is provided, JSON.parse would be called first.
      *
      * @returns If the JSON input does not represent an {@link  AuthCredential}, null is returned.
-     */static fromJSON(e){let t="string"==typeof e?JSON.parse(e):e,{providerId:n,signInMethod:r}=t,i=t0(t,["providerId","signInMethod"]);if(!n||!r)return null;let a=new rr(n,r);return a.idToken=i.idToken||void 0,a.accessToken=i.accessToken||void 0,a.secret=i.secret,a.nonce=i.nonce,a.pendingToken=i.pendingToken||null,a}/** @internal */_getIdTokenResponse(e){let t=this.buildRequest();return rn(e,t)}/** @internal */_linkToIdToken(e,t){let n=this.buildRequest();return n.idToken=t,rn(e,n)}/** @internal */_getReauthenticationResolver(e){let t=this.buildRequest();return t.autoCreate=!1,rn(e,t)}buildRequest(){let e={requestUri:"http://localhost",returnSecureToken:!0};if(this.pendingToken)e.pendingToken=this.pendingToken;else{let t={};this.idToken&&(t.id_token=this.idToken),this.accessToken&&(t.access_token=this.accessToken),this.secret&&(t.oauth_token_secret=this.secret),t.providerId=this.providerId,this.nonce&&!this.pendingToken&&(t.nonce=this.nonce),e.postBody=te(t)}return e}}/**
+     */static fromJSON(e){let t="string"==typeof e?JSON.parse(e):e,{providerId:n,signInMethod:r}=t,i=tX(t,["providerId","signInMethod"]);if(!n||!r)return null;let a=new rn(n,r);return a.idToken=i.idToken||void 0,a.accessToken=i.accessToken||void 0,a.secret=i.secret,a.nonce=i.nonce,a.pendingToken=i.pendingToken||null,a}/** @internal */_getIdTokenResponse(e){let t=this.buildRequest();return rt(e,t)}/** @internal */_linkToIdToken(e,t){let n=this.buildRequest();return n.idToken=t,rt(e,n)}/** @internal */_getReauthenticationResolver(e){let t=this.buildRequest();return t.autoCreate=!1,rt(e,t)}buildRequest(){let e={requestUri:"http://localhost",returnSecureToken:!0};if(this.pendingToken)e.pendingToken=this.pendingToken;else{let t={};this.idToken&&(t.id_token=this.idToken),this.accessToken&&(t.access_token=this.accessToken),this.secret&&(t.oauth_token_secret=this.secret),t.providerId=this.providerId,this.nonce&&!this.pendingToken&&(t.nonce=this.nonce),e.postBody=e9(t)}return e}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1604,7 +1615,7 @@ t.accessToken=e.oauthToken,t.secret=e.oauthTokenSecret):t5("argument-error"/* Au
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function ri(e,t){return nd(e,"POST"/* HttpMethod.POST */,"/v1/accounts:sendVerificationCode"/* Endpoint.SEND_VERIFICATION_CODE */,nc(e,t))}async function ra(e,t){return nh(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPhoneNumber"/* Endpoint.SIGN_IN_WITH_PHONE_NUMBER */,nc(e,t))}async function ro(e,t){let n=await nh(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPhoneNumber"/* Endpoint.SIGN_IN_WITH_PHONE_NUMBER */,nc(e,t));if(n.temporaryProof)throw ng(e,"account-exists-with-different-credential"/* AuthErrorCode.NEED_CONFIRMATION */,n);return n}const rs={USER_NOT_FOUND:"user-not-found"/* AuthErrorCode.USER_DELETED */};async function rl(e,t){let n=Object.assign(Object.assign({},t),{operation:"REAUTH"});return nh(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPhoneNumber"/* Endpoint.SIGN_IN_WITH_PHONE_NUMBER */,nc(e,n),rs)}/**
+ */async function rr(e,t){return ns(e,"POST"/* HttpMethod.POST */,"/v1/accounts:sendVerificationCode"/* Endpoint.SEND_VERIFICATION_CODE */,no(e,t))}async function ri(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPhoneNumber"/* Endpoint.SIGN_IN_WITH_PHONE_NUMBER */,no(e,t))}async function ra(e,t){let n=await nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPhoneNumber"/* Endpoint.SIGN_IN_WITH_PHONE_NUMBER */,no(e,t));if(n.temporaryProof)throw nf(e,"account-exists-with-different-credential"/* AuthErrorCode.NEED_CONFIRMATION */,n);return n}const ro={USER_NOT_FOUND:"user-not-found"/* AuthErrorCode.USER_DELETED */};async function rs(e,t){let n=Object.assign(Object.assign({},t),{operation:"REAUTH"});return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPhoneNumber"/* Endpoint.SIGN_IN_WITH_PHONE_NUMBER */,no(e,n),ro)}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1623,17 +1634,17 @@ t.accessToken=e.oauthToken,t.secret=e.oauthTokenSecret):t5("argument-error"/* Au
  * Represents the credentials returned by {@link PhoneAuthProvider}.
  *
  * @public
- */class ru extends n8{constructor(e){super("phone"/* ProviderId.PHONE */,"phone"/* SignInMethod.PHONE */),this.params=e}/** @internal */static _fromVerification(e,t){return new ru({verificationId:e,verificationCode:t})}/** @internal */static _fromTokenResponse(e,t){return new ru({phoneNumber:e,temporaryProof:t})}/** @internal */_getIdTokenResponse(e){return ra(e,this._makeVerificationRequest())}/** @internal */_linkToIdToken(e,t){return ro(e,Object.assign({idToken:t},this._makeVerificationRequest()))}/** @internal */_getReauthenticationResolver(e){return rl(e,this._makeVerificationRequest())}/** @internal */_makeVerificationRequest(){let{temporaryProof:e,phoneNumber:t,verificationId:n,verificationCode:r}=this.params;return e&&t?{temporaryProof:e,phoneNumber:t}:{sessionInfo:n,code:r}}/** {@inheritdoc AuthCredential.toJSON} */toJSON(){let e={providerId:this.providerId};return this.params.phoneNumber&&(e.phoneNumber=this.params.phoneNumber),this.params.temporaryProof&&(e.temporaryProof=this.params.temporaryProof),this.params.verificationCode&&(e.verificationCode=this.params.verificationCode),this.params.verificationId&&(e.verificationId=this.params.verificationId),e}/** Generates a phone credential based on a plain object or a JSON string. */static fromJSON(e){"string"==typeof e&&(e=JSON.parse(e));let{verificationId:t,verificationCode:n,phoneNumber:r,temporaryProof:i}=e;return n||t||r||i?new ru({verificationId:t,verificationCode:n,phoneNumber:r,temporaryProof:i}):null}}/**
+ */class rl extends n6{constructor(e){super("phone"/* ProviderId.PHONE */,"phone"/* SignInMethod.PHONE */),this.params=e}/** @internal */static _fromVerification(e,t){return new rl({verificationId:e,verificationCode:t})}/** @internal */static _fromTokenResponse(e,t){return new rl({phoneNumber:e,temporaryProof:t})}/** @internal */_getIdTokenResponse(e){return ri(e,this._makeVerificationRequest())}/** @internal */_linkToIdToken(e,t){return ra(e,Object.assign({idToken:t},this._makeVerificationRequest()))}/** @internal */_getReauthenticationResolver(e){return rs(e,this._makeVerificationRequest())}/** @internal */_makeVerificationRequest(){let{temporaryProof:e,phoneNumber:t,verificationId:n,verificationCode:r}=this.params;return e&&t?{temporaryProof:e,phoneNumber:t}:{sessionInfo:n,code:r}}/** {@inheritdoc AuthCredential.toJSON} */toJSON(){let e={providerId:this.providerId};return this.params.phoneNumber&&(e.phoneNumber=this.params.phoneNumber),this.params.temporaryProof&&(e.temporaryProof=this.params.temporaryProof),this.params.verificationCode&&(e.verificationCode=this.params.verificationCode),this.params.verificationId&&(e.verificationId=this.params.verificationId),e}/** Generates a phone credential based on a plain object or a JSON string. */static fromJSON(e){"string"==typeof e&&(e=JSON.parse(e));let{verificationId:t,verificationCode:n,phoneNumber:r,temporaryProof:i}=e;return n||t||r||i?new rl({verificationId:t,verificationCode:n,phoneNumber:r,temporaryProof:i}):null}}/**
  * A utility class to parse email action URLs such as password reset, email verification,
  * email link sign in, etc.
  *
  * @public
- */class rc{/**
+ */class ru{/**
      * @param actionLink - The link from which to extract the URL.
      * @returns The {@link ActionCodeURL} object, or null if the link is invalid.
      *
      * @internal
-     */constructor(e){var t,n,r,i,a,o;let s=tt(tn(e)),l=null!==(t=s.apiKey)&&void 0!==t?t:null,u=null!==(n=s.oobCode)&&void 0!==n?n:null,c=/**
+     */constructor(e){var t,n,r,i,a,o;let s=e7(te(e)),l=null!==(t=s.apiKey)&&void 0!==t?t:null,u=null!==(n=s.oobCode)&&void 0!==n?n:null,c=/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1653,7 +1664,7 @@ t.accessToken=e.oauthToken,t.secret=e.oauthTokenSecret):t5("argument-error"/* Au
  *
  * @param mode
  */function(e){switch(e){case"recoverEmail":return"RECOVER_EMAIL"/* ActionCodeOperation.RECOVER_EMAIL */;case"resetPassword":return"PASSWORD_RESET"/* ActionCodeOperation.PASSWORD_RESET */;case"signIn":return"EMAIL_SIGNIN"/* ActionCodeOperation.EMAIL_SIGNIN */;case"verifyEmail":return"VERIFY_EMAIL"/* ActionCodeOperation.VERIFY_EMAIL */;case"verifyAndChangeEmail":return"VERIFY_AND_CHANGE_EMAIL"/* ActionCodeOperation.VERIFY_AND_CHANGE_EMAIL */;case"revertSecondFactorAddition":return"REVERT_SECOND_FACTOR_ADDITION"/* ActionCodeOperation.REVERT_SECOND_FACTOR_ADDITION */;default:return null}}(null!==(r=s.mode)&&void 0!==r?r:null);// Validate API key, code and mode.
-nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,this.operation=c,this.code=u,this.continueUrl=null!==(i=s.continueUrl)&&void 0!==i?i:null,this.languageCode=null!==(a=s.languageCode)&&void 0!==a?a:null,this.tenantId=null!==(o=s.tenantId)&&void 0!==o?o:null}/**
+t5(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,this.operation=c,this.code=u,this.continueUrl=null!==(i=s.continueUrl)&&void 0!==i?i:null,this.languageCode=null!==(a=s.languageCode)&&void 0!==a?a:null,this.tenantId=null!==(o=s.tenantId)&&void 0!==o?o:null}/**
      * Parses the email action link string and returns an {@link ActionCodeURL} if the link is valid,
      * otherwise returns null.
      *
@@ -1665,7 +1676,7 @@ nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * Helper to parse FDL links
  *
  * @param url
- */function(e){let t=tt(tn(e)).link,n=t?tt(tn(t)).deep_link_id:null,r=tt(tn(e)).deep_link_id,i=r?tt(tn(r)).link:null;return i||r||n||t||e}(e);try{return new rc(t)}catch(e){return null}}}/**
+ */function(e){let t=e7(te(e)).link,n=t?e7(te(t)).deep_link_id:null,r=e7(te(e)).deep_link_id,i=r?e7(te(r)).link:null;return i||r||n||t||e}(e);try{return new ru(t)}catch(e){return null}}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1684,9 +1695,9 @@ nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * Provider for generating {@link EmailAuthCredential}.
  *
  * @public
- */class rd{constructor(){/**
+ */class rc{constructor(){/**
          * Always set to {@link ProviderId}.PASSWORD, even for email link.
-         */this.providerId=rd.PROVIDER_ID}/**
+         */this.providerId=rc.PROVIDER_ID}/**
      * Initialize an {@link AuthCredential} using an email and password.
      *
      * @example
@@ -1703,7 +1714,7 @@ nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
      * @param email - Email address.
      * @param password - User account password.
      * @returns The auth provider credential.
-     */static credential(e,t){return rt._fromEmailAndPassword(e,t)}/**
+     */static credential(e,t){return re._fromEmailAndPassword(e,t)}/**
      * Initialize an {@link AuthCredential} using an email and an email link after a sign in with
      * email link operation.
      *
@@ -1724,13 +1735,13 @@ nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
      * @param email - Email address.
      * @param emailLink - Sign-in email link.
      * @returns - The auth provider credential.
-     */static credentialWithLink(e,t){let n=rc.parseLink(t);return nt(n,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),rt._fromEmailAndCode(e,n.code,n.tenantId)}}/**
+     */static credentialWithLink(e,t){let n=ru.parseLink(t);return t5(n,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),re._fromEmailAndCode(e,n.code,n.tenantId)}}/**
  * Always set to {@link ProviderId}.PASSWORD, even for email link.
- */rd.PROVIDER_ID="password"/* ProviderId.PASSWORD */,/**
+ */rc.PROVIDER_ID="password"/* ProviderId.PASSWORD */,/**
  * Always set to {@link SignInMethod}.EMAIL_PASSWORD.
- */rd.EMAIL_PASSWORD_SIGN_IN_METHOD="password"/* SignInMethod.EMAIL_PASSWORD */,/**
+ */rc.EMAIL_PASSWORD_SIGN_IN_METHOD="password"/* SignInMethod.EMAIL_PASSWORD */,/**
  * Always set to {@link SignInMethod}.EMAIL_LINK.
- */rd.EMAIL_LINK_SIGN_IN_METHOD="emailLink"/* SignInMethod.EMAIL_LINK */;/**
+ */rc.EMAIL_LINK_SIGN_IN_METHOD="emailLink"/* SignInMethod.EMAIL_LINK */;/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1751,7 +1762,7 @@ nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * This class is not meant to be instantiated directly.
  *
  * @public
- */class rf{/**
+ */class rd{/**
      * Constructor for generic OAuth providers.
      *
      * @param providerId - Provider for which credentials should be generated.
@@ -1790,7 +1801,7 @@ nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * {@link OAuthProvider} so that child providers (like
  * {@link GoogleAuthProvider}) don't inherit the `credential` instance method.
  * Instead, they rely on a static `credential` method.
- */class rh extends rf{constructor(){super(...arguments),/** @internal */this.scopes=[]}/**
+ */class rf extends rd{constructor(){super(...arguments),/** @internal */this.scopes=[]}/**
      * Add an OAuth scope to the credential.
      *
      * @param scope - Provider OAuth scope to add.
@@ -1849,7 +1860,7 @@ nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * ```
  *
  * @public
- */class rp extends rh{constructor(){super("facebook.com"/* ProviderId.FACEBOOK */)}/**
+ */class rh extends rf{constructor(){super("facebook.com"/* ProviderId.FACEBOOK */)}/**
      * Creates a credential for Facebook.
      *
      * @example
@@ -1860,16 +1871,16 @@ nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
      * ```
      *
      * @param accessToken - Facebook access token.
-     */static credential(e){return rr._fromParams({providerId:rp.PROVIDER_ID,signInMethod:rp.FACEBOOK_SIGN_IN_METHOD,accessToken:e})}/**
+     */static credential(e){return rn._fromParams({providerId:rh.PROVIDER_ID,signInMethod:rh.FACEBOOK_SIGN_IN_METHOD,accessToken:e})}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link UserCredential}.
      *
      * @param userCredential - The user credential.
-     */static credentialFromResult(e){return rp.credentialFromTaggedObject(e)}/**
+     */static credentialFromResult(e){return rh.credentialFromTaggedObject(e)}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link AuthError} which was
      * thrown during a sign-in, link, or reauthenticate operation.
      *
      * @param userCredential - The user credential.
-     */static credentialFromError(e){return rp.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e||!("oauthAccessToken"in e)||!e.oauthAccessToken)return null;try{return rp.credential(e.oauthAccessToken)}catch(e){return null}}}/** Always set to {@link SignInMethod}.FACEBOOK. */rp.FACEBOOK_SIGN_IN_METHOD="facebook.com"/* SignInMethod.FACEBOOK */,/** Always set to {@link ProviderId}.FACEBOOK. */rp.PROVIDER_ID="facebook.com"/* ProviderId.FACEBOOK */;/**
+     */static credentialFromError(e){return rh.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e||!("oauthAccessToken"in e)||!e.oauthAccessToken)return null;try{return rh.credential(e.oauthAccessToken)}catch(e){return null}}}/** Always set to {@link SignInMethod}.FACEBOOK. */rh.FACEBOOK_SIGN_IN_METHOD="facebook.com"/* SignInMethod.FACEBOOK */,/** Always set to {@link ProviderId}.FACEBOOK. */rh.PROVIDER_ID="facebook.com"/* ProviderId.FACEBOOK */;/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1924,7 +1935,7 @@ nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * ```
  *
  * @public
- */class rm extends rh{constructor(){super("google.com"/* ProviderId.GOOGLE */),this.addScope("profile")}/**
+ */class rp extends rf{constructor(){super("google.com"/* ProviderId.GOOGLE */),this.addScope("profile")}/**
      * Creates a credential for Google. At least one of ID token and access token is required.
      *
      * @example
@@ -1936,16 +1947,16 @@ nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
      *
      * @param idToken - Google ID token.
      * @param accessToken - Google access token.
-     */static credential(e,t){return rr._fromParams({providerId:rm.PROVIDER_ID,signInMethod:rm.GOOGLE_SIGN_IN_METHOD,idToken:e,accessToken:t})}/**
+     */static credential(e,t){return rn._fromParams({providerId:rp.PROVIDER_ID,signInMethod:rp.GOOGLE_SIGN_IN_METHOD,idToken:e,accessToken:t})}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link UserCredential}.
      *
      * @param userCredential - The user credential.
-     */static credentialFromResult(e){return rm.credentialFromTaggedObject(e)}/**
+     */static credentialFromResult(e){return rp.credentialFromTaggedObject(e)}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link AuthError} which was
      * thrown during a sign-in, link, or reauthenticate operation.
      *
      * @param userCredential - The user credential.
-     */static credentialFromError(e){return rm.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e)return null;let{oauthIdToken:t,oauthAccessToken:n}=e;if(!t&&!n)return null;try{return rm.credential(t,n)}catch(e){return null}}}/** Always set to {@link SignInMethod}.GOOGLE. */rm.GOOGLE_SIGN_IN_METHOD="google.com"/* SignInMethod.GOOGLE */,/** Always set to {@link ProviderId}.GOOGLE. */rm.PROVIDER_ID="google.com"/* ProviderId.GOOGLE */;/**
+     */static credentialFromError(e){return rp.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e)return null;let{oauthIdToken:t,oauthAccessToken:n}=e;if(!t&&!n)return null;try{return rp.credential(t,n)}catch(e){return null}}}/** Always set to {@link SignInMethod}.GOOGLE. */rp.GOOGLE_SIGN_IN_METHOD="google.com"/* SignInMethod.GOOGLE */,/** Always set to {@link ProviderId}.GOOGLE. */rp.PROVIDER_ID="google.com"/* ProviderId.GOOGLE */;/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2001,20 +2012,20 @@ nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * const token = credential.accessToken;
  * ```
  * @public
- */class rg extends rh{constructor(){super("github.com"/* ProviderId.GITHUB */)}/**
+ */class rm extends rf{constructor(){super("github.com"/* ProviderId.GITHUB */)}/**
      * Creates a credential for Github.
      *
      * @param accessToken - Github access token.
-     */static credential(e){return rr._fromParams({providerId:rg.PROVIDER_ID,signInMethod:rg.GITHUB_SIGN_IN_METHOD,accessToken:e})}/**
+     */static credential(e){return rn._fromParams({providerId:rm.PROVIDER_ID,signInMethod:rm.GITHUB_SIGN_IN_METHOD,accessToken:e})}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link UserCredential}.
      *
      * @param userCredential - The user credential.
-     */static credentialFromResult(e){return rg.credentialFromTaggedObject(e)}/**
+     */static credentialFromResult(e){return rm.credentialFromTaggedObject(e)}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link AuthError} which was
      * thrown during a sign-in, link, or reauthenticate operation.
      *
      * @param userCredential - The user credential.
-     */static credentialFromError(e){return rg.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e||!("oauthAccessToken"in e)||!e.oauthAccessToken)return null;try{return rg.credential(e.oauthAccessToken)}catch(e){return null}}}/** Always set to {@link SignInMethod}.GITHUB. */rg.GITHUB_SIGN_IN_METHOD="github.com"/* SignInMethod.GITHUB */,/** Always set to {@link ProviderId}.GITHUB. */rg.PROVIDER_ID="github.com"/* ProviderId.GITHUB */;/**
+     */static credentialFromError(e){return rm.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e||!("oauthAccessToken"in e)||!e.oauthAccessToken)return null;try{return rm.credential(e.oauthAccessToken)}catch(e){return null}}}/** Always set to {@link SignInMethod}.GITHUB. */rm.GITHUB_SIGN_IN_METHOD="github.com"/* SignInMethod.GITHUB */,/** Always set to {@link ProviderId}.GITHUB. */rm.PROVIDER_ID="github.com"/* ProviderId.GITHUB */;/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2067,21 +2078,21 @@ nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * ```
  *
  * @public
- */class rv extends rh{constructor(){super("twitter.com"/* ProviderId.TWITTER */)}/**
+ */class rg extends rf{constructor(){super("twitter.com"/* ProviderId.TWITTER */)}/**
      * Creates a credential for Twitter.
      *
      * @param token - Twitter access token.
      * @param secret - Twitter secret.
-     */static credential(e,t){return rr._fromParams({providerId:rv.PROVIDER_ID,signInMethod:rv.TWITTER_SIGN_IN_METHOD,oauthToken:e,oauthTokenSecret:t})}/**
+     */static credential(e,t){return rn._fromParams({providerId:rg.PROVIDER_ID,signInMethod:rg.TWITTER_SIGN_IN_METHOD,oauthToken:e,oauthTokenSecret:t})}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link UserCredential}.
      *
      * @param userCredential - The user credential.
-     */static credentialFromResult(e){return rv.credentialFromTaggedObject(e)}/**
+     */static credentialFromResult(e){return rg.credentialFromTaggedObject(e)}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link AuthError} which was
      * thrown during a sign-in, link, or reauthenticate operation.
      *
      * @param userCredential - The user credential.
-     */static credentialFromError(e){return rv.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e)return null;let{oauthAccessToken:t,oauthTokenSecret:n}=e;if(!t||!n)return null;try{return rv.credential(t,n)}catch(e){return null}}}/** Always set to {@link SignInMethod}.TWITTER. */rv.TWITTER_SIGN_IN_METHOD="twitter.com"/* SignInMethod.TWITTER */,/** Always set to {@link ProviderId}.TWITTER. */rv.PROVIDER_ID="twitter.com"/* ProviderId.TWITTER */;/**
+     */static credentialFromError(e){return rg.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e)return null;let{oauthAccessToken:t,oauthTokenSecret:n}=e;if(!t||!n)return null;try{return rg.credential(t,n)}catch(e){return null}}}/** Always set to {@link SignInMethod}.TWITTER. */rg.TWITTER_SIGN_IN_METHOD="twitter.com"/* SignInMethod.TWITTER */,/** Always set to {@link ProviderId}.TWITTER. */rg.PROVIDER_ID="twitter.com"/* ProviderId.TWITTER */;/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2096,7 +2107,7 @@ nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class ry{constructor(e){this.user=e.user,this.providerId=e.providerId,this._tokenResponse=e._tokenResponse,this.operationType=e.operationType}static async _fromIdTokenResponse(e,t,n,r=!1){let i=await nO._fromIdTokenResponse(e,n,r),a=rb(n),o=new ry({user:i,providerId:a,_tokenResponse:n,operationType:t});return o}static async _forOperation(e,t,n){await e._updateTokensIfNecessary(n,/* reload */!0);let r=rb(n);return new ry({user:e,providerId:r,_tokenResponse:n,operationType:t})}}function rb(e){return e.providerId?e.providerId:"phoneNumber"in e?"phone"/* ProviderId.PHONE */:null}/**
+ */class rv{constructor(e){this.user=e.user,this.providerId=e.providerId,this._tokenResponse=e._tokenResponse,this.operationType=e.operationType}static async _fromIdTokenResponse(e,t,n,r=!1){let i=await nP._fromIdTokenResponse(e,n,r),a=ry(n),o=new rv({user:i,providerId:a,_tokenResponse:n,operationType:t});return o}static async _forOperation(e,t,n){await e._updateTokensIfNecessary(n,/* reload */!0);let r=ry(n);return new rv({user:e,providerId:r,_tokenResponse:n,operationType:t})}}function ry(e){return e.providerId?e.providerId:"phoneNumber"in e?"phone"/* ProviderId.PHONE */:null}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2111,8 +2122,8 @@ nt(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class rw extends e6{constructor(e,t,n,r){var i;super(t.code,t.message),this.operationType=n,this.user=r,// https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work
-Object.setPrototypeOf(this,rw.prototype),this.customData={appName:e.name,tenantId:null!==(i=e.tenantId)&&void 0!==i?i:void 0,_serverResponse:t.customData._serverResponse,operationType:n}}static _fromErrorAndOperation(e,t,n,r){return new rw(e,t,n,r)}}function r_(e,t,n,r){let i="reauthenticate"/* OperationType.REAUTHENTICATE */===t?n._getReauthenticationResolver(e):n._getIdTokenResponse(e);return i.catch(n=>{if("auth/multi-factor-auth-required"===n.code)throw rw._fromErrorAndOperation(e,n,t,r);throw n})}async function rk(e,t,n=!1){let r=await nE(e,t._linkToIdToken(e.auth,await e.getIdToken()),n);return ry._forOperation(e,"link"/* OperationType.LINK */,r)}/**
+ */class rb extends e3{constructor(e,t,n,r){var i;super(t.code,t.message),this.operationType=n,this.user=r,// https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work
+Object.setPrototypeOf(this,rb.prototype),this.customData={appName:e.name,tenantId:null!==(i=e.tenantId)&&void 0!==i?i:void 0,_serverResponse:t.customData._serverResponse,operationType:n}}static _fromErrorAndOperation(e,t,n,r){return new rb(e,t,n,r)}}function rw(e,t,n,r){let i="reauthenticate"/* OperationType.REAUTHENTICATE */===t?n._getReauthenticationResolver(e):n._getIdTokenResponse(e);return i.catch(n=>{if("auth/multi-factor-auth-required"===n.code)throw rb._fromErrorAndOperation(e,n,t,r);throw n})}async function r_(e,t,n=!1){let r=await nk(e,t._linkToIdToken(e.auth,await e.getIdToken()),n);return rv._forOperation(e,"link"/* OperationType.LINK */,r)}/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -2127,7 +2138,7 @@ Object.setPrototypeOf(this,rw.prototype),this.customData={appName:e.name,tenantI
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function rS(e,t,n=!1){let{auth:r}=e,i="reauthenticate"/* OperationType.REAUTHENTICATE */;try{let a=await nE(e,r_(r,i,t,e),n);nt(a.idToken,r,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let o=nS(a.idToken);nt(o,r,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let{sub:s}=o;return nt(e.uid===s,r,"user-mismatch"/* AuthErrorCode.USER_MISMATCH */),ry._forOperation(e,i,a)}catch(e){throw(null==e?void 0:e.code)==="auth/user-not-found"&&t5(r,"user-mismatch"/* AuthErrorCode.USER_MISMATCH */),e}}/**
+ */async function rk(e,t,n=!1){let{auth:r}=e,i="reauthenticate"/* OperationType.REAUTHENTICATE */;try{let a=await nk(e,rw(r,i,t,e),n);t5(a.idToken,r,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let o=n_(a.idToken);t5(o,r,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let{sub:s}=o;return t5(e.uid===s,r,"user-mismatch"/* AuthErrorCode.USER_MISMATCH */),rv._forOperation(e,i,a)}catch(e){throw(null==e?void 0:e.code)==="auth/user-not-found"&&t3(r,"user-mismatch"/* AuthErrorCode.USER_MISMATCH */),e}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2142,7 +2153,7 @@ Object.setPrototypeOf(this,rw.prototype),this.customData={appName:e.name,tenantI
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function rE(e,t,n=!1){let r="signIn"/* OperationType.SIGN_IN */,i=await r_(e,r,t),a=await ry._fromIdTokenResponse(e,r,i);return n||await e._updateCurrentUser(a.user),a}new WeakMap;const rI="__sak";/**
+ */async function rS(e,t,n=!1){let r="signIn"/* OperationType.SIGN_IN */,i=await rw(e,r,t),a=await rv._fromIdTokenResponse(e,r,i);return n||await e._updateCurrentUser(a.user),a}new WeakMap;const rE="__sak";/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -2160,7 +2171,7 @@ Object.setPrototypeOf(this,rw.prototype),this.customData={appName:e.name,tenantI
  */// There are two different browser persistence types: local and session.
 // Both have the same implementation but use a different underlying storage
 // object.
-class rC{constructor(e,t){this.storageRetriever=e,this.type=t}_isAvailable(){try{if(!this.storage)return Promise.resolve(!1);return this.storage.setItem(rI,"1"),this.storage.removeItem(rI),Promise.resolve(!0)}catch(e){return Promise.resolve(!1)}}_set(e,t){return this.storage.setItem(e,JSON.stringify(t)),Promise.resolve()}_get(e){let t=this.storage.getItem(e);return Promise.resolve(t?JSON.parse(t):null)}_remove(e){return this.storage.removeItem(e),Promise.resolve()}get storage(){return this.storageRetriever()}}class rT extends rC{constructor(){super(()=>window.localStorage,"LOCAL"/* PersistenceType.LOCAL */),this.boundEventHandler=(e,t)=>this.onStorageEvent(e,t),this.listeners={},this.localCache={},// setTimeout return value is platform specific
+class rI{constructor(e,t){this.storageRetriever=e,this.type=t}_isAvailable(){try{if(!this.storage)return Promise.resolve(!1);return this.storage.setItem(rE,"1"),this.storage.removeItem(rE),Promise.resolve(!0)}catch(e){return Promise.resolve(!1)}}_set(e,t){return this.storage.setItem(e,JSON.stringify(t)),Promise.resolve()}_get(e){let t=this.storage.getItem(e);return Promise.resolve(t?JSON.parse(t):null)}_remove(e){return this.storage.removeItem(e),Promise.resolve()}get storage(){return this.storageRetriever()}}class rC extends rI{constructor(){super(()=>window.localStorage,"LOCAL"/* PersistenceType.LOCAL */),this.boundEventHandler=(e,t)=>this.onStorageEvent(e,t),this.listeners={},this.localCache={},// setTimeout return value is platform specific
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 this.pollTimer=null,// Safari or iOS browser and embedded in an iframe.
 this.safariLocalStorageNotSynced=/**
@@ -2178,10 +2189,10 @@ this.safariLocalStorageNotSynced=/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function(){let e=e4();return nF(e)||nK(e)}()&&function(){try{// Check that the current window is not the top window.
+ */function(){let e=e2();return nU(e)||nB(e)}()&&function(){try{// Check that the current window is not the top window.
 // If so, return true.
 return!!(window&&window!==window.top)}catch(e){return!1}}(),// Whether to use polling instead of depending on window events
-this.fallbackToPolling=nq(),this._shouldAllowMigration=!0}forAllChangedKeys(e){// Check all keys with listeners on them.
+this.fallbackToPolling=nW(),this._shouldAllowMigration=!0}forAllChangedKeys(e){// Check all keys with listeners on them.
 for(let t of Object.keys(this.listeners)){// Get value from localStorage.
 let n=this.storage.getItem(t),r=this.localCache[t];// If local map value does not match, trigger listener with storage event.
 // Differentiate this simulated event from the real storage event.
@@ -2194,12 +2205,12 @@ this.stopPolling(),this.safariLocalStorageNotSynced){// Get current iframe page 
 let r=this.storage.getItem(n);// Value not synchronized, synchronize manually.
 if(e.newValue!==r)null!==e.newValue?this.storage.setItem(n,e.newValue):this.storage.removeItem(n);else if(this.localCache[n]===e.newValue&&!t)return}let r=()=>{// Keep local map up to date in case storage event is triggered before
 // poll.
-let e=this.storage.getItem(n);(t||this.localCache[n]!==e)&&this.notifyListeners(n,e)},i=this.storage.getItem(n);/** Detects Internet Explorer. */(function(){let e=e4();return e.indexOf("MSIE ")>=0||e.indexOf("Trident/")>=0})()&&10===document.documentMode&&i!==e.newValue&&e.newValue!==e.oldValue?// correct key, oldValue and newValue but localStorage.getItem(key) does
+let e=this.storage.getItem(n);(t||this.localCache[n]!==e)&&this.notifyListeners(n,e)},i=this.storage.getItem(n);/** Detects Internet Explorer. */(function(){let e=e2();return e.indexOf("MSIE ")>=0||e.indexOf("Trident/")>=0})()&&10===document.documentMode&&i!==e.newValue&&e.newValue!==e.oldValue?// correct key, oldValue and newValue but localStorage.getItem(key) does
 // not yield the updated value until a few milliseconds. This ensures
 // this recovers from that situation.
 setTimeout(r,10):r()}notifyListeners(e,t){this.localCache[e]=t;let n=this.listeners[e];if(n)for(let e of Array.from(n))e(t?JSON.parse(t):t)}startPolling(){this.stopPolling(),this.pollTimer=setInterval(()=>{this.forAllChangedKeys((e,t,n)=>{this.onStorageEvent(new StorageEvent("storage",{key:e,oldValue:t,newValue:n}),/* poll */!0)})},1e3)}stopPolling(){this.pollTimer&&(clearInterval(this.pollTimer),this.pollTimer=null)}attachListener(){window.addEventListener("storage",this.boundEventHandler)}detachListener(){window.removeEventListener("storage",this.boundEventHandler)}_addListener(e,t){0===Object.keys(this.listeners).length&&(this.fallbackToPolling?this.startPolling():this.attachListener()),this.listeners[e]||(this.listeners[e]=new Set,// Populate the cache to avoid spuriously triggering on first poll.
 this.localCache[e]=this.storage.getItem(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(this.listeners[e].delete(t),0===this.listeners[e].size&&delete this.listeners[e]),0===Object.keys(this.listeners).length&&(this.detachListener(),this.stopPolling())}// Update local cache on base operations:
-async _set(e,t){await super._set(e,t),this.localCache[e]=JSON.stringify(t)}async _get(e){let t=await super._get(e);return this.localCache[e]=JSON.stringify(t),t}async _remove(e){await super._remove(e),delete this.localCache[e]}}rT.type="LOCAL";/**
+async _set(e,t){await super._set(e,t),this.localCache[e]=JSON.stringify(t)}async _get(e){let t=await super._get(e);return this.localCache[e]=JSON.stringify(t),t}async _remove(e){await super._remove(e),delete this.localCache[e]}}rC.type="LOCAL";/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2214,7 +2225,7 @@ async _set(e,t){await super._set(e,t),this.localCache[e]=JSON.stringify(t)}async
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class rx extends rC{constructor(){super(()=>window.sessionStorage,"SESSION"/* PersistenceType.SESSION */)}_addListener(e,t){}_removeListener(e,t){}}rx.type="SESSION";/**
+ */class rT extends rI{constructor(){super(()=>window.sessionStorage,"SESSION"/* PersistenceType.SESSION */)}_addListener(e,t){}_removeListener(e,t){}}rT.type="SESSION";/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -2232,7 +2243,7 @@ async _set(e,t){await super._set(e,t),this.localCache[e]=JSON.stringify(t)}async
  *//**
  * Interface class for receiving messages.
  *
- */class rN{constructor(e){this.eventTarget=e,this.handlersMap={},this.boundEventHandler=this.handleEvent.bind(this)}/**
+ */class rx{constructor(e){this.eventTarget=e,this.handlersMap={},this.boundEventHandler=this.handleEvent.bind(this)}/**
      * Obtain an instance of a Receiver for a given event target, if none exists it will be created.
      *
      * @param eventTarget - An event target (such as window or self) through which the underlying
@@ -2240,7 +2251,7 @@ async _set(e,t){await super._set(e,t),this.localCache[e]=JSON.stringify(t)}async
      */static _getInstance(e){// The results are stored in an array since objects can't be keys for other
 // objects. In addition, setting a unique property on an event target as a
 // hash map key may not be allowed due to CORS restrictions.
-let t=this.receivers.find(t=>t.isListeningto(e));if(t)return t;let n=new rN(e);return this.receivers.push(n),n}isListeningto(e){return this.eventTarget===e}/**
+let t=this.receivers.find(t=>t.isListeningto(e));if(t)return t;let n=new rx(e);return this.receivers.push(n),n}isListeningto(e){return this.eventTarget===e}/**
      * Fans out a MessageEvent to the appropriate listeners.
      *
      * @remarks
@@ -2276,7 +2287,7 @@ let t=this.receivers.find(t=>t.isListeningto(e));if(t)return t;let n=new rN(e);r
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function rP(e="",t=10){let n="";for(let e=0;e<t;e++)n+=Math.floor(10*Math.random());return e+n}rN.receivers=[];/**
+ */function rN(e="",t=10){let n="";for(let e=0;e<t;e++)n+=Math.floor(10*Math.random());return e+n}rx.receivers=[];/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -2294,7 +2305,7 @@ let t=this.receivers.find(t=>t.isListeningto(e));if(t)return t;let n=new rN(e);r
  *//**
  * Interface for sending messages and waiting for a completion response.
  *
- */class rR{constructor(e){this.target=e,this.handlers=new Set}/**
+ */class rP{constructor(e){this.target=e,this.handlers=new Set}/**
      * Unsubscribe the handler and remove it from our tracking Set.
      *
      * @param handler - The handler to unsubscribe.
@@ -2310,7 +2321,7 @@ let t=this.receivers.find(t=>t.isListeningto(e));if(t)return t;let n=new rN(e);r
      * @param timeout - Timeout for waiting on an ACK from the receiver.
      *
      * @returns An array of settled promises from all the handlers that were listening on the receiver.
-     */async _send(e,t,n=50/* _TimeoutDuration.ACK */){let r,i;let a="undefined"!=typeof MessageChannel?new MessageChannel:null;if(!a)throw Error("connection_unavailable"/* _MessageError.CONNECTION_UNAVAILABLE */);return new Promise((o,s)=>{let l=rP("",20);a.port1.start();let u=setTimeout(()=>{s(Error("unsupported_event"/* _MessageError.UNSUPPORTED_EVENT */))},n);i={messageChannel:a,onMessage(e){if(e.data.eventId===l)switch(e.data.status){case"ack"/* _Status.ACK */:// The receiver should ACK first.
+     */async _send(e,t,n=50/* _TimeoutDuration.ACK */){let r,i;let a="undefined"!=typeof MessageChannel?new MessageChannel:null;if(!a)throw Error("connection_unavailable"/* _MessageError.CONNECTION_UNAVAILABLE */);return new Promise((o,s)=>{let l=rN("",20);a.port1.start();let u=setTimeout(()=>{s(Error("unsupported_event"/* _MessageError.UNSUPPORTED_EVENT */))},n);i={messageChannel:a,onMessage(e){if(e.data.eventId===l)switch(e.data.status){case"ack"/* _Status.ACK */:// The receiver should ACK first.
 clearTimeout(u),r=setTimeout(()=>{s(Error("timeout"/* _MessageError.TIMEOUT */))},3e3/* _TimeoutDuration.COMPLETION */);break;case"done"/* _Status.DONE */:// Once the receiver's handlers are finished we will get the results.
 clearTimeout(r),o(e.data.response);break;default:clearTimeout(u),clearTimeout(r),s(Error("invalid_response"/* _MessageError.INVALID_RESPONSE */))}}},this.handlers.add(i),a.port1.addEventListener("message",i.onMessage),this.target.postMessage({eventType:e,eventId:l,data:t},[a.port2])}).finally(()=>{i&&this.removeMessageHandler(i)})}}/**
  * @license
@@ -2330,7 +2341,7 @@ clearTimeout(r),o(e.data.response);break;default:clearTimeout(u),clearTimeout(r)
  *//**
  * Lazy accessor for window, since the compat layer won't tree shake this out,
  * we need to make sure not to mess with window unless we have to
- */function rO(){return window}/**
+ */function rR(){return window}/**
  * @license
  * Copyright 2020 Google LLC.
  *
@@ -2345,7 +2356,7 @@ clearTimeout(r),o(e.data.response);break;default:clearTimeout(u),clearTimeout(r)
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function rL(){return void 0!==rO().WorkerGlobalScope&&"function"==typeof rO().importScripts}async function rD(){if(!(null==navigator?void 0:navigator.serviceWorker))return null;try{let e=await navigator.serviceWorker.ready;return e.active}catch(e){return null}}/**
+ */function rO(){return void 0!==rR().WorkerGlobalScope&&"function"==typeof rR().importScripts}async function rL(){if(!(null==navigator?void 0:navigator.serviceWorker))return null;try{let e=await navigator.serviceWorker.ready;return e.active}catch(e){return null}}/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -2360,26 +2371,26 @@ clearTimeout(r),o(e.data.response);break;default:clearTimeout(u),clearTimeout(r)
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */const rA="firebaseLocalStorageDb",rM="firebaseLocalStorage",rj="fbase_key";/**
+ */const rD="firebaseLocalStorageDb",rA="firebaseLocalStorage",rM="fbase_key";/**
  * Promise wrapper for IDBRequest
  *
  * Unfortunately we can't cleanly extend Promise<T> since promises are not callable in ES6
  *
- */class rU{constructor(e){this.request=e}toPromise(){return new Promise((e,t)=>{this.request.addEventListener("success",()=>{e(this.request.result)}),this.request.addEventListener("error",()=>{t(this.request.error)})})}}function rz(e,t){return e.transaction([rM],t?"readwrite":"readonly").objectStore(rM)}function rF(){let e=indexedDB.open(rA,1);return new Promise((t,n)=>{e.addEventListener("error",()=>{n(e.error)}),e.addEventListener("upgradeneeded",()=>{let t=e.result;try{t.createObjectStore(rM,{keyPath:rj})}catch(e){n(e)}}),e.addEventListener("success",async()=>{let n=e.result;// Strange bug that occurs in Firefox when multiple tabs are opened at the
+ */class rj{constructor(e){this.request=e}toPromise(){return new Promise((e,t)=>{this.request.addEventListener("success",()=>{e(this.request.result)}),this.request.addEventListener("error",()=>{t(this.request.error)})})}}function rU(e,t){return e.transaction([rA],t?"readwrite":"readonly").objectStore(rA)}function rz(){let e=indexedDB.open(rD,1);return new Promise((t,n)=>{e.addEventListener("error",()=>{n(e.error)}),e.addEventListener("upgradeneeded",()=>{let t=e.result;try{t.createObjectStore(rA,{keyPath:rM})}catch(e){n(e)}}),e.addEventListener("success",async()=>{let n=e.result;// Strange bug that occurs in Firefox when multiple tabs are opened at the
 // same time. The only way to recover seems to be deleting the database
 // and re-initializing it.
 // https://github.com/firebase/firebase-js-sdk/issues/634
-n.objectStoreNames.contains(rM)?t(n):(// Need to close the database or else you get a `blocked` event
-n.close(),await function(){let e=indexedDB.deleteDatabase(rA);return new rU(e).toPromise()}(),t(await rF()))})})}async function rV(e,t,n){let r=rz(e,!0).put({[rj]:t,value:n});return new rU(r).toPromise()}async function rH(e,t){let n=rz(e,!1).get(t),r=await new rU(n).toPromise();return void 0===r?null:r.value}function r$(e,t){let n=rz(e,!0).delete(t);return new rU(n).toPromise()}class rB{constructor(){this.type="LOCAL"/* PersistenceType.LOCAL */,this._shouldAllowMigration=!0,this.listeners={},this.localCache={},// setTimeout return value is platform specific
+n.objectStoreNames.contains(rA)?t(n):(// Need to close the database or else you get a `blocked` event
+n.close(),await function(){let e=indexedDB.deleteDatabase(rD);return new rj(e).toPromise()}(),t(await rz()))})})}async function rF(e,t,n){let r=rU(e,!0).put({[rM]:t,value:n});return new rj(r).toPromise()}async function rV(e,t){let n=rU(e,!1).get(t),r=await new rj(n).toPromise();return void 0===r?null:r.value}function rH(e,t){let n=rU(e,!0).delete(t);return new rj(n).toPromise()}class r${constructor(){this.type="LOCAL"/* PersistenceType.LOCAL */,this._shouldAllowMigration=!0,this.listeners={},this.localCache={},// setTimeout return value is platform specific
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 this.pollTimer=null,this.pendingWrites=0,this.receiver=null,this.sender=null,this.serviceWorkerReceiverAvailable=!1,this.activeServiceWorker=null,// Fire & forget the service worker registration as it may never resolve
-this._workerInitializationPromise=this.initializeServiceWorkerMessaging().then(()=>{},()=>{})}async _openDb(){return this.db||(this.db=await rF()),this.db}async _withRetries(e){let t=0;for(;;)try{let t=await this._openDb();return await e(t)}catch(e){if(t++>3)throw e;this.db&&(this.db.close(),this.db=void 0);// TODO: consider adding exponential backoff
+this._workerInitializationPromise=this.initializeServiceWorkerMessaging().then(()=>{},()=>{})}async _openDb(){return this.db||(this.db=await rz()),this.db}async _withRetries(e){let t=0;for(;;)try{let t=await this._openDb();return await e(t)}catch(e){if(t++>3)throw e;this.db&&(this.db.close(),this.db=void 0);// TODO: consider adding exponential backoff
 }}/**
      * IndexedDB events do not propagate from the main window to the worker context.  We rely on a
      * postMessage interface to send these events to the worker ourselves.
-     */async initializeServiceWorkerMessaging(){return rL()?this.initializeReceiver():this.initializeSender()}/**
+     */async initializeServiceWorkerMessaging(){return rO()?this.initializeReceiver():this.initializeSender()}/**
      * As the worker we should listen to events from the main window.
-     */async initializeReceiver(){this.receiver=rN._getInstance(rL()?self:null),// Refresh from persistence if we receive a KeyChanged message.
+     */async initializeReceiver(){this.receiver=rx._getInstance(rO()?self:null),// Refresh from persistence if we receive a KeyChanged message.
 this.receiver._subscribe("keyChanged"/* _EventType.KEY_CHANGED */,async(e,t)=>{let n=await this._poll();return{keyProcessed:n.includes(t.key)}}),// Let the sender know that we are listening so they give us more timeout.
 this.receiver._subscribe("ping"/* _EventType.PING */,async(e,t)=>["keyChanged"/* _EventType.KEY_CHANGED */])}/**
      * As the main window, we should let the worker know when keys change (set and remove).
@@ -2388,7 +2399,7 @@ this.receiver._subscribe("ping"/* _EventType.PING */,async(e,t)=>["keyChanged"/*
      * {@link https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer/ready | ServiceWorkerContainer.ready}
      * may not resolve.
      */async initializeSender(){var e,t;if(// Check to see if there's an active service worker.
-this.activeServiceWorker=await rD(),!this.activeServiceWorker)return;this.sender=new rR(this.activeServiceWorker);// Ping the service worker to check what events they can handle.
+this.activeServiceWorker=await rL(),!this.activeServiceWorker)return;this.sender=new rP(this.activeServiceWorker);// Ping the service worker to check what events they can handle.
 let n=await this.sender._send("ping"/* _EventType.PING */,{},800/* _TimeoutDuration.LONG_ACK */);n&&(null===(e=n[0])||void 0===e?void 0:e.fulfilled)&&(null===(t=n[0])||void 0===t?void 0:t.value.includes("keyChanged"/* _EventType.KEY_CHANGED */))&&(this.serviceWorkerReceiverAvailable=!0)}/**
      * Let the worker know about a changed key, the exact key doesn't technically matter since the
      * worker will just trigger a full sync anyway.
@@ -2398,13 +2409,13 @@ let n=await this.sender._send("ping"/* _EventType.PING */,{},800/* _TimeoutDurat
      *
      * @param key - Storage key which changed.
      */async notifyServiceWorker(e){var t;if(this.sender&&this.activeServiceWorker&&((null===(t=null==navigator?void 0:navigator.serviceWorker)||void 0===t?void 0:t.controller)||null)===this.activeServiceWorker)try{await this.sender._send("keyChanged"/* _EventType.KEY_CHANGED */,{key:e},this.serviceWorkerReceiverAvailable?800/* _TimeoutDuration.LONG_ACK */:50/* _TimeoutDuration.ACK */)}catch(e){// This is a best effort approach. Ignore errors.
-}}async _isAvailable(){try{if(!indexedDB)return!1;let e=await rF();return await rV(e,rI,"1"),await r$(e,rI),!0}catch(e){}return!1}async _withPendingWrite(e){this.pendingWrites++;try{await e()}finally{this.pendingWrites--}}async _set(e,t){return this._withPendingWrite(async()=>(await this._withRetries(n=>rV(n,e,t)),this.localCache[e]=t,this.notifyServiceWorker(e)))}async _get(e){let t=await this._withRetries(t=>rH(t,e));return this.localCache[e]=t,t}async _remove(e){return this._withPendingWrite(async()=>(await this._withRetries(t=>r$(t,e)),delete this.localCache[e],this.notifyServiceWorker(e)))}async _poll(){// TODO: check if we need to fallback if getAll is not supported
-let e=await this._withRetries(e=>{let t=rz(e,!1).getAll();return new rU(t).toPromise()});if(!e||0!==this.pendingWrites)return[];let t=[],n=new Set;for(let{fbase_key:r,value:i}of e)n.add(r),JSON.stringify(this.localCache[r])!==JSON.stringify(i)&&(this.notifyListeners(r,i),t.push(r));for(let e of Object.keys(this.localCache))this.localCache[e]&&!n.has(e)&&(// Deleted
+}}async _isAvailable(){try{if(!indexedDB)return!1;let e=await rz();return await rF(e,rE,"1"),await rH(e,rE),!0}catch(e){}return!1}async _withPendingWrite(e){this.pendingWrites++;try{await e()}finally{this.pendingWrites--}}async _set(e,t){return this._withPendingWrite(async()=>(await this._withRetries(n=>rF(n,e,t)),this.localCache[e]=t,this.notifyServiceWorker(e)))}async _get(e){let t=await this._withRetries(t=>rV(t,e));return this.localCache[e]=t,t}async _remove(e){return this._withPendingWrite(async()=>(await this._withRetries(t=>rH(t,e)),delete this.localCache[e],this.notifyServiceWorker(e)))}async _poll(){// TODO: check if we need to fallback if getAll is not supported
+let e=await this._withRetries(e=>{let t=rU(e,!1).getAll();return new rj(t).toPromise()});if(!e||0!==this.pendingWrites)return[];let t=[],n=new Set;for(let{fbase_key:r,value:i}of e)n.add(r),JSON.stringify(this.localCache[r])!==JSON.stringify(i)&&(this.notifyListeners(r,i),t.push(r));for(let e of Object.keys(this.localCache))this.localCache[e]&&!n.has(e)&&(// Deleted
 this.notifyListeners(e,null),t.push(e));return t}notifyListeners(e,t){this.localCache[e]=t;let n=this.listeners[e];if(n)for(let e of Array.from(n))e(t)}startPolling(){this.stopPolling(),this.pollTimer=setInterval(async()=>this._poll(),800)}stopPolling(){this.pollTimer&&(clearInterval(this.pollTimer),this.pollTimer=null)}_addListener(e,t){0===Object.keys(this.listeners).length&&this.startPolling(),this.listeners[e]||(this.listeners[e]=new Set,// Populate the cache to avoid spuriously triggering on first poll.
 this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(this.listeners[e].delete(t),0===this.listeners[e].size&&delete this.listeners[e]),0===Object.keys(this.listeners).length&&this.stopPolling()}}/**
  * Returns a verification ID to be used in conjunction with the SMS code that is sent.
  *
- */async function rW(e,t,n){var r,i,a;let o=await n.verify();try{let s;if(nt("string"==typeof o,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),nt("recaptcha"===n.type,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),s="string"==typeof t?{phoneNumber:t}:t,"session"in s){let t=s.session;if("phoneNumber"in s){nt("enroll"/* MultiFactorSessionType.ENROLL */===t.type,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let n=await (i={idToken:t.credential,phoneEnrollmentInfo:{phoneNumber:s.phoneNumber,recaptchaToken:o}},nd(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaEnrollment:start"/* Endpoint.START_MFA_ENROLLMENT */,nc(e,i)));return n.phoneSessionInfo.sessionInfo}{nt("signin"/* MultiFactorSessionType.SIGN_IN */===t.type,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let n=(null===(r=s.multiFactorHint)||void 0===r?void 0:r.uid)||s.multiFactorUid;nt(n,e,"missing-multi-factor-info"/* AuthErrorCode.MISSING_MFA_INFO */);let i=await (a={mfaPendingCredential:t.credential,mfaEnrollmentId:n,phoneSignInInfo:{recaptchaToken:o}},nd(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaSignIn:start"/* Endpoint.START_MFA_SIGN_IN */,nc(e,a)));return i.phoneResponseInfo.sessionInfo}}{let{sessionInfo:t}=await ri(e,{phoneNumber:s.phoneNumber,recaptchaToken:o});return t}}finally{n._reset()}}rB.type="LOCAL",n1("rcb"),new na(3e4,6e4);/**
+ */async function rB(e,t,n){var r,i,a;let o=await n.verify();try{let s;if(t5("string"==typeof o,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),t5("recaptcha"===n.type,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),s="string"==typeof t?{phoneNumber:t}:t,"session"in s){let t=s.session;if("phoneNumber"in s){t5("enroll"/* MultiFactorSessionType.ENROLL */===t.type,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let n=await (i={idToken:t.credential,phoneEnrollmentInfo:{phoneNumber:s.phoneNumber,recaptchaToken:o}},ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaEnrollment:start"/* Endpoint.START_MFA_ENROLLMENT */,no(e,i)));return n.phoneSessionInfo.sessionInfo}{t5("signin"/* MultiFactorSessionType.SIGN_IN */===t.type,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let n=(null===(r=s.multiFactorHint)||void 0===r?void 0:r.uid)||s.multiFactorUid;t5(n,e,"missing-multi-factor-info"/* AuthErrorCode.MISSING_MFA_INFO */);let i=await (a={mfaPendingCredential:t.credential,mfaEnrollmentId:n,phoneSignInInfo:{recaptchaToken:o}},ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaSignIn:start"/* Endpoint.START_MFA_SIGN_IN */,no(e,a)));return i.phoneResponseInfo.sessionInfo}}{let{sessionInfo:t}=await rr(e,{phoneNumber:s.phoneNumber,recaptchaToken:o});return t}}finally{n._reset()}}r$.type="LOCAL",nZ("rcb"),new nt(3e4,6e4);/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2437,10 +2448,10 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
  * ```
  *
  * @public
- */class rK{/**
+ */class rW{/**
      * @param auth - The Firebase {@link Auth} instance in which sign-ins should occur.
      *
-     */constructor(e){/** Always set to {@link ProviderId}.PHONE. */this.providerId=rK.PROVIDER_ID,this.auth=ta(e)}/**
+     */constructor(e){/** Always set to {@link ProviderId}.PHONE. */this.providerId=rW.PROVIDER_ID,this.auth=tr(e)}/**
      *
      * Starts a phone number authentication flow by sending a verification code to the given phone
      * number.
@@ -2470,7 +2481,7 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
      *
      * @returns A Promise for a verification ID that can be passed to
      * {@link PhoneAuthProvider.credential} to identify this flow..
-     */verifyPhoneNumber(e,t){return rW(this.auth,e,ta(t))}/**
+     */verifyPhoneNumber(e,t){return rB(this.auth,e,tr(t))}/**
      * Creates a phone auth credential, given the verification ID from
      * {@link PhoneAuthProvider.verifyPhoneNumber} and the code that was sent to the user's
      * mobile device.
@@ -2496,10 +2507,10 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
      * @param verificationCode - The verification code sent to the user's mobile device.
      *
      * @returns The auth provider credential.
-     */static credential(e,t){return ru._fromVerification(e,t)}/**
+     */static credential(e,t){return rl._fromVerification(e,t)}/**
      * Generates an {@link AuthCredential} from a {@link UserCredential}.
      * @param userCredential - The user credential.
-     */static credentialFromResult(e){return rK.credentialFromTaggedObject(e)}/**
+     */static credentialFromResult(e){return rW.credentialFromTaggedObject(e)}/**
      * Returns an {@link AuthCredential} when passed an error.
      *
      * @remarks
@@ -2530,7 +2541,7 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
      * ```
      *
      * @param error - The error to generate a credential from.
-     */static credentialFromError(e){return rK.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e)return null;let{phoneNumber:t,temporaryProof:n}=e;return t&&n?ru._fromTokenResponse(t,n):null}}/**
+     */static credentialFromError(e){return rW.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e)return null;let{phoneNumber:t,temporaryProof:n}=e;return t&&n?rl._fromTokenResponse(t,n):null}}/**
  * @license
  * Copyright 2021 Google LLC
  *
@@ -2549,7 +2560,7 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
  * Chooses a popup/redirect resolver to use. This prefers the override (which
  * is directly passed in), and falls back to the property set on the auth
  * object. If neither are available, this function errors w/ an argument error.
- */function rq(e,t){return t?nD(t):(nt(e._popupRedirectResolver,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),e._popupRedirectResolver)}/** Always set to {@link ProviderId}.PHONE. */rK.PROVIDER_ID="phone"/* ProviderId.PHONE */,/** Always set to {@link SignInMethod}.PHONE. */rK.PHONE_SIGN_IN_METHOD="phone"/* SignInMethod.PHONE */;/**
+ */function rK(e,t){return t?nO(t):(t5(e._popupRedirectResolver,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),e._popupRedirectResolver)}/** Always set to {@link ProviderId}.PHONE. */rW.PROVIDER_ID="phone"/* ProviderId.PHONE */,/** Always set to {@link SignInMethod}.PHONE. */rW.PHONE_SIGN_IN_METHOD="phone"/* SignInMethod.PHONE */;/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -2564,7 +2575,7 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class rQ extends n8{constructor(e){super("custom"/* ProviderId.CUSTOM */,"custom"/* ProviderId.CUSTOM */),this.params=e}_getIdTokenResponse(e){return rn(e,this._buildIdpRequest())}_linkToIdToken(e,t){return rn(e,this._buildIdpRequest(t))}_getReauthenticationResolver(e){return rn(e,this._buildIdpRequest())}_buildIdpRequest(e){let t={requestUri:this.params.requestUri,sessionId:this.params.sessionId,postBody:this.params.postBody,tenantId:this.params.tenantId,pendingToken:this.params.pendingToken,returnSecureToken:!0,returnIdpCredential:!0};return e&&(t.idToken=e),t}}function rG(e){return rE(e.auth,new rQ(e),e.bypassAuthState)}function rJ(e){let{auth:t,user:n}=e;return nt(n,t,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),rS(n,new rQ(e),e.bypassAuthState)}async function rY(e){let{auth:t,user:n}=e;return nt(n,t,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),rk(n,new rQ(e),e.bypassAuthState)}/**
+ */class rq extends n6{constructor(e){super("custom"/* ProviderId.CUSTOM */,"custom"/* ProviderId.CUSTOM */),this.params=e}_getIdTokenResponse(e){return rt(e,this._buildIdpRequest())}_linkToIdToken(e,t){return rt(e,this._buildIdpRequest(t))}_getReauthenticationResolver(e){return rt(e,this._buildIdpRequest())}_buildIdpRequest(e){let t={requestUri:this.params.requestUri,sessionId:this.params.sessionId,postBody:this.params.postBody,tenantId:this.params.tenantId,pendingToken:this.params.pendingToken,returnSecureToken:!0,returnIdpCredential:!0};return e&&(t.idToken=e),t}}function rQ(e){return rS(e.auth,new rq(e),e.bypassAuthState)}function rG(e){let{auth:t,user:n}=e;return t5(n,t,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),rk(n,new rq(e),e.bypassAuthState)}async function rJ(e){let{auth:t,user:n}=e;return t5(n,t,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),r_(n,new rq(e),e.bypassAuthState)}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2582,7 +2593,7 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
  *//**
  * Popup event manager. Handles the popup's entire lifecycle; listens to auth
  * events
- */class rX{constructor(e,t,n,r,i=!1){this.auth=e,this.resolver=n,this.user=r,this.bypassAuthState=i,this.pendingPromise=null,this.eventManager=null,this.filter=Array.isArray(t)?t:[t]}execute(){return new Promise(async(e,t)=>{this.pendingPromise={resolve:e,reject:t};try{this.eventManager=await this.resolver._initialize(this.auth),await this.onExecution(),this.eventManager.registerConsumer(this)}catch(e){this.reject(e)}})}async onAuthEvent(e){let{urlResponse:t,sessionId:n,postBody:r,tenantId:i,error:a,type:o}=e;if(a){this.reject(a);return}let s={auth:this.auth,requestUri:t,sessionId:n,tenantId:i||void 0,postBody:r||void 0,user:this.user,bypassAuthState:this.bypassAuthState};try{this.resolve(await this.getIdpTask(o)(s))}catch(e){this.reject(e)}}onError(e){this.reject(e)}getIdpTask(e){switch(e){case"signInViaPopup"/* AuthEventType.SIGN_IN_VIA_POPUP */:case"signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */:return rG;case"linkViaPopup"/* AuthEventType.LINK_VIA_POPUP */:case"linkViaRedirect"/* AuthEventType.LINK_VIA_REDIRECT */:return rY;case"reauthViaPopup"/* AuthEventType.REAUTH_VIA_POPUP */:case"reauthViaRedirect"/* AuthEventType.REAUTH_VIA_REDIRECT */:return rJ;default:t5(this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)}}resolve(e){this.pendingPromise||nn("Pending promise was never set"),this.pendingPromise.resolve(e),this.unregisterAndCleanUp()}reject(e){this.pendingPromise||nn("Pending promise was never set"),this.pendingPromise.reject(e),this.unregisterAndCleanUp()}unregisterAndCleanUp(){this.eventManager&&this.eventManager.unregisterConsumer(this),this.pendingPromise=null,this.cleanUp()}}/**
+ */class rY{constructor(e,t,n,r,i=!1){this.auth=e,this.resolver=n,this.user=r,this.bypassAuthState=i,this.pendingPromise=null,this.eventManager=null,this.filter=Array.isArray(t)?t:[t]}execute(){return new Promise(async(e,t)=>{this.pendingPromise={resolve:e,reject:t};try{this.eventManager=await this.resolver._initialize(this.auth),await this.onExecution(),this.eventManager.registerConsumer(this)}catch(e){this.reject(e)}})}async onAuthEvent(e){let{urlResponse:t,sessionId:n,postBody:r,tenantId:i,error:a,type:o}=e;if(a){this.reject(a);return}let s={auth:this.auth,requestUri:t,sessionId:n,tenantId:i||void 0,postBody:r||void 0,user:this.user,bypassAuthState:this.bypassAuthState};try{this.resolve(await this.getIdpTask(o)(s))}catch(e){this.reject(e)}}onError(e){this.reject(e)}getIdpTask(e){switch(e){case"signInViaPopup"/* AuthEventType.SIGN_IN_VIA_POPUP */:case"signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */:return rQ;case"linkViaPopup"/* AuthEventType.LINK_VIA_POPUP */:case"linkViaRedirect"/* AuthEventType.LINK_VIA_REDIRECT */:return rJ;case"reauthViaPopup"/* AuthEventType.REAUTH_VIA_POPUP */:case"reauthViaRedirect"/* AuthEventType.REAUTH_VIA_REDIRECT */:return rG;default:t3(this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)}}resolve(e){this.pendingPromise||t9("Pending promise was never set"),this.pendingPromise.resolve(e),this.unregisterAndCleanUp()}reject(e){this.pendingPromise||t9("Pending promise was never set"),this.pendingPromise.reject(e),this.unregisterAndCleanUp()}unregisterAndCleanUp(){this.eventManager&&this.eventManager.unregisterConsumer(this),this.pendingPromise=null,this.cleanUp()}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2597,36 +2608,36 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */const rZ=new na(2e3,1e4);/**
+ */const rX=new nt(2e3,1e4);/**
  * Popup event manager. Handles the popup's entire lifecycle; listens to auth
  * events
  *
- */class r0 extends rX{constructor(e,t,n,r,i){super(e,t,r,i),this.provider=n,this.authWindow=null,this.pollId=null,r0.currentPopupAction&&r0.currentPopupAction.cancel(),r0.currentPopupAction=this}async executeNotNull(){let e=await this.execute();return nt(e,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),e}async onExecution(){1===this.filter.length||nn("Popup operations only handle one event");let e=rP();this.authWindow=await this.resolver._openPopup(this.auth,this.provider,this.filter[0],e),this.authWindow.associatedEvent=e,// Check for web storage support and origin validation _after_ the popup is
+ */class rZ extends rY{constructor(e,t,n,r,i){super(e,t,r,i),this.provider=n,this.authWindow=null,this.pollId=null,rZ.currentPopupAction&&rZ.currentPopupAction.cancel(),rZ.currentPopupAction=this}async executeNotNull(){let e=await this.execute();return t5(e,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),e}async onExecution(){1===this.filter.length||t9("Popup operations only handle one event");let e=rN();this.authWindow=await this.resolver._openPopup(this.auth,this.provider,this.filter[0],e),this.authWindow.associatedEvent=e,// Check for web storage support and origin validation _after_ the popup is
 // loaded. These operations are slow (~1 second or so) Rather than
 // waiting on them before opening the window, optimistically open the popup
 // and check for storage support at the same time. If storage support is
 // not available, this will cause the whole thing to reject properly. It
 // will also close the popup, but since the promise has already rejected,
 // the popup closed by user poll will reject into the void.
-this.resolver._originValidation(this.auth).catch(e=>{this.reject(e)}),this.resolver._isIframeWebStorageSupported(this.auth,e=>{e||this.reject(t9(this.auth,"web-storage-unsupported"/* AuthErrorCode.WEB_STORAGE_UNSUPPORTED */))}),// Handle user closure. Notice this does *not* use await
-this.pollUserCancellation()}get eventId(){var e;return(null===(e=this.authWindow)||void 0===e?void 0:e.associatedEvent)||null}cancel(){this.reject(t9(this.auth,"cancelled-popup-request"/* AuthErrorCode.EXPIRED_POPUP_REQUEST */))}cleanUp(){this.authWindow&&this.authWindow.close(),this.pollId&&window.clearTimeout(this.pollId),this.authWindow=null,this.pollId=null,r0.currentPopupAction=null}pollUserCancellation(){let e=()=>{var t,n;if(null===(n=null===(t=this.authWindow)||void 0===t?void 0:t.window)||void 0===n?void 0:n.closed){// Make sure that there is sufficient time for whatever action to
+this.resolver._originValidation(this.auth).catch(e=>{this.reject(e)}),this.resolver._isIframeWebStorageSupported(this.auth,e=>{e||this.reject(t4(this.auth,"web-storage-unsupported"/* AuthErrorCode.WEB_STORAGE_UNSUPPORTED */))}),// Handle user closure. Notice this does *not* use await
+this.pollUserCancellation()}get eventId(){var e;return(null===(e=this.authWindow)||void 0===e?void 0:e.associatedEvent)||null}cancel(){this.reject(t4(this.auth,"cancelled-popup-request"/* AuthErrorCode.EXPIRED_POPUP_REQUEST */))}cleanUp(){this.authWindow&&this.authWindow.close(),this.pollId&&window.clearTimeout(this.pollId),this.authWindow=null,this.pollId=null,rZ.currentPopupAction=null}pollUserCancellation(){let e=()=>{var t,n;if(null===(n=null===(t=this.authWindow)||void 0===t?void 0:t.window)||void 0===n?void 0:n.closed){// Make sure that there is sufficient time for whatever action to
 // complete. The window could have closed but the sign in network
 // call could still be in flight. This is specifically true for
 // Firefox or if the opener is in an iframe, in which case the oauth
 // helper closes the popup.
-this.pollId=window.setTimeout(()=>{this.pollId=null,this.reject(t9(this.auth,"popup-closed-by-user"/* AuthErrorCode.POPUP_CLOSED_BY_USER */))},8e3/* _Timeout.AUTH_EVENT */);return}this.pollId=window.setTimeout(e,rZ.get())};e()}}// Only one popup is ever shown at once. The lifecycle of the current popup
+this.pollId=window.setTimeout(()=>{this.pollId=null,this.reject(t4(this.auth,"popup-closed-by-user"/* AuthErrorCode.POPUP_CLOSED_BY_USER */))},8e3/* _Timeout.AUTH_EVENT */);return}this.pollId=window.setTimeout(e,rX.get())};e()}}// Only one popup is ever shown at once. The lifecycle of the current popup
 // can be managed / cancelled by the constructor.
-r0.currentPopupAction=null;// We only get one redirect outcome for any one auth, so just store it
+rZ.currentPopupAction=null;// We only get one redirect outcome for any one auth, so just store it
 // in here.
-const r1=new Map;class r2 extends rX{constructor(e,t,n=!1){super(e,["signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */,"linkViaRedirect"/* AuthEventType.LINK_VIA_REDIRECT */,"reauthViaRedirect"/* AuthEventType.REAUTH_VIA_REDIRECT */,"unknown"/* AuthEventType.UNKNOWN */],t,void 0,n),this.eventId=null}/**
+const r0=new Map;class r1 extends rY{constructor(e,t,n=!1){super(e,["signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */,"linkViaRedirect"/* AuthEventType.LINK_VIA_REDIRECT */,"reauthViaRedirect"/* AuthEventType.REAUTH_VIA_REDIRECT */,"unknown"/* AuthEventType.UNKNOWN */],t,void 0,n),this.eventId=null}/**
      * Override the execute function; if we already have a redirect result, then
      * just return it.
-     */async execute(){let e=r1.get(this.auth._key());if(!e){try{let t=await r3(this.resolver,this.auth),n=t?await super.execute():null;e=()=>Promise.resolve(n)}catch(t){e=()=>Promise.reject(t)}r1.set(this.auth._key(),e)}return this.bypassAuthState||r1.set(this.auth._key(),()=>Promise.resolve(null)),e()}async onAuthEvent(e){if("signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */===e.type)return super.onAuthEvent(e);if("unknown"/* AuthEventType.UNKNOWN */===e.type){// This is a sentinel value indicating there's no pending redirect
-this.resolve(null);return}if(e.eventId){let t=await this.auth._redirectUserForId(e.eventId);if(t)return this.user=t,super.onAuthEvent(e);this.resolve(null)}}async onExecution(){}cleanUp(){}}async function r3(e,t){let n=r5(t),r=r8(e);if(!await r._isAvailable())return!1;let i=await r._get(n)==="true";return await r._remove(n),i}async function r4(e,t){return r8(e)._set(r5(t),"true")}function r6(e,t){r1.set(e._key(),t)}function r8(e){return nD(e._redirectPersistence)}function r5(e){return nM("pendingRedirect",e.config.apiKey,e.name)}async function r9(e,t,n){let r=ta(e);!function(e,t,n){if(!(t instanceof n))throw n.name!==t.constructor.name&&t5(e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),t7(e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */,`Type of ${t.constructor.name} does not match expected instance.Did you pass a reference from a different Auth SDK?`)}(e,t,rf),// Wait for auth initialization to complete, this will process pending redirects and clear the
+     */async execute(){let e=r0.get(this.auth._key());if(!e){try{let t=await r2(this.resolver,this.auth),n=t?await super.execute():null;e=()=>Promise.resolve(n)}catch(t){e=()=>Promise.reject(t)}r0.set(this.auth._key(),e)}return this.bypassAuthState||r0.set(this.auth._key(),()=>Promise.resolve(null)),e()}async onAuthEvent(e){if("signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */===e.type)return super.onAuthEvent(e);if("unknown"/* AuthEventType.UNKNOWN */===e.type){// This is a sentinel value indicating there's no pending redirect
+this.resolve(null);return}if(e.eventId){let t=await this.auth._redirectUserForId(e.eventId);if(t)return this.user=t,super.onAuthEvent(e);this.resolve(null)}}async onExecution(){}cleanUp(){}}async function r2(e,t){let n=r8(t),r=r6(e);if(!await r._isAvailable())return!1;let i=await r._get(n)==="true";return await r._remove(n),i}async function r3(e,t){return r6(e)._set(r8(t),"true")}function r4(e,t){r0.set(e._key(),t)}function r6(e){return nO(e._redirectPersistence)}function r8(e){return nD("pendingRedirect",e.config.apiKey,e.name)}async function r5(e,t,n){let r=tr(e);!function(e,t,n){if(!(t instanceof n))throw n.name!==t.constructor.name&&t3(e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),t6(e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */,`Type of ${t.constructor.name} does not match expected instance.Did you pass a reference from a different Auth SDK?`)}(e,t,rd),// Wait for auth initialization to complete, this will process pending redirects and clear the
 // PENDING_REDIRECT_KEY in persistence. This should be completed before starting a new
 // redirect and creating a PENDING_REDIRECT_KEY entry.
-await r._initializationPromise;let i=rq(r,n);return await r4(i,r),i._openRedirect(r,t,"signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */)}async function r7(e,t,n=!1){let r=ta(e),i=rq(r,t),a=new r2(r,i,n),o=await a.execute();return o&&!n&&(delete o.user._redirectEventId,await r._persistUserIfCurrent(o.user),await r._setRedirectUser(null,t)),o}class ie{constructor(e){this.auth=e,this.cachedEventUids=new Set,this.consumers=new Set,this.queuedRedirectEvent=null,this.hasHandledPotentialRedirect=!1,this.lastProcessedEventTime=Date.now()}registerConsumer(e){this.consumers.add(e),this.queuedRedirectEvent&&this.isEventForConsumer(this.queuedRedirectEvent,e)&&(this.sendToConsumer(this.queuedRedirectEvent,e),this.saveEventToCache(this.queuedRedirectEvent),this.queuedRedirectEvent=null)}unregisterConsumer(e){this.consumers.delete(e)}onEvent(e){// Check if the event has already been handled
-if(this.hasEventBeenHandled(e))return!1;let t=!1;return this.consumers.forEach(n=>{this.isEventForConsumer(e,n)&&(t=!0,this.sendToConsumer(e,n),this.saveEventToCache(e))}),this.hasHandledPotentialRedirect||!function(e){switch(e.type){case"signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */:case"linkViaRedirect"/* AuthEventType.LINK_VIA_REDIRECT */:case"reauthViaRedirect"/* AuthEventType.REAUTH_VIA_REDIRECT */:return!0;case"unknown"/* AuthEventType.UNKNOWN */:return ir(e);default:return!1}}(e)||(this.hasHandledPotentialRedirect=!0,t||(this.queuedRedirectEvent=e,t=!0)),t}sendToConsumer(e,t){var n;if(e.error&&!ir(e)){let r=(null===(n=e.error.code)||void 0===n?void 0:n.split("auth/")[1])||"internal-error"/* AuthErrorCode.INTERNAL_ERROR */;t.onError(t9(this.auth,r))}else t.onAuthEvent(e)}isEventForConsumer(e,t){let n=null===t.eventId||!!e.eventId&&e.eventId===t.eventId;return t.filter.includes(e.type)&&n}hasEventBeenHandled(e){return Date.now()-this.lastProcessedEventTime>=6e5&&this.cachedEventUids.clear(),this.cachedEventUids.has(it(e))}saveEventToCache(e){this.cachedEventUids.add(it(e)),this.lastProcessedEventTime=Date.now()}}function it(e){return[e.type,e.eventId,e.sessionId,e.tenantId].filter(e=>e).join("-")}function ir({type:e,error:t}){return"unknown"/* AuthEventType.UNKNOWN */===e&&(null==t?void 0:t.code)==="auth/no-auth-event"}/**
+await r._initializationPromise;let i=rK(r,n);return await r3(i,r),i._openRedirect(r,t,"signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */)}async function r9(e,t,n=!1){let r=tr(e),i=rK(r,t),a=new r1(r,i,n),o=await a.execute();return o&&!n&&(delete o.user._redirectEventId,await r._persistUserIfCurrent(o.user),await r._setRedirectUser(null,t)),o}class r7{constructor(e){this.auth=e,this.cachedEventUids=new Set,this.consumers=new Set,this.queuedRedirectEvent=null,this.hasHandledPotentialRedirect=!1,this.lastProcessedEventTime=Date.now()}registerConsumer(e){this.consumers.add(e),this.queuedRedirectEvent&&this.isEventForConsumer(this.queuedRedirectEvent,e)&&(this.sendToConsumer(this.queuedRedirectEvent,e),this.saveEventToCache(this.queuedRedirectEvent),this.queuedRedirectEvent=null)}unregisterConsumer(e){this.consumers.delete(e)}onEvent(e){// Check if the event has already been handled
+if(this.hasEventBeenHandled(e))return!1;let t=!1;return this.consumers.forEach(n=>{this.isEventForConsumer(e,n)&&(t=!0,this.sendToConsumer(e,n),this.saveEventToCache(e))}),this.hasHandledPotentialRedirect||!function(e){switch(e.type){case"signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */:case"linkViaRedirect"/* AuthEventType.LINK_VIA_REDIRECT */:case"reauthViaRedirect"/* AuthEventType.REAUTH_VIA_REDIRECT */:return!0;case"unknown"/* AuthEventType.UNKNOWN */:return it(e);default:return!1}}(e)||(this.hasHandledPotentialRedirect=!0,t||(this.queuedRedirectEvent=e,t=!0)),t}sendToConsumer(e,t){var n;if(e.error&&!it(e)){let r=(null===(n=e.error.code)||void 0===n?void 0:n.split("auth/")[1])||"internal-error"/* AuthErrorCode.INTERNAL_ERROR */;t.onError(t4(this.auth,r))}else t.onAuthEvent(e)}isEventForConsumer(e,t){let n=null===t.eventId||!!e.eventId&&e.eventId===t.eventId;return t.filter.includes(e.type)&&n}hasEventBeenHandled(e){return Date.now()-this.lastProcessedEventTime>=6e5&&this.cachedEventUids.clear(),this.cachedEventUids.has(ie(e))}saveEventToCache(e){this.cachedEventUids.add(ie(e)),this.lastProcessedEventTime=Date.now()}}function ie(e){return[e.type,e.eventId,e.sessionId,e.tenantId].filter(e=>e).join("-")}function it({type:e,error:t}){return"unknown"/* AuthEventType.UNKNOWN */===e&&(null==t?void 0:t.code)==="auth/no-auth-event"}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2641,7 +2652,7 @@ if(this.hasEventBeenHandled(e))return!1;let t=!1;return this.consumers.forEach(n
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function ii(e,t={}){return nd(e,"GET"/* HttpMethod.GET */,"/v1/projects"/* Endpoint.GET_PROJECT_CONFIG */,t)}/**
+ */async function ir(e,t={}){return ns(e,"GET"/* HttpMethod.GET */,"/v1/projects"/* Endpoint.GET_PROJECT_CONFIG */,t)}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2656,12 +2667,12 @@ if(this.hasEventBeenHandled(e))return!1;let t=!1;return this.consumers.forEach(n
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */const ia=/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/,io=/^https?/;async function is(e){// Skip origin validation if we are in an emulated environment
-if(e.config.emulator)return;let{authorizedDomains:t}=await ii(e);for(let e of t)try{if(function(e){let t=nr(),{protocol:n,hostname:r}=new URL(t);if(e.startsWith("chrome-extension://")){let i=new URL(e);return""===i.hostname&&""===r?"chrome-extension:"===n&&e.replace("chrome-extension://","")===t.replace("chrome-extension://",""):"chrome-extension:"===n&&i.hostname===r}if(!io.test(n))return!1;if(ia.test(e))// only contain the IP, no extra character.
+ */const ii=/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/,ia=/^https?/;async function io(e){// Skip origin validation if we are in an emulated environment
+if(e.config.emulator)return;let{authorizedDomains:t}=await ir(e);for(let e of t)try{if(function(e){let t=t7(),{protocol:n,hostname:r}=new URL(t);if(e.startsWith("chrome-extension://")){let i=new URL(e);return""===i.hostname&&""===r?"chrome-extension:"===n&&e.replace("chrome-extension://","")===t.replace("chrome-extension://",""):"chrome-extension:"===n&&i.hostname===r}if(!ia.test(n))return!1;if(ii.test(e))// only contain the IP, no extra character.
 return r===e;// Dots in pattern should be escaped.
 let i=e.replace(/\./g,"\\."),a=RegExp("^(.+\\."+i+"|"+i+")$","i");return a.test(r)}(e))return}catch(e){// Do nothing if there's a URL error; just continue searching
 }// In the old SDK, this error also provides helpful messages.
-t5(e,"unauthorized-domain"/* AuthErrorCode.INVALID_ORIGIN */)}/**
+t3(e,"unauthorized-domain"/* AuthErrorCode.INVALID_ORIGIN */)}/**
  * @license
  * Copyright 2020 Google LLC.
  *
@@ -2676,18 +2687,18 @@ t5(e,"unauthorized-domain"/* AuthErrorCode.INVALID_ORIGIN */)}/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */const il=new na(3e4,6e4);/**
+ */const is=new nt(3e4,6e4);/**
  * Reset unlaoded GApi modules. If gapi.load fails due to a network error,
  * it will stop working after a retrial. This is a hack to fix this issue.
- */function iu(){// Clear last failed gapi.load state to force next gapi.load to first
+ */function il(){// Clear last failed gapi.load state to force next gapi.load to first
 // load the failed gapi.iframes module.
 // Get gapix.beacon context.
-let e=rO().___jsl;// Get current hint.
+let e=rR().___jsl;// Get current hint.
 if(null==e?void 0:e.H){for(let t of Object.keys(e.H))// Clear pending callbacks.
 if(// Requested modules.
 e.H[t].r=e.H[t].r||[],// Loaded modules.
 e.H[t].L=e.H[t].L||[],// Set requested modules to a copy of the loaded modules.
-e.H[t].r=[...e.H[t].L],e.CP)for(let t=0;t<e.CP.length;t++)e.CP[t]=null}}let ic=null;/**
+e.H[t].r=[...e.H[t].L],e.CP)for(let t=0;t<e.CP.length;t++)e.CP[t]=null}}let iu=null;/**
  * @license
  * Copyright 2020 Google LLC.
  *
@@ -2702,28 +2713,28 @@ e.H[t].r=[...e.H[t].L],e.CP)for(let t=0;t<e.CP.length;t++)e.CP[t]=null}}let ic=n
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */const id=new na(5e3,15e3),ih={style:{position:"absolute",top:"-100px",width:"1px",height:"1px"},"aria-hidden":"true",tabindex:"-1"},ip=new Map([["identitytoolkit.googleapis.com"/* DefaultConfig.API_HOST */,"p"],["staging-identitytoolkit.sandbox.googleapis.com","s"],["test-identitytoolkit.sandbox.googleapis.com","t"]// test
-]);async function im(e){let t=await (ic=ic||new Promise((t,n)=>{var r,i,a;// Function to run when gapi.load is ready.
+ */const ic=new nt(5e3,15e3),id={style:{position:"absolute",top:"-100px",width:"1px",height:"1px"},"aria-hidden":"true",tabindex:"-1"},ih=new Map([["identitytoolkit.googleapis.com"/* DefaultConfig.API_HOST */,"p"],["staging-identitytoolkit.sandbox.googleapis.com","s"],["test-identitytoolkit.sandbox.googleapis.com","t"]// test
+]);async function ip(e){let t=await (iu=iu||new Promise((t,n)=>{var r,i,a;// Function to run when gapi.load is ready.
 function o(){// The developer may have tried to previously run gapi.load and failed.
 // Run this to fix that.
-iu(),gapi.load("gapi.iframes",{callback:()=>{t(gapi.iframes.getContext())},ontimeout:()=>{// The above reset may be sufficient, but having this reset after
+il(),gapi.load("gapi.iframes",{callback:()=>{t(gapi.iframes.getContext())},ontimeout:()=>{// The above reset may be sufficient, but having this reset after
 // failure ensures that if the developer calls gapi.load after the
 // connection is re-established and before another attempt to embed
 // the iframe, it would work and would not be broken because of our
 // failed attempt.
 // Timeout when gapi.iframes.Iframe not loaded.
-iu(),n(t9(e,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */))},timeout:il.get()})}if(null===(i=null===(r=rO().gapi)||void 0===r?void 0:r.iframes)||void 0===i?void 0:i.Iframe)t(gapi.iframes.getContext());else if(null===(a=rO().gapi)||void 0===a?void 0:a.load)o();else{// Create a new iframe callback when this is called so as not to overwrite
+il(),n(t4(e,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */))},timeout:is.get()})}if(null===(i=null===(r=rR().gapi)||void 0===r?void 0:r.iframes)||void 0===i?void 0:i.Iframe)t(gapi.iframes.getContext());else if(null===(a=rR().gapi)||void 0===a?void 0:a.load)o();else{// Create a new iframe callback when this is called so as not to overwrite
 // any previous defined callback. This happens if this method is called
 // multiple times in parallel and could result in the later callback
 // overwriting the previous one. This would end up with a iframe
 // timeout.
-let t=n1("iframefcb");// Load GApi loader.
+let t=nZ("iframefcb");// Load GApi loader.
 return(// GApi loader not available, dynamically load platform.js.
-rO()[t]=()=>{// GApi loader should be ready.
-gapi.load?o():n(t9(e,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */))},n0(`https://apis.google.com/js/api.js?onload=${t}`).catch(e=>n(e)))}}).catch(e=>{throw(// Reset cached promise to allow for retrial.
-ic=null,e)})),n=rO().gapi;return nt(n,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t.open({where:document.body,url:function(e){let t=e.config;nt(t.authDomain,e,"auth-domain-config-required"/* AuthErrorCode.MISSING_AUTH_DOMAIN */);let n=t.emulator?no(t,"emulator/auth/iframe"):`https://${e.config.authDomain}/__/auth/iframe`,r={apiKey:t.apiKey,appName:e.name,v:tV},i=ip.get(e.config.apiHost);i&&(r.eid=i);let a=e._getFrameworks();return a.length&&(r.fw=a.join(",")),`${n}?${te(r).slice(1)}`}(e),messageHandlersFilter:n.iframes.CROSS_ORIGIN_IFRAMES_FILTER,attributes:ih,dontclear:!0},t=>new Promise(async(n,r)=>{await t.restyle({// Prevent iframe from closing on mouse out.
-    setHideOnLeave:!1});let i=t9(e,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */),a=rO().setTimeout(()=>{r(i)},id.get());// Clear timer and resolve pending iframe ready promise.
-    function o(){rO().clearTimeout(a),n(t)}// This returns an IThenable. However the reject part does not call
+rR()[t]=()=>{// GApi loader should be ready.
+gapi.load?o():n(t4(e,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */))},nX(`https://apis.google.com/js/api.js?onload=${t}`).catch(e=>n(e)))}}).catch(e=>{throw(// Reset cached promise to allow for retrial.
+iu=null,e)})),n=rR().gapi;return t5(n,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t.open({where:document.body,url:function(e){let t=e.config;t5(t.authDomain,e,"auth-domain-config-required"/* AuthErrorCode.MISSING_AUTH_DOMAIN */);let n=t.emulator?nn(t,"emulator/auth/iframe"):`https://${e.config.authDomain}/__/auth/iframe`,r={apiKey:t.apiKey,appName:e.name,v:tz},i=ih.get(e.config.apiHost);i&&(r.eid=i);let a=e._getFrameworks();return a.length&&(r.fw=a.join(",")),`${n}?${e9(r).slice(1)}`}(e),messageHandlersFilter:n.iframes.CROSS_ORIGIN_IFRAMES_FILTER,attributes:id,dontclear:!0},t=>new Promise(async(n,r)=>{await t.restyle({// Prevent iframe from closing on mouse out.
+    setHideOnLeave:!1});let i=t4(e,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */),a=rR().setTimeout(()=>{r(i)},ic.get());// Clear timer and resolve pending iframe ready promise.
+    function o(){rR().clearTimeout(a),n(t)}// This returns an IThenable. However the reject part does not call
     // when the iframe is not loaded.
     t.ping(o).then(o,()=>{r(i)})}))}/**
  * @license
@@ -2740,14 +2751,14 @@ ic=null,e)})),n=rO().gapi;return nt(n,e,"internal-error"/* AuthErrorCode.INTERNA
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */const ig={location:"yes",resizable:"yes",statusbar:"yes",toolbar:"no"};class iv{constructor(e){this.window=e,this.associatedEvent=null}close(){if(this.window)try{this.window.close()}catch(e){}}}/**
+ */const im={location:"yes",resizable:"yes",statusbar:"yes",toolbar:"no"};class ig{constructor(e){this.window=e,this.associatedEvent=null}close(){if(this.window)try{this.window.close()}catch(e){}}}/**
  * Fragment name for the App Check token that gets passed to the widget
  *
  * @internal
- */const iy=encodeURIComponent("fac");async function ib(e,t,n,r,i,a){nt(e.config.authDomain,e,"auth-domain-config-required"/* AuthErrorCode.MISSING_AUTH_DOMAIN */),nt(e.config.apiKey,e,"invalid-api-key"/* AuthErrorCode.INVALID_API_KEY */);let o={apiKey:e.config.apiKey,appName:e.name,authType:n,redirectUrl:r,v:tV,eventId:i};if(t instanceof rf)// TODO set additionalParams from the provider as well?
-for(let[n,r]of(t.setDefaultLanguage(e.languageCode),o.providerId=t.providerId||"",!function(e){for(let t in e)if(Object.prototype.hasOwnProperty.call(e,t))return!1;return!0}(t.getCustomParameters())&&(o.customParameters=JSON.stringify(t.getCustomParameters())),Object.entries(a||{})))o[n]=r;if(t instanceof rh){let e=t.getScopes().filter(e=>""!==e);e.length>0&&(o.scopes=e.join(","))}for(let t of(e.tenantId&&(o.tid=e.tenantId),Object.keys(o)))void 0===o[t]&&delete o[t];// Sets the App Check token to pass to the widget
-let s=await e._getAppCheckToken(),l=s?`#${iy}=${encodeURIComponent(s)}`:"";// Start at index 1 to skip the leading '&' in the query string
-return`${function({config:e}){return e.emulator?no(e,"emulator/auth/handler"):`https://${e.authDomain}/__/auth/handler`}(e)}?${te(o).slice(1)}${l}`}/**
+ */const iv=encodeURIComponent("fac");async function iy(e,t,n,r,i,a){t5(e.config.authDomain,e,"auth-domain-config-required"/* AuthErrorCode.MISSING_AUTH_DOMAIN */),t5(e.config.apiKey,e,"invalid-api-key"/* AuthErrorCode.INVALID_API_KEY */);let o={apiKey:e.config.apiKey,appName:e.name,authType:n,redirectUrl:r,v:tz,eventId:i};if(t instanceof rd)// TODO set additionalParams from the provider as well?
+for(let[n,r]of(t.setDefaultLanguage(e.languageCode),o.providerId=t.providerId||"",!function(e){for(let t in e)if(Object.prototype.hasOwnProperty.call(e,t))return!1;return!0}(t.getCustomParameters())&&(o.customParameters=JSON.stringify(t.getCustomParameters())),Object.entries(a||{})))o[n]=r;if(t instanceof rf){let e=t.getScopes().filter(e=>""!==e);e.length>0&&(o.scopes=e.join(","))}for(let t of(e.tenantId&&(o.tid=e.tenantId),Object.keys(o)))void 0===o[t]&&delete o[t];// Sets the App Check token to pass to the widget
+let s=await e._getAppCheckToken(),l=s?`#${iv}=${encodeURIComponent(s)}`:"";// Start at index 1 to skip the leading '&' in the query string
+return`${function({config:e}){return e.emulator?nn(e,"emulator/auth/handler"):`https://${e.authDomain}/__/auth/handler`}(e)}?${e9(o).slice(1)}${l}`}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2765,30 +2776,30 @@ return`${function({config:e}){return e.emulator?no(e,"emulator/auth/handler"):`h
  *//**
  * The special web storage event
  *
- */const iw="webStorageSupport",i_=class{constructor(){this.eventManagers={},this.iframes={},this.originValidationPromises={},this._redirectPersistence=rx,this._completeRedirectFn=r7,this._overrideRedirectResult=r6}// Wrapping in async even though we don't await anywhere in order
+ */const ib="webStorageSupport",iw=class{constructor(){this.eventManagers={},this.iframes={},this.originValidationPromises={},this._redirectPersistence=rT,this._completeRedirectFn=r9,this._overrideRedirectResult=r4}// Wrapping in async even though we don't await anywhere in order
 // to make sure errors are raised as promise rejections
-async _openPopup(e,t,n,r){var i;(null===(i=this.eventManagers[e._key()])||void 0===i?void 0:i.manager)||nn("_initialize() not called before _openPopup()");let a=await ib(e,t,n,nr(),r);return function(e,t,n,r=500,i=600){let a=Math.max((window.screen.availHeight-i)/2,0).toString(),o=Math.max((window.screen.availWidth-r)/2,0).toString(),s="",l=Object.assign(Object.assign({},ig),{width:r.toString(),height:i.toString(),top:a,left:o}),u=e4().toLowerCase();n&&(s=nV(u)?"_blank":n),nz(u)&&(// Firefox complains when invalid URLs are popped out. Hacky way to bypass.
+async _openPopup(e,t,n,r){var i;(null===(i=this.eventManagers[e._key()])||void 0===i?void 0:i.manager)||t9("_initialize() not called before _openPopup()");let a=await iy(e,t,n,t7(),r);return function(e,t,n,r=500,i=600){let a=Math.max((window.screen.availHeight-i)/2,0).toString(),o=Math.max((window.screen.availWidth-r)/2,0).toString(),s="",l=Object.assign(Object.assign({},im),{width:r.toString(),height:i.toString(),top:a,left:o}),u=e2().toLowerCase();n&&(s=nz(u)?"_blank":n),nj(u)&&(// Firefox complains when invalid URLs are popped out. Hacky way to bypass.
 t=t||"http://localhost",// Firefox disables by default scrolling on popup windows, which can create
 // issues when the user has many Google accounts, for instance.
-l.scrollbars="yes");let c=Object.entries(l).reduce((e,[t,n])=>`${e}${t}=${n},`,"");if(function(e=e4()){var t;return nK(e)&&!!(null===(t=window.navigator)||void 0===t?void 0:t.standalone)}(u)&&"_self"!==s)return function(e,t){let n=document.createElement("a");n.href=e,n.target=t;let r=document.createEvent("MouseEvent");r.initMouseEvent("click",!0,!0,window,1,0,0,0,0,!1,!1,!1,!1,1,null),n.dispatchEvent(r)}(t||"",s),new iv(null);// about:blank getting sanitized causing browsers like IE/Edge to display
+l.scrollbars="yes");let c=Object.entries(l).reduce((e,[t,n])=>`${e}${t}=${n},`,"");if(function(e=e2()){var t;return nB(e)&&!!(null===(t=window.navigator)||void 0===t?void 0:t.standalone)}(u)&&"_self"!==s)return function(e,t){let n=document.createElement("a");n.href=e,n.target=t;let r=document.createEvent("MouseEvent");r.initMouseEvent("click",!0,!0,window,1,0,0,0,0,!1,!1,!1,!1,1,null),n.dispatchEvent(r)}(t||"",s),new ig(null);// about:blank getting sanitized causing browsers like IE/Edge to display
 // brief error message before redirecting to handler.
-let d=window.open(t||"",s,c);nt(d,e,"popup-blocked"/* AuthErrorCode.POPUP_BLOCKED */);// Flaky on IE edge, encapsulate with a try and catch.
-try{d.focus()}catch(e){}return new iv(d)}(e,a,rP())}async _openRedirect(e,t,n,r){await this._originValidation(e);let i=await ib(e,t,n,nr(),r);return rO().location.href=i,new Promise(()=>{})}_initialize(e){let t=e._key();if(this.eventManagers[t]){let{manager:e,promise:n}=this.eventManagers[t];return e?Promise.resolve(e):(n||nn("If manager is not set, promise should be"),n)}let n=this.initAndGetManager(e);return this.eventManagers[t]={promise:n},// If the promise is rejected, the key should be removed so that the
+let d=window.open(t||"",s,c);t5(d,e,"popup-blocked"/* AuthErrorCode.POPUP_BLOCKED */);// Flaky on IE edge, encapsulate with a try and catch.
+try{d.focus()}catch(e){}return new ig(d)}(e,a,rN())}async _openRedirect(e,t,n,r){await this._originValidation(e);let i=await iy(e,t,n,t7(),r);return rR().location.href=i,new Promise(()=>{})}_initialize(e){let t=e._key();if(this.eventManagers[t]){let{manager:e,promise:n}=this.eventManagers[t];return e?Promise.resolve(e):(n||t9("If manager is not set, promise should be"),n)}let n=this.initAndGetManager(e);return this.eventManagers[t]={promise:n},// If the promise is rejected, the key should be removed so that the
 // operation can be retried later.
-n.catch(()=>{delete this.eventManagers[t]}),n}async initAndGetManager(e){let t=await im(e),n=new ie(e);return t.register("authEvent",t=>{nt(null==t?void 0:t.authEvent,e,"invalid-auth-event"/* AuthErrorCode.INVALID_AUTH_EVENT */);// TODO: Consider splitting redirect and popup events earlier on
-let r=n.onEvent(t.authEvent);return{status:r?"ACK"/* GapiOutcome.ACK */:"ERROR"/* GapiOutcome.ERROR */}},gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER),this.eventManagers[e._key()]={manager:n},this.iframes[e._key()]=t,n}_isIframeWebStorageSupported(e,t){let n=this.iframes[e._key()];n.send(iw,{type:iw},n=>{var r;let i=null===(r=null==n?void 0:n[0])||void 0===r?void 0:r[iw];void 0!==i&&t(!!i),t5(e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)},gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER)}_originValidation(e){let t=e._key();return this.originValidationPromises[t]||(this.originValidationPromises[t]=is(e)),this.originValidationPromises[t]}get _shouldInitProactively(){// Mobile browsers and Safari need to optimistically initialize
-return nq()||nF()||nK()}};class ik{constructor(e){this.factorId=e}_process(e,t,n){switch(t.type){case"enroll"/* MultiFactorSessionType.ENROLL */:return this._finalizeEnroll(e,t.credential,n);case"signin"/* MultiFactorSessionType.SIGN_IN */:return this._finalizeSignIn(e,t.credential);default:return nn("unexpected MultiFactorSessionType")}}}/**
+n.catch(()=>{delete this.eventManagers[t]}),n}async initAndGetManager(e){let t=await ip(e),n=new r7(e);return t.register("authEvent",t=>{t5(null==t?void 0:t.authEvent,e,"invalid-auth-event"/* AuthErrorCode.INVALID_AUTH_EVENT */);// TODO: Consider splitting redirect and popup events earlier on
+let r=n.onEvent(t.authEvent);return{status:r?"ACK"/* GapiOutcome.ACK */:"ERROR"/* GapiOutcome.ERROR */}},gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER),this.eventManagers[e._key()]={manager:n},this.iframes[e._key()]=t,n}_isIframeWebStorageSupported(e,t){let n=this.iframes[e._key()];n.send(ib,{type:ib},n=>{var r;let i=null===(r=null==n?void 0:n[0])||void 0===r?void 0:r[ib];void 0!==i&&t(!!i),t3(e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)},gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER)}_originValidation(e){let t=e._key();return this.originValidationPromises[t]||(this.originValidationPromises[t]=io(e)),this.originValidationPromises[t]}get _shouldInitProactively(){// Mobile browsers and Safari need to optimistically initialize
+return nW()||nU()||nB()}};class i_{constructor(e){this.factorId=e}_process(e,t,n){switch(t.type){case"enroll"/* MultiFactorSessionType.ENROLL */:return this._finalizeEnroll(e,t.credential,n);case"signin"/* MultiFactorSessionType.SIGN_IN */:return this._finalizeSignIn(e,t.credential);default:return t9("unexpected MultiFactorSessionType")}}}/**
  * {@inheritdoc PhoneMultiFactorAssertion}
  *
  * @public
- */class iS extends ik{constructor(e){super("phone"/* FactorId.PHONE */),this.credential=e}/** @internal */static _fromCredential(e){return new iS(e)}/** @internal */_finalizeEnroll(e,t,n){return nd(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaEnrollment:finalize"/* Endpoint.FINALIZE_MFA_ENROLLMENT */,nc(e,{idToken:t,displayName:n,phoneVerificationInfo:this.credential._makeVerificationRequest()}))}/** @internal */_finalizeSignIn(e,t){return nd(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaSignIn:finalize"/* Endpoint.FINALIZE_MFA_SIGN_IN */,nc(e,{mfaPendingCredential:t,phoneVerificationInfo:this.credential._makeVerificationRequest()}))}}class iE extends ik{constructor(e,t,n){super("totp"/* FactorId.TOTP */),this.otp=e,this.enrollmentId=t,this.secret=n}/** @internal */static _fromSecret(e,t){return new iE(t,void 0,e)}/** @internal */static _fromEnrollmentId(e,t){return new iE(t,e)}/** @internal */async _finalizeEnroll(e,t,n){return nt(void 0!==this.secret,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),nd(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaEnrollment:finalize"/* Endpoint.FINALIZE_MFA_ENROLLMENT */,nc(e,{idToken:t,displayName:n,totpVerificationInfo:this.secret._makeTotpVerificationInfo(this.otp)}))}/** @internal */async _finalizeSignIn(e,t){nt(void 0!==this.enrollmentId&&void 0!==this.otp,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */);let n={verificationCode:this.otp};return nd(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaSignIn:finalize"/* Endpoint.FINALIZE_MFA_SIGN_IN */,nc(e,{mfaPendingCredential:t,mfaEnrollmentId:this.enrollmentId,totpVerificationInfo:n}))}}/**
+ */class ik extends i_{constructor(e){super("phone"/* FactorId.PHONE */),this.credential=e}/** @internal */static _fromCredential(e){return new ik(e)}/** @internal */_finalizeEnroll(e,t,n){return ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaEnrollment:finalize"/* Endpoint.FINALIZE_MFA_ENROLLMENT */,no(e,{idToken:t,displayName:n,phoneVerificationInfo:this.credential._makeVerificationRequest()}))}/** @internal */_finalizeSignIn(e,t){return ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaSignIn:finalize"/* Endpoint.FINALIZE_MFA_SIGN_IN */,no(e,{mfaPendingCredential:t,phoneVerificationInfo:this.credential._makeVerificationRequest()}))}}class iS extends i_{constructor(e,t,n){super("totp"/* FactorId.TOTP */),this.otp=e,this.enrollmentId=t,this.secret=n}/** @internal */static _fromSecret(e,t){return new iS(t,void 0,e)}/** @internal */static _fromEnrollmentId(e,t){return new iS(t,e)}/** @internal */async _finalizeEnroll(e,t,n){return t5(void 0!==this.secret,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaEnrollment:finalize"/* Endpoint.FINALIZE_MFA_ENROLLMENT */,no(e,{idToken:t,displayName:n,totpVerificationInfo:this.secret._makeTotpVerificationInfo(this.otp)}))}/** @internal */async _finalizeSignIn(e,t){t5(void 0!==this.enrollmentId&&void 0!==this.otp,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */);let n={verificationCode:this.otp};return ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaSignIn:finalize"/* Endpoint.FINALIZE_MFA_SIGN_IN */,no(e,{mfaPendingCredential:t,mfaEnrollmentId:this.enrollmentId,totpVerificationInfo:n}))}}/**
  * Provider for generating a {@link TotpMultiFactorAssertion}.
  *
  * Stores the shared secret key and other parameters to generate time-based OTPs.
  * Implements methods to retrieve the shared secret key and generate a QR code URL.
  * @public
- */class iI{// The public members are declared outside the constructor so the docs can be generated.
-constructor(e,t,n,r,i,a,o){this.sessionInfo=a,this.auth=o,this.secretKey=e,this.hashingAlgorithm=t,this.codeLength=n,this.codeIntervalSeconds=r,this.enrollmentCompletionDeadline=i}/** @internal */static _fromStartTotpMfaEnrollmentResponse(e,t){return new iI(e.totpSessionInfo.sharedSecretKey,e.totpSessionInfo.hashingAlgorithm,e.totpSessionInfo.verificationCodeLength,e.totpSessionInfo.periodSec,new Date(e.totpSessionInfo.finalizeEnrollmentTime).toUTCString(),e.totpSessionInfo.sessionInfo,t)}/** @internal */_makeTotpVerificationInfo(e){return{sessionInfo:this.sessionInfo,verificationCode:e}}/**
+ */class iE{// The public members are declared outside the constructor so the docs can be generated.
+constructor(e,t,n,r,i,a,o){this.sessionInfo=a,this.auth=o,this.secretKey=e,this.hashingAlgorithm=t,this.codeLength=n,this.codeIntervalSeconds=r,this.enrollmentCompletionDeadline=i}/** @internal */static _fromStartTotpMfaEnrollmentResponse(e,t){return new iE(e.totpSessionInfo.sharedSecretKey,e.totpSessionInfo.hashingAlgorithm,e.totpSessionInfo.verificationCodeLength,e.totpSessionInfo.periodSec,new Date(e.totpSessionInfo.finalizeEnrollmentTime).toUTCString(),e.totpSessionInfo.sessionInfo,t)}/** @internal */_makeTotpVerificationInfo(e){return{sessionInfo:this.sessionInfo,verificationCode:e}}/**
      * Returns a QR code URL as described in
      * https://github.com/google/google-authenticator/wiki/Key-Uri-Format
      * This can be displayed to the user as a QR code to be scanned into a TOTP app like Google Authenticator.
@@ -2797,7 +2808,7 @@ constructor(e,t,n,r,i,a,o){this.sessionInfo=a,this.auth=o,this.secretKey=e,this.
      * @param accountName the name of the account/app along with a user identifier.
      * @param issuer issuer of the TOTP (likely the app name).
      * @returns A QR code URL string.
-     */generateQrCodeUrl(e,t){var n;let r=!1;return(iC(e)||iC(t))&&(r=!0),r&&(iC(e)&&(e=(null===(n=this.auth.currentUser)||void 0===n?void 0:n.email)||"unknownuser"),iC(t)&&(t=this.auth.name)),`otpauth://totp/${t}:${e}?secret=${this.secretKey}&issuer=${t}&algorithm=${this.hashingAlgorithm}&digits=${this.codeLength}`}}/** @internal */function iC(e){return void 0===e||(null==e?void 0:e.length)===0}var iT="@firebase/auth",ix="1.3.0";/**
+     */generateQrCodeUrl(e,t){var n;let r=!1;return(iI(e)||iI(t))&&(r=!0),r&&(iI(e)&&(e=(null===(n=this.auth.currentUser)||void 0===n?void 0:n.email)||"unknownuser"),iI(t)&&(t=this.auth.name)),`otpauth://totp/${t}:${e}?secret=${this.secretKey}&issuer=${t}&algorithm=${this.hashingAlgorithm}&digits=${this.codeLength}`}}/** @internal */function iI(e){return void 0===e||(null==e?void 0:e.length)===0}var iC="@firebase/auth",iT="1.3.2";/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2812,8 +2823,8 @@ constructor(e,t,n,r,i,a,o){this.sessionInfo=a,this.auth=o,this.secretKey=e,this.
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class iN{constructor(e){this.auth=e,this.internalListeners=new Map}getUid(){var e;return this.assertAuthConfigured(),(null===(e=this.auth.currentUser)||void 0===e?void 0:e.uid)||null}async getToken(e){if(this.assertAuthConfigured(),await this.auth._initializationPromise,!this.auth.currentUser)return null;let t=await this.auth.currentUser.getIdToken(e);return{accessToken:t}}addAuthTokenListener(e){if(this.assertAuthConfigured(),this.internalListeners.has(e))return;let t=this.auth.onIdTokenChanged(t=>{e((null==t?void 0:t.stsTokenManager.accessToken)||null)});this.internalListeners.set(e,t),this.updateProactiveRefresh()}removeAuthTokenListener(e){this.assertAuthConfigured();let t=this.internalListeners.get(e);t&&(this.internalListeners.delete(e),t(),this.updateProactiveRefresh())}assertAuthConfigured(){nt(this.auth._initializationPromise,"dependent-sdk-initialized-before-auth"/* AuthErrorCode.DEPENDENT_SDK_INIT_BEFORE_AUTH */)}updateProactiveRefresh(){this.internalListeners.size>0?this.auth._startProactiveRefresh():this.auth._stopProactiveRefresh()}}const iP=e2("authIdTokenMaxAge")||300;let iR=null;const iO=e=>async t=>{let n=t&&await t.getIdTokenResult(),r=n&&(new Date().getTime()-Date.parse(n.issuedAtTime))/1e3;if(r&&r>iP)return;// Specifically trip null => undefined when logged out, to delete any existing cookie
-    let i=null==n?void 0:n.token;iR!==i&&(iR=i,await fetch(e,{method:i?"POST":"DELETE",headers:i?{Authorization:`Bearer ${i}`}:{}}))};h="Browser"/* ClientPlatform.BROWSER */,tj(new to("auth"/* _ComponentName.AUTH */,(e,{options:t})=>{let n=e.getProvider("app").getImmediate(),r=e.getProvider("heartbeat"),i=e.getProvider("app-check-internal"),{apiKey:a,authDomain:o}=n.options;nt(a&&!a.includes(":"),"invalid-api-key"/* AuthErrorCode.INVALID_API_KEY */,{appName:n.name});let s={apiKey:a,authDomain:o,clientPlatform:h,apiHost:"identitytoolkit.googleapis.com"/* DefaultConfig.API_HOST */,tokenApiHost:"securetoken.googleapis.com"/* DefaultConfig.TOKEN_API_HOST */,apiScheme:"https"/* DefaultConfig.API_SCHEME */,sdkClientVersion:nQ(h)},l=new nX(n,r,i,s);return function(e,t){let n=(null==t?void 0:t.persistence)||[],r=(Array.isArray(n)?n:[n]).map(nD);(null==t?void 0:t.errorMap)&&e._updateErrorMap(t.errorMap),// This promise is intended to float; auth initialization happens in the
+ */class ix{constructor(e){this.auth=e,this.internalListeners=new Map}getUid(){var e;return this.assertAuthConfigured(),(null===(e=this.auth.currentUser)||void 0===e?void 0:e.uid)||null}async getToken(e){if(this.assertAuthConfigured(),await this.auth._initializationPromise,!this.auth.currentUser)return null;let t=await this.auth.currentUser.getIdToken(e);return{accessToken:t}}addAuthTokenListener(e){if(this.assertAuthConfigured(),this.internalListeners.has(e))return;let t=this.auth.onIdTokenChanged(t=>{e((null==t?void 0:t.stsTokenManager.accessToken)||null)});this.internalListeners.set(e,t),this.updateProactiveRefresh()}removeAuthTokenListener(e){this.assertAuthConfigured();let t=this.internalListeners.get(e);t&&(this.internalListeners.delete(e),t(),this.updateProactiveRefresh())}assertAuthConfigured(){t5(this.auth._initializationPromise,"dependent-sdk-initialized-before-auth"/* AuthErrorCode.DEPENDENT_SDK_INIT_BEFORE_AUTH */)}updateProactiveRefresh(){this.internalListeners.size>0?this.auth._startProactiveRefresh():this.auth._stopProactiveRefresh()}}const iN=e0("authIdTokenMaxAge")||300;let iP=null;const iR=e=>async t=>{let n=t&&await t.getIdTokenResult(),r=n&&(new Date().getTime()-Date.parse(n.issuedAtTime))/1e3;if(r&&r>iN)return;// Specifically trip null => undefined when logged out, to delete any existing cookie
+    let i=null==n?void 0:n.token;iP!==i&&(iP=i,await fetch(e,{method:i?"POST":"DELETE",headers:i?{Authorization:`Bearer ${i}`}:{}}))};h="Browser"/* ClientPlatform.BROWSER */,tA(new ti("auth"/* _ComponentName.AUTH */,(e,{options:t})=>{let n=e.getProvider("app").getImmediate(),r=e.getProvider("heartbeat"),i=e.getProvider("app-check-internal"),{apiKey:a,authDomain:o}=n.options;t5(a&&!a.includes(":"),"invalid-api-key"/* AuthErrorCode.INVALID_API_KEY */,{appName:n.name});let s={apiKey:a,authDomain:o,clientPlatform:h,apiHost:"identitytoolkit.googleapis.com"/* DefaultConfig.API_HOST */,tokenApiHost:"securetoken.googleapis.com"/* DefaultConfig.TOKEN_API_HOST */,apiScheme:"https"/* DefaultConfig.API_SCHEME */,sdkClientVersion:nK(h)},l=new nJ(n,r,i,s);return function(e,t){let n=(null==t?void 0:t.persistence)||[],r=(Array.isArray(n)?n:[n]).map(nO);(null==t?void 0:t.errorMap)&&e._updateErrorMap(t.errorMap),// This promise is intended to float; auth initialization happens in the
 // background, meanwhile the auth object may be used by the app.
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 e._initializeWithPersistence(r,null==t?void 0:t.popupRedirectResolver)}(l,t),l},"PUBLIC"/* ComponentType.PUBLIC */)/**
@@ -2822,7 +2833,7 @@ e._initializeWithPersistence(r,null==t?void 0:t.popupRedirectResolver)}(l,t),l},
          */.setInstantiationMode("EXPLICIT"/* InstantiationMode.EXPLICIT */)/**
          * Because all firebase products that depend on auth depend on auth-internal directly,
          * we need to initialize auth-internal after auth is initialized to make it available to other firebase products.
-         */.setInstanceCreatedCallback((e,t,n)=>{let r=e.getProvider("auth-internal"/* _ComponentName.AUTH_INTERNAL */);r.initialize()})),tj(new to("auth-internal"/* _ComponentName.AUTH_INTERNAL */,e=>{let t=ta(e.getProvider("auth"/* _ComponentName.AUTH */).getImmediate());return new iN(t)},"PRIVATE"/* ComponentType.PRIVATE */).setInstantiationMode("EXPLICIT"/* InstantiationMode.EXPLICIT */)),t$(iT,ix,/**
+         */.setInstanceCreatedCallback((e,t,n)=>{let r=e.getProvider("auth-internal"/* _ComponentName.AUTH_INTERNAL */);r.initialize()})),tA(new ti("auth-internal"/* _ComponentName.AUTH_INTERNAL */,e=>{let t=tr(e.getProvider("auth"/* _ComponentName.AUTH */).getImmediate());return new ix(t)},"PRIVATE"/* ComponentType.PRIVATE */).setInstantiationMode("EXPLICIT"/* InstantiationMode.EXPLICIT */)),tV(iC,iT,/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2837,7 +2848,7 @@ e._initializeWithPersistence(r,null==t?void 0:t.popupRedirectResolver)}(l,t),l},
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function(e){switch(e){case"Node"/* ClientPlatform.NODE */:return"node";case"ReactNative"/* ClientPlatform.REACT_NATIVE */:return"rn";case"Worker"/* ClientPlatform.WORKER */:return"webworker";case"Cordova"/* ClientPlatform.CORDOVA */:return"cordova";default:return}}(h)),t$(iT,ix,"esm2017");const iL=tH({apiKey:"AIzaSyAC-lbWPT-60lPwbJGBMKp_1mLKWCljW4A",authDomain:"hnews-f845a.firebaseapp.com",projectId:"hnews-f845a",storageBucket:"hnews-f845a.appspot.com",messagingSenderId:"734364993587",appId:"1:734364993587:web:f0020375ba6ff35b8efb46"}),iD=function(e){let t=/**
+ */function(e){switch(e){case"Node"/* ClientPlatform.NODE */:return"node";case"ReactNative"/* ClientPlatform.REACT_NATIVE */:return"rn";case"Worker"/* ClientPlatform.WORKER */:return"webworker";case"Cordova"/* ClientPlatform.CORDOVA */:return"cordova";default:return}}(h)),tV(iC,iT,"esm2017");const iO=tF({apiKey:"AIzaSyAC-lbWPT-60lPwbJGBMKp_1mLKWCljW4A",authDomain:"hnews-f845a.firebaseapp.com",projectId:"hnews-f845a",storageBucket:"hnews-f845a.appspot.com",messagingSenderId:"734364993587",appId:"1:734364993587:web:f0020375ba6ff35b8efb46"}),iL=function(e){let t=/**
  * Returns the Auth instance associated with the provided {@link @firebase/app#FirebaseApp}.
  * If no instance exists, initializes an Auth instance with platform-specific default dependencies.
  *
@@ -2872,7 +2883,7 @@ e._initializeWithPersistence(r,null==t?void 0:t.popupRedirectResolver)}(l,t),l},
  *   If no app name is provided, the default app is returned.
  *
  * @public
- */function(e=tL){let t=tA.get(e);if(!t&&e===tL&&e1())return tH();if(!t)throw tz.create("no-app"/* AppError.NO_APP */,{appName:e});return t}()){let t=tU(e,"auth");if(t.isInitialized())return t.getImmediate();let n=/**
+ */function(e=tR){let t=tL.get(e);if(!t&&e===tR&&eZ())return tF();if(!t)throw tj.create("no-app"/* AppError.NO_APP */,{appName:e});return t}()){let t=tM(e,"auth");if(t.isInitialized())return t.getImmediate();let n=/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2911,7 +2922,7 @@ e._initializeWithPersistence(r,null==t?void 0:t.popupRedirectResolver)}(l,t),l},
  * ```
  *
  * @public
- */function(e,t){let n=tU(e,"auth");if(n.isInitialized()){let e=n.getImmediate(),r=n.getOptions();if(e9(r,null!=t?t:{}))return e;t5(e,"already-initialized"/* AuthErrorCode.ALREADY_INITIALIZED */)}let r=n.initialize({options:t});return r}(e,{popupRedirectResolver:i_,persistence:[rB,rT,rx]}),r=e2("authTokenSyncURL");if(r){let e=iO(r);ta(n).beforeAuthStateChanged(e,()=>e(n.currentUser)),ta(n).onIdTokenChanged(t=>e(t),void 0,void 0)}let i=e0("auth");return i&&/**
+ */function(e,t){let n=tM(e,"auth");if(n.isInitialized()){let e=n.getImmediate(),r=n.getOptions();if(e8(r,null!=t?t:{}))return e;t3(e,"already-initialized"/* AuthErrorCode.ALREADY_INITIALIZED */)}let r=n.initialize({options:t});return r}(e,{popupRedirectResolver:iw,persistence:[r$,rC,rT]}),r=e0("authTokenSyncURL");if(r){let e=iR(r);tr(n).beforeAuthStateChanged(e,()=>e(n.currentUser)),tr(n).onIdTokenChanged(t=>e(t),void 0,void 0)}let i=eX("auth");return i&&/**
  * Changes the {@link Auth} instance to communicate with the Firebase Auth Emulator, instead of production
  * Firebase Auth services.
  *
@@ -2932,24 +2943,24 @@ e._initializeWithPersistence(r,null==t?void 0:t.popupRedirectResolver)}(l,t),l},
  * `true` to disable the warning banner attached to the DOM.
  *
  * @public
- */function(e,t,n){let r=ta(e);nt(r._canInitEmulator,r,"emulator-config-failed"/* AuthErrorCode.EMULATOR_CONFIG_FAILED */),nt(/^https?:\/\//.test(t),r,"invalid-emulator-scheme"/* AuthErrorCode.INVALID_EMULATOR_SCHEME */);let i=!!(null==n?void 0:n.disableWarnings),a=n4(t),{host:o,port:s}=function(e){let t=n4(e),n=/(\/\/)?([^?#/]+)/.exec(e.substr(t.length));if(!n)return{host:"",port:null};let r=n[2].split("@").pop()||"",i=/^(\[[^\]]+\])(:|$)/.exec(r);// Strip out "username:password@".
-if(i){let e=i[1];return{host:e,port:n6(r.substr(e.length+1))}}{let[e,t]=r.split(":");return{host:e,port:n6(t)}}}(t),l=null===s?"":`:${s}`;// Always replace path with "/" (even if input url had no path at all, or had a different one).
-r.config.emulator={url:`${a}//${o}${l}/`},r.settings.appVerificationDisabledForTesting=!0,r.emulatorConfig=Object.freeze({host:o,port:s,protocol:a.replace(":",""),options:Object.freeze({disableWarnings:i})}),i||function(){function e(){let e=document.createElement("p"),t=e.style;e.innerText="Running in emulator mode. Do not use with production credentials.",t.position="fixed",t.width="100%",t.backgroundColor="#ffffff",t.border=".1em solid #000000",t.color="#b50000",t.bottom="0px",t.left="0px",t.margin="0px",t.zIndex="10000",t.textAlign="center",e.classList.add("firebase-emulator-warning"),document.body.appendChild(e)}"undefined"!=typeof console&&"function"==typeof console.info&&console.info("WARNING: You are using the Auth Emulator, which is intended for local testing only.  Do not use with production credentials."),"undefined"!=typeof window&&"undefined"!=typeof document&&("loading"===document.readyState?window.addEventListener("DOMContentLoaded",e):e())}()}(n,`http://${i}`),n}(e);return{signIn:async function(){let e=new rm;e.setCustomParameters({prompt:"select_account"});try{let n=await r9(t,e,void 0),r=n.user;console.log(r.displayName,r.email,r.photoURL)}catch(n){let e=n.code,t=n.message;console.log(e,t)}},signOut:function(){ta(t).signOut()},onAuthStateChanged:function(e){return ta(t).onAuthStateChanged(e,void 0,void 0)}}}(iL),iA=iD.signIn,iM=iD.signOut,ij=iD.onAuthStateChanged;var D=P("6SgHj");const iU=function(){let e={};return{get:async function(t){return void 0!==e[t]||(e[t]=await (await fetch(`https://hacker-news.firebaseio.com/v0/user/${t}.json`)).json()),e[t]}}}(),iz=function(e){let t=/*@__PURE__*/r(D).useRef(null);return /*@__PURE__*/r(D).useEffect(function(){if(void 0===e)return;let n=new bootstrap.Popover(t.current,{content:`
+ */function(e,t,n){let r=tr(e);t5(r._canInitEmulator,r,"emulator-config-failed"/* AuthErrorCode.EMULATOR_CONFIG_FAILED */),t5(/^https?:\/\//.test(t),r,"invalid-emulator-scheme"/* AuthErrorCode.INVALID_EMULATOR_SCHEME */);let i=!!(null==n?void 0:n.disableWarnings),a=n3(t),{host:o,port:s}=function(e){let t=n3(e),n=/(\/\/)?([^?#/]+)/.exec(e.substr(t.length));if(!n)return{host:"",port:null};let r=n[2].split("@").pop()||"",i=/^(\[[^\]]+\])(:|$)/.exec(r);// Strip out "username:password@".
+if(i){let e=i[1];return{host:e,port:n4(r.substr(e.length+1))}}{let[e,t]=r.split(":");return{host:e,port:n4(t)}}}(t),l=null===s?"":`:${s}`;// Always replace path with "/" (even if input url had no path at all, or had a different one).
+r.config.emulator={url:`${a}//${o}${l}/`},r.settings.appVerificationDisabledForTesting=!0,r.emulatorConfig=Object.freeze({host:o,port:s,protocol:a.replace(":",""),options:Object.freeze({disableWarnings:i})}),i||function(){function e(){let e=document.createElement("p"),t=e.style;e.innerText="Running in emulator mode. Do not use with production credentials.",t.position="fixed",t.width="100%",t.backgroundColor="#ffffff",t.border=".1em solid #000000",t.color="#b50000",t.bottom="0px",t.left="0px",t.margin="0px",t.zIndex="10000",t.textAlign="center",e.classList.add("firebase-emulator-warning"),document.body.appendChild(e)}"undefined"!=typeof console&&"function"==typeof console.info&&console.info("WARNING: You are using the Auth Emulator, which is intended for local testing only.  Do not use with production credentials."),"undefined"!=typeof window&&"undefined"!=typeof document&&("loading"===document.readyState?window.addEventListener("DOMContentLoaded",e):e())}()}(n,`http://${i}`),n}(e);return{signIn:async function(){let e=new rp;e.setCustomParameters({prompt:"select_account"});try{let n=await r5(t,e,void 0),r=n.user;console.log(r.displayName,r.email,r.photoURL)}catch(n){let e=n.code,t=n.message;console.log(e,t)}},signOut:function(){tr(t).signOut()},onAuthStateChanged:function(e){return tr(t).onAuthStateChanged(e,void 0,void 0)}}}(iO),iD=iL.signIn,iA=iL.signOut,iM=iL.onAuthStateChanged;var D=P("6SgHj");const ij=function(){let e={};return{get:async function(t){return void 0!==e[t]||(e[t]=await (await fetch(`https://hacker-news.firebaseio.com/v0/user/${t}.json`)).json()),e[t]}}}(),iU=function(e){let t=/*@__PURE__*/r(D).useRef(null);return /*@__PURE__*/r(D).useEffect(function(){if(void 0===e)return;let n=new bootstrap.Popover(t.current,{content:`
                 <div class="spinner-grow spinner-grow-sm" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
-            `,html:!0,placement:"auto",trigger:"click hover"}),r=async function(){let t=await iU.get(e),r=`
+            `,html:!0,placement:"auto",trigger:"click hover"}),r=async function(){let t=await ij.get(e),r=`
                 <p class="fw-lighter">
                     <small>
-                        <em title=${iV(1e3*t.created)}>${iF(1e3*t.created)}</em>
+                        <em title=${iF(1e3*t.created)}>${iz(1e3*t.created)}</em>
                         <br />
                         ${void 0!==t.about?t.about:""}
                     </small>
                 </p>
             `;null!==n.tip&&(n.tip.getElementsByClassName("popover-body")[0].innerHTML=r)};return t.current.addEventListener("inserted.bs.popover",r),function(){// domEl.current.removeEventListener('inserted.bs.popover', listener);
-n.dispose()}},[]),t},iF=function(e,t=!1){let n;return t?(n=new Date(0)).setUTCSeconds(e):n=new Date(e),/*@__PURE__*/r(eP).relativeTime(n)},iV=function(e,t=!1){let n;return t?(n=new Date(0)).setUTCSeconds(e):n=new Date(e),n.toLocaleString("en-US",{hour12:!1})};(p=C||(C={})).DANGER="danger",p.WARNING="warning",p.SUCCESS="success",p.PRIMARY="primary",p.INFO="info",p.SECONDARY="secondary";const iH=function({score:e}){return/*#__PURE__*/(0,O.jsx)("span",{className:`badge bg-${e>=3200?"danger":e>=1600?"warning":e>=800?"success":e>=400?"primary":e>=200?"info":"secondary"}`,children:e})},i$=function(){let[e,t]=/*@__PURE__*/r(D).useState(null);return /*@__PURE__*/r(D).useEffect(function(){return ij(t)},[]),e},iB=function({user:e}){return null!==e?/*#__PURE__*/(0,O.jsxs)("button",{className:"btn btn-outline-danger",onClick:function(e){e.preventDefault(),iM()},children:[/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-box-arrow-in-left"})," ",/*#__PURE__*/(0,O.jsx)("em",{children:e.displayName})]}):/*#__PURE__*/(0,O.jsx)("button",{className:"btn btn-outline-success",onClick:function(e){e.preventDefault(),iA()},children:/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-box-arrow-in-right"})})},iW=function(){return/*#__PURE__*/(0,O.jsx)("div",{className:"d-flex justify-content-center",children:/*#__PURE__*/(0,O.jsx)("div",{className:"spinner-border",style:{width:"3rem",height:"3rem"},role:"status",children:/*#__PURE__*/(0,O.jsx)("span",{className:"visually-hidden",children:"Loading..."})})})},iK=function({item:e}){let t=new URL("https://twitter.com/intent/tweet");return t.searchParams.append("text",e.title),t.searchParams.append("url",null!==e.url?e.url:`https://news.ycombinator.com/item?id=${e.objectID}`),t.searchParams.append("hashtags","hackernews"),/*#__PURE__*/(0,O.jsx)("a",{href:t.href,children:/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-twitter"})})};P("6SgHj");const iq=function({to:e,disabled:t,children:n}){return t?/*#__PURE__*/(0,O.jsx)(ex,{to:`/${e}`,style:{pointerEvents:"none"},children:n}):/*#__PURE__*/(0,O.jsx)(ex,{to:e,children:n})},iQ=function({item:e}){return/*#__PURE__*/(0,O.jsx)(iq,{to:`/${e.objectID}`,disabled:null===e.num_comments,children:/*#__PURE__*/(0,O.jsxs)("span",{className:"btn btn-primary btn-sm position-relative me-4",children:[/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-people-fill"}),/*#__PURE__*/(0,O.jsx)("span",{className:"position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger",children:e.num_comments})]})})},iG=function({item:e}){let t=/*#__PURE__*/(0,O.jsx)("span",{children:e.url});if(void 0!==e.url){let n=e.url.split("/"),r=n.slice(0,2).join("/"),i=n[2],a=n.slice(3).join("/");t=/*#__PURE__*/(0,O.jsxs)("span",{children:[r,"/",/*#__PURE__*/(0,O.jsx)("strong",{children:i}),"/",a]})}return t},iJ=function({item:e}){return/*#__PURE__*/(0,O.jsxs)(O.Fragment,{children:[null!==e.story_text&&/*#__PURE__*/(0,O.jsx)("p",{children:/*#__PURE__*/(0,O.jsx)("em",{dangerouslySetInnerHTML:{__html:e.story_text}})}),/*#__PURE__*/(0,O.jsx)("p",{className:"card-text text-truncate",children:/*#__PURE__*/(0,O.jsx)("a",{href:e.url,target:"_blank",children:/*#__PURE__*/(0,O.jsx)(iG,{item:e})})})]})},iY=function({item:e,inModal:t}){let n=iz(e.author);return/*#__PURE__*/(0,O.jsx)("div",{className:"card text-dark bg-light mb-1 shadow rounded",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"card-body",children:[/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)("strong",{className:"card-title",children:e.title}),/*#__PURE__*/(0,O.jsx)("span",{className:"float-end",children:/*#__PURE__*/(0,O.jsx)(iH,{score:e.points})})]}),/*#__PURE__*/(0,O.jsxs)("p",{className:"card-subtitle mb-2 text-muted",children:[/*#__PURE__*/(0,O.jsx)("span",{ref:n,style:{cursor:"pointer"},children:e.author}),/*#__PURE__*/(0,O.jsx)("em",{className:"float-end",title:iV(e.created_at),children:iF(e.created_at)})]}),/*#__PURE__*/(0,O.jsx)(iJ,{item:e}),/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)(iK,{item:e}),/*#__PURE__*/(0,O.jsx)("span",{className:"float-end",children:/*#__PURE__*/(0,O.jsx)(iQ,{item:e})})]})]})})};P("6SgHj");var D=(P("6SgHj"),P("6SgHj"),P("6SgHj")),iX={};iX=P("286J8");var D=P("6SgHj");// Shared state between server components and client components
-const iZ=()=>{},i0=/*#__NOINLINE__*/iZ(),i1=Object,i2=e=>e===i0,i3=e=>"function"==typeof e,i4=(e,t)=>({...e,...t}),i6=e=>i3(e.then),i8=new WeakMap;// counter of the key
-let i5=0;// A stable hash implementation that supports:
+n.dispose()}},[]),t},iz=function(e,t=!1){let n;return t?(n=new Date(0)).setUTCSeconds(e):n=new Date(e),/*@__PURE__*/r(ex).relativeTime(n)},iF=function(e,t=!1){let n;return t?(n=new Date(0)).setUTCSeconds(e):n=new Date(e),n.toLocaleString("en-US",{hour12:!1})};(p=C||(C={})).DANGER="danger",p.WARNING="warning",p.SUCCESS="success",p.PRIMARY="primary",p.INFO="info",p.SECONDARY="secondary";const iV=function({score:e}){return/*#__PURE__*/(0,O.jsx)("span",{className:`badge bg-${e>=3200?"danger":e>=1600?"warning":e>=800?"success":e>=400?"primary":e>=200?"info":"secondary"}`,children:e})},iH=function(){let[e,t]=/*@__PURE__*/r(D).useState(null);return /*@__PURE__*/r(D).useEffect(function(){return iM(t)},[]),e},i$=function({user:e}){return null!==e?/*#__PURE__*/(0,O.jsxs)("button",{className:"btn btn-outline-danger",onClick:function(e){e.preventDefault(),iA()},children:[/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-box-arrow-in-left"})," ",/*#__PURE__*/(0,O.jsx)("em",{children:e.displayName})]}):/*#__PURE__*/(0,O.jsx)("button",{className:"btn btn-outline-success",onClick:function(e){e.preventDefault(),iD()},children:/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-box-arrow-in-right"})})},iB=function(){return/*#__PURE__*/(0,O.jsx)("div",{className:"d-flex justify-content-center",children:/*#__PURE__*/(0,O.jsx)("div",{className:"spinner-border",style:{width:"3rem",height:"3rem"},role:"status",children:/*#__PURE__*/(0,O.jsx)("span",{className:"visually-hidden",children:"Loading..."})})})},iW=function({item:e}){let t=new URL("https://twitter.com/intent/tweet");return t.searchParams.append("text",e.title),t.searchParams.append("url",null!==e.url?e.url:`https://news.ycombinator.com/item?id=${e.objectID}`),t.searchParams.append("hashtags","hackernews"),/*#__PURE__*/(0,O.jsx)("a",{href:t.href,children:/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-twitter"})})};P("6SgHj");const iK=function({to:e,disabled:t,children:n}){return t?/*#__PURE__*/(0,O.jsx)(eC,{to:`/${e}`,style:{pointerEvents:"none"},children:n}):/*#__PURE__*/(0,O.jsx)(eC,{to:e,children:n})},iq=function({item:e}){return/*#__PURE__*/(0,O.jsx)(iK,{to:`/${e.objectID}`,disabled:null===e.num_comments,children:/*#__PURE__*/(0,O.jsxs)("span",{className:"btn btn-primary btn-sm position-relative me-4",children:[/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-people-fill"}),/*#__PURE__*/(0,O.jsx)("span",{className:"position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger",children:e.num_comments})]})})},iQ=function({item:e}){let t=/*#__PURE__*/(0,O.jsx)("span",{children:e.url});if(void 0!==e.url){let n=e.url.split("/"),r=n.slice(0,2).join("/"),i=n[2],a=n.slice(3).join("/");t=/*#__PURE__*/(0,O.jsxs)("span",{children:[r,"/",/*#__PURE__*/(0,O.jsx)("strong",{children:i}),"/",a]})}return t},iG=function({item:e}){return/*#__PURE__*/(0,O.jsxs)(O.Fragment,{children:[null!==e.story_text&&/*#__PURE__*/(0,O.jsx)("p",{children:/*#__PURE__*/(0,O.jsx)("em",{dangerouslySetInnerHTML:{__html:e.story_text}})}),/*#__PURE__*/(0,O.jsx)("p",{className:"card-text text-truncate",children:/*#__PURE__*/(0,O.jsx)("a",{href:e.url,target:"_blank",children:/*#__PURE__*/(0,O.jsx)(iQ,{item:e})})})]})},iJ=function({item:e,inModal:t}){let n=iU(e.author);return/*#__PURE__*/(0,O.jsx)("div",{className:"card text-dark bg-light mb-1 shadow rounded",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"card-body",children:[/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)("strong",{className:"card-title",children:e.title}),/*#__PURE__*/(0,O.jsx)("span",{className:"float-end",children:/*#__PURE__*/(0,O.jsx)(iV,{score:e.points})})]}),/*#__PURE__*/(0,O.jsxs)("p",{className:"card-subtitle mb-2 text-muted",children:[/*#__PURE__*/(0,O.jsx)("span",{ref:n,style:{cursor:"pointer"},children:e.author}),/*#__PURE__*/(0,O.jsx)("em",{className:"float-end",title:iF(e.created_at),children:iz(e.created_at)})]}),/*#__PURE__*/(0,O.jsx)(iG,{item:e}),/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)(iW,{item:e}),/*#__PURE__*/(0,O.jsx)("span",{className:"float-end",children:/*#__PURE__*/(0,O.jsx)(iq,{item:e})})]})]})})};P("6SgHj");var D=(P("6SgHj"),P("6SgHj"),P("6SgHj")),iY={};iY=P("286J8");var D=P("6SgHj");// Shared state between server components and client components
+const iX=()=>{},iZ=/*#__NOINLINE__*/iX(),i0=Object,i1=e=>e===iZ,i2=e=>"function"==typeof e,i3=(e,t)=>({...e,...t}),i4=e=>i2(e.then),i6=new WeakMap;// counter of the key
+let i8=0;// A stable hash implementation that supports:
 // - Fast and ensures unique hash properties
 // - Handles unserializable values
 // - Handles object key ordering
@@ -2957,41 +2968,41 @@ let i5=0;// A stable hash implementation that supports:
 //
 // This is not a serialization function, and the result is not guaranteed to be
 // parsable.
-const i9=e=>{let t,n;let r=typeof e,i=e&&e.constructor,a=i==Date;if(i1(e)!==e||a||i==RegExp)t=a?e.toJSON():"symbol"==r?e.toString():"string"==r?JSON.stringify(e):""+e;else{if(// Object/function, not null/date/regexp. Use WeakMap to store the id first.
+const i5=e=>{let t,n;let r=typeof e,i=e&&e.constructor,a=i==Date;if(i0(e)!==e||a||i==RegExp)t=a?e.toJSON():"symbol"==r?e.toString():"string"==r?JSON.stringify(e):""+e;else{if(// Object/function, not null/date/regexp. Use WeakMap to store the id first.
 // If it's already hashed, directly return the result.
-t=i8.get(e))return t;if(// Store the hash first for circular reference detection before entering the
+t=i6.get(e))return t;if(// Store the hash first for circular reference detection before entering the
 // recursive `stableHash` calls.
 // For other objects like set and map, we use this id directly as the hash.
-t=++i5+"~",i8.set(e,t),i==Array){for(n=0,// Array.
-t="@";n<e.length;n++)t+=i9(e[n])+",";i8.set(e,t)}if(i==i1){// Object, sort keys.
-t="#";let r=i1.keys(e).sort();for(;!i2(n=r.pop());)i2(e[n])||(t+=n+":"+i9(e[n])+",");i8.set(e,t)}}return t},i7=new WeakMap,ae={},at={},an="undefined",ar=typeof window!=an,ai=typeof document!=an,aa=()=>ar&&typeof window.requestAnimationFrame!=an,ao=(e,t)=>{let n=i7.get(e);return[// Getter
-()=>!i2(t)&&e.get(t)||ae,// Setter
-r=>{if(!i2(t)){let i=e.get(t);t in at||(at[t]=i),n[5](t,i4(i,r),i||ae)}},// Subscriber
+t=++i8+"~",i6.set(e,t),i==Array){for(n=0,// Array.
+t="@";n<e.length;n++)t+=i5(e[n])+",";i6.set(e,t)}if(i==i0){// Object, sort keys.
+t="#";let r=i0.keys(e).sort();for(;!i1(n=r.pop());)i1(e[n])||(t+=n+":"+i5(e[n])+",");i6.set(e,t)}}return t},i9=new WeakMap,i7={},ae={},at="undefined",an=typeof window!=at,ar=typeof document!=at,ai=()=>an&&typeof window.requestAnimationFrame!=at,aa=(e,t)=>{let n=i9.get(e);return[// Getter
+()=>!i1(t)&&e.get(t)||i7,// Setter
+r=>{if(!i1(t)){let i=e.get(t);t in ae||(ae[t]=i),n[5](t,i3(i,r),i||i7)}},// Subscriber
 n[6],// Get server cache snapshot
-()=>!i2(t)&&t in at?at[t]:!i2(t)&&e.get(t)||ae]}// export { UNDEFINED, OBJECT, isUndefined, isFunction, mergeObjects, isPromiseLike }
+()=>!i1(t)&&t in ae?ae[t]:!i1(t)&&e.get(t)||i7]}// export { UNDEFINED, OBJECT, isUndefined, isFunction, mergeObjects, isPromiseLike }
 ;/**
  * Due to the bug https://bugs.chromium.org/p/chromium/issues/detail?id=678075,
  * it's not reliable to detect if the browser is currently online or offline
  * based on `navigator.onLine`.
  * As a workaround, we always assume it's online on the first load, and change
  * the status upon `online` or `offline` events.
- */let as=!0;// For node and React Native, `add/removeEventListener` doesn't exist on window.
-const[al,au]=ar&&window.addEventListener?[window.addEventListener.bind(window),window.removeEventListener.bind(window)]:[iZ,iZ],ac={initFocus:e=>(ai&&document.addEventListener("visibilitychange",e),al("focus",e),()=>{ai&&document.removeEventListener("visibilitychange",e),au("focus",e)}),initReconnect:e=>{// revalidate on reconnected
-let t=()=>{as=!0,e()},n=()=>{as=!1};return al("online",t),al("offline",n),()=>{au("online",t),au("offline",n)}}},ad=!/*@__PURE__*/r(D).useId,af=!ar||"Deno"in window,ah=e=>aa()?window.requestAnimationFrame(e):setTimeout(e,1),ap=af?D.useEffect:D.useLayoutEffect,am="undefined"!=typeof navigator&&navigator.connection,ag=!af&&am&&(["slow-2g","2g"].includes(am.effectiveType)||am.saveData),av=e=>{if(i3(e))try{e=e()}catch(t){// dependencies not ready
+ */let ao=!0;// For node and React Native, `add/removeEventListener` doesn't exist on window.
+const[as,al]=an&&window.addEventListener?[window.addEventListener.bind(window),window.removeEventListener.bind(window)]:[iX,iX],au={initFocus:e=>(ar&&document.addEventListener("visibilitychange",e),as("focus",e),()=>{ar&&document.removeEventListener("visibilitychange",e),al("focus",e)}),initReconnect:e=>{// revalidate on reconnected
+let t=()=>{ao=!0,e()},n=()=>{ao=!1};return as("online",t),as("offline",n),()=>{al("online",t),al("offline",n)}}},ac=!/*@__PURE__*/r(D).useId,ad=!an||"Deno"in window,af=e=>ai()?window.requestAnimationFrame(e):setTimeout(e,1),ah=ad?D.useEffect:D.useLayoutEffect,ap="undefined"!=typeof navigator&&navigator.connection,am=!ad&&ap&&(["slow-2g","2g"].includes(ap.effectiveType)||ap.saveData),ag=e=>{if(i2(e))try{e=e()}catch(t){// dependencies not ready
 e=""}// Use the original key as the argument of fetcher. This can be a string or an
 // array of values.
 let t=e;return[// If key is not falsy, or not an empty array, hash it.
-e="string"==typeof e?e:(Array.isArray(e)?e.length:e)?i9(e):"",t]};// Global timestamp.
-let ay=0;const ab=()=>++ay;var aw={ERROR_REVALIDATE_EVENT:3,FOCUS_EVENT:0,MUTATE_EVENT:2,RECONNECT_EVENT:1};async function a_(...e){let[t,n,r,i]=e,a=i4({populateCache:!0,throwOnError:!0},"boolean"==typeof i?{revalidate:i}:i||{}),o=a.populateCache,s=a.rollbackOnError,l=a.optimisticData,u=!1!==a.revalidate,c=e=>"function"==typeof s?s(e):!1!==s,d=a.throwOnError;// If the second argument is a key filter, return the mutation results for all
+e="string"==typeof e?e:(Array.isArray(e)?e.length:e)?i5(e):"",t]};// Global timestamp.
+let av=0;const ay=()=>++av;var ab={ERROR_REVALIDATE_EVENT:3,FOCUS_EVENT:0,MUTATE_EVENT:2,RECONNECT_EVENT:1};async function aw(...e){let[t,n,r,i]=e,a=i3({populateCache:!0,throwOnError:!0},"boolean"==typeof i?{revalidate:i}:i||{}),o=a.populateCache,s=a.rollbackOnError,l=a.optimisticData,u=!1!==a.revalidate,c=e=>"function"==typeof s?s(e):!1!==s,d=a.throwOnError;// If the second argument is a key filter, return the mutation results for all
 // filtered keys.
-if(i3(n)){let e=[],r=t.keys();for(let i of r)!/^\$(inf|sub)\$/.test(i)&&n(t.get(i)._k)&&e.push(i);return Promise.all(e.map(f))}return f(n);async function f(n){let i;// Serialize key
-let[a]=av(n);if(!a)return;let[s,f]=ao(t,a),[h,p,m,g]=i7.get(t),v=()=>{let e=h[a];return u&&(// Invalidate the key by deleting the concurrent request markers so new
+if(i2(n)){let e=[],r=t.keys();for(let i of r)!/^\$(inf|sub)\$/.test(i)&&n(t.get(i)._k)&&e.push(i);return Promise.all(e.map(f))}return f(n);async function f(n){let i;// Serialize key
+let[a]=ag(n);if(!a)return;let[s,f]=aa(t,a),[h,p,m,g]=i9.get(t),v=()=>{let e=h[a];return u&&(// Invalidate the key by deleting the concurrent request markers so new
 // requests will not be deduped.
 delete m[a],delete g[a],e&&e[0])?e[0](2).then(()=>s().data):s().data};// If there is no new data provided, revalidate the key with current state.
-if(e.length<3)return v();let y=r,b=ab();p[a]=[b,0];let w=!i2(l),_=s(),k=_.data,S=_._c,E=i2(S)?k:S;if(w&&// When we set optimistic data, backup the current committedData data in `_c`.
-f({data:l=i3(l)?l(E,k):l,_c:E}),i3(y))try{y=y(E)}catch(e){// If it throws an error synchronously, we shouldn't update the cache.
+if(e.length<3)return v();let y=r,b=ay();p[a]=[b,0];let w=!i1(l),_=s(),k=_.data,S=_._c,E=i1(S)?k:S;if(w&&// When we set optimistic data, backup the current committedData data in `_c`.
+f({data:l=i2(l)?l(E,k):l,_c:E}),i2(y))try{y=y(E)}catch(e){// If it throws an error synchronously, we shouldn't update the cache.
 i=e}// `data` is a promise/thenable, resolve the final data first.
-if(y&&i6(y)){// Check if other mutations have occurred since we've started this mutation.
+if(y&&i4(y)){// Check if other mutations have occurred since we've started this mutation.
 // If there's a race we don't update cache or broadcast the change,
 // just return the data.
 if(// This means that the mutation is async, we need to check timestamps to
@@ -2999,44 +3010,44 @@ if(// This means that the mutation is async, we need to check timestamps to
 y=await y.catch(e=>{i=e}),b!==p[a][0]){if(i)throw i;return y}i&&w&&c(i)&&(// Rollback. Always populate the cache in this case but without
 // transforming the data.
 o=!0,// Reset data to be the latest committed data, and clear the `_c` value.
-f({data:E,_c:i0}))}// If we should write back the cache after request.
+f({data:E,_c:iZ}))}// If we should write back the cache after request.
 if(o&&!i){// Transform the result into data.
-if(i3(o)){let e=o(y,E);f({data:e,error:i0,_c:i0})}else f({data:y,error:i0,_c:i0})}// Throw error or return data
+if(i2(o)){let e=o(y,E);f({data:e,error:iZ,_c:iZ})}else f({data:y,error:iZ,_c:iZ})}// Throw error or return data
 if(// Reset the timestamp to mark the mutation has ended.
-p[a][1]=ab(),// Update existing SWR Hooks' internal states:
+p[a][1]=ay(),// Update existing SWR Hooks' internal states:
 Promise.resolve(v()).then(()=>{// The mutation and revalidation are ended, we can clear it since the data is
 // not an optimistic value anymore.
-f({_c:i0})}),i){if(d)throw i;return}return y}}const ak=(e,t)=>{for(let n in e)e[n][0]&&e[n][0](t)},aS=(e,t)=>{// The global state for a specific provider will be used to deduplicate
+f({_c:iZ})}),i){if(d)throw i;return}return y}}const a_=(e,t)=>{for(let n in e)e[n][0]&&e[n][0](t)},ak=(e,t)=>{// The global state for a specific provider will be used to deduplicate
 // requests and store listeners. As well as a mutate function that is bound to
 // the cache.
 // The provider's global state might be already initialized. Let's try to get the
 // global state associated with the provider first.
-if(!i7.has(e)){let n=i4(ac,t),r={},i=a_.bind(i0,e),a=iZ,o={},s=(e,t)=>{let n=o[e]||[];return o[e]=n,n.push(t),()=>n.splice(n.indexOf(t),1)},l=(t,n,r)=>{e.set(t,n);let i=o[t];if(i)for(let e of i)e(n,r)},u=()=>{if(!i7.has(e)&&(// Update the state if it's new, or if the provider has been extended.
-i7.set(e,[r,{},{},{},i,l,s]),!af)){// When listening to the native events for auto revalidations,
+if(!i9.has(e)){let n=i3(au,t),r={},i=aw.bind(iZ,e),a=iX,o={},s=(e,t)=>{let n=o[e]||[];return o[e]=n,n.push(t),()=>n.splice(n.indexOf(t),1)},l=(t,n,r)=>{e.set(t,n);let i=o[t];if(i)for(let e of i)e(n,r)},u=()=>{if(!i9.has(e)&&(// Update the state if it's new, or if the provider has been extended.
+i9.set(e,[r,{},{},{},i,l,s]),!ad)){// When listening to the native events for auto revalidations,
 // we intentionally put a delay (setTimeout) here to make sure they are
 // fired after immediate JavaScript executions, which can be
 // React's state updates.
 // This avoids some unnecessary revalidations such as
 // https://github.com/vercel/swr/issues/1680.
-let t=n.initFocus(setTimeout.bind(i0,ak.bind(i0,r,0))),i=n.initReconnect(setTimeout.bind(i0,ak.bind(i0,r,1)));a=()=>{t&&t(),i&&i(),// When un-mounting, we need to remove the cache provider from the state
+let t=n.initFocus(setTimeout.bind(iZ,a_.bind(iZ,r,0))),i=n.initReconnect(setTimeout.bind(iZ,a_.bind(iZ,r,1)));a=()=>{t&&t(),i&&i(),// When un-mounting, we need to remove the cache provider from the state
 // storage too because it's a side-effect. Otherwise, when re-mounting we
 // will not re-register those event listeners.
-i7.delete(e)}}};// This is a new provider, we need to initialize it and setup DOM events
+i9.delete(e)}}};// This is a new provider, we need to initialize it and setup DOM events
 // listeners for `focus` and `reconnect` actions.
 // We might want to inject an extra layer on top of `provider` in the future,
 // such as key serialization, auto GC, etc.
 // For now, it's just a `Map` interface without any modifications.
-return u(),[e,i,u,a]}return[e,i7.get(e)[4]]},[aE,aI]=aS(new Map),aC=i4({// events
-onLoadingSlow:iZ,onSuccess:iZ,onError:iZ,onErrorRetry:(e,t,n,r,i)=>{let a=n.errorRetryCount,o=i.retryCount,s=~~((Math.random()+.5)*(1<<(o<8?o:8)))*n.errorRetryInterval;(i2(a)||!(o>a))&&setTimeout(r,s,i)},onDiscarded:iZ,// switches
+return u(),[e,i,u,a]}return[e,i9.get(e)[4]]},[aS,aE]=ak(new Map),aI=i3({// events
+onLoadingSlow:iX,onSuccess:iX,onError:iX,onErrorRetry:(e,t,n,r,i)=>{let a=n.errorRetryCount,o=i.retryCount,s=~~((Math.random()+.5)*(1<<(o<8?o:8)))*n.errorRetryInterval;(i1(a)||!(o>a))&&setTimeout(r,s,i)},onDiscarded:iX,// switches
 revalidateOnFocus:!0,revalidateOnReconnect:!0,revalidateIfStale:!0,shouldRetryOnError:!0,// timeouts
-errorRetryInterval:ag?1e4:5e3,focusThrottleInterval:5e3,dedupingInterval:2e3,loadingTimeout:ag?5e3:3e3,compare:(e,t)=>i9(e)==i9(t),isPaused:()=>!1,cache:aE,mutate:aI,fallback:{}},{isOnline:()=>as,isVisible:()=>{let e=ai&&document.visibilityState;return i2(e)||"hidden"!==e}}),aT=(e,t)=>{// Need to create a new object to avoid mutating the original here.
-let n=i4(e,t);// If two configs are provided, merge their `use` and `fallback` options.
-if(t){let{use:r,fallback:i}=e,{use:a,fallback:o}=t;r&&a&&(n.use=r.concat(a)),i&&o&&(n.fallback=i4(i,o))}return n},ax=(0,D.createContext)({}),aN=ar&&window.__SWR_DEVTOOLS_USE__,aP=aN?window.__SWR_DEVTOOLS_USE__:[],aR=e=>i3(e[1])?[e[0],e[1],e[2]||{}]:[e[0],null,(null===e[1]?e[2]:e[1])||{}],aO=()=>i4(aC,(0,D.useContext)(ax)),aL=aP.concat(e=>(t,n,r)=>{// fetcher might be a sync function, so this should not be an async function
-    let i=n&&((...e)=>{let[r]=av(t),[,,,i]=i7.get(aE);if(r.startsWith("$inf$"))// handling of the PRELOAD cache happens there.
-    return n(...e);let a=i[r];return i2(a)?n(...e):(delete i[r],a)});return e(t,i,r)}),aD=(e,t,n)=>{let r=t[e]||(t[e]=[]);return r.push(n),()=>{let e=r.indexOf(n);e>=0&&(// O(1): faster than splice
-r[e]=r[r.length-1],r.pop())}};aN&&(window.__SWR_DEVTOOLS_REACT__=/*@__PURE__*/r(D));/// <reference types="react/experimental" />
-const aA=/*@__PURE__*/r(D).use||(e=>{if("pending"===e.status)throw e;if("fulfilled"===e.status)return e.value;if("rejected"===e.status)throw e.reason;throw e.status="pending",e.then(t=>{e.status="fulfilled",e.value=t},t=>{e.status="rejected",e.reason=t}),e}),aM={dedupe:!0};i1.defineProperty(e=>{let{value:t}=e,n=(0,D.useContext)(ax),r=i3(t),i=(0,D.useMemo)(()=>r?t(n):t,[r,n,t]),a=(0,D.useMemo)(()=>r?i:aT(n,i),[r,n,i]),o=i&&i.provider,s=(0,D.useRef)(i0);o&&!s.current&&(s.current=aS(o(a.cache||aE),i));let l=s.current;return l&&(a.cache=l[0],a.mutate=l[1]),// Unsubscribe events.
-ap(()=>{if(l)return l[2]&&l[2](),l[3]},[]),(0,D.createElement)(ax.Provider,i4(e,{value:a}))},"defaultValue",{value:aC});/**
+errorRetryInterval:am?1e4:5e3,focusThrottleInterval:5e3,dedupingInterval:2e3,loadingTimeout:am?5e3:3e3,compare:(e,t)=>i5(e)==i5(t),isPaused:()=>!1,cache:aS,mutate:aE,fallback:{}},{isOnline:()=>ao,isVisible:()=>{let e=ar&&document.visibilityState;return i1(e)||"hidden"!==e}}),aC=(e,t)=>{// Need to create a new object to avoid mutating the original here.
+let n=i3(e,t);// If two configs are provided, merge their `use` and `fallback` options.
+if(t){let{use:r,fallback:i}=e,{use:a,fallback:o}=t;r&&a&&(n.use=r.concat(a)),i&&o&&(n.fallback=i3(i,o))}return n},aT=(0,D.createContext)({}),ax=an&&window.__SWR_DEVTOOLS_USE__,aN=ax?window.__SWR_DEVTOOLS_USE__:[],aP=e=>i2(e[1])?[e[0],e[1],e[2]||{}]:[e[0],null,(null===e[1]?e[2]:e[1])||{}],aR=()=>i3(aI,(0,D.useContext)(aT)),aO=aN.concat(e=>(t,n,r)=>{// fetcher might be a sync function, so this should not be an async function
+    let i=n&&((...e)=>{let[r]=ag(t),[,,,i]=i9.get(aS);if(r.startsWith("$inf$"))// handling of the PRELOAD cache happens there.
+    return n(...e);let a=i[r];return i1(a)?n(...e):(delete i[r],a)});return e(t,i,r)}),aL=(e,t,n)=>{let r=t[e]||(t[e]=[]);return r.push(n),()=>{let e=r.indexOf(n);e>=0&&(// O(1): faster than splice
+r[e]=r[r.length-1],r.pop())}};ax&&(window.__SWR_DEVTOOLS_REACT__=/*@__PURE__*/r(D));/// <reference types="react/experimental" />
+const aD=/*@__PURE__*/r(D).use||(e=>{if("pending"===e.status)throw e;if("fulfilled"===e.status)return e.value;if("rejected"===e.status)throw e.reason;throw e.status="pending",e.then(t=>{e.status="fulfilled",e.value=t},t=>{e.status="rejected",e.reason=t}),e}),aA={dedupe:!0};i0.defineProperty(e=>{let{value:t}=e,n=(0,D.useContext)(aT),r=i2(t),i=(0,D.useMemo)(()=>r?t(n):t,[r,n,t]),a=(0,D.useMemo)(()=>r?i:aC(n,i),[r,n,i]),o=i&&i.provider,s=(0,D.useRef)(iZ);o&&!s.current&&(s.current=ak(o(a.cache||aS),i));let l=s.current;return l&&(a.cache=l[0],a.mutate=l[1]),// Unsubscribe events.
+ah(()=>{if(l)return l[2]&&l[2](),l[3]},[]),(0,D.createElement)(aT.Provider,i3(e,{value:a}))},"defaultValue",{value:aI});/**
  * A hook to fetch data.
  *
  * @link https://swr.vercel.app
@@ -3050,8 +3061,8 @@ ap(()=>{if(l)return l[2]&&l[2](),l[3]},[]),(0,D.createElement)(ax.Provider,i4(e,
  *   return <div>hello {data.name}!</div>
  * }
  * ```
- */const aj=(m=(e,t,n)=>{let{cache:r,compare:i,suspense:a,fallbackData:o,revalidateOnMount:s,revalidateIfStale:l,refreshInterval:u,refreshWhenHidden:c,refreshWhenOffline:d,keepPreviousData:f}=n,[h,p,m,g]=i7.get(r),[v,y]=av(e),b=(0,D.useRef)(!1),w=(0,D.useRef)(!1),_=(0,D.useRef)(v),k=(0,D.useRef)(t),S=(0,D.useRef)(n),E=()=>S.current,I=()=>E().isVisible()&&E().isOnline(),[C,T,x,N]=ao(r,v),P=(0,D.useRef)({}).current,R=i2(o)?n.fallback[v]:o,O=(e,t)=>{for(let n in P)if("data"===n){if(!i(e[n],t[n])&&(!i2(e[n])||!i(H,t[n])))return!1}else if(t[n]!==e[n])return!1;return!0},L=(0,D.useMemo)(()=>{let e=!!v&&!!t&&(i2(s)?!E().isPaused()&&!a&&(!!i2(l)||l):s),n=t=>{// We only select the needed fields from the state.
-let n=i4(t);return(delete n._k,e)?{isValidating:!0,isLoading:!0,...n}:n},r=C(),i=N(),o=n(r),u=r===i?o:n(i),c=o;return[()=>{let e=n(C()),t=O(e,c);return t?(// Mentally, we should always return the `memorizedSnapshot` here
+ */const aM=(m=(e,t,n)=>{let{cache:r,compare:i,suspense:a,fallbackData:o,revalidateOnMount:s,revalidateIfStale:l,refreshInterval:u,refreshWhenHidden:c,refreshWhenOffline:d,keepPreviousData:f}=n,[h,p,m,g]=i9.get(r),[v,y]=ag(e),b=(0,D.useRef)(!1),w=(0,D.useRef)(!1),_=(0,D.useRef)(v),k=(0,D.useRef)(t),S=(0,D.useRef)(n),E=()=>S.current,I=()=>E().isVisible()&&E().isOnline(),[C,T,x,N]=aa(r,v),P=(0,D.useRef)({}).current,R=i1(o)?n.fallback[v]:o,O=(e,t)=>{for(let n in P)if("data"===n){if(!i(e[n],t[n])&&(!i1(e[n])||!i(H,t[n])))return!1}else if(t[n]!==e[n])return!1;return!0},L=(0,D.useMemo)(()=>{let e=!!v&&!!t&&(i1(s)?!E().isPaused()&&!a&&(!!i1(l)||l):s),n=t=>{// We only select the needed fields from the state.
+let n=i3(t);return(delete n._k,e)?{isValidating:!0,isLoading:!0,...n}:n},r=C(),i=N(),o=n(r),u=r===i?o:n(i),c=o;return[()=>{let e=n(C()),t=O(e,c);return t?(// Mentally, we should always return the `memorizedSnapshot` here
 // as there's no change between the new and old snapshots.
 // However, since the `isEqual` function only compares selected fields,
 // the values of the unselected fields might be changed. That's
@@ -3062,19 +3073,19 @@ let n=i4(t);return(delete n._k,e)?{isValidating:!0,isLoading:!0,...n}:n},r=C(),i
 // even for the unselected fields, but only trigger re-renders when
 // the selected fields are changed.
 c.data=e.data,c.isLoading=e.isLoading,c.isValidating=e.isValidating,c.error=e.error,c):(c=e,e)},()=>u];// eslint-disable-next-line react-hooks/exhaustive-deps
-},[r,v]),A=(0,iX.useSyncExternalStore)((0,D.useCallback)(e=>x(v,(t,n)=>{O(n,t)||e()}),[r,v]),L[0],L[1]),M=!b.current,j=h[v]&&h[v].length>0,U=A.data,z=i2(U)?R:U,F=A.error,V=(0,D.useRef)(z),H=f?i2(U)?V.current:U:z,$=// if a key already has revalidators and also has error, we should not trigger revalidation
-(!j||!!i2(F))&&(M&&!i2(s)?s:!E().isPaused()&&(a?!i2(z)&&l:i2(z)||l)),B=!!(v&&t&&M&&$),W=i2(A.isValidating)?B:A.isValidating,K=i2(A.isLoading)?B:A.isLoading,q=(0,D.useCallback)(async e=>{let t,r;let a=k.current;if(!v||!a||w.current||E().isPaused())return!1;let o=!0,s=e||{},l=!m[v]||!s.dedupe,u=()=>ad?!w.current&&v===_.current&&b.current:v===_.current,c={isValidating:!1,isLoading:!1},d=()=>{T(c)},f=()=>{// Check if it's still the same request before deleting it.
-let e=m[v];e&&e[1]===r&&delete m[v]},g={isValidating:!0};i2(C().data)&&(g.isLoading=!0);try{// If there're other ongoing request(s), started after the current one,
+},[r,v]),A=(0,iY.useSyncExternalStore)((0,D.useCallback)(e=>x(v,(t,n)=>{O(n,t)||e()}),[r,v]),L[0],L[1]),M=!b.current,j=h[v]&&h[v].length>0,U=A.data,z=i1(U)?R:U,F=A.error,V=(0,D.useRef)(z),H=f?i1(U)?V.current:U:z,$=// if a key already has revalidators and also has error, we should not trigger revalidation
+(!j||!!i1(F))&&(M&&!i1(s)?s:!E().isPaused()&&(a?!i1(z)&&l:i1(z)||l)),B=!!(v&&t&&M&&$),W=i1(A.isValidating)?B:A.isValidating,K=i1(A.isLoading)?B:A.isLoading,q=(0,D.useCallback)(async e=>{let t,r;let a=k.current;if(!v||!a||w.current||E().isPaused())return!1;let o=!0,s=e||{},l=!m[v]||!s.dedupe,u=()=>ac?!w.current&&v===_.current&&b.current:v===_.current,c={isValidating:!1,isLoading:!1},d=()=>{T(c)},f=()=>{// Check if it's still the same request before deleting it.
+let e=m[v];e&&e[1]===r&&delete m[v]},g={isValidating:!0};i1(C().data)&&(g.isLoading=!0);try{// If there're other ongoing request(s), started after the current one,
 // we need to ignore the current one to avoid possible race conditions:
 //   req1------------------>res1        (current one)
 //        req2---------------->res2
 // the request that fired later will always be kept.
 // The timestamp maybe be `undefined` or a number
-if(l&&(T(g),n.loadingTimeout&&i2(C().data)&&setTimeout(()=>{o&&u()&&E().onLoadingSlow(v,n)},n.loadingTimeout),// Start the request and save the timestamp.
+if(l&&(T(g),n.loadingTimeout&&i1(C().data)&&setTimeout(()=>{o&&u()&&E().onLoadingSlow(v,n)},n.loadingTimeout),// Start the request and save the timestamp.
 // Key must be truthy if entering here.
-m[v]=[a(y),ab()]),[t,r]=m[v],t=await t,l&&// deduplication interval.
+m[v]=[a(y),ay()]),[t,r]=m[v],t=await t,l&&// deduplication interval.
 setTimeout(f,n.dedupingInterval),!m[v]||m[v][1]!==r)return l&&u()&&E().onDiscarded(v),!1;// Clear error.
-c.error=i0;// If there're other mutations(s), that overlapped with the current revalidation:
+c.error=iZ;// If there're other mutations(s), that overlapped with the current revalidation:
 // case 1:
 //   req------------------>res
 //       mutate------>end
@@ -3086,7 +3097,7 @@ c.error=i0;// If there're other mutations(s), that overlapped with the current r
 //       mutate-------...---------->
 // we have to ignore the revalidation result (res) because it's no longer fresh.
 // meanwhile, a new revalidation should be triggered when the mutation ends.
-let e=p[v];if(!i2(e)&&// case 1
+let e=p[v];if(!i1(e)&&// case 1
 (r<=e[0]||// case 2
 r<=e[1]||// case 3
 0===e[1]))return d(),l&&u()&&E().onDiscarded(v),!1;// Deep compare with the latest state to avoid extra re-renders.
@@ -3095,9 +3106,9 @@ let s=C().data;// Since the compare fn could be custom fn
 // cacheData might be different from newData even when compare fn returns True
 c.data=i(s,t)?s:t,l&&u()&&E().onSuccess(t,v,n)}catch(n){f();let e=E(),{shouldRetryOnError:t}=e;// Not paused, we continue handling the error. Otherwise, discard it.
 !e.isPaused()&&(// Get a new error, don't use deep comparison for errors.
-c.error=n,l&&u()&&(e.onError(n,v,e),(!0===t||i3(t)&&t(n))&&I()&&// refocusing or reconnecting.
+c.error=n,l&&u()&&(e.onError(n,v,e),(!0===t||i2(t)&&t(n))&&I()&&// refocusing or reconnecting.
 // When retrying, deduplication is always enabled.
-e.onErrorRetry(n,v,e,e=>{let t=h[v];t&&t[0]&&t[0](aw.ERROR_REVALIDATE_EVENT,e)},{retryCount:(s.retryCount||0)+1,dedupe:!0})))}return(// Mark loading as stopped.
+e.onErrorRetry(n,v,e,e=>{let t=h[v];t&&t[0]&&t[0](ab.ERROR_REVALIDATE_EVENT,e)},{retryCount:(s.retryCount||0)+1,dedupe:!0})))}return(// Mark loading as stopped.
 o=!1,// Update the current hook's state.
 d(),!0)},// the deps array.
 //
@@ -3108,29 +3119,29 @@ d(),!0)},// the deps array.
 // So we omit the values from the deps array
 // even though it might cause unexpected behaviors.
 // eslint-disable-next-line react-hooks/exhaustive-deps
-[v,r]),Q=(0,D.useCallback)((...e)=>a_(r,_.current,...e),[]);// In Suspense mode, we can't return the empty `data` state.
+[v,r]),Q=(0,D.useCallback)((...e)=>aw(r,_.current,...e),[]);// In Suspense mode, we can't return the empty `data` state.
 // If there is an `error`, the `error` needs to be thrown to the error boundary.
 // If there is no `error`, the `revalidation` promise needs to be thrown to
 // the suspense boundary.
-if(ap(()=>{k.current=t,S.current=n,i2(U)||(V.current=U)}),ap(()=>{if(!v)return;let e=q.bind(i0,aM),t=0,n=aD(v,h,(n,r={})=>{if(n==aw.FOCUS_EVENT){let n=Date.now();E().revalidateOnFocus&&n>t&&I()&&(t=n+E().focusThrottleInterval,e())}else if(n==aw.RECONNECT_EVENT)E().revalidateOnReconnect&&I()&&e();else if(n==aw.MUTATE_EVENT)return q();else if(n==aw.ERROR_REVALIDATE_EVENT)return q(r)});return(// Mark the component as mounted and update corresponding refs.
+if(ah(()=>{k.current=t,S.current=n,i1(U)||(V.current=U)}),ah(()=>{if(!v)return;let e=q.bind(iZ,aA),t=0,n=aL(v,h,(n,r={})=>{if(n==ab.FOCUS_EVENT){let n=Date.now();E().revalidateOnFocus&&n>t&&I()&&(t=n+E().focusThrottleInterval,e())}else if(n==ab.RECONNECT_EVENT)E().revalidateOnReconnect&&I()&&e();else if(n==ab.MUTATE_EVENT)return q();else if(n==ab.ERROR_REVALIDATE_EVENT)return q(r)});return(// Mark the component as mounted and update corresponding refs.
 w.current=!1,_.current=v,b.current=!0,// Keep the original key in the cache.
-T({_k:y}),$&&(i2(z)||af?e():ah(e)),()=>{// Mark it as unmounted.
-w.current=!0,n()})},[v]),ap(()=>{let e;function t(){// Use the passed interval
+T({_k:y}),$&&(i1(z)||ad?e():af(e)),()=>{// Mark it as unmounted.
+w.current=!0,n()})},[v]),ah(()=>{let e;function t(){// Use the passed interval
 // ...or invoke the function with the updated data to get the interval
-let t=i3(u)?u(C().data):u;// We only start the next interval if `refreshInterval` is not 0, and:
+let t=i2(u)?u(C().data):u;// We only start the next interval if `refreshInterval` is not 0, and:
 // - `force` is true, which is the start of polling
 // - or `timer` is not 0, which means the effect wasn't canceled
 t&&-1!==e&&(e=setTimeout(n,t))}function n(){// Check if it's OK to execute:
 // Only revalidate when the page is visible, online, and not errored.
-!C().error&&(c||E().isVisible())&&(d||E().isOnline())?q(aM).then(t):t()}return t(),()=>{e&&(clearTimeout(e),e=-1)}},[u,c,d,v]),// Display debug info in React DevTools.
-(0,D.useDebugValue)(H),a&&i2(z)&&v){// SWR should throw when trying to use Suspense on the server with React 18,
+!C().error&&(c||E().isVisible())&&(d||E().isOnline())?q(aA).then(t):t()}return t(),()=>{e&&(clearTimeout(e),e=-1)}},[u,c,d,v]),// Display debug info in React DevTools.
+(0,D.useDebugValue)(H),a&&i1(z)&&v){// SWR should throw when trying to use Suspense on the server with React 18,
 // without providing any initial data. See:
 // https://github.com/vercel/swr/issues/1832
-if(!ad&&af)throw Error("Fallback data is required when using suspense in SSR.");// Always update fetcher and config refs even with the Suspense mode.
-k.current=t,S.current=n,w.current=!1;let e=g[v];if(!i2(e)){let t=Q(e);aA(t)}if(i2(F)){let e=q(aM);i2(H)||(e.status="fulfilled",e.value=!0),aA(e)}else throw F}return{mutate:Q,get data(){return P.data=!0,H},get error(){return P.error=!0,F},get isValidating(){return P.isValidating=!0,W},get isLoading(){return P.isLoading=!0,K}}},function(...e){// Get the default and inherited configuration.
-let t=aO(),[n,r,i]=aR(e),a=aT(t,i),o=m,{use:s}=a,l=(s||[]).concat(aL);for(let e=l.length;e--;)o=l[e](o);return o(n,r||a.fetcher||null,a)});P("6SgHj");var D=P("6SgHj"),aU=[0],az=(g=new Map,{getObserver:function(e){var t=e.root,n=e.rootMargin,r=e.threshold,i=g.get(t);i||(i=new Map,g.set(t,i));var a=JSON.stringify({rootMargin:n,threshold:r}),o=i.get(a);if(!o){var s=new Map;o={observer:new IntersectionObserver(function(e){e.forEach(function(e){var t=s.get(e.target);null==t||t(e)})},{root:t,rootMargin:n,threshold:r}),entryCallbacks:s},i.set(a,o)}return{observe:function(e,t){var n,r;null==(n=o)||n.entryCallbacks.set(e,t),null==(r=o)||r.observer.observe(e)},unobserve:function(e){var t,n;null==(t=o)||t.entryCallbacks.delete(e),null==(n=o)||n.observer.unobserve(e)}}}});function aF(){return(aF=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}const aV=function(){var e,t,n,r,i,a,o,s,l,u,c,d,f,h,p,m;let[g,{isVisible:v,wasEverVisible:y}]=(c=(e=(0,D.useRef)(null),t=(0,D.useRef)(null),n=(0,D.useRef)(null),i=(r=(0,D.useState)())[0],a=r[1],o=(0,D.useCallback)(function(){var r=e.current;if(!r){a(void 0);return}var i=az.getObserver({root:t.current,rootMargin:"0px",threshold:aU});i.observe(r,function(e){a(e)}),n.current=i},["0px",aU]),s=(0,D.useCallback)(function(){var t=n.current,r=e.current;r&&(null==t||t.unobserve(r)),n.current=null},[]),u=[(0,D.useCallback)(function(t){s(),e.current=t,o()},[o,s]),{entry:i,rootRef:(0,D.useCallback)(function(e){s(),t.current=e,o()},[o,s])}])[0],f=!!(null==(l=(d=u[1]).entry)?void 0:l.isIntersecting),p=(h=(0,D.useState)(f))[0],m=h[1],f&&!p&&m(!0),[c,aF({},d,{isVisible:f,wasEverVisible:p})]);return{ref:g,isVisible:v,wasEverVisible:y}},aH=function({spinner:e,children:t}){let{ref:n,isVisible:r,wasEverVisible:i}=aV();return/*#__PURE__*/(0,O.jsxs)("span",{ref:n,children:[!r&&!i&&e,(r||i)&&t]})},a$=e=>fetch(e).then(e=>e.json()),aB=function(){return/*#__PURE__*/(0,O.jsx)("div",{className:"spinner-grow spinner-grow-sm me-5"})},aW=function({item:e,isItemSelected:t,setSelected:n}){let{data:r,error:i}=aj(`https://hacker-news.firebaseio.com/v0/item/${e}.json`,a$,{dedupingInterval:6e4});return void 0!==i?/*#__PURE__*/(0,O.jsx)("span",{className:"badge rounded-pill bg-danger",children:"error"}):void 0===r?/*#__PURE__*/(0,O.jsx)(aB,{}):t?/*#__PURE__*/(0,O.jsx)("span",{className:"badge rounded-pill bg-secondary",children:r.by}):/*#__PURE__*/(0,O.jsx)("a",{href:`https://news.ycombinator.com/item?id=${e}`,className:"badge rounded-pill bg-light text-dark",onClick:function(e){e.preventDefault(),n()},children:r.by})},aK=function({kids:e,selectComment:t}){let[n,i]=/*@__PURE__*/r(D).useState(null),a=e.map(function(e){return/*#__PURE__*/(0,O.jsx)(aH,{spinner:/*#__PURE__*/(0,O.jsx)(aB,{}),children:/*#__PURE__*/(0,O.jsx)(aW,{item:e,isItemSelected:e===n,setSelected:function(){i(e),t(e)}})},e)});return/*#__PURE__*/(0,O.jsx)("div",{className:"text-muted",style:{overflowX:"auto",whiteSpace:"nowrap"},children:a})};P("6SgHj");const aq=(...e)=>fetch(...e).then(e=>e.json()),aQ=function(e){return aj(`https://hacker-news.firebaseio.com/v0/item/${e}.json`,aq)},aG=function({item:e}){return void 0!==e.text?/*#__PURE__*/(0,O.jsx)("em",{dangerouslySetInnerHTML:{__html:e.text}}):/*#__PURE__*/(0,O.jsx)("p",{className:"card-text text-truncate",children:/*#__PURE__*/(0,O.jsx)("a",{href:e.url,target:"_blank",children:e.url})})},aJ=function({item:e}){return/*#__PURE__*/(0,O.jsxs)("a",{href:`https://news.ycombinator.com/item?id=${e.id}`,target:"_blank",className:"btn btn-primary btn-sm position-relative me-4 float-end",children:[/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-people-fill"}),/*#__PURE__*/(0,O.jsxs)("span",{className:"position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger",children:[e.descendants,/*#__PURE__*/(0,O.jsx)("span",{className:"visually-hidden",children:"comments"})]})]})},aY=function({item:e}){let{data:t,error:n}=aQ(e),i=iz(t?.by),[a,o]=/*@__PURE__*/r(D).useState(null);return(/*@__PURE__*/r(D).useEffect(function(){o(null)},[e]),void 0!==n)?/*#__PURE__*/(0,O.jsx)("div",{className:"alert alert-danger",role:"alert",children:n.message}):void 0===t?/*#__PURE__*/(0,O.jsx)(iW,{}):/*#__PURE__*/(0,O.jsxs)(/*@__PURE__*/r(D).Fragment,{children:[/*#__PURE__*/(0,O.jsx)("div",{className:"card text-dark bg-light mb-1 shadow rounded",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"card-body",children:[/*#__PURE__*/(0,O.jsxs)("h6",{className:"card-subtitle mb-2 text-muted",children:[/*#__PURE__*/(0,O.jsx)("span",{ref:i,children:t.by}),/*#__PURE__*/(0,O.jsx)("em",{className:"float-end",title:iV(1e3*t.time),children:iF(1e3*t.time)})]}),/*#__PURE__*/(0,O.jsx)(aG,{item:t}),/*#__PURE__*/(0,O.jsx)("p",{children:/*#__PURE__*/(0,O.jsxs)("a",{href:`https://news.ycombinator.com/item?id=${t.id}`,target:"_blank",className:"float-end",children:[void 0!==t.kids?t.kids.length:0," Comments"]})}),/*#__PURE__*/(0,O.jsx)(aK,{kids:t.kids||[],selectComment:o})]})}),null!==a&&/*#__PURE__*/(0,O.jsx)(aY,{item:a})]})},aX=function({data:e}){let t=iz(e.by),[n,i]=/*@__PURE__*/r(D).useState(null);return/*#__PURE__*/(0,O.jsxs)(O.Fragment,{children:[/*#__PURE__*/(0,O.jsx)("div",{className:"card text-dark bg-light mb-1 shadow rounded",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"card-body",children:[/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)("strong",{className:"card-title",children:e.title}),/*#__PURE__*/(0,O.jsx)("span",{className:"float-end",children:/*#__PURE__*/(0,O.jsx)(iH,{score:e.score})})]}),/*#__PURE__*/(0,O.jsxs)("p",{className:"card-subtitle mb-2 text-muted",children:[/*#__PURE__*/(0,O.jsx)("span",{ref:t,style:{cursor:"pointer"},children:e.by}),/*#__PURE__*/(0,O.jsx)("em",{className:"float-end",title:iV(1e3*e.time),children:iF(1e3*e.time)})]}),/*#__PURE__*/(0,O.jsx)(aG,{item:e}),/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)(iK,{item:e}),/*#__PURE__*/(0,O.jsx)(aJ,{item:e})]}),/*#__PURE__*/(0,O.jsx)(aK,{kids:e.kids,selectComment:i})]})}),null!==n&&/*#__PURE__*/(0,O.jsx)(aY,{item:n})]})},aZ=function(){let{commentId:e}=/**
+if(!ac&&ad)throw Error("Fallback data is required when using suspense in SSR.");// Always update fetcher and config refs even with the Suspense mode.
+k.current=t,S.current=n,w.current=!1;let e=g[v];if(!i1(e)){let t=Q(e);aD(t)}if(i1(F)){let e=q(aA);i1(H)||(e.status="fulfilled",e.value=!0),aD(e)}else throw F}return{mutate:Q,get data(){return P.data=!0,H},get error(){return P.error=!0,F},get isValidating(){return P.isValidating=!0,W},get isLoading(){return P.isLoading=!0,K}}},function(...e){// Get the default and inherited configuration.
+let t=aR(),[n,r,i]=aP(e),a=aC(t,i),o=m,{use:s}=a,l=(s||[]).concat(aO);for(let e=l.length;e--;)o=l[e](o);return o(n,r||a.fetcher||null,a)});P("6SgHj");var D=P("6SgHj"),aj=[0],aU=(g=new Map,{getObserver:function(e){var t=e.root,n=e.rootMargin,r=e.threshold,i=g.get(t);i||(i=new Map,g.set(t,i));var a=JSON.stringify({rootMargin:n,threshold:r}),o=i.get(a);if(!o){var s=new Map;o={observer:new IntersectionObserver(function(e){e.forEach(function(e){var t=s.get(e.target);null==t||t(e)})},{root:t,rootMargin:n,threshold:r}),entryCallbacks:s},i.set(a,o)}return{observe:function(e,t){var n,r;null==(n=o)||n.entryCallbacks.set(e,t),null==(r=o)||r.observer.observe(e)},unobserve:function(e){var t,n;null==(t=o)||t.entryCallbacks.delete(e),null==(n=o)||n.observer.unobserve(e)}}}});function az(){return(az=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}const aF=function(){var e,t,n,r,i,a,o,s,l,u,c,d,f,h,p,m;let[g,{isVisible:v,wasEverVisible:y}]=(c=(e=(0,D.useRef)(null),t=(0,D.useRef)(null),n=(0,D.useRef)(null),i=(r=(0,D.useState)())[0],a=r[1],o=(0,D.useCallback)(function(){var r=e.current;if(!r){a(void 0);return}var i=aU.getObserver({root:t.current,rootMargin:"0px",threshold:aj});i.observe(r,function(e){a(e)}),n.current=i},["0px",aj]),s=(0,D.useCallback)(function(){var t=n.current,r=e.current;r&&(null==t||t.unobserve(r)),n.current=null},[]),u=[(0,D.useCallback)(function(t){s(),e.current=t,o()},[o,s]),{entry:i,rootRef:(0,D.useCallback)(function(e){s(),t.current=e,o()},[o,s])}])[0],f=!!(null==(l=(d=u[1]).entry)?void 0:l.isIntersecting),p=(h=(0,D.useState)(f))[0],m=h[1],f&&!p&&m(!0),[c,az({},d,{isVisible:f,wasEverVisible:p})]);return{ref:g,isVisible:v,wasEverVisible:y}},aV=function({spinner:e,children:t}){let{ref:n,isVisible:r,wasEverVisible:i}=aF();return/*#__PURE__*/(0,O.jsxs)("span",{ref:n,children:[!r&&!i&&e,(r||i)&&t]})},aH=e=>fetch(e).then(e=>e.json()),a$=function(){return/*#__PURE__*/(0,O.jsx)("div",{className:"spinner-grow spinner-grow-sm me-5"})},aB=function({item:e,isItemSelected:t,setSelected:n}){let{data:r,error:i}=aM(`https://hacker-news.firebaseio.com/v0/item/${e}.json`,aH,{dedupingInterval:6e4});return void 0!==i?/*#__PURE__*/(0,O.jsx)("span",{className:"badge rounded-pill bg-danger",children:"error"}):void 0===r?/*#__PURE__*/(0,O.jsx)(a$,{}):t?/*#__PURE__*/(0,O.jsx)("span",{className:"badge rounded-pill bg-secondary",children:r.by}):/*#__PURE__*/(0,O.jsx)("a",{href:`https://news.ycombinator.com/item?id=${e}`,className:"badge rounded-pill bg-light text-dark",onClick:function(e){e.preventDefault(),n()},children:r.by})},aW=function({kids:e,selectComment:t}){let[n,i]=/*@__PURE__*/r(D).useState(null),a=e.map(function(e){return/*#__PURE__*/(0,O.jsx)(aV,{spinner:/*#__PURE__*/(0,O.jsx)(a$,{}),children:/*#__PURE__*/(0,O.jsx)(aB,{item:e,isItemSelected:e===n,setSelected:function(){i(e),t(e)}})},e)});return/*#__PURE__*/(0,O.jsx)("div",{className:"text-muted",style:{overflowX:"auto",whiteSpace:"nowrap"},children:a})};P("6SgHj");const aK=(...e)=>fetch(...e).then(e=>e.json()),aq=function(e){return aM(`https://hacker-news.firebaseio.com/v0/item/${e}.json`,aK)},aQ=function({item:e}){return void 0!==e.text?/*#__PURE__*/(0,O.jsx)("em",{dangerouslySetInnerHTML:{__html:e.text}}):/*#__PURE__*/(0,O.jsx)("p",{className:"card-text text-truncate",children:/*#__PURE__*/(0,O.jsx)("a",{href:e.url,target:"_blank",children:e.url})})},aG=function({item:e}){return/*#__PURE__*/(0,O.jsxs)("a",{href:`https://news.ycombinator.com/item?id=${e.id}`,target:"_blank",className:"btn btn-primary btn-sm position-relative me-4 float-end",children:[/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-people-fill"}),/*#__PURE__*/(0,O.jsxs)("span",{className:"position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger",children:[e.descendants,/*#__PURE__*/(0,O.jsx)("span",{className:"visually-hidden",children:"comments"})]})]})},aJ=function({item:e}){let{data:t,error:n}=aq(e),i=iU(t?.by),[a,o]=/*@__PURE__*/r(D).useState(null);return(/*@__PURE__*/r(D).useEffect(function(){o(null)},[e]),void 0!==n)?/*#__PURE__*/(0,O.jsx)("div",{className:"alert alert-danger",role:"alert",children:n.message}):void 0===t?/*#__PURE__*/(0,O.jsx)(iB,{}):/*#__PURE__*/(0,O.jsxs)(/*@__PURE__*/r(D).Fragment,{children:[/*#__PURE__*/(0,O.jsx)("div",{className:"card text-dark bg-light mb-1 shadow rounded",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"card-body",children:[/*#__PURE__*/(0,O.jsxs)("h6",{className:"card-subtitle mb-2 text-muted",children:[/*#__PURE__*/(0,O.jsx)("span",{ref:i,children:t.by}),/*#__PURE__*/(0,O.jsx)("em",{className:"float-end",title:iF(1e3*t.time),children:iz(1e3*t.time)})]}),/*#__PURE__*/(0,O.jsx)(aQ,{item:t}),/*#__PURE__*/(0,O.jsx)("p",{children:/*#__PURE__*/(0,O.jsxs)("a",{href:`https://news.ycombinator.com/item?id=${t.id}`,target:"_blank",className:"float-end",children:[void 0!==t.kids?t.kids.length:0," Comments"]})}),/*#__PURE__*/(0,O.jsx)(aW,{kids:t.kids||[],selectComment:o})]})}),null!==a&&/*#__PURE__*/(0,O.jsx)(aJ,{item:a})]})},aY=function({data:e}){let t=iU(e.by),[n,i]=/*@__PURE__*/r(D).useState(null);return/*#__PURE__*/(0,O.jsxs)(O.Fragment,{children:[/*#__PURE__*/(0,O.jsx)("div",{className:"card text-dark bg-light mb-1 shadow rounded",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"card-body",children:[/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)("strong",{className:"card-title",children:e.title}),/*#__PURE__*/(0,O.jsx)("span",{className:"float-end",children:/*#__PURE__*/(0,O.jsx)(iV,{score:e.score})})]}),/*#__PURE__*/(0,O.jsxs)("p",{className:"card-subtitle mb-2 text-muted",children:[/*#__PURE__*/(0,O.jsx)("span",{ref:t,style:{cursor:"pointer"},children:e.by}),/*#__PURE__*/(0,O.jsx)("em",{className:"float-end",title:iF(1e3*e.time),children:iz(1e3*e.time)})]}),/*#__PURE__*/(0,O.jsx)(aQ,{item:e}),/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)(iW,{item:e}),/*#__PURE__*/(0,O.jsx)(aG,{item:e})]}),/*#__PURE__*/(0,O.jsx)(aW,{kids:e.kids,selectComment:i})]})}),null!==n&&/*#__PURE__*/(0,O.jsx)(aJ,{item:n})]})},aX=function(){let{commentId:e}=/**
  * Returns an object of key/value pairs of the dynamic params from the current
  * URL that were matched by the route path.
  *
  * @see https://reactrouter.com/hooks/use-params
- */function(){let{matches:e}=D.useContext(ei),t=e[e.length-1];return t?t.params:{}}(),{data:t,error:n}=aQ(e);return void 0!==n?/*#__PURE__*/(0,O.jsx)("div",{className:"alert alert-danger",role:"alert",children:n.message}):void 0===t?/*#__PURE__*/(0,O.jsx)(iW,{}):/*#__PURE__*/(0,O.jsx)(aX,{data:t})},a0=function(){let e=0;return{incr:function(){return e+=1}}},a1=function(){let e=async function(e,t,n,r){let i=new URLSearchParams({query:"",numericFilters:`created_at_i>${e},created_at_i<=${t}`,hitsPerPage:`${n}`}),a=`https://hn.algolia.com/api/v1/search?${i.toString()}`,o=await fetch("https://corsproxy.io/?"+encodeURIComponent(a));if(!o.ok)throw Error("An error occurred while fetching the data.");return r(),(await o.json()).hits};return{getData:function(t){return async()=>{let n=Date.now()/1e3,r=[0,1,2,3,4,5,6],i=a0(),a=function(){let e=[i.incr(),r.length];t(e)},o=await Promise.all(r.map(t=>e(n-(7-t)*86400,n-(6-t)*86400,2**t,a)));return o.reduce((e,t)=>[...e,...t],[]).sort((e,t)=>e.points<t.points?1:e.points>t.points?-1:0)}}}}(),a2=function({items:e}){let t=e.map(function(e){return/*#__PURE__*/(0,O.jsx)(iY,{item:e,inModal:!1},e.objectID)});return/*#__PURE__*/(0,O.jsx)(O.Fragment,{children:t})},a3=function(){var e;let{data:t,error:n}=(e=e=>{console.log(e)},aj("HN_ITEMS",a1.getData(function(t){let[n,r]=t;void 0!==e&&e(Math.trunc(100*n/r))}),{dedupingInterval:6e4}));return void 0!==n?/*#__PURE__*/(0,O.jsx)("div",{className:"alert alert-danger",role:"alert",children:n.message}):void 0===t?/*#__PURE__*/(0,O.jsx)(iW,{}):/*#__PURE__*/(0,O.jsx)(a2,{items:t})},a4=function(){let e=i$();return/*#__PURE__*/(0,O.jsx)(iB,{user:e})},a6=function(){let e="navbarCollapse";return/*#__PURE__*/(0,O.jsx)("nav",{className:"navbar navbar-expand-lg navbar-dark bg-dark",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"container-fluid",children:[/*#__PURE__*/(0,O.jsxs)("a",{className:"navbar-brand",href:"/",children:[/*#__PURE__*/(0,O.jsx)("strong",{style:{color:"#ff6600"},children:"HN"}),"ews ",/*#__PURE__*/(0,O.jsx)("sub",{children:eN.version})]}),/*#__PURE__*/(0,O.jsx)("button",{className:"navbar-toggler","data-bs-toggle":"collapse","data-bs-target":`#${e}`,children:/*#__PURE__*/(0,O.jsx)("span",{className:"navbar-toggler-icon"})}),/*#__PURE__*/(0,O.jsxs)("div",{className:"collapse navbar-collapse",id:e,children:[/*#__PURE__*/(0,O.jsx)("ul",{className:"navbar-nav me-auto mb-2 mb-md-0"}),/*#__PURE__*/(0,O.jsx)("form",{className:"d-flex",children:/*#__PURE__*/(0,O.jsx)(a4,{})})]})]})})};v(document.getElementById("app")).render(/*#__PURE__*/(0,O.jsx)(function(){return/*#__PURE__*/(0,O.jsxs)(O.Fragment,{children:[/*#__PURE__*/(0,O.jsx)(a6,{}),/*#__PURE__*/(0,O.jsx)("div",{className:"container",style:{paddingTop:"1em"},children:/*#__PURE__*/(0,O.jsx)(eI,{children:/*#__PURE__*/(0,O.jsxs)(ey,{children:[/*#__PURE__*/(0,O.jsx)(eg,{path:"/:commentId",element:/*#__PURE__*/(0,O.jsx)(aZ,{})}),/*#__PURE__*/(0,O.jsx)(eg,{path:"/",element:/*#__PURE__*/(0,O.jsx)(a3,{})})]})})})]})},{}));
+ */function(){let{matches:e}=D.useContext(ei),t=e[e.length-1];return t?t.params:{}}(),{data:t,error:n}=aq(e);return void 0!==n?/*#__PURE__*/(0,O.jsx)("div",{className:"alert alert-danger",role:"alert",children:n.message}):void 0===t?/*#__PURE__*/(0,O.jsx)(iB,{}):/*#__PURE__*/(0,O.jsx)(aY,{data:t})},aZ=function(){let e=async function(e,t,n){let r=new URLSearchParams({query:"",numericFilters:`created_at_i>${e},created_at_i<=${t}`,hitsPerPage:`${n}`}),i=`https://hn.algolia.com/api/v1/search?${r.toString()}`,a=await fetch(i);if(!a.ok)throw Error("An error occurred while fetching the data.");return(await a.json()).hits};return{getData:function(){return async()=>{let t=Date.now()/1e3,n=await Promise.all([0,1,2,3,4,5,6].map(n=>e(t-(7-n)*86400,t-(6-n)*86400,2**n)));return n.reduce((e,t)=>[...e,...t],[]).sort((e,t)=>e.points<t.points?1:e.points>t.points?-1:0)}}}}(),a0=function({items:e}){let t=e.map(function(e){return/*#__PURE__*/(0,O.jsx)(iJ,{item:e,inModal:!1},e.objectID)});return/*#__PURE__*/(0,O.jsx)(O.Fragment,{children:t})},a1=function(){let{data:e,error:t}=aM("HN_ITEMS",aZ.getData(),{dedupingInterval:6e4});return void 0!==t?/*#__PURE__*/(0,O.jsx)("div",{className:"alert alert-danger",role:"alert",children:t.message}):void 0===e?/*#__PURE__*/(0,O.jsx)(iB,{}):/*#__PURE__*/(0,O.jsx)(a0,{items:e})},a2=function(){let e=iH();return/*#__PURE__*/(0,O.jsx)(i$,{user:e})},a3=function(){let e="navbarCollapse";return/*#__PURE__*/(0,O.jsx)("nav",{className:"navbar navbar-expand-lg navbar-dark bg-dark",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"container-fluid",children:[/*#__PURE__*/(0,O.jsxs)("a",{className:"navbar-brand",href:"/",children:[/*#__PURE__*/(0,O.jsx)("strong",{style:{color:"#ff6600"},children:"HN"}),"ews ",/*#__PURE__*/(0,O.jsx)("sub",{children:eT.version})]}),/*#__PURE__*/(0,O.jsx)("button",{className:"navbar-toggler","data-bs-toggle":"collapse","data-bs-target":`#${e}`,children:/*#__PURE__*/(0,O.jsx)("span",{className:"navbar-toggler-icon"})}),/*#__PURE__*/(0,O.jsxs)("div",{className:"collapse navbar-collapse",id:e,children:[/*#__PURE__*/(0,O.jsx)("ul",{className:"navbar-nav me-auto mb-2 mb-md-0"}),/*#__PURE__*/(0,O.jsx)("form",{className:"d-flex",children:/*#__PURE__*/(0,O.jsx)(a2,{})})]})]})})};v(document.getElementById("app")).render(/*#__PURE__*/(0,O.jsx)(function(){return/*#__PURE__*/(0,O.jsxs)(O.Fragment,{children:[/*#__PURE__*/(0,O.jsx)(a3,{}),/*#__PURE__*/(0,O.jsx)("div",{className:"container",style:{paddingTop:"1em"},children:/*#__PURE__*/(0,O.jsx)(eS,{children:/*#__PURE__*/(0,O.jsxs)(ey,{children:[/*#__PURE__*/(0,O.jsx)(eg,{path:"/:commentId",element:/*#__PURE__*/(0,O.jsx)(aX,{})}),/*#__PURE__*/(0,O.jsx)(eg,{path:"/",element:/*#__PURE__*/(0,O.jsx)(a1,{})})]})})})]})},{}));
