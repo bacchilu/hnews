@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {Card} from './card.js';
-import {CommentCard} from './comment_card.js';
-import {Spinner} from '../utils/index.js';
+import { Spinner } from '../utils/index';
+import { Card } from './card';
+import { CommentCard } from './comment_card';
 
 const useDetails = function (id) {
     const [data, setData] = React.useState(undefined);
@@ -20,12 +20,12 @@ const useDetails = function (id) {
     return data;
 };
 
-const CommentsThread = function ({item}) {
+const CommentsThread = function ({ item }) {
     if (item === null) return null;
     return <CommentCard item={item} />;
 };
 
-export const CommentsModal = function ({item}) {
+export const CommentsModal = function ({ item }) {
     const data = useDetails(item['objectID']);
     const [currentUser, setCurrentuser] = React.useState(null);
 
