@@ -278,7 +278,7 @@ return e?/**
  */function(){let e;let{router:t}=(eh.UseNavigateStable,(e=D.useContext(ee))||j(!1),e),n=em(ep.UseNavigateStable),r=D.useRef(!1);return el(()=>{r.current=!0}),D.useCallback(function(e,i){void 0===i&&(i={}),r.current&&("number"==typeof e?t.navigate(e):t.navigate(e,Z({fromRouteId:n},i)))},[t,n])}():function(){eo()||j(!1);let e=D.useContext(ee),{basename:t,navigator:n}=D.useContext(en),{matches:r}=D.useContext(ei),{pathname:i}=es(),a=JSON.stringify(q(r).map(e=>e.pathnameBase)),o=D.useRef(!1);return el(()=>{o.current=!0}),D.useCallback(function(r,s){// Short circuit here since if this happens on first render the navigate
 // is useless because we haven't wired up our history listener yet
 if(void 0===s&&(s={}),!o.current)return;if("number"==typeof r){n.go(r);return}let l=J(r,JSON.parse(a),i,"path"===s.relative);null==e&&"/"!==t&&(l.pathname="/"===l.pathname?t:Q([t,l.pathname])),(s.replace?n.replace:n.push)(l,s.state,s)},[t,n,a,i,e])}()}(),u=es(),c=eu(e,{relative:o});return D.useCallback(t=>{0!==t.button||// Ignore everything but left clicks
-n&&"_self"!==n||t.metaKey||t.altKey||t.ctrlKey||t.shiftKey||(t.preventDefault(),l(e,{replace:void 0!==r?r:V(u)===V(c),state:i,preventScrollReset:a,relative:o,unstable_viewTransition:s}))},[u,l,c,r,i,n,e,a,o,s])}(u,{replace:o,state:s,target:l,preventScrollReset:c,relative:i,unstable_viewTransition:d});return /*#__PURE__*/D.createElement("a",ew({},f,{href:n||m,onClick:p||a?r:function(e){r&&r(e),e.defaultPrevented||g(e)},ref:t,target:l}))});(c=w||(w={})).UseScrollRestoration="useScrollRestoration",c.UseSubmit="useSubmit",c.UseSubmitFetcher="useSubmitFetcher",c.UseFetcher="useFetcher",c.useViewTransitionState="useViewTransitionState",(d=_||(_={})).UseFetcher="useFetcher",d.UseFetchers="useFetchers",d.UseScrollRestoration="useScrollRestoration";var eT={};eT=JSON.parse('{"name":"hnews","version":"4.5.0","description":"HNews","private":true,"source":"src/index.html","browserslist":"defaults","scripts":{"update":"ncu -u","serve":"parcel -p 8000 --lazy","watch":"parcel watch","build":"rm -rf dist && rm -rf docs && parcel build --no-source-maps --dist-dir docs --public-url=/hnews"},"author":"Luca Bacchi <bacchilu@gmail.com> (http://www.lucabacchi.it)","license":"ISC","prettier":{"arrowParens":"always","bracketSpacing":false,"embeddedLanguageFormatting":"auto","htmlWhitespaceSensitivity":"css","insertPragma":false,"jsxBracketSameLine":false,"jsxSingleQuote":false,"printWidth":120,"proseWrap":"preserve","quoteProps":"as-needed","requirePragma":false,"semi":true,"singleQuote":true,"tabWidth":4,"trailingComma":"es5","useTabs":false,"vueIndentScriptAndStyle":false},"devDependencies":{"@types/human-date":"^1.4.4","@types/react":"^18.2.34","@types/react-dom":"^18.2.14","npm-check-updates":"^16.14.6","parcel":"^2.10.2","process":"^0.11.10"},"dependencies":{"firebase":"^10.5.2","human-date":"^1.4.0","react":"^18.2.0","react-dom":"^18.2.0","react-intersection-observer-hook":"^2.1.1","react-router-dom":"^6.18.0","swr":"^2.2.4"}}'),P("jE8J5");var ex={};!function(){var e={months:["January","February","March","April","May","June","July","August","September","October","November","December"],toUTC:function(e){var t=e?new Date(e):new Date;return new Date(t.getUTCFullYear(),t.getUTCMonth(),t.getUTCDate(),t.getUTCHours(),t.getUTCMinutes(),t.getUTCSeconds())},monthName:function(t){var n;return n="number"==typeof t?t:new Date(t).getMonth()+1,e.months[n-1]},relativeTime:function(e,t){var n,r,i,a,o,s,l=[];if("number"==typeof e?n=e:(a=new Date(e).getTime(),n=-((new Date().getTime()-a)/1e3*1)),t||(t={}),t.futureSuffix||(t.futureSuffix="from now"),t.pastSuffix||(t.pastSuffix="ago"),t.presentText||(t.presentText="now"),t.returnObject||(t.returnObject=!1),o=n<0,r={seconds:Math.floor((n=Math.abs(n))%31536e3%86400%3600%60),minutes:Math.floor(n%31536e3%86400%3600/60),hours:Math.floor(n%31536e3%86400/3600),days:Math.floor(n%31536e3/86400),years:Math.floor(n/31536e3),past:o},t.returnObject)return r;if(0===n)return t.presentText;function u(e,n){s&&(s=t.allUnits,l.push(e+" "+n+(e>1?"s":"")))}return i=r.past?t.pastSuffix:t.futureSuffix,s=!0,r.years&&u(r.years,"year"),r.days&&u(r.days,"day"),r.hours&&u(r.hours,"hour"),r.minutes&&u(r.minutes,"minute"),r.seconds&&u(r.seconds,"second"),l.join(", ")+" "+i},prettyPrint:function(e,t){var n,r,i,a,o,s,l,u,c;return e?"number"==typeof e&&(e=new Date().setSeconds(e)):e=new Date,t||(t={}),t.showTime||(t.showTime=!1),a=(i=(n=new Date(e)).getDate())>3&&i<21?i+"th":i%10==1?i+"st":i%10==2?i+"nd":i%10==3?i+"rd":i+"th",o=n.getFullYear(),r=this.monthName(n.getMonth()+1)+" "+a+", "+o,l=n.getHours(),u=n.getMinutes(),c=l>=12?"pm":"am",s=(l=l%12?l%12:12)+":"+(u=u<10?"0"+u:u)+" "+c,t.showTime?r+" at "+s:r}};/* istanbul ignore next: code loaders */if(ex)ex=e;else{if("function"==typeof define&&define.amd)return define([],function(){return e});this.humandate=e}}();var D=P("jE8J5"),eN={},eP=eN={};function eR(){throw Error("setTimeout has not been defined")}function eO(){throw Error("clearTimeout has not been defined")}function eL(e){if(k===setTimeout)return setTimeout(e,0);// if setTimeout wasn't available but was latter defined
+n&&"_self"!==n||t.metaKey||t.altKey||t.ctrlKey||t.shiftKey||(t.preventDefault(),l(e,{replace:void 0!==r?r:V(u)===V(c),state:i,preventScrollReset:a,relative:o,unstable_viewTransition:s}))},[u,l,c,r,i,n,e,a,o,s])}(u,{replace:o,state:s,target:l,preventScrollReset:c,relative:i,unstable_viewTransition:d});return /*#__PURE__*/D.createElement("a",ew({},f,{href:n||m,onClick:p||a?r:function(e){r&&r(e),e.defaultPrevented||g(e)},ref:t,target:l}))});(c=w||(w={})).UseScrollRestoration="useScrollRestoration",c.UseSubmit="useSubmit",c.UseSubmitFetcher="useSubmitFetcher",c.UseFetcher="useFetcher",c.useViewTransitionState="useViewTransitionState",(d=_||(_={})).UseFetcher="useFetcher",d.UseFetchers="useFetchers",d.UseScrollRestoration="useScrollRestoration";var eT={};eT=JSON.parse('{"name":"hnews","version":"4.6.0","description":"HNews","private":true,"source":"src/index.html","browserslist":"defaults","scripts":{"update":"ncu -u","serve":"parcel -p 8000 --lazy","watch":"parcel watch","build":"rm -rf dist && rm -rf docs && parcel build --no-source-maps --dist-dir docs --public-url=/hnews"},"author":"Luca Bacchi <bacchilu@gmail.com> (http://www.lucabacchi.it)","license":"ISC","prettier":{"arrowParens":"always","bracketSpacing":false,"embeddedLanguageFormatting":"auto","htmlWhitespaceSensitivity":"css","insertPragma":false,"jsxBracketSameLine":false,"jsxSingleQuote":false,"printWidth":120,"proseWrap":"preserve","quoteProps":"as-needed","requirePragma":false,"semi":true,"singleQuote":true,"tabWidth":4,"trailingComma":"es5","useTabs":false,"vueIndentScriptAndStyle":false},"devDependencies":{"@types/human-date":"^1.4.5","@types/react":"^18.2.37","@types/react-dom":"^18.2.15","npm-check-updates":"^16.14.6","parcel":"^2.10.2","process":"^0.11.10"},"dependencies":{"firebase":"^10.6.0","human-date":"^1.4.0","react":"^18.2.0","react-dom":"^18.2.0","react-intersection-observer-hook":"^2.1.1","react-router-dom":"^6.18.0","swr":"^2.2.4"}}'),P("jE8J5");var ex={};!function(){var e={months:["January","February","March","April","May","June","July","August","September","October","November","December"],toUTC:function(e){var t=e?new Date(e):new Date;return new Date(t.getUTCFullYear(),t.getUTCMonth(),t.getUTCDate(),t.getUTCHours(),t.getUTCMinutes(),t.getUTCSeconds())},monthName:function(t){var n;return n="number"==typeof t?t:new Date(t).getMonth()+1,e.months[n-1]},relativeTime:function(e,t){var n,r,i,a,o,s,l=[];if("number"==typeof e?n=e:(a=new Date(e).getTime(),n=-((new Date().getTime()-a)/1e3*1)),t||(t={}),t.futureSuffix||(t.futureSuffix="from now"),t.pastSuffix||(t.pastSuffix="ago"),t.presentText||(t.presentText="now"),t.returnObject||(t.returnObject=!1),o=n<0,r={seconds:Math.floor((n=Math.abs(n))%31536e3%86400%3600%60),minutes:Math.floor(n%31536e3%86400%3600/60),hours:Math.floor(n%31536e3%86400/3600),days:Math.floor(n%31536e3/86400),years:Math.floor(n/31536e3),past:o},t.returnObject)return r;if(0===n)return t.presentText;function u(e,n){s&&(s=t.allUnits,l.push(e+" "+n+(e>1?"s":"")))}return i=r.past?t.pastSuffix:t.futureSuffix,s=!0,r.years&&u(r.years,"year"),r.days&&u(r.days,"day"),r.hours&&u(r.hours,"hour"),r.minutes&&u(r.minutes,"minute"),r.seconds&&u(r.seconds,"second"),l.join(", ")+" "+i},prettyPrint:function(e,t){var n,r,i,a,o,s,l,u,c;return e?"number"==typeof e&&(e=new Date().setSeconds(e)):e=new Date,t||(t={}),t.showTime||(t.showTime=!1),a=(i=(n=new Date(e)).getDate())>3&&i<21?i+"th":i%10==1?i+"st":i%10==2?i+"nd":i%10==3?i+"rd":i+"th",o=n.getFullYear(),r=this.monthName(n.getMonth()+1)+" "+a+", "+o,l=n.getHours(),u=n.getMinutes(),c=l>=12?"pm":"am",s=(l=l%12?l%12:12)+":"+(u=u<10?"0"+u:u)+" "+c,t.showTime?r+" at "+s:r}};/* istanbul ignore next: code loaders */if(ex)ex=e;else{if("function"==typeof define&&define.amd)return define([],function(){return e});this.humandate=e}}();var D=P("jE8J5"),eN={},eP=eN={};function eR(){throw Error("setTimeout has not been defined")}function eO(){throw Error("clearTimeout has not been defined")}function eL(e){if(k===setTimeout)return setTimeout(e,0);// if setTimeout wasn't available but was latter defined
 if((k===eR||!k)&&setTimeout)return k=setTimeout,setTimeout(e,0);try{// when when somebody has screwed with setTimeout but no I.E. maddness
 return k(e,0)}catch(t){try{// When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
 return k.call(null,e,0)}catch(t){// same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
@@ -730,7 +730,7 @@ return e.map(e=>{if(!/**
  * NOTE: Using Provider<'app-version'> is a hack to indicate that the provider
  * provides VersionService. The provider is not necessarily a 'app-version'
  * provider.
- */function(e){let t=e.getComponent();return(null==t?void 0:t.type)==="VERSION"/* ComponentType.VERSION */}(e))return null;{let t=e.getImmediate();return`${t.library}/${t.version}`}}).filter(e=>e).join(" ")}}let tx="@firebase/app",tN="0.9.22",tP=new th("@firebase/app"),tR="[DEFAULT]",tO={[tx]:"fire-core","@firebase/app-compat":"fire-core-compat","@firebase/analytics":"fire-analytics","@firebase/analytics-compat":"fire-analytics-compat","@firebase/app-check":"fire-app-check","@firebase/app-check-compat":"fire-app-check-compat","@firebase/auth":"fire-auth","@firebase/auth-compat":"fire-auth-compat","@firebase/database":"fire-rtdb","@firebase/database-compat":"fire-rtdb-compat","@firebase/functions":"fire-fn","@firebase/functions-compat":"fire-fn-compat","@firebase/installations":"fire-iid","@firebase/installations-compat":"fire-iid-compat","@firebase/messaging":"fire-fcm","@firebase/messaging-compat":"fire-fcm-compat","@firebase/performance":"fire-perf","@firebase/performance-compat":"fire-perf-compat","@firebase/remote-config":"fire-rc","@firebase/remote-config-compat":"fire-rc-compat","@firebase/storage":"fire-gcs","@firebase/storage-compat":"fire-gcs-compat","@firebase/firestore":"fire-fst","@firebase/firestore-compat":"fire-fst-compat","fire-js":"fire-js",firebase:"fire-js-all"},tL=new Map,tD=new Map;/**
+ */function(e){let t=e.getComponent();return(null==t?void 0:t.type)==="VERSION"/* ComponentType.VERSION */}(e))return null;{let t=e.getImmediate();return`${t.library}/${t.version}`}}).filter(e=>e).join(" ")}}let tx="@firebase/app",tN="0.9.23",tP=new th("@firebase/app"),tR="[DEFAULT]",tO={[tx]:"fire-core","@firebase/app-compat":"fire-core-compat","@firebase/analytics":"fire-analytics","@firebase/analytics-compat":"fire-analytics-compat","@firebase/app-check":"fire-app-check","@firebase/app-check-compat":"fire-app-check-compat","@firebase/auth":"fire-auth","@firebase/auth-compat":"fire-auth-compat","@firebase/database":"fire-rtdb","@firebase/database-compat":"fire-rtdb-compat","@firebase/functions":"fire-fn","@firebase/functions-compat":"fire-fn-compat","@firebase/installations":"fire-iid","@firebase/installations-compat":"fire-iid-compat","@firebase/messaging":"fire-fcm","@firebase/messaging-compat":"fire-fcm-compat","@firebase/performance":"fire-perf","@firebase/performance-compat":"fire-perf-compat","@firebase/remote-config":"fire-rc","@firebase/remote-config-compat":"fire-rc-compat","@firebase/storage":"fire-gcs","@firebase/storage-compat":"fire-gcs-compat","@firebase/firestore":"fire-fst","@firebase/firestore-compat":"fire-fst-compat","fire-js":"fire-js",firebase:"fire-js-all"},tL=new Map,tD=new Map;/**
  *
  * @param component - the component to register
  * @returns whether or not the component is registered successfully
@@ -786,7 +786,7 @@ for(let n of(tD.set(t,e),tL.values()))!/**
  * The current SDK version.
  *
  * @public
- */let tz="10.5.2";function tF(e,t={}){let n=e;if("object"!=typeof t){let e=t;t={name:e}}let r=Object.assign({name:tR,automaticDataCollectionEnabled:!1},t),i=r.name;if("string"!=typeof i||!i)throw tj.create("bad-app-name"/* AppError.BAD_APP_NAME */,{appName:String(i)});if(n||(n=eZ()),!n)throw tj.create("no-options"/* AppError.NO_OPTIONS */);let a=tL.get(i);if(a){// return the existing app if options and config deep equal the ones in the existing app.
+ */let tz="10.6.0";function tF(e,t={}){let n=e;if("object"!=typeof t){let e=t;t={name:e}}let r=Object.assign({name:tR,automaticDataCollectionEnabled:!1},t),i=r.name;if("string"!=typeof i||!i)throw tj.create("bad-app-name"/* AppError.BAD_APP_NAME */,{appName:String(i)});if(n||(n=eZ()),!n)throw tj.create("no-options"/* AppError.NO_OPTIONS */);let a=tL.get(i);if(a){// return the existing app if options and config deep equal the ones in the existing app.
 if(e5(n,a.options)&&e5(r,a.config))return a;throw tj.create("duplicate-app"/* AppError.DUPLICATE_APP */,{appName:i})}let o=new ts(i);for(let e of tD.values())o.addComponent(e);let s=new tU(n,r,o);return tL.set(i,s),s}/**
  * Registers a library's name and version for platform logging purposes.
  * @param library - Name of 1p or 3p library (e.g. firestore, angularfire)
@@ -821,17 +821,17 @@ let i=null!==(r=tO[e])&&void 0!==r?r:e;n&&(i+=`-${n}`);let a=i.match(/\s|\//),o=
      * to IndexedDB.
      * Note that we only store one heartbeat per day. So if a heartbeat for today is
      * already logged, subsequent calls to this function in the same day will be ignored.
-     */async triggerHeartbeat(){let e=this.container.getProvider("platform-logger").getImmediate(),t=e.getPlatformInfoString(),n=tQ();return(// Do not store a heartbeat if one is already stored for this day
+     */async triggerHeartbeat(){var e;let t=this.container.getProvider("platform-logger").getImmediate(),n=t.getPlatformInfoString(),r=tQ();return(// Do not store a heartbeat if one is already stored for this day
 // or if a header has already been sent today.
-(null===this._heartbeatsCache&&(this._heartbeatsCache=await this._heartbeatsCachePromise),this._heartbeatsCache.lastSentHeartbeatDate===n||this._heartbeatsCache.heartbeats.some(e=>e.date===n))?void 0:(this._heartbeatsCache.heartbeats.push({date:n,agent:t}),// Remove entries older than 30 days.
+((null===(e=this._heartbeatsCache)||void 0===e?void 0:e.heartbeats)==null&&(this._heartbeatsCache=await this._heartbeatsCachePromise),this._heartbeatsCache.lastSentHeartbeatDate===r||this._heartbeatsCache.heartbeats.some(e=>e.date===r))?void 0:(this._heartbeatsCache.heartbeats.push({date:r,agent:n}),// Remove entries older than 30 days.
 this._heartbeatsCache.heartbeats=this._heartbeatsCache.heartbeats.filter(e=>{let t=new Date(e.date).valueOf(),n=Date.now();return n-t<=2592e6}),this._storage.overwrite(this._heartbeatsCache)))}/**
      * Returns a base64 encoded string which can be attached to the heartbeat-specific header directly.
      * It also clears all heartbeats from memory as well as in IndexedDB.
      *
      * NOTE: Consuming product SDKs should not send the header if this method
      * returns an empty string.
-     */async getHeartbeatsHeader(){// If it's still null or the array is empty, there is no data to send.
-if(null===this._heartbeatsCache&&await this._heartbeatsCachePromise,null===this._heartbeatsCache||0===this._heartbeatsCache.heartbeats.length)return"";let e=tQ(),{heartbeatsToSend:t,unsentEntries:n}=function(e,t=1024){// Heartbeats grouped by user agent in the standard format to be sent in
+     */async getHeartbeatsHeader(){var e;// If it's still null or the array is empty, there is no data to send.
+if(null===this._heartbeatsCache&&await this._heartbeatsCachePromise,(null===(e=this._heartbeatsCache)||void 0===e?void 0:e.heartbeats)==null||0===this._heartbeatsCache.heartbeats.length)return"";let t=tQ(),{heartbeatsToSend:n,unsentEntries:r}=function(e,t=1024){// Heartbeats grouped by user agent in the standard format to be sent in
 // the header.
 let n=[],r=e.slice();for(let i of e){// Look for an existing entry with the same user agent.
 let e=n.find(e=>e.agent===i.agent);if(e)// If the header would exceed max size, remove the added date
@@ -841,13 +841,13 @@ n.push({agent:i.agent,dates:[i.date]}),tY(n)>t){// If the header would exceed ma
 // entry and stop adding to the header.
 n.pop();break}// Pop unsent entry from queue. (Skipped if adding the entry exceeded
 // quota and the loop breaks early.)
-r=r.slice(1)}return{heartbeatsToSend:n,unsentEntries:r}}(this._heartbeatsCache.heartbeats),r=eK(JSON.stringify({version:2,heartbeats:t}));return(// Store last sent date to prevent another being logged/sent for the same day.
-this._heartbeatsCache.lastSentHeartbeatDate=e,n.length>0?(// Store any unsent entries if they exist.
-this._heartbeatsCache.heartbeats=n,// This seems more likely than emptying the array (below) to lead to some odd state
+r=r.slice(1)}return{heartbeatsToSend:n,unsentEntries:r}}(this._heartbeatsCache.heartbeats),i=eK(JSON.stringify({version:2,heartbeats:n}));return(// Store last sent date to prevent another being logged/sent for the same day.
+this._heartbeatsCache.lastSentHeartbeatDate=t,r.length>0?(// Store any unsent entries if they exist.
+this._heartbeatsCache.heartbeats=r,// This seems more likely than emptying the array (below) to lead to some odd state
 // since the cache isn't empty and this will be called again on the next request,
 // and is probably safest if we await it.
 await this._storage.overwrite(this._heartbeatsCache)):(this._heartbeatsCache.heartbeats=[],// Do not wait for this, to reduce latency.
-this._storage.overwrite(this._heartbeatsCache)),r)}}function tQ(){let e=new Date;// Returns date format 'YYYY-MM-DD'
+this._storage.overwrite(this._heartbeatsCache)),i)}}function tQ(){let e=new Date;// Returns date format 'YYYY-MM-DD'
 return e.toISOString().substring(0,10)}class tG{constructor(e){this.app=e,this._canUseIndexedDBPromise=this.runIndexedDBEnvironmentCheck()}async runIndexedDBEnvironmentCheck(){return!!/**
  * This method checks if indexedDB is supported by current browser/service worker context
  * @return true if indexedDB is supported by current browser/service worker context
@@ -866,7 +866,7 @@ return eK(JSON.stringify({version:2,heartbeats:e})).length}function tX(e,t){var 
 return{"dependent-sdk-initialized-before-auth":"Another Firebase SDK was initialized and is trying to use Auth before Auth is initialized. Please be sure to call `initializeAuth` or `getAuth` before starting any other Firebase SDK."}}tA(new ti("platform-logger",e=>new tT(e),"PRIVATE"/* ComponentType.PRIVATE */)),tA(new ti("heartbeat",e=>new tJ(e),"PRIVATE"/* ComponentType.PRIVATE */)),// Register `app` package.
 tV(tx,tN,""),// BUILD_TARGET will be replaced by values like esm5, esm2017, cjs5, etc during the compilation
 tV(tx,tN,"esm2017"),// Register platform SDK identifier (no version).
-tV("fire-js",""),tV("firebase","10.5.2","app"),"function"==typeof SuppressedError&&SuppressedError;let t0=new e4("auth","Firebase",tZ()),t1=new th("@firebase/auth");function t2(e,...t){t1.logLevel<=I.ERROR&&t1.error(`Auth (${tz}): ${e}`,...t)}/**
+tV("fire-js",""),tV("firebase","10.6.0","app"),"function"==typeof SuppressedError&&SuppressedError;let t0=new e4("auth","Firebase",tZ()),t1=new th("@firebase/auth");function t2(e,...t){t1.logLevel<=I.ERROR&&t1.error(`Auth (${tz}): ${e}`,...t)}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1138,7 +1138,7 @@ await t.auth._persistUserIfCurrent(t),t.auth._notifyListenersIfCurrent(t)}/**
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */async function nT(e,t){let n=await nl(e,{},async()=>{let n=e9({grant_type:"refresh_token",refresh_token:t}).slice(1),{tokenApiHost:r,apiKey:i}=e.config,a=nc(e,r,"/v1/token"/* Endpoint.TOKEN */,`key=${i}`),o=await e._getAdditionalHeaders();return o["Content-Type"/* HttpHeader.CONTENT_TYPE */]="application/x-www-form-urlencoded",nr.fetch()(a,{method:"POST"/* HttpMethod.POST */,headers:o,body:n})});// The response comes back in snake_case. Convert to camel:
-return{accessToken:n.access_token,expiresIn:n.expires_in,refreshToken:n.refresh_token}}/**
+return{accessToken:n.access_token,expiresIn:n.expires_in,refreshToken:n.refresh_token}}async function nx(e,t){return ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts:revokeToken"/* Endpoint.REVOKE_TOKEN */,no(e,t))}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1158,9 +1158,9 @@ return{accessToken:n.access_token,expiresIn:n.expires_in,refreshToken:n.refresh_
  * it references AuthInternal which has a circular dependency with UserInternal.
  *
  * @internal
- */class nx{constructor(){this.refreshToken=null,this.accessToken=null,this.expirationTime=null}get isExpired(){return!this.expirationTime||Date.now()>this.expirationTime-3e4/* Buffer.TOKEN_REFRESH */}updateFromServerResponse(e){t8(e.idToken,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t8(void 0!==e.idToken,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t8(void 0!==e.refreshToken,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let t="expiresIn"in e&&void 0!==e.expiresIn?Number(e.expiresIn):/**
+ */class nN{constructor(){this.refreshToken=null,this.accessToken=null,this.expirationTime=null}get isExpired(){return!this.expirationTime||Date.now()>this.expirationTime-3e4/* Buffer.TOKEN_REFRESH */}updateFromServerResponse(e){t8(e.idToken,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t8(void 0!==e.idToken,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t8(void 0!==e.refreshToken,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let t="expiresIn"in e&&void 0!==e.expiresIn?Number(e.expiresIn):/**
  * Extract expiresIn TTL from a token by subtracting the expiration from the issuance.
- */function(e){let t=n_(e);return t8(t,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t8(void 0!==t.exp,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t8(void 0!==t.iat,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),Number(t.exp)-Number(t.iat)}(e.idToken);this.updateTokensAndExpiration(e.idToken,e.refreshToken,t)}async getToken(e,t=!1){return(t8(!this.accessToken||this.refreshToken,e,"user-token-expired"/* AuthErrorCode.TOKEN_EXPIRED */),t||!this.accessToken||this.isExpired)?this.refreshToken?(await this.refresh(e,this.refreshToken),this.accessToken):null:this.accessToken}clearRefreshToken(){this.refreshToken=null}async refresh(e,t){let{accessToken:n,refreshToken:r,expiresIn:i}=await nT(e,t);this.updateTokensAndExpiration(n,r,Number(i))}updateTokensAndExpiration(e,t,n){this.refreshToken=t||null,this.accessToken=e||null,this.expirationTime=Date.now()+1e3*n}static fromJSON(e,t){let{refreshToken:n,accessToken:r,expirationTime:i}=t,a=new nx;return n&&(t8("string"==typeof n,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:e}),a.refreshToken=n),r&&(t8("string"==typeof r,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:e}),a.accessToken=r),i&&(t8("number"==typeof i,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:e}),a.expirationTime=i),a}toJSON(){return{refreshToken:this.refreshToken,accessToken:this.accessToken,expirationTime:this.expirationTime}}_assign(e){this.accessToken=e.accessToken,this.refreshToken=e.refreshToken,this.expirationTime=e.expirationTime}_clone(){return Object.assign(new nx,this.toJSON())}_performRefresh(){return t9("not implemented")}}/**
+ */function(e){let t=n_(e);return t8(t,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t8(void 0!==t.exp,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t8(void 0!==t.iat,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),Number(t.exp)-Number(t.iat)}(e.idToken);this.updateTokensAndExpiration(e.idToken,e.refreshToken,t)}async getToken(e,t=!1){return(t8(!this.accessToken||this.refreshToken,e,"user-token-expired"/* AuthErrorCode.TOKEN_EXPIRED */),t||!this.accessToken||this.isExpired)?this.refreshToken?(await this.refresh(e,this.refreshToken),this.accessToken):null:this.accessToken}clearRefreshToken(){this.refreshToken=null}async refresh(e,t){let{accessToken:n,refreshToken:r,expiresIn:i}=await nT(e,t);this.updateTokensAndExpiration(n,r,Number(i))}updateTokensAndExpiration(e,t,n){this.refreshToken=t||null,this.accessToken=e||null,this.expirationTime=Date.now()+1e3*n}static fromJSON(e,t){let{refreshToken:n,accessToken:r,expirationTime:i}=t,a=new nN;return n&&(t8("string"==typeof n,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:e}),a.refreshToken=n),r&&(t8("string"==typeof r,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:e}),a.accessToken=r),i&&(t8("number"==typeof i,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:e}),a.expirationTime=i),a}toJSON(){return{refreshToken:this.refreshToken,accessToken:this.accessToken,expirationTime:this.expirationTime}}_assign(e){this.accessToken=e.accessToken,this.refreshToken=e.refreshToken,this.expirationTime=e.expirationTime}_clone(){return Object.assign(new nN,this.toJSON())}_performRefresh(){return t9("not implemented")}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1175,19 +1175,19 @@ return{accessToken:n.access_token,expiresIn:n.expires_in,refreshToken:n.refresh_
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function nN(e,t){t8("string"==typeof e||void 0===e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:t})}class nP{constructor(e){var{uid:t,auth:n,stsTokenManager:r}=e,i=tX(e,["uid","auth","stsTokenManager"]);// For the user object, provider is always Firebase.
-this.providerId="firebase"/* ProviderId.FIREBASE */,this.proactiveRefresh=new nS(this),this.reloadUserInfo=null,this.reloadListener=null,this.uid=t,this.auth=n,this.stsTokenManager=r,this.accessToken=r.accessToken,this.displayName=i.displayName||null,this.email=i.email||null,this.emailVerified=i.emailVerified||!1,this.phoneNumber=i.phoneNumber||null,this.photoURL=i.photoURL||null,this.isAnonymous=i.isAnonymous||!1,this.tenantId=i.tenantId||null,this.providerData=i.providerData?[...i.providerData]:[],this.metadata=new nE(i.createdAt||void 0,i.lastLoginAt||void 0)}async getIdToken(e){let t=await nk(this,this.stsTokenManager.getToken(this.auth,e));return t8(t,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.accessToken!==t&&(this.accessToken=t,await this.auth._persistUserIfCurrent(this),this.auth._notifyListenersIfCurrent(this)),t}getIdTokenResult(e){return nb(this,e)}reload(){return nC(this)}_assign(e){this!==e&&(t8(this.uid===e.uid,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.displayName=e.displayName,this.photoURL=e.photoURL,this.email=e.email,this.emailVerified=e.emailVerified,this.phoneNumber=e.phoneNumber,this.isAnonymous=e.isAnonymous,this.tenantId=e.tenantId,this.providerData=e.providerData.map(e=>Object.assign({},e)),this.metadata._copy(e.metadata),this.stsTokenManager._assign(e.stsTokenManager))}_clone(e){let t=new nP(Object.assign(Object.assign({},this),{auth:e,stsTokenManager:this.stsTokenManager._clone()}));return t.metadata._copy(this.metadata),t}_onReload(e){// There should only ever be one listener, and that is a single instance of MultiFactorUser
+ */function nP(e,t){t8("string"==typeof e||void 0===e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */,{appName:t})}class nR{constructor(e){var{uid:t,auth:n,stsTokenManager:r}=e,i=tX(e,["uid","auth","stsTokenManager"]);// For the user object, provider is always Firebase.
+this.providerId="firebase"/* ProviderId.FIREBASE */,this.proactiveRefresh=new nS(this),this.reloadUserInfo=null,this.reloadListener=null,this.uid=t,this.auth=n,this.stsTokenManager=r,this.accessToken=r.accessToken,this.displayName=i.displayName||null,this.email=i.email||null,this.emailVerified=i.emailVerified||!1,this.phoneNumber=i.phoneNumber||null,this.photoURL=i.photoURL||null,this.isAnonymous=i.isAnonymous||!1,this.tenantId=i.tenantId||null,this.providerData=i.providerData?[...i.providerData]:[],this.metadata=new nE(i.createdAt||void 0,i.lastLoginAt||void 0)}async getIdToken(e){let t=await nk(this,this.stsTokenManager.getToken(this.auth,e));return t8(t,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.accessToken!==t&&(this.accessToken=t,await this.auth._persistUserIfCurrent(this),this.auth._notifyListenersIfCurrent(this)),t}getIdTokenResult(e){return nb(this,e)}reload(){return nC(this)}_assign(e){this!==e&&(t8(this.uid===e.uid,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.displayName=e.displayName,this.photoURL=e.photoURL,this.email=e.email,this.emailVerified=e.emailVerified,this.phoneNumber=e.phoneNumber,this.isAnonymous=e.isAnonymous,this.tenantId=e.tenantId,this.providerData=e.providerData.map(e=>Object.assign({},e)),this.metadata._copy(e.metadata),this.stsTokenManager._assign(e.stsTokenManager))}_clone(e){let t=new nR(Object.assign(Object.assign({},this),{auth:e,stsTokenManager:this.stsTokenManager._clone()}));return t.metadata._copy(this.metadata),t}_onReload(e){// There should only ever be one listener, and that is a single instance of MultiFactorUser
 t8(!this.reloadListener,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.reloadListener=e,this.reloadUserInfo&&(this._notifyReloadListener(this.reloadUserInfo),this.reloadUserInfo=null)}_notifyReloadListener(e){this.reloadListener?this.reloadListener(e):this.reloadUserInfo=e}_startProactiveRefresh(){this.proactiveRefresh._start()}_stopProactiveRefresh(){this.proactiveRefresh._stop()}async _updateTokensIfNecessary(e,t=!1){let n=!1;e.idToken&&e.idToken!==this.stsTokenManager.accessToken&&(this.stsTokenManager.updateFromServerResponse(e),n=!0),t&&await nI(this),await this.auth._persistUserIfCurrent(this),n&&this.auth._notifyListenersIfCurrent(this)}async delete(){let e=await this.getIdToken();// TODO: Determine if cancellable-promises are necessary to use in this class so that delete()
 //       cancels pending actions...
 return await nk(this,ng(this.auth,{idToken:e})),this.stsTokenManager.clearRefreshToken(),this.auth.signOut()}toJSON(){return Object.assign(Object.assign({uid:this.uid,email:this.email||void 0,emailVerified:this.emailVerified,displayName:this.displayName||void 0,isAnonymous:this.isAnonymous,photoURL:this.photoURL||void 0,phoneNumber:this.phoneNumber||void 0,tenantId:this.tenantId||void 0,providerData:this.providerData.map(e=>Object.assign({},e)),stsTokenManager:this.stsTokenManager.toJSON(),// Redirect event ID must be maintained in case there is a pending
 // redirect event.
 _redirectEventId:this._redirectEventId},this.metadata.toJSON()),{// Required for compatibility with the legacy SDK (go/firebase-auth-sdk-persistence-parsing):
-apiKey:this.auth.config.apiKey,appName:this.auth.name})}get refreshToken(){return this.stsTokenManager.refreshToken||""}static _fromJSON(e,t){var n,r,i,a,o,s,l,u;let c=null!==(n=t.displayName)&&void 0!==n?n:void 0,d=null!==(r=t.email)&&void 0!==r?r:void 0,f=null!==(i=t.phoneNumber)&&void 0!==i?i:void 0,h=null!==(a=t.photoURL)&&void 0!==a?a:void 0,p=null!==(o=t.tenantId)&&void 0!==o?o:void 0,m=null!==(s=t._redirectEventId)&&void 0!==s?s:void 0,g=null!==(l=t.createdAt)&&void 0!==l?l:void 0,v=null!==(u=t.lastLoginAt)&&void 0!==u?u:void 0,{uid:y,emailVerified:b,isAnonymous:w,providerData:_,stsTokenManager:k}=t;t8(y&&k,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let S=nx.fromJSON(this.name,k);t8("string"==typeof y,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),nN(c,e.name),nN(d,e.name),t8("boolean"==typeof b,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t8("boolean"==typeof w,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),nN(f,e.name),nN(h,e.name),nN(p,e.name),nN(m,e.name),nN(g,e.name),nN(v,e.name);let E=new nP({uid:y,auth:e,email:d,emailVerified:b,displayName:c,isAnonymous:w,photoURL:h,phoneNumber:f,tenantId:p,stsTokenManager:S,createdAt:g,lastLoginAt:v});return _&&Array.isArray(_)&&(E.providerData=_.map(e=>Object.assign({},e))),m&&(E._redirectEventId=m),E}/**
+apiKey:this.auth.config.apiKey,appName:this.auth.name})}get refreshToken(){return this.stsTokenManager.refreshToken||""}static _fromJSON(e,t){var n,r,i,a,o,s,l,u;let c=null!==(n=t.displayName)&&void 0!==n?n:void 0,d=null!==(r=t.email)&&void 0!==r?r:void 0,f=null!==(i=t.phoneNumber)&&void 0!==i?i:void 0,h=null!==(a=t.photoURL)&&void 0!==a?a:void 0,p=null!==(o=t.tenantId)&&void 0!==o?o:void 0,m=null!==(s=t._redirectEventId)&&void 0!==s?s:void 0,g=null!==(l=t.createdAt)&&void 0!==l?l:void 0,v=null!==(u=t.lastLoginAt)&&void 0!==u?u:void 0,{uid:y,emailVerified:b,isAnonymous:w,providerData:_,stsTokenManager:k}=t;t8(y&&k,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let S=nN.fromJSON(this.name,k);t8("string"==typeof y,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),nP(c,e.name),nP(d,e.name),t8("boolean"==typeof b,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t8("boolean"==typeof w,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),nP(f,e.name),nP(h,e.name),nP(p,e.name),nP(m,e.name),nP(g,e.name),nP(v,e.name);let E=new nR({uid:y,auth:e,email:d,emailVerified:b,displayName:c,isAnonymous:w,photoURL:h,phoneNumber:f,tenantId:p,stsTokenManager:S,createdAt:g,lastLoginAt:v});return _&&Array.isArray(_)&&(E.providerData=_.map(e=>Object.assign({},e))),m&&(E._redirectEventId=m),E}/**
      * Initialize a User from an idToken server response
      * @param auth
      * @param idTokenResponse
-     */static async _fromIdTokenResponse(e,t,n=!1){let r=new nx;r.updateFromServerResponse(t);// Initialize the Firebase Auth user.
-let i=new nP({uid:t.localId,auth:e,stsTokenManager:r,isAnonymous:n});return(// Updates the user info and data and resolves with a user instance.
+     */static async _fromIdTokenResponse(e,t,n=!1){let r=new nN;r.updateFromServerResponse(t);// Initialize the Firebase Auth user.
+let i=new nR({uid:t.localId,auth:e,stsTokenManager:r,isAnonymous:n});return(// Updates the user info and data and resolves with a user instance.
 await nI(i),i)}}/**
  * @license
  * Copyright 2020 Google LLC
@@ -1203,7 +1203,7 @@ await nI(i),i)}}/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */let nR=new Map;function nO(e){e instanceof Function||t9("Expected a class definition");let t=nR.get(e);return t?t instanceof e||t9("Instance stored in cache mismatched with class"):(t=new e,nR.set(e,t)),t}/**
+ */let nO=new Map;function nL(e){e instanceof Function||t9("Expected a class definition");let t=nO.get(e);return t?t instanceof e||t9("Instance stored in cache mismatched with class"):(t=new e,nO.set(e,t)),t}/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -1218,7 +1218,7 @@ await nI(i),i)}}/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class nL{constructor(){this.type="NONE"/* PersistenceType.NONE */,this.storage={}}async _isAvailable(){return!0}async _set(e,t){this.storage[e]=t}async _get(e){let t=this.storage[e];return void 0===t?null:t}async _remove(e){delete this.storage[e]}_addListener(e,t){}_removeListener(e,t){}}/**
+ */class nD{constructor(){this.type="NONE"/* PersistenceType.NONE */,this.storage={}}async _isAvailable(){return!0}async _set(e,t){this.storage[e]=t}async _get(e){let t=this.storage[e];return void 0===t?null:t}async _remove(e){delete this.storage[e]}_addListener(e,t){}_removeListener(e,t){}}/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -1233,17 +1233,17 @@ await nI(i),i)}}/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function nD(e,t,n){return`firebase:${e}:${t}:${n}`}nL.type="NONE";class nA{constructor(e,t,n){this.persistence=e,this.auth=t,this.userKey=n;let{config:r,name:i}=this.auth;this.fullUserKey=nD(this.userKey,r.apiKey,i),this.fullPersistenceKey=nD("persistence"/* KeyName.PERSISTENCE_USER */,r.apiKey,i),this.boundEventHandler=t._onStorageEvent.bind(t),this.persistence._addListener(this.fullUserKey,this.boundEventHandler)}setCurrentUser(e){return this.persistence._set(this.fullUserKey,e.toJSON())}async getCurrentUser(){let e=await this.persistence._get(this.fullUserKey);return e?nP._fromJSON(this.auth,e):null}removeCurrentUser(){return this.persistence._remove(this.fullUserKey)}savePersistenceForRedirect(){return this.persistence._set(this.fullPersistenceKey,this.persistence.type)}async setPersistence(e){if(this.persistence===e)return;let t=await this.getCurrentUser();if(await this.removeCurrentUser(),this.persistence=e,t)return this.setCurrentUser(t)}delete(){this.persistence._removeListener(this.fullUserKey,this.boundEventHandler)}static async create(e,t,n="authUser"/* KeyName.AUTH_USER */){if(!t.length)return new nA(nO(nL),e,n);// Eliminate any persistences that are not available
-let r=(await Promise.all(t.map(async e=>{if(await e._isAvailable())return e}))).filter(e=>e),i=r[0]||nO(nL),a=nD(n,e.config.apiKey,e.name),o=null;// Note, here we check for a user in _all_ persistences, not just the
+ */function nA(e,t,n){return`firebase:${e}:${t}:${n}`}nD.type="NONE";class nM{constructor(e,t,n){this.persistence=e,this.auth=t,this.userKey=n;let{config:r,name:i}=this.auth;this.fullUserKey=nA(this.userKey,r.apiKey,i),this.fullPersistenceKey=nA("persistence"/* KeyName.PERSISTENCE_USER */,r.apiKey,i),this.boundEventHandler=t._onStorageEvent.bind(t),this.persistence._addListener(this.fullUserKey,this.boundEventHandler)}setCurrentUser(e){return this.persistence._set(this.fullUserKey,e.toJSON())}async getCurrentUser(){let e=await this.persistence._get(this.fullUserKey);return e?nR._fromJSON(this.auth,e):null}removeCurrentUser(){return this.persistence._remove(this.fullUserKey)}savePersistenceForRedirect(){return this.persistence._set(this.fullPersistenceKey,this.persistence.type)}async setPersistence(e){if(this.persistence===e)return;let t=await this.getCurrentUser();if(await this.removeCurrentUser(),this.persistence=e,t)return this.setCurrentUser(t)}delete(){this.persistence._removeListener(this.fullUserKey,this.boundEventHandler)}static async create(e,t,n="authUser"/* KeyName.AUTH_USER */){if(!t.length)return new nM(nL(nD),e,n);// Eliminate any persistences that are not available
+let r=(await Promise.all(t.map(async e=>{if(await e._isAvailable())return e}))).filter(e=>e),i=r[0]||nL(nD),a=nA(n,e.config.apiKey,e.name),o=null;// Note, here we check for a user in _all_ persistences, not just the
 // ones deemed available. If we can migrate a user out of a broken
 // persistence, we will (but only if that persistence supports migration).
-for(let n of t)try{let t=await n._get(a);if(t){let r=nP._fromJSON(e,t);// throws for unparsable blob (wrong format)
+for(let n of t)try{let t=await n._get(a);if(t){let r=nR._fromJSON(e,t);// throws for unparsable blob (wrong format)
 n!==i&&(o=r),i=n;break}}catch(e){}// If we find the user in a persistence that does support migration, use
 // that migration path (of only persistences that support migration)
 let s=r.filter(e=>e._shouldAllowMigration);return i._shouldAllowMigration&&s.length&&(i=s[0],o&&// we'll just let it bubble to surface the error.
 await i._set(a,o.toJSON()),// Attempt to clear the key in other persistences but ignore errors. This helps prevent issues
 // such as users getting stuck with a previous account after signing out and refreshing the tab.
-await Promise.all(t.map(async e=>{if(e!==i)try{await e._remove(a)}catch(e){}}))),new nA(i,e,n)}}/**
+await Promise.all(t.map(async e=>{if(e!==i)try{await e._remove(a)}catch(e){}}))),new nM(i,e,n)}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1260,8 +1260,8 @@ await Promise.all(t.map(async e=>{if(e!==i)try{await e._remove(a)}catch(e){}})))
  * limitations under the License.
  *//**
  * Determine the browser for the purposes of reporting usage to the API
- */function nM(e){let t=e.toLowerCase();if(t.includes("opera/")||t.includes("opr/")||t.includes("opios/"))return"Opera"/* BrowserName.OPERA */;{if(nF(t))return"IEMobile"/* BrowserName.IEMOBILE */;if(t.includes("msie")||t.includes("trident/"))return"IE"/* BrowserName.IE */;if(t.includes("edge/"))return"Edge"/* BrowserName.EDGE */;if(nj(t))return"Firefox"/* BrowserName.FIREFOX */;if(t.includes("silk/"))return"Silk"/* BrowserName.SILK */;if(n$(t))return"Blackberry"/* BrowserName.BLACKBERRY */;if(nB(t))return"Webos"/* BrowserName.WEBOS */;if(nU(t))return"Safari"/* BrowserName.SAFARI */;if((t.includes("chrome/")||nz(t))&&!t.includes("edge/"))return"Chrome"/* BrowserName.CHROME */;if(nV(t))return"Android"/* BrowserName.ANDROID */;let n=e.match(/([a-zA-Z\d\.]+)\/[a-zA-Z\d\.]*$/);if((null==n?void 0:n.length)===2)return n[1]}return"Other"/* BrowserName.OTHER */}function nj(e=e2()){return/firefox\//i.test(e)}function nU(e=e2()){let t=e.toLowerCase();return t.includes("safari/")&&!t.includes("chrome/")&&!t.includes("crios/")&&!t.includes("android")}function nz(e=e2()){return/crios\//i.test(e)}function nF(e=e2()){return/iemobile/i.test(e)}function nV(e=e2()){return/android/i.test(e)}function n$(e=e2()){return/blackberry/i.test(e)}function nB(e=e2()){return/webos/i.test(e)}function nH(e=e2()){return/iphone|ipad|ipod/i.test(e)||/macintosh/i.test(e)&&/mobile/i.test(e)}function nW(e=e2()){// TODO: implement getBrowserName equivalent for OS.
-return nH(e)||nV(e)||nB(e)||n$(e)||/windows phone/i.test(e)||nF(e)}/**
+ */function nj(e){let t=e.toLowerCase();if(t.includes("opera/")||t.includes("opr/")||t.includes("opios/"))return"Opera"/* BrowserName.OPERA */;{if(nV(t))return"IEMobile"/* BrowserName.IEMOBILE */;if(t.includes("msie")||t.includes("trident/"))return"IE"/* BrowserName.IE */;if(t.includes("edge/"))return"Edge"/* BrowserName.EDGE */;if(nU(t))return"Firefox"/* BrowserName.FIREFOX */;if(t.includes("silk/"))return"Silk"/* BrowserName.SILK */;if(nB(t))return"Blackberry"/* BrowserName.BLACKBERRY */;if(nH(t))return"Webos"/* BrowserName.WEBOS */;if(nz(t))return"Safari"/* BrowserName.SAFARI */;if((t.includes("chrome/")||nF(t))&&!t.includes("edge/"))return"Chrome"/* BrowserName.CHROME */;if(n$(t))return"Android"/* BrowserName.ANDROID */;let n=e.match(/([a-zA-Z\d\.]+)\/[a-zA-Z\d\.]*$/);if((null==n?void 0:n.length)===2)return n[1]}return"Other"/* BrowserName.OTHER */}function nU(e=e2()){return/firefox\//i.test(e)}function nz(e=e2()){let t=e.toLowerCase();return t.includes("safari/")&&!t.includes("chrome/")&&!t.includes("crios/")&&!t.includes("android")}function nF(e=e2()){return/crios\//i.test(e)}function nV(e=e2()){return/iemobile/i.test(e)}function n$(e=e2()){return/android/i.test(e)}function nB(e=e2()){return/blackberry/i.test(e)}function nH(e=e2()){return/webos/i.test(e)}function nW(e=e2()){return/iphone|ipad|ipod/i.test(e)||/macintosh/i.test(e)&&/mobile/i.test(e)}function nK(e=e2()){// TODO: implement getBrowserName equivalent for OS.
+return nW(e)||n$(e)||nH(e)||nB(e)||/windows phone/i.test(e)||nV(e)}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1278,11 +1278,11 @@ return nH(e)||nV(e)||nB(e)||n$(e)||/windows phone/i.test(e)||nF(e)}/**
  * limitations under the License.
  *//*
  * Determine the SDK version string
- */function nK(e,t=[]){let n;switch(e){case"Browser"/* ClientPlatform.BROWSER */:// In a browser environment, report the browser name.
-n=nM(e2());break;case"Worker"/* ClientPlatform.WORKER */:// Technically a worker runs from a browser but we need to differentiate a
+ */function nq(e,t=[]){let n;switch(e){case"Browser"/* ClientPlatform.BROWSER */:// In a browser environment, report the browser name.
+n=nj(e2());break;case"Worker"/* ClientPlatform.WORKER */:// Technically a worker runs from a browser but we need to differentiate a
 // worker from a browser.
 // For example: Chrome-Worker/JsCore/4.9.1/FirebaseCore-web.
-n=`${nM(e2())}-${e}`;break;default:n=e}let r=t.length?t.join(","):"FirebaseCore-web";/* default value if no other framework is used */return`${n}/JsCore/${tz}/${r}`}/**
+n=`${nj(e2())}-${e}`;break;default:n=e}let r=t.length?t.join(","):"FirebaseCore-web";/* default value if no other framework is used */return`${n}/JsCore/${tz}/${r}`}/**
  * @license
  * Copyright 2022 Google LLC
  *
@@ -1297,7 +1297,7 @@ n=`${nM(e2())}-${e}`;break;default:n=e}let r=t.length?t.join(","):"FirebaseCore-
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class nq{constructor(e){this.auth=e,this.queue=[]}pushCallback(e,t){// The callback could be sync or async. Wrap it into a
+ */class nJ{constructor(e){this.auth=e,this.queue=[]}pushCallback(e,t){// The callback could be sync or async. Wrap it into a
 // function that is always async.
 let n=t=>new Promise((n,r)=>{try{let r=e(t);// Either resolve with existing promise or wrap a non-promise
     // return value into a promise.
@@ -1330,11 +1330,11 @@ t.reverse(),t))try{e()}catch(e){/* swallow error */}throw this.auth._errorFactor
  * @param auth Auth object.
  * @param request Password policy request.
  * @returns Password policy response.
- */async function nJ(e,t={}){return ns(e,"GET"/* HttpMethod.GET */,"/v2/passwordPolicy"/* Endpoint.GET_PASSWORD_POLICY */,no(e,t))}/**
+ */async function nQ(e,t={}){return ns(e,"GET"/* HttpMethod.GET */,"/v2/passwordPolicy"/* Endpoint.GET_PASSWORD_POLICY */,no(e,t))}/**
  * Stores password policy requirements and provides password validation against the policy.
  *
  * @internal
- */class nQ{constructor(e){var t,n,r,i;// Only include custom strength options defined in the response.
+ */class nG{constructor(e){var t,n,r,i;// Only include custom strength options defined in the response.
 let a=e.customStrengthOptions;this.customStrengthOptions={},// TODO: Remove once the backend is updated to include the minimum min password length instead of undefined when there is no minimum length set.
 this.customStrengthOptions.minPasswordLength=null!==(t=a.minPasswordLength)&&void 0!==t?t:6,a.maxPasswordLength&&(this.customStrengthOptions.maxPasswordLength=a.maxPasswordLength),void 0!==a.containsLowercaseCharacter&&(this.customStrengthOptions.containsLowercaseLetter=a.containsLowercaseCharacter),void 0!==a.containsUppercaseCharacter&&(this.customStrengthOptions.containsUppercaseLetter=a.containsUppercaseCharacter),void 0!==a.containsNumericCharacter&&(this.customStrengthOptions.containsNumericCharacter=a.containsNumericCharacter),void 0!==a.containsNonAlphanumericCharacter&&(this.customStrengthOptions.containsNonAlphanumericCharacter=a.containsNonAlphanumericCharacter),this.enforcementState=e.enforcementState,"ENFORCEMENT_STATE_UNSPECIFIED"===this.enforcementState&&(this.enforcementState="OFF"),// Use an empty string if no non-alphanumeric characters are specified in the response.
 this.allowedNonAlphanumericCharacters=null!==(r=null===(n=e.allowedNonAlphanumericCharacters)||void 0===n?void 0:n.join(""))&&void 0!==r?r:"",this.forceUpgradeOnSignin=null!==(i=e.forceUpgradeOnSignin)&&void 0!==i&&i,this.schemaVersion=e.schemaVersion}validatePassword(e){var t,n,r,i,a,o;let s={isValid:!0,passwordPolicy:this};return(// Check the password length and character options.
@@ -1375,14 +1375,14 @@ this.updatePasswordCharacterOptionsStatuses(t,/* containsLowercaseCharacter= */!
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class nG{constructor(e,t,n,r){this.app=e,this.heartbeatServiceProvider=t,this.appCheckServiceProvider=n,this.config=r,this.currentUser=null,this.emulatorConfig=null,this.operations=Promise.resolve(),this.authStateSubscription=new nY(this),this.idTokenSubscription=new nY(this),this.beforeStateQueue=new nq(this),this.redirectUser=null,this.isProactiveRefreshEnabled=!1,this.EXPECTED_PASSWORD_POLICY_SCHEMA_VERSION=1,// Any network calls will set this to true and prevent subsequent emulator
+ */class nY{constructor(e,t,n,r){this.app=e,this.heartbeatServiceProvider=t,this.appCheckServiceProvider=n,this.config=r,this.currentUser=null,this.emulatorConfig=null,this.operations=Promise.resolve(),this.authStateSubscription=new nX(this),this.idTokenSubscription=new nX(this),this.beforeStateQueue=new nJ(this),this.redirectUser=null,this.isProactiveRefreshEnabled=!1,this.EXPECTED_PASSWORD_POLICY_SCHEMA_VERSION=1,// Any network calls will set this to true and prevent subsequent emulator
 // initialization
 this._canInitEmulator=!0,this._isInitialized=!1,this._deleted=!1,this._initializationPromise=null,this._popupRedirectResolver=null,this._errorFactory=t0,this._agentRecaptchaConfig=null,this._tenantRecaptchaConfigs={},this._projectPasswordPolicy=null,this._tenantPasswordPolicies={},// Tracks the last notified UID for state change listeners to prevent
 // repeated calls to the callbacks. Undefined means it's never been
 // called, whereas null means it's been called with a signed out user
-this.lastNotifiedUid=void 0,this.languageCode=null,this.tenantId=null,this.settings={appVerificationDisabledForTesting:!1},this.frameworks=[],this.name=e.name,this.clientVersion=r.sdkClientVersion}_initializeWithPersistence(e,t){return t&&(this._popupRedirectResolver=nO(t)),// Have to check for app deletion throughout initialization (after each
+this.lastNotifiedUid=void 0,this.languageCode=null,this.tenantId=null,this.settings={appVerificationDisabledForTesting:!1},this.frameworks=[],this.name=e.name,this.clientVersion=r.sdkClientVersion}_initializeWithPersistence(e,t){return t&&(this._popupRedirectResolver=nL(t)),// Have to check for app deletion throughout initialization (after each
 // promise resolution)
-this._initializationPromise=this.queue(async()=>{var n,r;if(!this._deleted&&(this.persistenceManager=await nA.create(this,e),!this._deleted)){// Initialize the resolver early if necessary (only applicable to web:
+this._initializationPromise=this.queue(async()=>{var n,r;if(!this._deleted&&(this.persistenceManager=await nM.create(this,e),!this._deleted)){// Initialize the resolver early if necessary (only applicable to web:
 // this will cause the iframe to load immediately in certain cases)
 if(null===(n=this._popupRedirectResolver)||void 0===n?void 0:n._shouldInitProactively)try{await this._popupRedirectResolver._initialize(this)}catch(e){/* Ignore the error */}await this.initializeCurrentUser(t),this.lastNotifiedUid=(null===(r=this.currentUser)||void 0===r?void 0:r.uid)||null,this._deleted||(this._isInitialized=!0)}}),this._initializationPromise}/**
      * If the persistence is changed in another window, the user manager will let us know
@@ -1433,10 +1433,12 @@ null}()}async _delete(){this._deleted=!0}async updateCurrentUser(e){// The publi
 let t=e?tr(e):null;return t&&t8(t.auth.config.apiKey===this.config.apiKey,this,"invalid-user-token"/* AuthErrorCode.INVALID_AUTH */),this._updateCurrentUser(t&&t._clone(this))}async _updateCurrentUser(e,t=!1){if(!this._deleted)return e&&t8(this.tenantId===e.tenantId,this,"tenant-id-mismatch"/* AuthErrorCode.TENANT_ID_MISMATCH */),t||await this.beforeStateQueue.runMiddleware(e),this.queue(async()=>{await this.directlySetCurrentUser(e),this.notifyAuthListeners()})}async signOut(){// Prevent callbacks from being called again in _updateCurrentUser, as
 // they were already called in the first line.
 return(// Run first, to block _setRedirectUser() if any callbacks fail.
-await this.beforeStateQueue.runMiddleware(null),(this.redirectPersistenceManager||this._popupRedirectResolver)&&await this._setRedirectUser(null),this._updateCurrentUser(null,/* skipBeforeStateCallbacks */!0))}setPersistence(e){return this.queue(async()=>{await this.assertedPersistence.setPersistence(nO(e))})}_getRecaptchaConfig(){return null==this.tenantId?this._agentRecaptchaConfig:this._tenantRecaptchaConfigs[this.tenantId]}async validatePassword(e){this._getPasswordPolicyInternal()||await this._updatePasswordPolicy();// Password policy will be defined after fetching.
+await this.beforeStateQueue.runMiddleware(null),(this.redirectPersistenceManager||this._popupRedirectResolver)&&await this._setRedirectUser(null),this._updateCurrentUser(null,/* skipBeforeStateCallbacks */!0))}setPersistence(e){return this.queue(async()=>{await this.assertedPersistence.setPersistence(nL(e))})}_getRecaptchaConfig(){return null==this.tenantId?this._agentRecaptchaConfig:this._tenantRecaptchaConfigs[this.tenantId]}async validatePassword(e){this._getPasswordPolicyInternal()||await this._updatePasswordPolicy();// Password policy will be defined after fetching.
 let t=this._getPasswordPolicyInternal();return(// Check that the policy schema version is supported by the SDK.
 // TODO: Update this logic to use a max supported policy schema version once we have multiple schema versions.
-t.schemaVersion!==this.EXPECTED_PASSWORD_POLICY_SCHEMA_VERSION?Promise.reject(this._errorFactory.create("unsupported-password-policy-schema-version"/* AuthErrorCode.UNSUPPORTED_PASSWORD_POLICY_SCHEMA_VERSION */,{})):t.validatePassword(e))}_getPasswordPolicyInternal(){return null===this.tenantId?this._projectPasswordPolicy:this._tenantPasswordPolicies[this.tenantId]}async _updatePasswordPolicy(){let e=await nJ(this),t=new nQ(e);null===this.tenantId?this._projectPasswordPolicy=t:this._tenantPasswordPolicies[this.tenantId]=t}_getPersistence(){return this.assertedPersistence.persistence.type}_updateErrorMap(e){this._errorFactory=new e4("auth","Firebase",e())}onAuthStateChanged(e,t,n){return this.registerStateListener(this.authStateSubscription,e,t,n)}beforeAuthStateChanged(e,t){return this.beforeStateQueue.pushCallback(e,t)}onIdTokenChanged(e,t,n){return this.registerStateListener(this.idTokenSubscription,e,t,n)}authStateReady(){return new Promise((e,t)=>{if(this.currentUser)e();else{let n=this.onAuthStateChanged(()=>{n(),e()},t)}})}toJSON(){var e;return{apiKey:this.config.apiKey,authDomain:this.config.authDomain,appName:this.name,currentUser:null===(e=this._currentUser)||void 0===e?void 0:e.toJSON()}}async _setRedirectUser(e,t){let n=await this.getOrInitRedirectPersistenceManager(t);return null===e?n.removeCurrentUser():n.setCurrentUser(e)}async getOrInitRedirectPersistenceManager(e){if(!this.redirectPersistenceManager){let t=e&&nO(e)||this._popupRedirectResolver;t8(t,this,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.redirectPersistenceManager=await nA.create(this,[nO(t._redirectPersistence)],"redirectUser"/* KeyName.REDIRECT_USER */),this.redirectUser=await this.redirectPersistenceManager.getCurrentUser()}return this.redirectPersistenceManager}async _redirectUserForId(e){var t,n;return(this._isInitialized&&await this.queue(async()=>{}),(null===(t=this._currentUser)||void 0===t?void 0:t._redirectEventId)===e)?this._currentUser:(null===(n=this.redirectUser)||void 0===n?void 0:n._redirectEventId)===e?this.redirectUser:null}async _persistUserIfCurrent(e){if(e===this.currentUser)return this.queue(async()=>this.directlySetCurrentUser(e))}/** Notifies listeners only if the user is current */_notifyListenersIfCurrent(e){e===this.currentUser&&this.notifyAuthListeners()}_key(){return`${this.config.authDomain}:${this.config.apiKey}:${this.name}`}_startProactiveRefresh(){this.isProactiveRefreshEnabled=!0,this.currentUser&&this._currentUser._startProactiveRefresh()}_stopProactiveRefresh(){this.isProactiveRefreshEnabled=!1,this.currentUser&&this._currentUser._stopProactiveRefresh()}/** Returns the current user cast as the internal type */get _currentUser(){return this.currentUser}notifyAuthListeners(){var e,t;if(!this._isInitialized)return;this.idTokenSubscription.next(this.currentUser);let n=null!==(t=null===(e=this.currentUser)||void 0===e?void 0:e.uid)&&void 0!==t?t:null;this.lastNotifiedUid!==n&&(this.lastNotifiedUid=n,this.authStateSubscription.next(this.currentUser))}registerStateListener(e,t,n,r){if(this._deleted)return()=>{};let i="function"==typeof t?t:t.next.bind(t),a=!1,o=this._isInitialized?Promise.resolve():this._initializationPromise;if(t8(o,this,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),// The callback needs to be called asynchronously per the spec.
+t.schemaVersion!==this.EXPECTED_PASSWORD_POLICY_SCHEMA_VERSION?Promise.reject(this._errorFactory.create("unsupported-password-policy-schema-version"/* AuthErrorCode.UNSUPPORTED_PASSWORD_POLICY_SCHEMA_VERSION */,{})):t.validatePassword(e))}_getPasswordPolicyInternal(){return null===this.tenantId?this._projectPasswordPolicy:this._tenantPasswordPolicies[this.tenantId]}async _updatePasswordPolicy(){let e=await nQ(this),t=new nG(e);null===this.tenantId?this._projectPasswordPolicy=t:this._tenantPasswordPolicies[this.tenantId]=t}_getPersistence(){return this.assertedPersistence.persistence.type}_updateErrorMap(e){this._errorFactory=new e4("auth","Firebase",e())}onAuthStateChanged(e,t,n){return this.registerStateListener(this.authStateSubscription,e,t,n)}beforeAuthStateChanged(e,t){return this.beforeStateQueue.pushCallback(e,t)}onIdTokenChanged(e,t,n){return this.registerStateListener(this.idTokenSubscription,e,t,n)}authStateReady(){return new Promise((e,t)=>{if(this.currentUser)e();else{let n=this.onAuthStateChanged(()=>{n(),e()},t)}})}/**
+     * Revokes the given access token. Currently only supports Apple OAuth access tokens.
+     */async revokeAccessToken(e){if(this.currentUser){let t=await this.currentUser.getIdToken(),n={providerId:"apple.com",tokenType:"ACCESS_TOKEN"/* TokenType.ACCESS_TOKEN */,token:e,idToken:t};null!=this.tenantId&&(n.tenantId=this.tenantId),await nx(this,n)}}toJSON(){var e;return{apiKey:this.config.apiKey,authDomain:this.config.authDomain,appName:this.name,currentUser:null===(e=this._currentUser)||void 0===e?void 0:e.toJSON()}}async _setRedirectUser(e,t){let n=await this.getOrInitRedirectPersistenceManager(t);return null===e?n.removeCurrentUser():n.setCurrentUser(e)}async getOrInitRedirectPersistenceManager(e){if(!this.redirectPersistenceManager){let t=e&&nL(e)||this._popupRedirectResolver;t8(t,this,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.redirectPersistenceManager=await nM.create(this,[nL(t._redirectPersistence)],"redirectUser"/* KeyName.REDIRECT_USER */),this.redirectUser=await this.redirectPersistenceManager.getCurrentUser()}return this.redirectPersistenceManager}async _redirectUserForId(e){var t,n;return(this._isInitialized&&await this.queue(async()=>{}),(null===(t=this._currentUser)||void 0===t?void 0:t._redirectEventId)===e)?this._currentUser:(null===(n=this.redirectUser)||void 0===n?void 0:n._redirectEventId)===e?this.redirectUser:null}async _persistUserIfCurrent(e){if(e===this.currentUser)return this.queue(async()=>this.directlySetCurrentUser(e))}/** Notifies listeners only if the user is current */_notifyListenersIfCurrent(e){e===this.currentUser&&this.notifyAuthListeners()}_key(){return`${this.config.authDomain}:${this.config.apiKey}:${this.name}`}_startProactiveRefresh(){this.isProactiveRefreshEnabled=!0,this.currentUser&&this._currentUser._startProactiveRefresh()}_stopProactiveRefresh(){this.isProactiveRefreshEnabled=!1,this.currentUser&&this._currentUser._stopProactiveRefresh()}/** Returns the current user cast as the internal type */get _currentUser(){return this.currentUser}notifyAuthListeners(){var e,t;if(!this._isInitialized)return;this.idTokenSubscription.next(this.currentUser);let n=null!==(t=null===(e=this.currentUser)||void 0===e?void 0:e.uid)&&void 0!==t?t:null;this.lastNotifiedUid!==n&&(this.lastNotifiedUid=n,this.authStateSubscription.next(this.currentUser))}registerStateListener(e,t,n,r){if(this._deleted)return()=>{};let i="function"==typeof t?t:t.next.bind(t),a=!1,o=this._isInitialized?Promise.resolve():this._initializationPromise;if(t8(o,this,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),// The callback needs to be called asynchronously per the spec.
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 o.then(()=>{a||i(this.currentUser)}),"function"==typeof t){let i=e.addObserver(t,n,r);return()=>{a=!0,i()}}{let n=e.addObserver(t);return()=>{a=!0,n()}}}/**
      * Unprotected (from race conditions) method to set the current user. This
@@ -1446,21 +1448,21 @@ o.then(()=>{a||i(this.currentUser)}),"function"==typeof t){let i=e.addObserver(t
 // to keep the promise chain alive
 this.operations=this.operations.then(e,e),this.operations)}get assertedPersistence(){return t8(this.persistenceManager,this,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.persistenceManager}_logFramework(e){!e||this.frameworks.includes(e)||(this.frameworks.push(e),// Sort alphabetically so that "FirebaseCore-web,FirebaseUI-web" and
 // "FirebaseUI-web,FirebaseCore-web" aren't viewed as different.
-this.frameworks.sort(),this.clientVersion=nK(this.config.clientPlatform,this._getFrameworks()))}_getFrameworks(){return this.frameworks}async _getAdditionalHeaders(){var e;// Additional headers on every request
+this.frameworks.sort(),this.clientVersion=nq(this.config.clientPlatform,this._getFrameworks()))}_getFrameworks(){return this.frameworks}async _getAdditionalHeaders(){var e;// Additional headers on every request
 let t={"X-Client-Version":this.clientVersion};this.app.options.appId&&(t["X-Firebase-gmpid"/* HttpHeader.X_FIREBASE_GMPID */]=this.app.options.appId);// If the heartbeat service exists, add the heartbeat string
 let n=await (null===(e=this.heartbeatServiceProvider.getImmediate({optional:!0}))||void 0===e?void 0:e.getHeartbeatsHeader());n&&(t["X-Firebase-Client"/* HttpHeader.X_FIREBASE_CLIENT */]=n);// If the App Check service exists, add the App Check token in the headers
 let r=await this._getAppCheckToken();return r&&(t["X-Firebase-AppCheck"/* HttpHeader.X_FIREBASE_APP_CHECK */]=r),t}async _getAppCheckToken(){var e;let t=await (null===(e=this.appCheckServiceProvider.getImmediate({optional:!0}))||void 0===e?void 0:e.getToken());return(null==t?void 0:t.error)&&// In the error case, a dummy token will be returned along with an error field describing
 // the error. In general, we shouldn't care about the error condition and just use
 // the token (actual or dummy) to send requests.
-function(e,...t){t1.logLevel<=I.WARN&&t1.warn(`Auth (${tz}): ${e}`,...t)}(`Error while retrieving App Check token: ${t.error}`),null==t?void 0:t.token}}/** Helper class to wrap subscriber logic */class nY{constructor(e){this.auth=e,this.observer=null,this.addObserver=/**
+function(e,...t){t1.logLevel<=I.WARN&&t1.warn(`Auth (${tz}): ${e}`,...t)}(`Error while retrieving App Check token: ${t.error}`),null==t?void 0:t.token}}/** Helper class to wrap subscriber logic */class nX{constructor(e){this.auth=e,this.observer=null,this.addObserver=/**
  * Helper to make a Subscribe function (just like Promise helps make a
  * Thenable).
  *
  * @param executor Function which can make calls to a single Observer
  *     as a proxy.
  * @param onNoObservers Callback when count of Observers goes to zero.
- */function(e,t){let n=new tt(e,void 0);return n.subscribe.bind(n)}(e=>this.observer=e)}get next(){return t8(this.observer,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.observer.next.bind(this.observer)}}function nX(e){// TODO: consider adding timeout support & cancellation
-return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setAttribute("src",e),a.onload=t,a.onerror=e=>{let t=t4("internal-error"/* AuthErrorCode.INTERNAL_ERROR */);t.customData=e,n(t)},a.type="text/javascript",a.charset="UTF-8",(null!==(i=null===(r=document.getElementsByTagName("head"))||void 0===r?void 0:r[0])&&void 0!==i?i:document).appendChild(a)})}function nZ(e){return`__${e}${Math.floor(1e6*Math.random())}`}class n0{/**
+ */function(e,t){let n=new tt(e,void 0);return n.subscribe.bind(n)}(e=>this.observer=e)}get next(){return t8(this.observer,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),this.observer.next.bind(this.observer)}}function nZ(e){// TODO: consider adding timeout support & cancellation
+return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setAttribute("src",e),a.onload=t,a.onerror=e=>{let t=t4("internal-error"/* AuthErrorCode.INTERNAL_ERROR */);t.customData=e,n(t)},a.type="text/javascript",a.charset="UTF-8",(null!==(i=null===(r=document.getElementsByTagName("head"))||void 0===r?void 0:r[0])&&void 0!==i?i:document).appendChild(a)})}function n0(e){return`__${e}${Math.floor(1e6*Math.random())}`}class n1{/**
      *
      * @param authExtern - The corresponding Firebase {@link Auth} instance.
      *
@@ -1470,7 +1472,7 @@ return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setA
      * Executes the verification process.
      *
      * @returns A Promise for a token that can be used to assert the validity of a request.
-     */async verify(e="verify",t=!1){async function n(e){if(!t){if(null==e.tenantId&&null!=e._agentRecaptchaConfig)return e._agentRecaptchaConfig.siteKey;if(null!=e.tenantId&&void 0!==e._tenantRecaptchaConfigs[e.tenantId])return e._tenantRecaptchaConfigs[e.tenantId].siteKey}return new Promise(async(t,n)=>{nm(e,{clientType:"CLIENT_TYPE_WEB"/* RecaptchaClientType.WEB */,version:"RECAPTCHA_ENTERPRISE"/* RecaptchaVersion.ENTERPRISE */}).then(r=>{if(void 0===r.recaptchaKey)n(Error("recaptcha Enterprise site key undefined"));else{let n=new np(r);return null==e.tenantId?e._agentRecaptchaConfig=n:e._tenantRecaptchaConfigs[e.tenantId]=n,t(n.siteKey)}}).catch(e=>{n(e)})})}function r(t,n,r){let i=window.grecaptcha;nh(i)?i.enterprise.ready(()=>{i.enterprise.execute(t,{action:e}).then(e=>{n(e)}).catch(()=>{n("NO_RECAPTCHA")})}):r(Error("No reCAPTCHA enterprise script loaded."))}return new Promise((e,i)=>{n(this.auth).then(n=>{if(!t&&nh(window.grecaptcha))r(n,e,i);else{if("undefined"==typeof window){i(Error("RecaptchaVerifier is only supported in browser"));return}nX("https://www.google.com/recaptcha/enterprise.js?render="+n).then(()=>{r(n,e,i)}).catch(e=>{i(e)})}}).catch(e=>{i(e)})})}}async function n1(e,t,n,r=!1){let i;let a=new n0(e);try{i=await a.verify(n)}catch(e){i=await a.verify(n,!0)}let o=Object.assign({},t);return r?Object.assign(o,{captchaResp:i}):Object.assign(o,{captchaResponse:i}),Object.assign(o,{clientType:"CLIENT_TYPE_WEB"/* RecaptchaClientType.WEB */}),Object.assign(o,{recaptchaVersion:"RECAPTCHA_ENTERPRISE"/* RecaptchaVersion.ENTERPRISE */}),o}async function n2(e,t,n,r){var i;if(null===(i=e._getRecaptchaConfig())||void 0===i||!i.isProviderEnabled("EMAIL_PASSWORD_PROVIDER"/* RecaptchaProvider.EMAIL_PASSWORD_PROVIDER */))return r(e,t).catch(async i=>{if("auth/missing-recaptcha-token"!==i.code)return Promise.reject(i);{console.log(`${n} is protected by reCAPTCHA Enterprise for this project. Automatically triggering the reCAPTCHA flow and restarting the flow.`);let i=await n1(e,t,n,"getOobCode"/* RecaptchaActionName.GET_OOB_CODE */===n);return r(e,i)}});{let i=await n1(e,t,n,"getOobCode"/* RecaptchaActionName.GET_OOB_CODE */===n);return r(e,i)}}function n3(e){let t=e.indexOf(":");return t<0?"":e.substr(0,t+1)}function n4(e){if(!e)return null;let t=Number(e);return isNaN(t)?null:t}/**
+     */async verify(e="verify",t=!1){async function n(e){if(!t){if(null==e.tenantId&&null!=e._agentRecaptchaConfig)return e._agentRecaptchaConfig.siteKey;if(null!=e.tenantId&&void 0!==e._tenantRecaptchaConfigs[e.tenantId])return e._tenantRecaptchaConfigs[e.tenantId].siteKey}return new Promise(async(t,n)=>{nm(e,{clientType:"CLIENT_TYPE_WEB"/* RecaptchaClientType.WEB */,version:"RECAPTCHA_ENTERPRISE"/* RecaptchaVersion.ENTERPRISE */}).then(r=>{if(void 0===r.recaptchaKey)n(Error("recaptcha Enterprise site key undefined"));else{let n=new np(r);return null==e.tenantId?e._agentRecaptchaConfig=n:e._tenantRecaptchaConfigs[e.tenantId]=n,t(n.siteKey)}}).catch(e=>{n(e)})})}function r(t,n,r){let i=window.grecaptcha;nh(i)?i.enterprise.ready(()=>{i.enterprise.execute(t,{action:e}).then(e=>{n(e)}).catch(()=>{n("NO_RECAPTCHA")})}):r(Error("No reCAPTCHA enterprise script loaded."))}return new Promise((e,i)=>{n(this.auth).then(n=>{if(!t&&nh(window.grecaptcha))r(n,e,i);else{if("undefined"==typeof window){i(Error("RecaptchaVerifier is only supported in browser"));return}nZ("https://www.google.com/recaptcha/enterprise.js?render="+n).then(()=>{r(n,e,i)}).catch(e=>{i(e)})}}).catch(e=>{i(e)})})}}async function n2(e,t,n,r=!1){let i;let a=new n1(e);try{i=await a.verify(n)}catch(e){i=await a.verify(n,!0)}let o=Object.assign({},t);return r?Object.assign(o,{captchaResp:i}):Object.assign(o,{captchaResponse:i}),Object.assign(o,{clientType:"CLIENT_TYPE_WEB"/* RecaptchaClientType.WEB */}),Object.assign(o,{recaptchaVersion:"RECAPTCHA_ENTERPRISE"/* RecaptchaVersion.ENTERPRISE */}),o}async function n3(e,t,n,r){var i;if(null===(i=e._getRecaptchaConfig())||void 0===i||!i.isProviderEnabled("EMAIL_PASSWORD_PROVIDER"/* RecaptchaProvider.EMAIL_PASSWORD_PROVIDER */))return r(e,t).catch(async i=>{if("auth/missing-recaptcha-token"!==i.code)return Promise.reject(i);{console.log(`${n} is protected by reCAPTCHA Enterprise for this project. Automatically triggering the reCAPTCHA flow and restarting the flow.`);let i=await n2(e,t,n,"getOobCode"/* RecaptchaActionName.GET_OOB_CODE */===n);return r(e,i)}});{let i=await n2(e,t,n,"getOobCode"/* RecaptchaActionName.GET_OOB_CODE */===n);return r(e,i)}}function n4(e){let t=e.indexOf(":");return t<0?"":e.substr(0,t+1)}function n6(e){if(!e)return null;let t=Number(e);return isNaN(t)?null:t}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1492,7 +1494,7 @@ return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setA
  * Implementations specify the details about each auth provider's credential requirements.
  *
  * @public
- */class n6{/** @internal */constructor(/**
+ */class n5{/** @internal */constructor(/**
      * The authentication provider ID for the credential.
      *
      * @remarks
@@ -1508,7 +1510,9 @@ return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setA
      * Returns a JSON-serializable representation of this object.
      *
      * @returns a JSON-serializable representation of this object.
-     */toJSON(){return t9("not implemented")}/** @internal */_getIdTokenResponse(e){return t9("not implemented")}/** @internal */_linkToIdToken(e,t){return t9("not implemented")}/** @internal */_getReauthenticationResolver(e){return t9("not implemented")}}async function n5(e,t){return ns(e,"POST"/* HttpMethod.POST */,"/v1/accounts:update"/* Endpoint.SET_ACCOUNT_INFO */,t)}/**
+     */toJSON(){return t9("not implemented")}/** @internal */_getIdTokenResponse(e){return t9("not implemented")}/** @internal */_linkToIdToken(e,t){return t9("not implemented")}/** @internal */_getReauthenticationResolver(e){return t9("not implemented")}}// Used for linking an email/password account to an existing idToken. Uses the same request/response
+// format as updateEmailPassword.
+async function n8(e,t){return ns(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signUp"/* Endpoint.SIGN_UP */,t)}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1523,7 +1527,7 @@ return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setA
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function n8(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPassword"/* Endpoint.SIGN_IN_WITH_PASSWORD */,no(e,t))}/**
+ */async function n9(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPassword"/* Endpoint.SIGN_IN_WITH_PASSWORD */,no(e,t))}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1538,7 +1542,7 @@ return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setA
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function n9(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithEmailLink"/* Endpoint.SIGN_IN_WITH_EMAIL_LINK */,no(e,t))}async function n7(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithEmailLink"/* Endpoint.SIGN_IN_WITH_EMAIL_LINK */,no(e,t))}/**
+ */async function n7(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithEmailLink"/* Endpoint.SIGN_IN_WITH_EMAIL_LINK */,no(e,t))}async function re(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithEmailLink"/* Endpoint.SIGN_IN_WITH_EMAIL_LINK */,no(e,t))}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1562,14 +1566,14 @@ return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setA
  * {@link SignInMethod}.EMAIL_LINK.
  *
  * @public
- */class re extends n6{/** @internal */constructor(/** @internal */e,/** @internal */t,n,/** @internal */r=null){super("password"/* ProviderId.PASSWORD */,n),this._email=e,this._password=t,this._tenantId=r}/** @internal */static _fromEmailAndPassword(e,t){return new re(e,t,"password"/* SignInMethod.EMAIL_PASSWORD */)}/** @internal */static _fromEmailAndCode(e,t,n=null){return new re(e,t,"emailLink"/* SignInMethod.EMAIL_LINK */,n)}/** {@inheritdoc AuthCredential.toJSON} */toJSON(){return{email:this._email,password:this._password,signInMethod:this.signInMethod,tenantId:this._tenantId}}/**
+ */class rt extends n5{/** @internal */constructor(/** @internal */e,/** @internal */t,n,/** @internal */r=null){super("password"/* ProviderId.PASSWORD */,n),this._email=e,this._password=t,this._tenantId=r}/** @internal */static _fromEmailAndPassword(e,t){return new rt(e,t,"password"/* SignInMethod.EMAIL_PASSWORD */)}/** @internal */static _fromEmailAndCode(e,t,n=null){return new rt(e,t,"emailLink"/* SignInMethod.EMAIL_LINK */,n)}/** {@inheritdoc AuthCredential.toJSON} */toJSON(){return{email:this._email,password:this._password,signInMethod:this.signInMethod,tenantId:this._tenantId}}/**
      * Static method to deserialize a JSON representation of an object into an {@link  AuthCredential}.
      *
      * @param json - Either `object` or the stringified representation of the object. When string is
      * provided, `JSON.parse` would be called first.
      *
      * @returns If the JSON input does not represent an {@link AuthCredential}, null is returned.
-     */static fromJSON(e){let t="string"==typeof e?JSON.parse(e):e;if((null==t?void 0:t.email)&&(null==t?void 0:t.password)){if("password"/* SignInMethod.EMAIL_PASSWORD */===t.signInMethod)return this._fromEmailAndPassword(t.email,t.password);if("emailLink"/* SignInMethod.EMAIL_LINK */===t.signInMethod)return this._fromEmailAndCode(t.email,t.password,t.tenantId)}return null}/** @internal */async _getIdTokenResponse(e){switch(this.signInMethod){case"password"/* SignInMethod.EMAIL_PASSWORD */:let t={returnSecureToken:!0,email:this._email,password:this._password,clientType:"CLIENT_TYPE_WEB"/* RecaptchaClientType.WEB */};return n2(e,t,"signInWithPassword"/* RecaptchaActionName.SIGN_IN_WITH_PASSWORD */,n8);case"emailLink"/* SignInMethod.EMAIL_LINK */:return n9(e,{email:this._email,oobCode:this._password});default:t3(e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)}}/** @internal */async _linkToIdToken(e,t){switch(this.signInMethod){case"password"/* SignInMethod.EMAIL_PASSWORD */:return n5(e,{idToken:t,returnSecureToken:!0,email:this._email,password:this._password});case"emailLink"/* SignInMethod.EMAIL_LINK */:return n7(e,{idToken:t,email:this._email,oobCode:this._password});default:t3(e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)}}/** @internal */_getReauthenticationResolver(e){return this._getIdTokenResponse(e)}}/**
+     */static fromJSON(e){let t="string"==typeof e?JSON.parse(e):e;if((null==t?void 0:t.email)&&(null==t?void 0:t.password)){if("password"/* SignInMethod.EMAIL_PASSWORD */===t.signInMethod)return this._fromEmailAndPassword(t.email,t.password);if("emailLink"/* SignInMethod.EMAIL_LINK */===t.signInMethod)return this._fromEmailAndCode(t.email,t.password,t.tenantId)}return null}/** @internal */async _getIdTokenResponse(e){switch(this.signInMethod){case"password"/* SignInMethod.EMAIL_PASSWORD */:let t={returnSecureToken:!0,email:this._email,password:this._password,clientType:"CLIENT_TYPE_WEB"/* RecaptchaClientType.WEB */};return n3(e,t,"signInWithPassword"/* RecaptchaActionName.SIGN_IN_WITH_PASSWORD */,n9);case"emailLink"/* SignInMethod.EMAIL_LINK */:return n7(e,{email:this._email,oobCode:this._password});default:t3(e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)}}/** @internal */async _linkToIdToken(e,t){switch(this.signInMethod){case"password"/* SignInMethod.EMAIL_PASSWORD */:let n={idToken:t,returnSecureToken:!0,email:this._email,password:this._password,clientType:"CLIENT_TYPE_WEB"/* RecaptchaClientType.WEB */};return n3(e,n,"signUpPassword"/* RecaptchaActionName.SIGN_UP_PASSWORD */,n8);case"emailLink"/* SignInMethod.EMAIL_LINK */:return re(e,{idToken:t,email:this._email,oobCode:this._password});default:t3(e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)}}/** @internal */_getReauthenticationResolver(e){return this._getIdTokenResponse(e)}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1584,14 +1588,14 @@ return new Promise((t,n)=>{var r,i;let a=document.createElement("script");a.setA
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function rt(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithIdp"/* Endpoint.SIGN_IN_WITH_IDP */,no(e,t))}/**
+ */async function rn(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithIdp"/* Endpoint.SIGN_IN_WITH_IDP */,no(e,t))}/**
  * Represents the OAuth credentials returned by an {@link OAuthProvider}.
  *
  * @remarks
  * Implementations specify the details about each auth provider's credential requirements.
  *
  * @public
- */class rn extends n6{constructor(){super(...arguments),this.pendingToken=null}/** @internal */static _fromParams(e){let t=new rn(e.providerId,e.signInMethod);return e.idToken||e.accessToken?(e.idToken&&(t.idToken=e.idToken),e.accessToken&&(t.accessToken=e.accessToken),e.nonce&&!e.pendingToken&&(t.nonce=e.nonce),e.pendingToken&&(t.pendingToken=e.pendingToken)):e.oauthToken&&e.oauthTokenSecret?(// OAuth 1 and OAuth token with token secret
+ */class rr extends n5{constructor(){super(...arguments),this.pendingToken=null}/** @internal */static _fromParams(e){let t=new rr(e.providerId,e.signInMethod);return e.idToken||e.accessToken?(e.idToken&&(t.idToken=e.idToken),e.accessToken&&(t.accessToken=e.accessToken),e.nonce&&!e.pendingToken&&(t.nonce=e.nonce),e.pendingToken&&(t.pendingToken=e.pendingToken)):e.oauthToken&&e.oauthTokenSecret?(// OAuth 1 and OAuth token with token secret
 t.accessToken=e.oauthToken,t.secret=e.oauthTokenSecret):t3("argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),t}/** {@inheritdoc AuthCredential.toJSON}  */toJSON(){return{idToken:this.idToken,accessToken:this.accessToken,secret:this.secret,nonce:this.nonce,pendingToken:this.pendingToken,providerId:this.providerId,signInMethod:this.signInMethod}}/**
      * Static method to deserialize a JSON representation of an object into an
      * {@link  AuthCredential}.
@@ -1600,7 +1604,7 @@ t.accessToken=e.oauthToken,t.secret=e.oauthTokenSecret):t3("argument-error"/* Au
      * When string is provided, JSON.parse would be called first.
      *
      * @returns If the JSON input does not represent an {@link  AuthCredential}, null is returned.
-     */static fromJSON(e){let t="string"==typeof e?JSON.parse(e):e,{providerId:n,signInMethod:r}=t,i=tX(t,["providerId","signInMethod"]);if(!n||!r)return null;let a=new rn(n,r);return a.idToken=i.idToken||void 0,a.accessToken=i.accessToken||void 0,a.secret=i.secret,a.nonce=i.nonce,a.pendingToken=i.pendingToken||null,a}/** @internal */_getIdTokenResponse(e){let t=this.buildRequest();return rt(e,t)}/** @internal */_linkToIdToken(e,t){let n=this.buildRequest();return n.idToken=t,rt(e,n)}/** @internal */_getReauthenticationResolver(e){let t=this.buildRequest();return t.autoCreate=!1,rt(e,t)}buildRequest(){let e={requestUri:"http://localhost",returnSecureToken:!0};if(this.pendingToken)e.pendingToken=this.pendingToken;else{let t={};this.idToken&&(t.id_token=this.idToken),this.accessToken&&(t.access_token=this.accessToken),this.secret&&(t.oauth_token_secret=this.secret),t.providerId=this.providerId,this.nonce&&!this.pendingToken&&(t.nonce=this.nonce),e.postBody=e9(t)}return e}}/**
+     */static fromJSON(e){let t="string"==typeof e?JSON.parse(e):e,{providerId:n,signInMethod:r}=t,i=tX(t,["providerId","signInMethod"]);if(!n||!r)return null;let a=new rr(n,r);return a.idToken=i.idToken||void 0,a.accessToken=i.accessToken||void 0,a.secret=i.secret,a.nonce=i.nonce,a.pendingToken=i.pendingToken||null,a}/** @internal */_getIdTokenResponse(e){let t=this.buildRequest();return rn(e,t)}/** @internal */_linkToIdToken(e,t){let n=this.buildRequest();return n.idToken=t,rn(e,n)}/** @internal */_getReauthenticationResolver(e){let t=this.buildRequest();return t.autoCreate=!1,rn(e,t)}buildRequest(){let e={requestUri:"http://localhost",returnSecureToken:!0};if(this.pendingToken)e.pendingToken=this.pendingToken;else{let t={};this.idToken&&(t.id_token=this.idToken),this.accessToken&&(t.access_token=this.accessToken),this.secret&&(t.oauth_token_secret=this.secret),t.providerId=this.providerId,this.nonce&&!this.pendingToken&&(t.nonce=this.nonce),e.postBody=e9(t)}return e}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1615,7 +1619,7 @@ t.accessToken=e.oauthToken,t.secret=e.oauthTokenSecret):t3("argument-error"/* Au
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function rr(e,t){return ns(e,"POST"/* HttpMethod.POST */,"/v1/accounts:sendVerificationCode"/* Endpoint.SEND_VERIFICATION_CODE */,no(e,t))}async function ri(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPhoneNumber"/* Endpoint.SIGN_IN_WITH_PHONE_NUMBER */,no(e,t))}async function ra(e,t){let n=await nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPhoneNumber"/* Endpoint.SIGN_IN_WITH_PHONE_NUMBER */,no(e,t));if(n.temporaryProof)throw nf(e,"account-exists-with-different-credential"/* AuthErrorCode.NEED_CONFIRMATION */,n);return n}let ro={USER_NOT_FOUND:"user-not-found"/* AuthErrorCode.USER_DELETED */};async function rs(e,t){let n=Object.assign(Object.assign({},t),{operation:"REAUTH"});return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPhoneNumber"/* Endpoint.SIGN_IN_WITH_PHONE_NUMBER */,no(e,n),ro)}/**
+ */async function ri(e,t){return ns(e,"POST"/* HttpMethod.POST */,"/v1/accounts:sendVerificationCode"/* Endpoint.SEND_VERIFICATION_CODE */,no(e,t))}async function ra(e,t){return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPhoneNumber"/* Endpoint.SIGN_IN_WITH_PHONE_NUMBER */,no(e,t))}async function ro(e,t){let n=await nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPhoneNumber"/* Endpoint.SIGN_IN_WITH_PHONE_NUMBER */,no(e,t));if(n.temporaryProof)throw nf(e,"account-exists-with-different-credential"/* AuthErrorCode.NEED_CONFIRMATION */,n);return n}let rs={USER_NOT_FOUND:"user-not-found"/* AuthErrorCode.USER_DELETED */};async function rl(e,t){let n=Object.assign(Object.assign({},t),{operation:"REAUTH"});return nu(e,"POST"/* HttpMethod.POST */,"/v1/accounts:signInWithPhoneNumber"/* Endpoint.SIGN_IN_WITH_PHONE_NUMBER */,no(e,n),rs)}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1634,12 +1638,12 @@ t.accessToken=e.oauthToken,t.secret=e.oauthTokenSecret):t3("argument-error"/* Au
  * Represents the credentials returned by {@link PhoneAuthProvider}.
  *
  * @public
- */class rl extends n6{constructor(e){super("phone"/* ProviderId.PHONE */,"phone"/* SignInMethod.PHONE */),this.params=e}/** @internal */static _fromVerification(e,t){return new rl({verificationId:e,verificationCode:t})}/** @internal */static _fromTokenResponse(e,t){return new rl({phoneNumber:e,temporaryProof:t})}/** @internal */_getIdTokenResponse(e){return ri(e,this._makeVerificationRequest())}/** @internal */_linkToIdToken(e,t){return ra(e,Object.assign({idToken:t},this._makeVerificationRequest()))}/** @internal */_getReauthenticationResolver(e){return rs(e,this._makeVerificationRequest())}/** @internal */_makeVerificationRequest(){let{temporaryProof:e,phoneNumber:t,verificationId:n,verificationCode:r}=this.params;return e&&t?{temporaryProof:e,phoneNumber:t}:{sessionInfo:n,code:r}}/** {@inheritdoc AuthCredential.toJSON} */toJSON(){let e={providerId:this.providerId};return this.params.phoneNumber&&(e.phoneNumber=this.params.phoneNumber),this.params.temporaryProof&&(e.temporaryProof=this.params.temporaryProof),this.params.verificationCode&&(e.verificationCode=this.params.verificationCode),this.params.verificationId&&(e.verificationId=this.params.verificationId),e}/** Generates a phone credential based on a plain object or a JSON string. */static fromJSON(e){"string"==typeof e&&(e=JSON.parse(e));let{verificationId:t,verificationCode:n,phoneNumber:r,temporaryProof:i}=e;return n||t||r||i?new rl({verificationId:t,verificationCode:n,phoneNumber:r,temporaryProof:i}):null}}/**
+ */class ru extends n5{constructor(e){super("phone"/* ProviderId.PHONE */,"phone"/* SignInMethod.PHONE */),this.params=e}/** @internal */static _fromVerification(e,t){return new ru({verificationId:e,verificationCode:t})}/** @internal */static _fromTokenResponse(e,t){return new ru({phoneNumber:e,temporaryProof:t})}/** @internal */_getIdTokenResponse(e){return ra(e,this._makeVerificationRequest())}/** @internal */_linkToIdToken(e,t){return ro(e,Object.assign({idToken:t},this._makeVerificationRequest()))}/** @internal */_getReauthenticationResolver(e){return rl(e,this._makeVerificationRequest())}/** @internal */_makeVerificationRequest(){let{temporaryProof:e,phoneNumber:t,verificationId:n,verificationCode:r}=this.params;return e&&t?{temporaryProof:e,phoneNumber:t}:{sessionInfo:n,code:r}}/** {@inheritdoc AuthCredential.toJSON} */toJSON(){let e={providerId:this.providerId};return this.params.phoneNumber&&(e.phoneNumber=this.params.phoneNumber),this.params.temporaryProof&&(e.temporaryProof=this.params.temporaryProof),this.params.verificationCode&&(e.verificationCode=this.params.verificationCode),this.params.verificationId&&(e.verificationId=this.params.verificationId),e}/** Generates a phone credential based on a plain object or a JSON string. */static fromJSON(e){"string"==typeof e&&(e=JSON.parse(e));let{verificationId:t,verificationCode:n,phoneNumber:r,temporaryProof:i}=e;return n||t||r||i?new ru({verificationId:t,verificationCode:n,phoneNumber:r,temporaryProof:i}):null}}/**
  * A utility class to parse email action URLs such as password reset, email verification,
  * email link sign in, etc.
  *
  * @public
- */class ru{/**
+ */class rc{/**
      * @param actionLink - The link from which to extract the URL.
      * @returns The {@link ActionCodeURL} object, or null if the link is invalid.
      *
@@ -1676,7 +1680,7 @@ t8(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * Helper to parse FDL links
  *
  * @param url
- */function(e){let t=e7(te(e)).link,n=t?e7(te(t)).deep_link_id:null,r=e7(te(e)).deep_link_id,i=r?e7(te(r)).link:null;return i||r||n||t||e}(e);try{return new ru(t)}catch(e){return null}}}/**
+ */function(e){let t=e7(te(e)).link,n=t?e7(te(t)).deep_link_id:null,r=e7(te(e)).deep_link_id,i=r?e7(te(r)).link:null;return i||r||n||t||e}(e);try{return new rc(t)}catch(e){return null}}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1695,9 +1699,9 @@ t8(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * Provider for generating {@link EmailAuthCredential}.
  *
  * @public
- */class rc{constructor(){/**
+ */class rd{constructor(){/**
          * Always set to {@link ProviderId}.PASSWORD, even for email link.
-         */this.providerId=rc.PROVIDER_ID}/**
+         */this.providerId=rd.PROVIDER_ID}/**
      * Initialize an {@link AuthCredential} using an email and password.
      *
      * @example
@@ -1714,7 +1718,7 @@ t8(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
      * @param email - Email address.
      * @param password - User account password.
      * @returns The auth provider credential.
-     */static credential(e,t){return re._fromEmailAndPassword(e,t)}/**
+     */static credential(e,t){return rt._fromEmailAndPassword(e,t)}/**
      * Initialize an {@link AuthCredential} using an email and an email link after a sign in with
      * email link operation.
      *
@@ -1735,13 +1739,13 @@ t8(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
      * @param email - Email address.
      * @param emailLink - Sign-in email link.
      * @returns - The auth provider credential.
-     */static credentialWithLink(e,t){let n=ru.parseLink(t);return t8(n,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),re._fromEmailAndCode(e,n.code,n.tenantId)}}/**
+     */static credentialWithLink(e,t){let n=rc.parseLink(t);return t8(n,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),rt._fromEmailAndCode(e,n.code,n.tenantId)}}/**
  * Always set to {@link ProviderId}.PASSWORD, even for email link.
- */rc.PROVIDER_ID="password"/* ProviderId.PASSWORD */,/**
+ */rd.PROVIDER_ID="password"/* ProviderId.PASSWORD */,/**
  * Always set to {@link SignInMethod}.EMAIL_PASSWORD.
- */rc.EMAIL_PASSWORD_SIGN_IN_METHOD="password"/* SignInMethod.EMAIL_PASSWORD */,/**
+ */rd.EMAIL_PASSWORD_SIGN_IN_METHOD="password"/* SignInMethod.EMAIL_PASSWORD */,/**
  * Always set to {@link SignInMethod}.EMAIL_LINK.
- */rc.EMAIL_LINK_SIGN_IN_METHOD="emailLink"/* SignInMethod.EMAIL_LINK */;/**
+ */rd.EMAIL_LINK_SIGN_IN_METHOD="emailLink"/* SignInMethod.EMAIL_LINK */;/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1762,7 +1766,7 @@ t8(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * This class is not meant to be instantiated directly.
  *
  * @public
- */class rd{/**
+ */class rf{/**
      * Constructor for generic OAuth providers.
      *
      * @param providerId - Provider for which credentials should be generated.
@@ -1801,7 +1805,7 @@ t8(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * {@link OAuthProvider} so that child providers (like
  * {@link GoogleAuthProvider}) don't inherit the `credential` instance method.
  * Instead, they rely on a static `credential` method.
- */class rf extends rd{constructor(){super(...arguments),/** @internal */this.scopes=[]}/**
+ */class rh extends rf{constructor(){super(...arguments),/** @internal */this.scopes=[]}/**
      * Add an OAuth scope to the credential.
      *
      * @param scope - Provider OAuth scope to add.
@@ -1860,7 +1864,7 @@ t8(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * ```
  *
  * @public
- */class rh extends rf{constructor(){super("facebook.com"/* ProviderId.FACEBOOK */)}/**
+ */class rp extends rh{constructor(){super("facebook.com"/* ProviderId.FACEBOOK */)}/**
      * Creates a credential for Facebook.
      *
      * @example
@@ -1871,16 +1875,16 @@ t8(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
      * ```
      *
      * @param accessToken - Facebook access token.
-     */static credential(e){return rn._fromParams({providerId:rh.PROVIDER_ID,signInMethod:rh.FACEBOOK_SIGN_IN_METHOD,accessToken:e})}/**
+     */static credential(e){return rr._fromParams({providerId:rp.PROVIDER_ID,signInMethod:rp.FACEBOOK_SIGN_IN_METHOD,accessToken:e})}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link UserCredential}.
      *
      * @param userCredential - The user credential.
-     */static credentialFromResult(e){return rh.credentialFromTaggedObject(e)}/**
+     */static credentialFromResult(e){return rp.credentialFromTaggedObject(e)}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link AuthError} which was
      * thrown during a sign-in, link, or reauthenticate operation.
      *
      * @param userCredential - The user credential.
-     */static credentialFromError(e){return rh.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e||!("oauthAccessToken"in e)||!e.oauthAccessToken)return null;try{return rh.credential(e.oauthAccessToken)}catch(e){return null}}}/** Always set to {@link SignInMethod}.FACEBOOK. */rh.FACEBOOK_SIGN_IN_METHOD="facebook.com"/* SignInMethod.FACEBOOK */,/** Always set to {@link ProviderId}.FACEBOOK. */rh.PROVIDER_ID="facebook.com"/* ProviderId.FACEBOOK */;/**
+     */static credentialFromError(e){return rp.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e||!("oauthAccessToken"in e)||!e.oauthAccessToken)return null;try{return rp.credential(e.oauthAccessToken)}catch(e){return null}}}/** Always set to {@link SignInMethod}.FACEBOOK. */rp.FACEBOOK_SIGN_IN_METHOD="facebook.com"/* SignInMethod.FACEBOOK */,/** Always set to {@link ProviderId}.FACEBOOK. */rp.PROVIDER_ID="facebook.com"/* ProviderId.FACEBOOK */;/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1935,7 +1939,7 @@ t8(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * ```
  *
  * @public
- */class rp extends rf{constructor(){super("google.com"/* ProviderId.GOOGLE */),this.addScope("profile")}/**
+ */class rm extends rh{constructor(){super("google.com"/* ProviderId.GOOGLE */),this.addScope("profile")}/**
      * Creates a credential for Google. At least one of ID token and access token is required.
      *
      * @example
@@ -1947,16 +1951,16 @@ t8(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
      *
      * @param idToken - Google ID token.
      * @param accessToken - Google access token.
-     */static credential(e,t){return rn._fromParams({providerId:rp.PROVIDER_ID,signInMethod:rp.GOOGLE_SIGN_IN_METHOD,idToken:e,accessToken:t})}/**
+     */static credential(e,t){return rr._fromParams({providerId:rm.PROVIDER_ID,signInMethod:rm.GOOGLE_SIGN_IN_METHOD,idToken:e,accessToken:t})}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link UserCredential}.
      *
      * @param userCredential - The user credential.
-     */static credentialFromResult(e){return rp.credentialFromTaggedObject(e)}/**
+     */static credentialFromResult(e){return rm.credentialFromTaggedObject(e)}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link AuthError} which was
      * thrown during a sign-in, link, or reauthenticate operation.
      *
      * @param userCredential - The user credential.
-     */static credentialFromError(e){return rp.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e)return null;let{oauthIdToken:t,oauthAccessToken:n}=e;if(!t&&!n)return null;try{return rp.credential(t,n)}catch(e){return null}}}/** Always set to {@link SignInMethod}.GOOGLE. */rp.GOOGLE_SIGN_IN_METHOD="google.com"/* SignInMethod.GOOGLE */,/** Always set to {@link ProviderId}.GOOGLE. */rp.PROVIDER_ID="google.com"/* ProviderId.GOOGLE */;/**
+     */static credentialFromError(e){return rm.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e)return null;let{oauthIdToken:t,oauthAccessToken:n}=e;if(!t&&!n)return null;try{return rm.credential(t,n)}catch(e){return null}}}/** Always set to {@link SignInMethod}.GOOGLE. */rm.GOOGLE_SIGN_IN_METHOD="google.com"/* SignInMethod.GOOGLE */,/** Always set to {@link ProviderId}.GOOGLE. */rm.PROVIDER_ID="google.com"/* ProviderId.GOOGLE */;/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2012,20 +2016,20 @@ t8(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * const token = credential.accessToken;
  * ```
  * @public
- */class rm extends rf{constructor(){super("github.com"/* ProviderId.GITHUB */)}/**
+ */class rg extends rh{constructor(){super("github.com"/* ProviderId.GITHUB */)}/**
      * Creates a credential for Github.
      *
      * @param accessToken - Github access token.
-     */static credential(e){return rn._fromParams({providerId:rm.PROVIDER_ID,signInMethod:rm.GITHUB_SIGN_IN_METHOD,accessToken:e})}/**
+     */static credential(e){return rr._fromParams({providerId:rg.PROVIDER_ID,signInMethod:rg.GITHUB_SIGN_IN_METHOD,accessToken:e})}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link UserCredential}.
      *
      * @param userCredential - The user credential.
-     */static credentialFromResult(e){return rm.credentialFromTaggedObject(e)}/**
+     */static credentialFromResult(e){return rg.credentialFromTaggedObject(e)}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link AuthError} which was
      * thrown during a sign-in, link, or reauthenticate operation.
      *
      * @param userCredential - The user credential.
-     */static credentialFromError(e){return rm.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e||!("oauthAccessToken"in e)||!e.oauthAccessToken)return null;try{return rm.credential(e.oauthAccessToken)}catch(e){return null}}}/** Always set to {@link SignInMethod}.GITHUB. */rm.GITHUB_SIGN_IN_METHOD="github.com"/* SignInMethod.GITHUB */,/** Always set to {@link ProviderId}.GITHUB. */rm.PROVIDER_ID="github.com"/* ProviderId.GITHUB */;/**
+     */static credentialFromError(e){return rg.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e||!("oauthAccessToken"in e)||!e.oauthAccessToken)return null;try{return rg.credential(e.oauthAccessToken)}catch(e){return null}}}/** Always set to {@link SignInMethod}.GITHUB. */rg.GITHUB_SIGN_IN_METHOD="github.com"/* SignInMethod.GITHUB */,/** Always set to {@link ProviderId}.GITHUB. */rg.PROVIDER_ID="github.com"/* ProviderId.GITHUB */;/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2078,21 +2082,21 @@ t8(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * ```
  *
  * @public
- */class rg extends rf{constructor(){super("twitter.com"/* ProviderId.TWITTER */)}/**
+ */class rv extends rh{constructor(){super("twitter.com"/* ProviderId.TWITTER */)}/**
      * Creates a credential for Twitter.
      *
      * @param token - Twitter access token.
      * @param secret - Twitter secret.
-     */static credential(e,t){return rn._fromParams({providerId:rg.PROVIDER_ID,signInMethod:rg.TWITTER_SIGN_IN_METHOD,oauthToken:e,oauthTokenSecret:t})}/**
+     */static credential(e,t){return rr._fromParams({providerId:rv.PROVIDER_ID,signInMethod:rv.TWITTER_SIGN_IN_METHOD,oauthToken:e,oauthTokenSecret:t})}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link UserCredential}.
      *
      * @param userCredential - The user credential.
-     */static credentialFromResult(e){return rg.credentialFromTaggedObject(e)}/**
+     */static credentialFromResult(e){return rv.credentialFromTaggedObject(e)}/**
      * Used to extract the underlying {@link OAuthCredential} from a {@link AuthError} which was
      * thrown during a sign-in, link, or reauthenticate operation.
      *
      * @param userCredential - The user credential.
-     */static credentialFromError(e){return rg.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e)return null;let{oauthAccessToken:t,oauthTokenSecret:n}=e;if(!t||!n)return null;try{return rg.credential(t,n)}catch(e){return null}}}/** Always set to {@link SignInMethod}.TWITTER. */rg.TWITTER_SIGN_IN_METHOD="twitter.com"/* SignInMethod.TWITTER */,/** Always set to {@link ProviderId}.TWITTER. */rg.PROVIDER_ID="twitter.com"/* ProviderId.TWITTER */;/**
+     */static credentialFromError(e){return rv.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e)return null;let{oauthAccessToken:t,oauthTokenSecret:n}=e;if(!t||!n)return null;try{return rv.credential(t,n)}catch(e){return null}}}/** Always set to {@link SignInMethod}.TWITTER. */rv.TWITTER_SIGN_IN_METHOD="twitter.com"/* SignInMethod.TWITTER */,/** Always set to {@link ProviderId}.TWITTER. */rv.PROVIDER_ID="twitter.com"/* ProviderId.TWITTER */;/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2107,7 +2111,7 @@ t8(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class rv{constructor(e){this.user=e.user,this.providerId=e.providerId,this._tokenResponse=e._tokenResponse,this.operationType=e.operationType}static async _fromIdTokenResponse(e,t,n,r=!1){let i=await nP._fromIdTokenResponse(e,n,r),a=ry(n),o=new rv({user:i,providerId:a,_tokenResponse:n,operationType:t});return o}static async _forOperation(e,t,n){await e._updateTokensIfNecessary(n,/* reload */!0);let r=ry(n);return new rv({user:e,providerId:r,_tokenResponse:n,operationType:t})}}function ry(e){return e.providerId?e.providerId:"phoneNumber"in e?"phone"/* ProviderId.PHONE */:null}/**
+ */class ry{constructor(e){this.user=e.user,this.providerId=e.providerId,this._tokenResponse=e._tokenResponse,this.operationType=e.operationType}static async _fromIdTokenResponse(e,t,n,r=!1){let i=await nR._fromIdTokenResponse(e,n,r),a=rb(n),o=new ry({user:i,providerId:a,_tokenResponse:n,operationType:t});return o}static async _forOperation(e,t,n){await e._updateTokensIfNecessary(n,/* reload */!0);let r=rb(n);return new ry({user:e,providerId:r,_tokenResponse:n,operationType:t})}}function rb(e){return e.providerId?e.providerId:"phoneNumber"in e?"phone"/* ProviderId.PHONE */:null}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2122,8 +2126,8 @@ t8(l&&u&&c,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),this.apiKey=l,thi
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class rb extends e3{constructor(e,t,n,r){var i;super(t.code,t.message),this.operationType=n,this.user=r,// https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work
-Object.setPrototypeOf(this,rb.prototype),this.customData={appName:e.name,tenantId:null!==(i=e.tenantId)&&void 0!==i?i:void 0,_serverResponse:t.customData._serverResponse,operationType:n}}static _fromErrorAndOperation(e,t,n,r){return new rb(e,t,n,r)}}function rw(e,t,n,r){let i="reauthenticate"/* OperationType.REAUTHENTICATE */===t?n._getReauthenticationResolver(e):n._getIdTokenResponse(e);return i.catch(n=>{if("auth/multi-factor-auth-required"===n.code)throw rb._fromErrorAndOperation(e,n,t,r);throw n})}async function r_(e,t,n=!1){let r=await nk(e,t._linkToIdToken(e.auth,await e.getIdToken()),n);return rv._forOperation(e,"link"/* OperationType.LINK */,r)}/**
+ */class rw extends e3{constructor(e,t,n,r){var i;super(t.code,t.message),this.operationType=n,this.user=r,// https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work
+Object.setPrototypeOf(this,rw.prototype),this.customData={appName:e.name,tenantId:null!==(i=e.tenantId)&&void 0!==i?i:void 0,_serverResponse:t.customData._serverResponse,operationType:n}}static _fromErrorAndOperation(e,t,n,r){return new rw(e,t,n,r)}}function r_(e,t,n,r){let i="reauthenticate"/* OperationType.REAUTHENTICATE */===t?n._getReauthenticationResolver(e):n._getIdTokenResponse(e);return i.catch(n=>{if("auth/multi-factor-auth-required"===n.code)throw rw._fromErrorAndOperation(e,n,t,r);throw n})}async function rk(e,t,n=!1){let r=await nk(e,t._linkToIdToken(e.auth,await e.getIdToken()),n);return ry._forOperation(e,"link"/* OperationType.LINK */,r)}/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -2138,7 +2142,7 @@ Object.setPrototypeOf(this,rb.prototype),this.customData={appName:e.name,tenantI
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function rk(e,t,n=!1){let{auth:r}=e,i="reauthenticate"/* OperationType.REAUTHENTICATE */;try{let a=await nk(e,rw(r,i,t,e),n);t8(a.idToken,r,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let o=n_(a.idToken);t8(o,r,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let{sub:s}=o;return t8(e.uid===s,r,"user-mismatch"/* AuthErrorCode.USER_MISMATCH */),rv._forOperation(e,i,a)}catch(e){throw(null==e?void 0:e.code)==="auth/user-not-found"&&t3(r,"user-mismatch"/* AuthErrorCode.USER_MISMATCH */),e}}/**
+ */async function rS(e,t,n=!1){let{auth:r}=e,i="reauthenticate"/* OperationType.REAUTHENTICATE */;try{let a=await nk(e,r_(r,i,t,e),n);t8(a.idToken,r,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let o=n_(a.idToken);t8(o,r,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let{sub:s}=o;return t8(e.uid===s,r,"user-mismatch"/* AuthErrorCode.USER_MISMATCH */),ry._forOperation(e,i,a)}catch(e){throw(null==e?void 0:e.code)==="auth/user-not-found"&&t3(r,"user-mismatch"/* AuthErrorCode.USER_MISMATCH */),e}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2153,7 +2157,7 @@ Object.setPrototypeOf(this,rb.prototype),this.customData={appName:e.name,tenantI
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function rS(e,t,n=!1){let r="signIn"/* OperationType.SIGN_IN */,i=await rw(e,r,t),a=await rv._fromIdTokenResponse(e,r,i);return n||await e._updateCurrentUser(a.user),a}new WeakMap;let rE="__sak";/**
+ */async function rE(e,t,n=!1){let r="signIn"/* OperationType.SIGN_IN */,i=await r_(e,r,t),a=await ry._fromIdTokenResponse(e,r,i);return n||await e._updateCurrentUser(a.user),a}new WeakMap;let rI="__sak";/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -2171,7 +2175,7 @@ Object.setPrototypeOf(this,rb.prototype),this.customData={appName:e.name,tenantI
  */// There are two different browser persistence types: local and session.
 // Both have the same implementation but use a different underlying storage
 // object.
-class rI{constructor(e,t){this.storageRetriever=e,this.type=t}_isAvailable(){try{if(!this.storage)return Promise.resolve(!1);return this.storage.setItem(rE,"1"),this.storage.removeItem(rE),Promise.resolve(!0)}catch(e){return Promise.resolve(!1)}}_set(e,t){return this.storage.setItem(e,JSON.stringify(t)),Promise.resolve()}_get(e){let t=this.storage.getItem(e);return Promise.resolve(t?JSON.parse(t):null)}_remove(e){return this.storage.removeItem(e),Promise.resolve()}get storage(){return this.storageRetriever()}}class rC extends rI{constructor(){super(()=>window.localStorage,"LOCAL"/* PersistenceType.LOCAL */),this.boundEventHandler=(e,t)=>this.onStorageEvent(e,t),this.listeners={},this.localCache={},// setTimeout return value is platform specific
+class rC{constructor(e,t){this.storageRetriever=e,this.type=t}_isAvailable(){try{if(!this.storage)return Promise.resolve(!1);return this.storage.setItem(rI,"1"),this.storage.removeItem(rI),Promise.resolve(!0)}catch(e){return Promise.resolve(!1)}}_set(e,t){return this.storage.setItem(e,JSON.stringify(t)),Promise.resolve()}_get(e){let t=this.storage.getItem(e);return Promise.resolve(t?JSON.parse(t):null)}_remove(e){return this.storage.removeItem(e),Promise.resolve()}get storage(){return this.storageRetriever()}}class rT extends rC{constructor(){super(()=>window.localStorage,"LOCAL"/* PersistenceType.LOCAL */),this.boundEventHandler=(e,t)=>this.onStorageEvent(e,t),this.listeners={},this.localCache={},// setTimeout return value is platform specific
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 this.pollTimer=null,// Safari or iOS browser and embedded in an iframe.
 this.safariLocalStorageNotSynced=/**
@@ -2189,10 +2193,10 @@ this.safariLocalStorageNotSynced=/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function(){let e=e2();return nU(e)||nH(e)}()&&function(){try{// Check that the current window is not the top window.
+ */function(){let e=e2();return nz(e)||nW(e)}()&&function(){try{// Check that the current window is not the top window.
 // If so, return true.
 return!!(window&&window!==window.top)}catch(e){return!1}}(),// Whether to use polling instead of depending on window events
-this.fallbackToPolling=nW(),this._shouldAllowMigration=!0}forAllChangedKeys(e){// Check all keys with listeners on them.
+this.fallbackToPolling=nK(),this._shouldAllowMigration=!0}forAllChangedKeys(e){// Check all keys with listeners on them.
 for(let t of Object.keys(this.listeners)){// Get value from localStorage.
 let n=this.storage.getItem(t),r=this.localCache[t];// If local map value does not match, trigger listener with storage event.
 // Differentiate this simulated event from the real storage event.
@@ -2210,7 +2214,7 @@ let e=this.storage.getItem(n);(t||this.localCache[n]!==e)&&this.notifyListeners(
 // this recovers from that situation.
 setTimeout(r,10):r()}notifyListeners(e,t){this.localCache[e]=t;let n=this.listeners[e];if(n)for(let e of Array.from(n))e(t?JSON.parse(t):t)}startPolling(){this.stopPolling(),this.pollTimer=setInterval(()=>{this.forAllChangedKeys((e,t,n)=>{this.onStorageEvent(new StorageEvent("storage",{key:e,oldValue:t,newValue:n}),/* poll */!0)})},1e3)}stopPolling(){this.pollTimer&&(clearInterval(this.pollTimer),this.pollTimer=null)}attachListener(){window.addEventListener("storage",this.boundEventHandler)}detachListener(){window.removeEventListener("storage",this.boundEventHandler)}_addListener(e,t){0===Object.keys(this.listeners).length&&(this.fallbackToPolling?this.startPolling():this.attachListener()),this.listeners[e]||(this.listeners[e]=new Set,// Populate the cache to avoid spuriously triggering on first poll.
 this.localCache[e]=this.storage.getItem(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(this.listeners[e].delete(t),0===this.listeners[e].size&&delete this.listeners[e]),0===Object.keys(this.listeners).length&&(this.detachListener(),this.stopPolling())}// Update local cache on base operations:
-async _set(e,t){await super._set(e,t),this.localCache[e]=JSON.stringify(t)}async _get(e){let t=await super._get(e);return this.localCache[e]=JSON.stringify(t),t}async _remove(e){await super._remove(e),delete this.localCache[e]}}rC.type="LOCAL";/**
+async _set(e,t){await super._set(e,t),this.localCache[e]=JSON.stringify(t)}async _get(e){let t=await super._get(e);return this.localCache[e]=JSON.stringify(t),t}async _remove(e){await super._remove(e),delete this.localCache[e]}}rT.type="LOCAL";/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2225,7 +2229,7 @@ async _set(e,t){await super._set(e,t),this.localCache[e]=JSON.stringify(t)}async
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class rT extends rI{constructor(){super(()=>window.sessionStorage,"SESSION"/* PersistenceType.SESSION */)}_addListener(e,t){}_removeListener(e,t){}}rT.type="SESSION";/**
+ */class rx extends rC{constructor(){super(()=>window.sessionStorage,"SESSION"/* PersistenceType.SESSION */)}_addListener(e,t){}_removeListener(e,t){}}rx.type="SESSION";/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -2243,7 +2247,7 @@ async _set(e,t){await super._set(e,t),this.localCache[e]=JSON.stringify(t)}async
  *//**
  * Interface class for receiving messages.
  *
- */class rx{constructor(e){this.eventTarget=e,this.handlersMap={},this.boundEventHandler=this.handleEvent.bind(this)}/**
+ */class rN{constructor(e){this.eventTarget=e,this.handlersMap={},this.boundEventHandler=this.handleEvent.bind(this)}/**
      * Obtain an instance of a Receiver for a given event target, if none exists it will be created.
      *
      * @param eventTarget - An event target (such as window or self) through which the underlying
@@ -2251,7 +2255,7 @@ async _set(e,t){await super._set(e,t),this.localCache[e]=JSON.stringify(t)}async
      */static _getInstance(e){// The results are stored in an array since objects can't be keys for other
 // objects. In addition, setting a unique property on an event target as a
 // hash map key may not be allowed due to CORS restrictions.
-let t=this.receivers.find(t=>t.isListeningto(e));if(t)return t;let n=new rx(e);return this.receivers.push(n),n}isListeningto(e){return this.eventTarget===e}/**
+let t=this.receivers.find(t=>t.isListeningto(e));if(t)return t;let n=new rN(e);return this.receivers.push(n),n}isListeningto(e){return this.eventTarget===e}/**
      * Fans out a MessageEvent to the appropriate listeners.
      *
      * @remarks
@@ -2287,7 +2291,7 @@ let t=this.receivers.find(t=>t.isListeningto(e));if(t)return t;let n=new rx(e);r
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function rN(e="",t=10){let n="";for(let e=0;e<t;e++)n+=Math.floor(10*Math.random());return e+n}rx.receivers=[];/**
+ */function rP(e="",t=10){let n="";for(let e=0;e<t;e++)n+=Math.floor(10*Math.random());return e+n}rN.receivers=[];/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -2305,7 +2309,7 @@ let t=this.receivers.find(t=>t.isListeningto(e));if(t)return t;let n=new rx(e);r
  *//**
  * Interface for sending messages and waiting for a completion response.
  *
- */class rP{constructor(e){this.target=e,this.handlers=new Set}/**
+ */class rR{constructor(e){this.target=e,this.handlers=new Set}/**
      * Unsubscribe the handler and remove it from our tracking Set.
      *
      * @param handler - The handler to unsubscribe.
@@ -2321,7 +2325,7 @@ let t=this.receivers.find(t=>t.isListeningto(e));if(t)return t;let n=new rx(e);r
      * @param timeout - Timeout for waiting on an ACK from the receiver.
      *
      * @returns An array of settled promises from all the handlers that were listening on the receiver.
-     */async _send(e,t,n=50/* _TimeoutDuration.ACK */){let r,i;let a="undefined"!=typeof MessageChannel?new MessageChannel:null;if(!a)throw Error("connection_unavailable"/* _MessageError.CONNECTION_UNAVAILABLE */);return new Promise((o,s)=>{let l=rN("",20);a.port1.start();let u=setTimeout(()=>{s(Error("unsupported_event"/* _MessageError.UNSUPPORTED_EVENT */))},n);i={messageChannel:a,onMessage(e){if(e.data.eventId===l)switch(e.data.status){case"ack"/* _Status.ACK */:// The receiver should ACK first.
+     */async _send(e,t,n=50/* _TimeoutDuration.ACK */){let r,i;let a="undefined"!=typeof MessageChannel?new MessageChannel:null;if(!a)throw Error("connection_unavailable"/* _MessageError.CONNECTION_UNAVAILABLE */);return new Promise((o,s)=>{let l=rP("",20);a.port1.start();let u=setTimeout(()=>{s(Error("unsupported_event"/* _MessageError.UNSUPPORTED_EVENT */))},n);i={messageChannel:a,onMessage(e){if(e.data.eventId===l)switch(e.data.status){case"ack"/* _Status.ACK */:// The receiver should ACK first.
 clearTimeout(u),r=setTimeout(()=>{s(Error("timeout"/* _MessageError.TIMEOUT */))},3e3/* _TimeoutDuration.COMPLETION */);break;case"done"/* _Status.DONE */:// Once the receiver's handlers are finished we will get the results.
 clearTimeout(r),o(e.data.response);break;default:clearTimeout(u),clearTimeout(r),s(Error("invalid_response"/* _MessageError.INVALID_RESPONSE */))}}},this.handlers.add(i),a.port1.addEventListener("message",i.onMessage),this.target.postMessage({eventType:e,eventId:l,data:t},[a.port2])}).finally(()=>{i&&this.removeMessageHandler(i)})}}/**
  * @license
@@ -2341,7 +2345,7 @@ clearTimeout(r),o(e.data.response);break;default:clearTimeout(u),clearTimeout(r)
  *//**
  * Lazy accessor for window, since the compat layer won't tree shake this out,
  * we need to make sure not to mess with window unless we have to
- */function rR(){return window}/**
+ */function rO(){return window}/**
  * @license
  * Copyright 2020 Google LLC.
  *
@@ -2356,7 +2360,7 @@ clearTimeout(r),o(e.data.response);break;default:clearTimeout(u),clearTimeout(r)
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function rO(){return void 0!==rR().WorkerGlobalScope&&"function"==typeof rR().importScripts}async function rL(){if(!(null==navigator?void 0:navigator.serviceWorker))return null;try{let e=await navigator.serviceWorker.ready;return e.active}catch(e){return null}}/**
+ */function rL(){return void 0!==rO().WorkerGlobalScope&&"function"==typeof rO().importScripts}async function rD(){if(!(null==navigator?void 0:navigator.serviceWorker))return null;try{let e=await navigator.serviceWorker.ready;return e.active}catch(e){return null}}/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -2371,26 +2375,26 @@ clearTimeout(r),o(e.data.response);break;default:clearTimeout(u),clearTimeout(r)
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */let rD="firebaseLocalStorageDb",rA="firebaseLocalStorage",rM="fbase_key";/**
+ */let rA="firebaseLocalStorageDb",rM="firebaseLocalStorage",rj="fbase_key";/**
  * Promise wrapper for IDBRequest
  *
  * Unfortunately we can't cleanly extend Promise<T> since promises are not callable in ES6
  *
- */class rj{constructor(e){this.request=e}toPromise(){return new Promise((e,t)=>{this.request.addEventListener("success",()=>{e(this.request.result)}),this.request.addEventListener("error",()=>{t(this.request.error)})})}}function rU(e,t){return e.transaction([rA],t?"readwrite":"readonly").objectStore(rA)}function rz(){let e=indexedDB.open(rD,1);return new Promise((t,n)=>{e.addEventListener("error",()=>{n(e.error)}),e.addEventListener("upgradeneeded",()=>{let t=e.result;try{t.createObjectStore(rA,{keyPath:rM})}catch(e){n(e)}}),e.addEventListener("success",async()=>{let n=e.result;// Strange bug that occurs in Firefox when multiple tabs are opened at the
+ */class rU{constructor(e){this.request=e}toPromise(){return new Promise((e,t)=>{this.request.addEventListener("success",()=>{e(this.request.result)}),this.request.addEventListener("error",()=>{t(this.request.error)})})}}function rz(e,t){return e.transaction([rM],t?"readwrite":"readonly").objectStore(rM)}function rF(){let e=indexedDB.open(rA,1);return new Promise((t,n)=>{e.addEventListener("error",()=>{n(e.error)}),e.addEventListener("upgradeneeded",()=>{let t=e.result;try{t.createObjectStore(rM,{keyPath:rj})}catch(e){n(e)}}),e.addEventListener("success",async()=>{let n=e.result;// Strange bug that occurs in Firefox when multiple tabs are opened at the
 // same time. The only way to recover seems to be deleting the database
 // and re-initializing it.
 // https://github.com/firebase/firebase-js-sdk/issues/634
-n.objectStoreNames.contains(rA)?t(n):(// Need to close the database or else you get a `blocked` event
-n.close(),await function(){let e=indexedDB.deleteDatabase(rD);return new rj(e).toPromise()}(),t(await rz()))})})}async function rF(e,t,n){let r=rU(e,!0).put({[rM]:t,value:n});return new rj(r).toPromise()}async function rV(e,t){let n=rU(e,!1).get(t),r=await new rj(n).toPromise();return void 0===r?null:r.value}function r$(e,t){let n=rU(e,!0).delete(t);return new rj(n).toPromise()}class rB{constructor(){this.type="LOCAL"/* PersistenceType.LOCAL */,this._shouldAllowMigration=!0,this.listeners={},this.localCache={},// setTimeout return value is platform specific
+n.objectStoreNames.contains(rM)?t(n):(// Need to close the database or else you get a `blocked` event
+n.close(),await function(){let e=indexedDB.deleteDatabase(rA);return new rU(e).toPromise()}(),t(await rF()))})})}async function rV(e,t,n){let r=rz(e,!0).put({[rj]:t,value:n});return new rU(r).toPromise()}async function r$(e,t){let n=rz(e,!1).get(t),r=await new rU(n).toPromise();return void 0===r?null:r.value}function rB(e,t){let n=rz(e,!0).delete(t);return new rU(n).toPromise()}class rH{constructor(){this.type="LOCAL"/* PersistenceType.LOCAL */,this._shouldAllowMigration=!0,this.listeners={},this.localCache={},// setTimeout return value is platform specific
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 this.pollTimer=null,this.pendingWrites=0,this.receiver=null,this.sender=null,this.serviceWorkerReceiverAvailable=!1,this.activeServiceWorker=null,// Fire & forget the service worker registration as it may never resolve
-this._workerInitializationPromise=this.initializeServiceWorkerMessaging().then(()=>{},()=>{})}async _openDb(){return this.db||(this.db=await rz()),this.db}async _withRetries(e){let t=0;for(;;)try{let t=await this._openDb();return await e(t)}catch(e){if(t++>3)throw e;this.db&&(this.db.close(),this.db=void 0);// TODO: consider adding exponential backoff
+this._workerInitializationPromise=this.initializeServiceWorkerMessaging().then(()=>{},()=>{})}async _openDb(){return this.db||(this.db=await rF()),this.db}async _withRetries(e){let t=0;for(;;)try{let t=await this._openDb();return await e(t)}catch(e){if(t++>3)throw e;this.db&&(this.db.close(),this.db=void 0);// TODO: consider adding exponential backoff
 }}/**
      * IndexedDB events do not propagate from the main window to the worker context.  We rely on a
      * postMessage interface to send these events to the worker ourselves.
-     */async initializeServiceWorkerMessaging(){return rO()?this.initializeReceiver():this.initializeSender()}/**
+     */async initializeServiceWorkerMessaging(){return rL()?this.initializeReceiver():this.initializeSender()}/**
      * As the worker we should listen to events from the main window.
-     */async initializeReceiver(){this.receiver=rx._getInstance(rO()?self:null),// Refresh from persistence if we receive a KeyChanged message.
+     */async initializeReceiver(){this.receiver=rN._getInstance(rL()?self:null),// Refresh from persistence if we receive a KeyChanged message.
 this.receiver._subscribe("keyChanged"/* _EventType.KEY_CHANGED */,async(e,t)=>{let n=await this._poll();return{keyProcessed:n.includes(t.key)}}),// Let the sender know that we are listening so they give us more timeout.
 this.receiver._subscribe("ping"/* _EventType.PING */,async(e,t)=>["keyChanged"/* _EventType.KEY_CHANGED */])}/**
      * As the main window, we should let the worker know when keys change (set and remove).
@@ -2399,7 +2403,7 @@ this.receiver._subscribe("ping"/* _EventType.PING */,async(e,t)=>["keyChanged"/*
      * {@link https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer/ready | ServiceWorkerContainer.ready}
      * may not resolve.
      */async initializeSender(){var e,t;if(// Check to see if there's an active service worker.
-this.activeServiceWorker=await rL(),!this.activeServiceWorker)return;this.sender=new rP(this.activeServiceWorker);// Ping the service worker to check what events they can handle.
+this.activeServiceWorker=await rD(),!this.activeServiceWorker)return;this.sender=new rR(this.activeServiceWorker);// Ping the service worker to check what events they can handle.
 let n=await this.sender._send("ping"/* _EventType.PING */,{},800/* _TimeoutDuration.LONG_ACK */);n&&(null===(e=n[0])||void 0===e?void 0:e.fulfilled)&&(null===(t=n[0])||void 0===t?void 0:t.value.includes("keyChanged"/* _EventType.KEY_CHANGED */))&&(this.serviceWorkerReceiverAvailable=!0)}/**
      * Let the worker know about a changed key, the exact key doesn't technically matter since the
      * worker will just trigger a full sync anyway.
@@ -2409,13 +2413,13 @@ let n=await this.sender._send("ping"/* _EventType.PING */,{},800/* _TimeoutDurat
      *
      * @param key - Storage key which changed.
      */async notifyServiceWorker(e){var t;if(this.sender&&this.activeServiceWorker&&((null===(t=null==navigator?void 0:navigator.serviceWorker)||void 0===t?void 0:t.controller)||null)===this.activeServiceWorker)try{await this.sender._send("keyChanged"/* _EventType.KEY_CHANGED */,{key:e},this.serviceWorkerReceiverAvailable?800/* _TimeoutDuration.LONG_ACK */:50/* _TimeoutDuration.ACK */)}catch(e){// This is a best effort approach. Ignore errors.
-}}async _isAvailable(){try{if(!indexedDB)return!1;let e=await rz();return await rF(e,rE,"1"),await r$(e,rE),!0}catch(e){}return!1}async _withPendingWrite(e){this.pendingWrites++;try{await e()}finally{this.pendingWrites--}}async _set(e,t){return this._withPendingWrite(async()=>(await this._withRetries(n=>rF(n,e,t)),this.localCache[e]=t,this.notifyServiceWorker(e)))}async _get(e){let t=await this._withRetries(t=>rV(t,e));return this.localCache[e]=t,t}async _remove(e){return this._withPendingWrite(async()=>(await this._withRetries(t=>r$(t,e)),delete this.localCache[e],this.notifyServiceWorker(e)))}async _poll(){// TODO: check if we need to fallback if getAll is not supported
-let e=await this._withRetries(e=>{let t=rU(e,!1).getAll();return new rj(t).toPromise()});if(!e||0!==this.pendingWrites)return[];let t=[],n=new Set;for(let{fbase_key:r,value:i}of e)n.add(r),JSON.stringify(this.localCache[r])!==JSON.stringify(i)&&(this.notifyListeners(r,i),t.push(r));for(let e of Object.keys(this.localCache))this.localCache[e]&&!n.has(e)&&(// Deleted
+}}async _isAvailable(){try{if(!indexedDB)return!1;let e=await rF();return await rV(e,rI,"1"),await rB(e,rI),!0}catch(e){}return!1}async _withPendingWrite(e){this.pendingWrites++;try{await e()}finally{this.pendingWrites--}}async _set(e,t){return this._withPendingWrite(async()=>(await this._withRetries(n=>rV(n,e,t)),this.localCache[e]=t,this.notifyServiceWorker(e)))}async _get(e){let t=await this._withRetries(t=>r$(t,e));return this.localCache[e]=t,t}async _remove(e){return this._withPendingWrite(async()=>(await this._withRetries(t=>rB(t,e)),delete this.localCache[e],this.notifyServiceWorker(e)))}async _poll(){// TODO: check if we need to fallback if getAll is not supported
+let e=await this._withRetries(e=>{let t=rz(e,!1).getAll();return new rU(t).toPromise()});if(!e||0!==this.pendingWrites)return[];let t=[],n=new Set;for(let{fbase_key:r,value:i}of e)n.add(r),JSON.stringify(this.localCache[r])!==JSON.stringify(i)&&(this.notifyListeners(r,i),t.push(r));for(let e of Object.keys(this.localCache))this.localCache[e]&&!n.has(e)&&(// Deleted
 this.notifyListeners(e,null),t.push(e));return t}notifyListeners(e,t){this.localCache[e]=t;let n=this.listeners[e];if(n)for(let e of Array.from(n))e(t)}startPolling(){this.stopPolling(),this.pollTimer=setInterval(async()=>this._poll(),800)}stopPolling(){this.pollTimer&&(clearInterval(this.pollTimer),this.pollTimer=null)}_addListener(e,t){0===Object.keys(this.listeners).length&&this.startPolling(),this.listeners[e]||(this.listeners[e]=new Set,// Populate the cache to avoid spuriously triggering on first poll.
 this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(this.listeners[e].delete(t),0===this.listeners[e].size&&delete this.listeners[e]),0===Object.keys(this.listeners).length&&this.stopPolling()}}/**
  * Returns a verification ID to be used in conjunction with the SMS code that is sent.
  *
- */async function rH(e,t,n){var r,i,a;let o=await n.verify();try{let s;if(t8("string"==typeof o,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),t8("recaptcha"===n.type,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),s="string"==typeof t?{phoneNumber:t}:t,"session"in s){let t=s.session;if("phoneNumber"in s){t8("enroll"/* MultiFactorSessionType.ENROLL */===t.type,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let n=await (i={idToken:t.credential,phoneEnrollmentInfo:{phoneNumber:s.phoneNumber,recaptchaToken:o}},ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaEnrollment:start"/* Endpoint.START_MFA_ENROLLMENT */,no(e,i)));return n.phoneSessionInfo.sessionInfo}{t8("signin"/* MultiFactorSessionType.SIGN_IN */===t.type,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let n=(null===(r=s.multiFactorHint)||void 0===r?void 0:r.uid)||s.multiFactorUid;t8(n,e,"missing-multi-factor-info"/* AuthErrorCode.MISSING_MFA_INFO */);let i=await (a={mfaPendingCredential:t.credential,mfaEnrollmentId:n,phoneSignInInfo:{recaptchaToken:o}},ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaSignIn:start"/* Endpoint.START_MFA_SIGN_IN */,no(e,a)));return i.phoneResponseInfo.sessionInfo}}{let{sessionInfo:t}=await rr(e,{phoneNumber:s.phoneNumber,recaptchaToken:o});return t}}finally{n._reset()}}rB.type="LOCAL",nZ("rcb"),new nt(3e4,6e4);/**
+ */async function rW(e,t,n){var r,i,a;let o=await n.verify();try{let s;if(t8("string"==typeof o,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),t8("recaptcha"===n.type,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),s="string"==typeof t?{phoneNumber:t}:t,"session"in s){let t=s.session;if("phoneNumber"in s){t8("enroll"/* MultiFactorSessionType.ENROLL */===t.type,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let n=await (i={idToken:t.credential,phoneEnrollmentInfo:{phoneNumber:s.phoneNumber,recaptchaToken:o}},ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaEnrollment:start"/* Endpoint.START_MFA_ENROLLMENT */,no(e,i)));return n.phoneSessionInfo.sessionInfo}{t8("signin"/* MultiFactorSessionType.SIGN_IN */===t.type,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */);let n=(null===(r=s.multiFactorHint)||void 0===r?void 0:r.uid)||s.multiFactorUid;t8(n,e,"missing-multi-factor-info"/* AuthErrorCode.MISSING_MFA_INFO */);let i=await (a={mfaPendingCredential:t.credential,mfaEnrollmentId:n,phoneSignInInfo:{recaptchaToken:o}},ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaSignIn:start"/* Endpoint.START_MFA_SIGN_IN */,no(e,a)));return i.phoneResponseInfo.sessionInfo}}{let{sessionInfo:t}=await ri(e,{phoneNumber:s.phoneNumber,recaptchaToken:o});return t}}finally{n._reset()}}rH.type="LOCAL",n0("rcb"),new nt(3e4,6e4);/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2448,10 +2452,10 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
  * ```
  *
  * @public
- */class rW{/**
+ */class rK{/**
      * @param auth - The Firebase {@link Auth} instance in which sign-ins should occur.
      *
-     */constructor(e){/** Always set to {@link ProviderId}.PHONE. */this.providerId=rW.PROVIDER_ID,this.auth=tr(e)}/**
+     */constructor(e){/** Always set to {@link ProviderId}.PHONE. */this.providerId=rK.PROVIDER_ID,this.auth=tr(e)}/**
      *
      * Starts a phone number authentication flow by sending a verification code to the given phone
      * number.
@@ -2481,7 +2485,7 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
      *
      * @returns A Promise for a verification ID that can be passed to
      * {@link PhoneAuthProvider.credential} to identify this flow..
-     */verifyPhoneNumber(e,t){return rH(this.auth,e,tr(t))}/**
+     */verifyPhoneNumber(e,t){return rW(this.auth,e,tr(t))}/**
      * Creates a phone auth credential, given the verification ID from
      * {@link PhoneAuthProvider.verifyPhoneNumber} and the code that was sent to the user's
      * mobile device.
@@ -2507,10 +2511,10 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
      * @param verificationCode - The verification code sent to the user's mobile device.
      *
      * @returns The auth provider credential.
-     */static credential(e,t){return rl._fromVerification(e,t)}/**
+     */static credential(e,t){return ru._fromVerification(e,t)}/**
      * Generates an {@link AuthCredential} from a {@link UserCredential}.
      * @param userCredential - The user credential.
-     */static credentialFromResult(e){return rW.credentialFromTaggedObject(e)}/**
+     */static credentialFromResult(e){return rK.credentialFromTaggedObject(e)}/**
      * Returns an {@link AuthCredential} when passed an error.
      *
      * @remarks
@@ -2541,7 +2545,7 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
      * ```
      *
      * @param error - The error to generate a credential from.
-     */static credentialFromError(e){return rW.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e)return null;let{phoneNumber:t,temporaryProof:n}=e;return t&&n?rl._fromTokenResponse(t,n):null}}/**
+     */static credentialFromError(e){return rK.credentialFromTaggedObject(e.customData||{})}static credentialFromTaggedObject({_tokenResponse:e}){if(!e)return null;let{phoneNumber:t,temporaryProof:n}=e;return t&&n?ru._fromTokenResponse(t,n):null}}/**
  * @license
  * Copyright 2021 Google LLC
  *
@@ -2560,7 +2564,7 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
  * Chooses a popup/redirect resolver to use. This prefers the override (which
  * is directly passed in), and falls back to the property set on the auth
  * object. If neither are available, this function errors w/ an argument error.
- */function rK(e,t){return t?nO(t):(t8(e._popupRedirectResolver,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),e._popupRedirectResolver)}/** Always set to {@link ProviderId}.PHONE. */rW.PROVIDER_ID="phone"/* ProviderId.PHONE */,/** Always set to {@link SignInMethod}.PHONE. */rW.PHONE_SIGN_IN_METHOD="phone"/* SignInMethod.PHONE */;/**
+ */function rq(e,t){return t?nL(t):(t8(e._popupRedirectResolver,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),e._popupRedirectResolver)}/** Always set to {@link ProviderId}.PHONE. */rK.PROVIDER_ID="phone"/* ProviderId.PHONE */,/** Always set to {@link SignInMethod}.PHONE. */rK.PHONE_SIGN_IN_METHOD="phone"/* SignInMethod.PHONE */;/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -2575,7 +2579,7 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class rq extends n6{constructor(e){super("custom"/* ProviderId.CUSTOM */,"custom"/* ProviderId.CUSTOM */),this.params=e}_getIdTokenResponse(e){return rt(e,this._buildIdpRequest())}_linkToIdToken(e,t){return rt(e,this._buildIdpRequest(t))}_getReauthenticationResolver(e){return rt(e,this._buildIdpRequest())}_buildIdpRequest(e){let t={requestUri:this.params.requestUri,sessionId:this.params.sessionId,postBody:this.params.postBody,tenantId:this.params.tenantId,pendingToken:this.params.pendingToken,returnSecureToken:!0,returnIdpCredential:!0};return e&&(t.idToken=e),t}}function rJ(e){return rS(e.auth,new rq(e),e.bypassAuthState)}function rQ(e){let{auth:t,user:n}=e;return t8(n,t,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),rk(n,new rq(e),e.bypassAuthState)}async function rG(e){let{auth:t,user:n}=e;return t8(n,t,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),r_(n,new rq(e),e.bypassAuthState)}/**
+ */class rJ extends n5{constructor(e){super("custom"/* ProviderId.CUSTOM */,"custom"/* ProviderId.CUSTOM */),this.params=e}_getIdTokenResponse(e){return rn(e,this._buildIdpRequest())}_linkToIdToken(e,t){return rn(e,this._buildIdpRequest(t))}_getReauthenticationResolver(e){return rn(e,this._buildIdpRequest())}_buildIdpRequest(e){let t={requestUri:this.params.requestUri,sessionId:this.params.sessionId,postBody:this.params.postBody,tenantId:this.params.tenantId,pendingToken:this.params.pendingToken,returnSecureToken:!0,returnIdpCredential:!0};return e&&(t.idToken=e),t}}function rQ(e){return rE(e.auth,new rJ(e),e.bypassAuthState)}function rG(e){let{auth:t,user:n}=e;return t8(n,t,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),rS(n,new rJ(e),e.bypassAuthState)}async function rY(e){let{auth:t,user:n}=e;return t8(n,t,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),rk(n,new rJ(e),e.bypassAuthState)}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2593,7 +2597,7 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
  *//**
  * Popup event manager. Handles the popup's entire lifecycle; listens to auth
  * events
- */class rY{constructor(e,t,n,r,i=!1){this.auth=e,this.resolver=n,this.user=r,this.bypassAuthState=i,this.pendingPromise=null,this.eventManager=null,this.filter=Array.isArray(t)?t:[t]}execute(){return new Promise(async(e,t)=>{this.pendingPromise={resolve:e,reject:t};try{this.eventManager=await this.resolver._initialize(this.auth),await this.onExecution(),this.eventManager.registerConsumer(this)}catch(e){this.reject(e)}})}async onAuthEvent(e){let{urlResponse:t,sessionId:n,postBody:r,tenantId:i,error:a,type:o}=e;if(a){this.reject(a);return}let s={auth:this.auth,requestUri:t,sessionId:n,tenantId:i||void 0,postBody:r||void 0,user:this.user,bypassAuthState:this.bypassAuthState};try{this.resolve(await this.getIdpTask(o)(s))}catch(e){this.reject(e)}}onError(e){this.reject(e)}getIdpTask(e){switch(e){case"signInViaPopup"/* AuthEventType.SIGN_IN_VIA_POPUP */:case"signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */:return rJ;case"linkViaPopup"/* AuthEventType.LINK_VIA_POPUP */:case"linkViaRedirect"/* AuthEventType.LINK_VIA_REDIRECT */:return rG;case"reauthViaPopup"/* AuthEventType.REAUTH_VIA_POPUP */:case"reauthViaRedirect"/* AuthEventType.REAUTH_VIA_REDIRECT */:return rQ;default:t3(this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)}}resolve(e){this.pendingPromise||t9("Pending promise was never set"),this.pendingPromise.resolve(e),this.unregisterAndCleanUp()}reject(e){this.pendingPromise||t9("Pending promise was never set"),this.pendingPromise.reject(e),this.unregisterAndCleanUp()}unregisterAndCleanUp(){this.eventManager&&this.eventManager.unregisterConsumer(this),this.pendingPromise=null,this.cleanUp()}}/**
+ */class rX{constructor(e,t,n,r,i=!1){this.auth=e,this.resolver=n,this.user=r,this.bypassAuthState=i,this.pendingPromise=null,this.eventManager=null,this.filter=Array.isArray(t)?t:[t]}execute(){return new Promise(async(e,t)=>{this.pendingPromise={resolve:e,reject:t};try{this.eventManager=await this.resolver._initialize(this.auth),await this.onExecution(),this.eventManager.registerConsumer(this)}catch(e){this.reject(e)}})}async onAuthEvent(e){let{urlResponse:t,sessionId:n,postBody:r,tenantId:i,error:a,type:o}=e;if(a){this.reject(a);return}let s={auth:this.auth,requestUri:t,sessionId:n,tenantId:i||void 0,postBody:r||void 0,user:this.user,bypassAuthState:this.bypassAuthState};try{this.resolve(await this.getIdpTask(o)(s))}catch(e){this.reject(e)}}onError(e){this.reject(e)}getIdpTask(e){switch(e){case"signInViaPopup"/* AuthEventType.SIGN_IN_VIA_POPUP */:case"signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */:return rQ;case"linkViaPopup"/* AuthEventType.LINK_VIA_POPUP */:case"linkViaRedirect"/* AuthEventType.LINK_VIA_REDIRECT */:return rY;case"reauthViaPopup"/* AuthEventType.REAUTH_VIA_POPUP */:case"reauthViaRedirect"/* AuthEventType.REAUTH_VIA_REDIRECT */:return rG;default:t3(this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)}}resolve(e){this.pendingPromise||t9("Pending promise was never set"),this.pendingPromise.resolve(e),this.unregisterAndCleanUp()}reject(e){this.pendingPromise||t9("Pending promise was never set"),this.pendingPromise.reject(e),this.unregisterAndCleanUp()}unregisterAndCleanUp(){this.eventManager&&this.eventManager.unregisterConsumer(this),this.pendingPromise=null,this.cleanUp()}}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2608,11 +2612,11 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */let rX=new nt(2e3,1e4);/**
+ */let rZ=new nt(2e3,1e4);/**
  * Popup event manager. Handles the popup's entire lifecycle; listens to auth
  * events
  *
- */class rZ extends rY{constructor(e,t,n,r,i){super(e,t,r,i),this.provider=n,this.authWindow=null,this.pollId=null,rZ.currentPopupAction&&rZ.currentPopupAction.cancel(),rZ.currentPopupAction=this}async executeNotNull(){let e=await this.execute();return t8(e,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),e}async onExecution(){1===this.filter.length||t9("Popup operations only handle one event");let e=rN();this.authWindow=await this.resolver._openPopup(this.auth,this.provider,this.filter[0],e),this.authWindow.associatedEvent=e,// Check for web storage support and origin validation _after_ the popup is
+ */class r0 extends rX{constructor(e,t,n,r,i){super(e,t,r,i),this.provider=n,this.authWindow=null,this.pollId=null,r0.currentPopupAction&&r0.currentPopupAction.cancel(),r0.currentPopupAction=this}async executeNotNull(){let e=await this.execute();return t8(e,this.auth,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),e}async onExecution(){1===this.filter.length||t9("Popup operations only handle one event");let e=rP();this.authWindow=await this.resolver._openPopup(this.auth,this.provider,this.filter[0],e),this.authWindow.associatedEvent=e,// Check for web storage support and origin validation _after_ the popup is
 // loaded. These operations are slow (~1 second or so) Rather than
 // waiting on them before opening the window, optimistically open the popup
 // and check for storage support at the same time. If storage support is
@@ -2620,24 +2624,24 @@ this._get(e)),this.listeners[e].add(t)}_removeListener(e,t){this.listeners[e]&&(
 // will also close the popup, but since the promise has already rejected,
 // the popup closed by user poll will reject into the void.
 this.resolver._originValidation(this.auth).catch(e=>{this.reject(e)}),this.resolver._isIframeWebStorageSupported(this.auth,e=>{e||this.reject(t4(this.auth,"web-storage-unsupported"/* AuthErrorCode.WEB_STORAGE_UNSUPPORTED */))}),// Handle user closure. Notice this does *not* use await
-this.pollUserCancellation()}get eventId(){var e;return(null===(e=this.authWindow)||void 0===e?void 0:e.associatedEvent)||null}cancel(){this.reject(t4(this.auth,"cancelled-popup-request"/* AuthErrorCode.EXPIRED_POPUP_REQUEST */))}cleanUp(){this.authWindow&&this.authWindow.close(),this.pollId&&window.clearTimeout(this.pollId),this.authWindow=null,this.pollId=null,rZ.currentPopupAction=null}pollUserCancellation(){let e=()=>{var t,n;if(null===(n=null===(t=this.authWindow)||void 0===t?void 0:t.window)||void 0===n?void 0:n.closed){// Make sure that there is sufficient time for whatever action to
+this.pollUserCancellation()}get eventId(){var e;return(null===(e=this.authWindow)||void 0===e?void 0:e.associatedEvent)||null}cancel(){this.reject(t4(this.auth,"cancelled-popup-request"/* AuthErrorCode.EXPIRED_POPUP_REQUEST */))}cleanUp(){this.authWindow&&this.authWindow.close(),this.pollId&&window.clearTimeout(this.pollId),this.authWindow=null,this.pollId=null,r0.currentPopupAction=null}pollUserCancellation(){let e=()=>{var t,n;if(null===(n=null===(t=this.authWindow)||void 0===t?void 0:t.window)||void 0===n?void 0:n.closed){// Make sure that there is sufficient time for whatever action to
 // complete. The window could have closed but the sign in network
 // call could still be in flight. This is specifically true for
 // Firefox or if the opener is in an iframe, in which case the oauth
 // helper closes the popup.
-this.pollId=window.setTimeout(()=>{this.pollId=null,this.reject(t4(this.auth,"popup-closed-by-user"/* AuthErrorCode.POPUP_CLOSED_BY_USER */))},8e3/* _Timeout.AUTH_EVENT */);return}this.pollId=window.setTimeout(e,rX.get())};e()}}// Only one popup is ever shown at once. The lifecycle of the current popup
+this.pollId=window.setTimeout(()=>{this.pollId=null,this.reject(t4(this.auth,"popup-closed-by-user"/* AuthErrorCode.POPUP_CLOSED_BY_USER */))},8e3/* _Timeout.AUTH_EVENT */);return}this.pollId=window.setTimeout(e,rZ.get())};e()}}// Only one popup is ever shown at once. The lifecycle of the current popup
 // can be managed / cancelled by the constructor.
-rZ.currentPopupAction=null;// We only get one redirect outcome for any one auth, so just store it
+r0.currentPopupAction=null;// We only get one redirect outcome for any one auth, so just store it
 // in here.
-let r0=new Map;class r1 extends rY{constructor(e,t,n=!1){super(e,["signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */,"linkViaRedirect"/* AuthEventType.LINK_VIA_REDIRECT */,"reauthViaRedirect"/* AuthEventType.REAUTH_VIA_REDIRECT */,"unknown"/* AuthEventType.UNKNOWN */],t,void 0,n),this.eventId=null}/**
+let r1=new Map;class r2 extends rX{constructor(e,t,n=!1){super(e,["signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */,"linkViaRedirect"/* AuthEventType.LINK_VIA_REDIRECT */,"reauthViaRedirect"/* AuthEventType.REAUTH_VIA_REDIRECT */,"unknown"/* AuthEventType.UNKNOWN */],t,void 0,n),this.eventId=null}/**
      * Override the execute function; if we already have a redirect result, then
      * just return it.
-     */async execute(){let e=r0.get(this.auth._key());if(!e){try{let t=await r2(this.resolver,this.auth),n=t?await super.execute():null;e=()=>Promise.resolve(n)}catch(t){e=()=>Promise.reject(t)}r0.set(this.auth._key(),e)}return this.bypassAuthState||r0.set(this.auth._key(),()=>Promise.resolve(null)),e()}async onAuthEvent(e){if("signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */===e.type)return super.onAuthEvent(e);if("unknown"/* AuthEventType.UNKNOWN */===e.type){// This is a sentinel value indicating there's no pending redirect
-this.resolve(null);return}if(e.eventId){let t=await this.auth._redirectUserForId(e.eventId);if(t)return this.user=t,super.onAuthEvent(e);this.resolve(null)}}async onExecution(){}cleanUp(){}}async function r2(e,t){let n=r5(t),r=r6(e);if(!await r._isAvailable())return!1;let i=await r._get(n)==="true";return await r._remove(n),i}async function r3(e,t){return r6(e)._set(r5(t),"true")}function r4(e,t){r0.set(e._key(),t)}function r6(e){return nO(e._redirectPersistence)}function r5(e){return nD("pendingRedirect",e.config.apiKey,e.name)}async function r8(e,t,n){let r=tr(e);!function(e,t,n){if(!(t instanceof n))throw n.name!==t.constructor.name&&t3(e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),t6(e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */,`Type of ${t.constructor.name} does not match expected instance.Did you pass a reference from a different Auth SDK?`)}(e,t,rd),// Wait for auth initialization to complete, this will process pending redirects and clear the
+     */async execute(){let e=r1.get(this.auth._key());if(!e){try{let t=await r3(this.resolver,this.auth),n=t?await super.execute():null;e=()=>Promise.resolve(n)}catch(t){e=()=>Promise.reject(t)}r1.set(this.auth._key(),e)}return this.bypassAuthState||r1.set(this.auth._key(),()=>Promise.resolve(null)),e()}async onAuthEvent(e){if("signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */===e.type)return super.onAuthEvent(e);if("unknown"/* AuthEventType.UNKNOWN */===e.type){// This is a sentinel value indicating there's no pending redirect
+this.resolve(null);return}if(e.eventId){let t=await this.auth._redirectUserForId(e.eventId);if(t)return this.user=t,super.onAuthEvent(e);this.resolve(null)}}async onExecution(){}cleanUp(){}}async function r3(e,t){let n=r8(t),r=r5(e);if(!await r._isAvailable())return!1;let i=await r._get(n)==="true";return await r._remove(n),i}async function r4(e,t){return r5(e)._set(r8(t),"true")}function r6(e,t){r1.set(e._key(),t)}function r5(e){return nL(e._redirectPersistence)}function r8(e){return nA("pendingRedirect",e.config.apiKey,e.name)}async function r9(e,t,n){let r=tr(e);!function(e,t,n){if(!(t instanceof n))throw n.name!==t.constructor.name&&t3(e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),t6(e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */,`Type of ${t.constructor.name} does not match expected instance.Did you pass a reference from a different Auth SDK?`)}(e,t,rf),// Wait for auth initialization to complete, this will process pending redirects and clear the
 // PENDING_REDIRECT_KEY in persistence. This should be completed before starting a new
 // redirect and creating a PENDING_REDIRECT_KEY entry.
-await r._initializationPromise;let i=rK(r,n);return await r3(i,r),i._openRedirect(r,t,"signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */)}async function r9(e,t,n=!1){let r=tr(e),i=rK(r,t),a=new r1(r,i,n),o=await a.execute();return o&&!n&&(delete o.user._redirectEventId,await r._persistUserIfCurrent(o.user),await r._setRedirectUser(null,t)),o}class r7{constructor(e){this.auth=e,this.cachedEventUids=new Set,this.consumers=new Set,this.queuedRedirectEvent=null,this.hasHandledPotentialRedirect=!1,this.lastProcessedEventTime=Date.now()}registerConsumer(e){this.consumers.add(e),this.queuedRedirectEvent&&this.isEventForConsumer(this.queuedRedirectEvent,e)&&(this.sendToConsumer(this.queuedRedirectEvent,e),this.saveEventToCache(this.queuedRedirectEvent),this.queuedRedirectEvent=null)}unregisterConsumer(e){this.consumers.delete(e)}onEvent(e){// Check if the event has already been handled
-if(this.hasEventBeenHandled(e))return!1;let t=!1;return this.consumers.forEach(n=>{this.isEventForConsumer(e,n)&&(t=!0,this.sendToConsumer(e,n),this.saveEventToCache(e))}),this.hasHandledPotentialRedirect||!function(e){switch(e.type){case"signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */:case"linkViaRedirect"/* AuthEventType.LINK_VIA_REDIRECT */:case"reauthViaRedirect"/* AuthEventType.REAUTH_VIA_REDIRECT */:return!0;case"unknown"/* AuthEventType.UNKNOWN */:return it(e);default:return!1}}(e)||(this.hasHandledPotentialRedirect=!0,t||(this.queuedRedirectEvent=e,t=!0)),t}sendToConsumer(e,t){var n;if(e.error&&!it(e)){let r=(null===(n=e.error.code)||void 0===n?void 0:n.split("auth/")[1])||"internal-error"/* AuthErrorCode.INTERNAL_ERROR */;t.onError(t4(this.auth,r))}else t.onAuthEvent(e)}isEventForConsumer(e,t){let n=null===t.eventId||!!e.eventId&&e.eventId===t.eventId;return t.filter.includes(e.type)&&n}hasEventBeenHandled(e){return Date.now()-this.lastProcessedEventTime>=6e5&&this.cachedEventUids.clear(),this.cachedEventUids.has(ie(e))}saveEventToCache(e){this.cachedEventUids.add(ie(e)),this.lastProcessedEventTime=Date.now()}}function ie(e){return[e.type,e.eventId,e.sessionId,e.tenantId].filter(e=>e).join("-")}function it({type:e,error:t}){return"unknown"/* AuthEventType.UNKNOWN */===e&&(null==t?void 0:t.code)==="auth/no-auth-event"}/**
+await r._initializationPromise;let i=rq(r,n);return await r4(i,r),i._openRedirect(r,t,"signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */)}async function r7(e,t,n=!1){let r=tr(e),i=rq(r,t),a=new r2(r,i,n),o=await a.execute();return o&&!n&&(delete o.user._redirectEventId,await r._persistUserIfCurrent(o.user),await r._setRedirectUser(null,t)),o}class ie{constructor(e){this.auth=e,this.cachedEventUids=new Set,this.consumers=new Set,this.queuedRedirectEvent=null,this.hasHandledPotentialRedirect=!1,this.lastProcessedEventTime=Date.now()}registerConsumer(e){this.consumers.add(e),this.queuedRedirectEvent&&this.isEventForConsumer(this.queuedRedirectEvent,e)&&(this.sendToConsumer(this.queuedRedirectEvent,e),this.saveEventToCache(this.queuedRedirectEvent),this.queuedRedirectEvent=null)}unregisterConsumer(e){this.consumers.delete(e)}onEvent(e){// Check if the event has already been handled
+if(this.hasEventBeenHandled(e))return!1;let t=!1;return this.consumers.forEach(n=>{this.isEventForConsumer(e,n)&&(t=!0,this.sendToConsumer(e,n),this.saveEventToCache(e))}),this.hasHandledPotentialRedirect||!function(e){switch(e.type){case"signInViaRedirect"/* AuthEventType.SIGN_IN_VIA_REDIRECT */:case"linkViaRedirect"/* AuthEventType.LINK_VIA_REDIRECT */:case"reauthViaRedirect"/* AuthEventType.REAUTH_VIA_REDIRECT */:return!0;case"unknown"/* AuthEventType.UNKNOWN */:return ir(e);default:return!1}}(e)||(this.hasHandledPotentialRedirect=!0,t||(this.queuedRedirectEvent=e,t=!0)),t}sendToConsumer(e,t){var n;if(e.error&&!ir(e)){let r=(null===(n=e.error.code)||void 0===n?void 0:n.split("auth/")[1])||"internal-error"/* AuthErrorCode.INTERNAL_ERROR */;t.onError(t4(this.auth,r))}else t.onAuthEvent(e)}isEventForConsumer(e,t){let n=null===t.eventId||!!e.eventId&&e.eventId===t.eventId;return t.filter.includes(e.type)&&n}hasEventBeenHandled(e){return Date.now()-this.lastProcessedEventTime>=6e5&&this.cachedEventUids.clear(),this.cachedEventUids.has(it(e))}saveEventToCache(e){this.cachedEventUids.add(it(e)),this.lastProcessedEventTime=Date.now()}}function it(e){return[e.type,e.eventId,e.sessionId,e.tenantId].filter(e=>e).join("-")}function ir({type:e,error:t}){return"unknown"/* AuthEventType.UNKNOWN */===e&&(null==t?void 0:t.code)==="auth/no-auth-event"}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2652,7 +2656,7 @@ if(this.hasEventBeenHandled(e))return!1;let t=!1;return this.consumers.forEach(n
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */async function ir(e,t={}){return ns(e,"GET"/* HttpMethod.GET */,"/v1/projects"/* Endpoint.GET_PROJECT_CONFIG */,t)}/**
+ */async function ii(e,t={}){return ns(e,"GET"/* HttpMethod.GET */,"/v1/projects"/* Endpoint.GET_PROJECT_CONFIG */,t)}/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2667,8 +2671,8 @@ if(this.hasEventBeenHandled(e))return!1;let t=!1;return this.consumers.forEach(n
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */let ii=/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/,ia=/^https?/;async function io(e){// Skip origin validation if we are in an emulated environment
-if(e.config.emulator)return;let{authorizedDomains:t}=await ir(e);for(let e of t)try{if(function(e){let t=t7(),{protocol:n,hostname:r}=new URL(t);if(e.startsWith("chrome-extension://")){let i=new URL(e);return""===i.hostname&&""===r?"chrome-extension:"===n&&e.replace("chrome-extension://","")===t.replace("chrome-extension://",""):"chrome-extension:"===n&&i.hostname===r}if(!ia.test(n))return!1;if(ii.test(e))// only contain the IP, no extra character.
+ */let ia=/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/,io=/^https?/;async function is(e){// Skip origin validation if we are in an emulated environment
+if(e.config.emulator)return;let{authorizedDomains:t}=await ii(e);for(let e of t)try{if(function(e){let t=t7(),{protocol:n,hostname:r}=new URL(t);if(e.startsWith("chrome-extension://")){let i=new URL(e);return""===i.hostname&&""===r?"chrome-extension:"===n&&e.replace("chrome-extension://","")===t.replace("chrome-extension://",""):"chrome-extension:"===n&&i.hostname===r}if(!io.test(n))return!1;if(ia.test(e))// only contain the IP, no extra character.
 return r===e;// Dots in pattern should be escaped.
 let i=e.replace(/\./g,"\\."),a=RegExp("^(.+\\."+i+"|"+i+")$","i");return a.test(r)}(e))return}catch(e){// Do nothing if there's a URL error; just continue searching
 }// In the old SDK, this error also provides helpful messages.
@@ -2687,39 +2691,39 @@ t3(e,"unauthorized-domain"/* AuthErrorCode.INVALID_ORIGIN */)}/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */let is=new nt(3e4,6e4);/**
+ */let il=new nt(3e4,6e4);/**
  * Reset unlaoded GApi modules. If gapi.load fails due to a network error,
  * it will stop working after a retrial. This is a hack to fix this issue.
- */function il(){// Clear last failed gapi.load state to force next gapi.load to first
+ */function iu(){// Clear last failed gapi.load state to force next gapi.load to first
 // load the failed gapi.iframes module.
 // Get gapix.beacon context.
-let e=rR().___jsl;// Get current hint.
+let e=rO().___jsl;// Get current hint.
 if(null==e?void 0:e.H){for(let t of Object.keys(e.H))// Clear pending callbacks.
 if(// Requested modules.
 e.H[t].r=e.H[t].r||[],// Loaded modules.
 e.H[t].L=e.H[t].L||[],// Set requested modules to a copy of the loaded modules.
-e.H[t].r=[...e.H[t].L],e.CP)for(let t=0;t<e.CP.length;t++)e.CP[t]=null}}let iu=null,ic=new nt(5e3,15e3),id={style:{position:"absolute",top:"-100px",width:"1px",height:"1px"},"aria-hidden":"true",tabindex:"-1"},ih=new Map([["identitytoolkit.googleapis.com"/* DefaultConfig.API_HOST */,"p"],["staging-identitytoolkit.sandbox.googleapis.com","s"],["test-identitytoolkit.sandbox.googleapis.com","t"]// test
-]);async function ip(e){let t=await (iu=iu||new Promise((t,n)=>{var r,i,a;// Function to run when gapi.load is ready.
+e.H[t].r=[...e.H[t].L],e.CP)for(let t=0;t<e.CP.length;t++)e.CP[t]=null}}let ic=null,id=new nt(5e3,15e3),ih={style:{position:"absolute",top:"-100px",width:"1px",height:"1px"},"aria-hidden":"true",tabindex:"-1"},ip=new Map([["identitytoolkit.googleapis.com"/* DefaultConfig.API_HOST */,"p"],["staging-identitytoolkit.sandbox.googleapis.com","s"],["test-identitytoolkit.sandbox.googleapis.com","t"]// test
+]);async function im(e){let t=await (ic=ic||new Promise((t,n)=>{var r,i,a;// Function to run when gapi.load is ready.
 function o(){// The developer may have tried to previously run gapi.load and failed.
 // Run this to fix that.
-il(),gapi.load("gapi.iframes",{callback:()=>{t(gapi.iframes.getContext())},ontimeout:()=>{// The above reset may be sufficient, but having this reset after
+iu(),gapi.load("gapi.iframes",{callback:()=>{t(gapi.iframes.getContext())},ontimeout:()=>{// The above reset may be sufficient, but having this reset after
 // failure ensures that if the developer calls gapi.load after the
 // connection is re-established and before another attempt to embed
 // the iframe, it would work and would not be broken because of our
 // failed attempt.
 // Timeout when gapi.iframes.Iframe not loaded.
-il(),n(t4(e,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */))},timeout:is.get()})}if(null===(i=null===(r=rR().gapi)||void 0===r?void 0:r.iframes)||void 0===i?void 0:i.Iframe)t(gapi.iframes.getContext());else if(null===(a=rR().gapi)||void 0===a?void 0:a.load)o();else{// Create a new iframe callback when this is called so as not to overwrite
+iu(),n(t4(e,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */))},timeout:il.get()})}if(null===(i=null===(r=rO().gapi)||void 0===r?void 0:r.iframes)||void 0===i?void 0:i.Iframe)t(gapi.iframes.getContext());else if(null===(a=rO().gapi)||void 0===a?void 0:a.load)o();else{// Create a new iframe callback when this is called so as not to overwrite
 // any previous defined callback. This happens if this method is called
 // multiple times in parallel and could result in the later callback
 // overwriting the previous one. This would end up with a iframe
 // timeout.
-let t=nZ("iframefcb");// Load GApi loader.
+let t=n0("iframefcb");// Load GApi loader.
 return(// GApi loader not available, dynamically load platform.js.
-rR()[t]=()=>{// GApi loader should be ready.
-gapi.load?o():n(t4(e,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */))},nX(`https://apis.google.com/js/api.js?onload=${t}`).catch(e=>n(e)))}}).catch(e=>{throw(// Reset cached promise to allow for retrial.
-iu=null,e)})),n=rR().gapi;return t8(n,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t.open({where:document.body,url:function(e){let t=e.config;t8(t.authDomain,e,"auth-domain-config-required"/* AuthErrorCode.MISSING_AUTH_DOMAIN */);let n=t.emulator?nn(t,"emulator/auth/iframe"):`https://${e.config.authDomain}/__/auth/iframe`,r={apiKey:t.apiKey,appName:e.name,v:tz},i=ih.get(e.config.apiHost);i&&(r.eid=i);let a=e._getFrameworks();return a.length&&(r.fw=a.join(",")),`${n}?${e9(r).slice(1)}`}(e),messageHandlersFilter:n.iframes.CROSS_ORIGIN_IFRAMES_FILTER,attributes:id,dontclear:!0},t=>new Promise(async(n,r)=>{await t.restyle({// Prevent iframe from closing on mouse out.
-    setHideOnLeave:!1});let i=t4(e,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */),a=rR().setTimeout(()=>{r(i)},ic.get());// Clear timer and resolve pending iframe ready promise.
-    function o(){rR().clearTimeout(a),n(t)}// This returns an IThenable. However the reject part does not call
+rO()[t]=()=>{// GApi loader should be ready.
+gapi.load?o():n(t4(e,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */))},nZ(`https://apis.google.com/js/api.js?onload=${t}`).catch(e=>n(e)))}}).catch(e=>{throw(// Reset cached promise to allow for retrial.
+ic=null,e)})),n=rO().gapi;return t8(n,e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */),t.open({where:document.body,url:function(e){let t=e.config;t8(t.authDomain,e,"auth-domain-config-required"/* AuthErrorCode.MISSING_AUTH_DOMAIN */);let n=t.emulator?nn(t,"emulator/auth/iframe"):`https://${e.config.authDomain}/__/auth/iframe`,r={apiKey:t.apiKey,appName:e.name,v:tz},i=ip.get(e.config.apiHost);i&&(r.eid=i);let a=e._getFrameworks();return a.length&&(r.fw=a.join(",")),`${n}?${e9(r).slice(1)}`}(e),messageHandlersFilter:n.iframes.CROSS_ORIGIN_IFRAMES_FILTER,attributes:ih,dontclear:!0},t=>new Promise(async(n,r)=>{await t.restyle({// Prevent iframe from closing on mouse out.
+    setHideOnLeave:!1});let i=t4(e,"network-request-failed"/* AuthErrorCode.NETWORK_REQUEST_FAILED */),a=rO().setTimeout(()=>{r(i)},id.get());// Clear timer and resolve pending iframe ready promise.
+    function o(){rO().clearTimeout(a),n(t)}// This returns an IThenable. However the reject part does not call
     // when the iframe is not loaded.
     t.ping(o).then(o,()=>{r(i)})}))}/**
  * @license
@@ -2736,13 +2740,13 @@ iu=null,e)})),n=rR().gapi;return t8(n,e,"internal-error"/* AuthErrorCode.INTERNA
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */let im={location:"yes",resizable:"yes",statusbar:"yes",toolbar:"no"};class ig{constructor(e){this.window=e,this.associatedEvent=null}close(){if(this.window)try{this.window.close()}catch(e){}}}/**
+ */let ig={location:"yes",resizable:"yes",statusbar:"yes",toolbar:"no"};class iv{constructor(e){this.window=e,this.associatedEvent=null}close(){if(this.window)try{this.window.close()}catch(e){}}}/**
  * Fragment name for the App Check token that gets passed to the widget
  *
  * @internal
- */let iv=encodeURIComponent("fac");async function iy(e,t,n,r,i,a){t8(e.config.authDomain,e,"auth-domain-config-required"/* AuthErrorCode.MISSING_AUTH_DOMAIN */),t8(e.config.apiKey,e,"invalid-api-key"/* AuthErrorCode.INVALID_API_KEY */);let o={apiKey:e.config.apiKey,appName:e.name,authType:n,redirectUrl:r,v:tz,eventId:i};if(t instanceof rd)// TODO set additionalParams from the provider as well?
-for(let[n,r]of(t.setDefaultLanguage(e.languageCode),o.providerId=t.providerId||"",!function(e){for(let t in e)if(Object.prototype.hasOwnProperty.call(e,t))return!1;return!0}(t.getCustomParameters())&&(o.customParameters=JSON.stringify(t.getCustomParameters())),Object.entries(a||{})))o[n]=r;if(t instanceof rf){let e=t.getScopes().filter(e=>""!==e);e.length>0&&(o.scopes=e.join(","))}for(let t of(e.tenantId&&(o.tid=e.tenantId),Object.keys(o)))void 0===o[t]&&delete o[t];// Sets the App Check token to pass to the widget
-let s=await e._getAppCheckToken(),l=s?`#${iv}=${encodeURIComponent(s)}`:"";// Start at index 1 to skip the leading '&' in the query string
+ */let iy=encodeURIComponent("fac");async function ib(e,t,n,r,i,a){t8(e.config.authDomain,e,"auth-domain-config-required"/* AuthErrorCode.MISSING_AUTH_DOMAIN */),t8(e.config.apiKey,e,"invalid-api-key"/* AuthErrorCode.INVALID_API_KEY */);let o={apiKey:e.config.apiKey,appName:e.name,authType:n,redirectUrl:r,v:tz,eventId:i};if(t instanceof rf)// TODO set additionalParams from the provider as well?
+for(let[n,r]of(t.setDefaultLanguage(e.languageCode),o.providerId=t.providerId||"",!function(e){for(let t in e)if(Object.prototype.hasOwnProperty.call(e,t))return!1;return!0}(t.getCustomParameters())&&(o.customParameters=JSON.stringify(t.getCustomParameters())),Object.entries(a||{})))o[n]=r;if(t instanceof rh){let e=t.getScopes().filter(e=>""!==e);e.length>0&&(o.scopes=e.join(","))}for(let t of(e.tenantId&&(o.tid=e.tenantId),Object.keys(o)))void 0===o[t]&&delete o[t];// Sets the App Check token to pass to the widget
+let s=await e._getAppCheckToken(),l=s?`#${iy}=${encodeURIComponent(s)}`:"";// Start at index 1 to skip the leading '&' in the query string
 return`${function({config:e}){return e.emulator?nn(e,"emulator/auth/handler"):`https://${e.authDomain}/__/auth/handler`}(e)}?${e9(o).slice(1)}${l}`}/**
  * @license
  * Copyright 2020 Google LLC
@@ -2761,30 +2765,30 @@ return`${function({config:e}){return e.emulator?nn(e,"emulator/auth/handler"):`h
  *//**
  * The special web storage event
  *
- */let ib="webStorageSupport",iw=class{constructor(){this.eventManagers={},this.iframes={},this.originValidationPromises={},this._redirectPersistence=rT,this._completeRedirectFn=r9,this._overrideRedirectResult=r4}// Wrapping in async even though we don't await anywhere in order
+ */let iw="webStorageSupport",i_=class{constructor(){this.eventManagers={},this.iframes={},this.originValidationPromises={},this._redirectPersistence=rx,this._completeRedirectFn=r7,this._overrideRedirectResult=r6}// Wrapping in async even though we don't await anywhere in order
 // to make sure errors are raised as promise rejections
-async _openPopup(e,t,n,r){var i;(null===(i=this.eventManagers[e._key()])||void 0===i?void 0:i.manager)||t9("_initialize() not called before _openPopup()");let a=await iy(e,t,n,t7(),r);return function(e,t,n,r=500,i=600){let a=Math.max((window.screen.availHeight-i)/2,0).toString(),o=Math.max((window.screen.availWidth-r)/2,0).toString(),s="",l=Object.assign(Object.assign({},im),{width:r.toString(),height:i.toString(),top:a,left:o}),u=e2().toLowerCase();n&&(s=nz(u)?"_blank":n),nj(u)&&(// Firefox complains when invalid URLs are popped out. Hacky way to bypass.
+async _openPopup(e,t,n,r){var i;(null===(i=this.eventManagers[e._key()])||void 0===i?void 0:i.manager)||t9("_initialize() not called before _openPopup()");let a=await ib(e,t,n,t7(),r);return function(e,t,n,r=500,i=600){let a=Math.max((window.screen.availHeight-i)/2,0).toString(),o=Math.max((window.screen.availWidth-r)/2,0).toString(),s="",l=Object.assign(Object.assign({},ig),{width:r.toString(),height:i.toString(),top:a,left:o}),u=e2().toLowerCase();n&&(s=nF(u)?"_blank":n),nU(u)&&(// Firefox complains when invalid URLs are popped out. Hacky way to bypass.
 t=t||"http://localhost",// Firefox disables by default scrolling on popup windows, which can create
 // issues when the user has many Google accounts, for instance.
-l.scrollbars="yes");let c=Object.entries(l).reduce((e,[t,n])=>`${e}${t}=${n},`,"");if(function(e=e2()){var t;return nH(e)&&!!(null===(t=window.navigator)||void 0===t?void 0:t.standalone)}(u)&&"_self"!==s)return function(e,t){let n=document.createElement("a");n.href=e,n.target=t;let r=document.createEvent("MouseEvent");r.initMouseEvent("click",!0,!0,window,1,0,0,0,0,!1,!1,!1,!1,1,null),n.dispatchEvent(r)}(t||"",s),new ig(null);// about:blank getting sanitized causing browsers like IE/Edge to display
+l.scrollbars="yes");let c=Object.entries(l).reduce((e,[t,n])=>`${e}${t}=${n},`,"");if(function(e=e2()){var t;return nW(e)&&!!(null===(t=window.navigator)||void 0===t?void 0:t.standalone)}(u)&&"_self"!==s)return function(e,t){let n=document.createElement("a");n.href=e,n.target=t;let r=document.createEvent("MouseEvent");r.initMouseEvent("click",!0,!0,window,1,0,0,0,0,!1,!1,!1,!1,1,null),n.dispatchEvent(r)}(t||"",s),new iv(null);// about:blank getting sanitized causing browsers like IE/Edge to display
 // brief error message before redirecting to handler.
 let d=window.open(t||"",s,c);t8(d,e,"popup-blocked"/* AuthErrorCode.POPUP_BLOCKED */);// Flaky on IE edge, encapsulate with a try and catch.
-try{d.focus()}catch(e){}return new ig(d)}(e,a,rN())}async _openRedirect(e,t,n,r){await this._originValidation(e);let i=await iy(e,t,n,t7(),r);return rR().location.href=i,new Promise(()=>{})}_initialize(e){let t=e._key();if(this.eventManagers[t]){let{manager:e,promise:n}=this.eventManagers[t];return e?Promise.resolve(e):(n||t9("If manager is not set, promise should be"),n)}let n=this.initAndGetManager(e);return this.eventManagers[t]={promise:n},// If the promise is rejected, the key should be removed so that the
+try{d.focus()}catch(e){}return new iv(d)}(e,a,rP())}async _openRedirect(e,t,n,r){await this._originValidation(e);let i=await ib(e,t,n,t7(),r);return rO().location.href=i,new Promise(()=>{})}_initialize(e){let t=e._key();if(this.eventManagers[t]){let{manager:e,promise:n}=this.eventManagers[t];return e?Promise.resolve(e):(n||t9("If manager is not set, promise should be"),n)}let n=this.initAndGetManager(e);return this.eventManagers[t]={promise:n},// If the promise is rejected, the key should be removed so that the
 // operation can be retried later.
-n.catch(()=>{delete this.eventManagers[t]}),n}async initAndGetManager(e){let t=await ip(e),n=new r7(e);return t.register("authEvent",t=>{t8(null==t?void 0:t.authEvent,e,"invalid-auth-event"/* AuthErrorCode.INVALID_AUTH_EVENT */);// TODO: Consider splitting redirect and popup events earlier on
-let r=n.onEvent(t.authEvent);return{status:r?"ACK"/* GapiOutcome.ACK */:"ERROR"/* GapiOutcome.ERROR */}},gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER),this.eventManagers[e._key()]={manager:n},this.iframes[e._key()]=t,n}_isIframeWebStorageSupported(e,t){let n=this.iframes[e._key()];n.send(ib,{type:ib},n=>{var r;let i=null===(r=null==n?void 0:n[0])||void 0===r?void 0:r[ib];void 0!==i&&t(!!i),t3(e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)},gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER)}_originValidation(e){let t=e._key();return this.originValidationPromises[t]||(this.originValidationPromises[t]=io(e)),this.originValidationPromises[t]}get _shouldInitProactively(){// Mobile browsers and Safari need to optimistically initialize
-return nW()||nU()||nH()}};class i_{constructor(e){this.factorId=e}_process(e,t,n){switch(t.type){case"enroll"/* MultiFactorSessionType.ENROLL */:return this._finalizeEnroll(e,t.credential,n);case"signin"/* MultiFactorSessionType.SIGN_IN */:return this._finalizeSignIn(e,t.credential);default:return t9("unexpected MultiFactorSessionType")}}}/**
+n.catch(()=>{delete this.eventManagers[t]}),n}async initAndGetManager(e){let t=await im(e),n=new ie(e);return t.register("authEvent",t=>{t8(null==t?void 0:t.authEvent,e,"invalid-auth-event"/* AuthErrorCode.INVALID_AUTH_EVENT */);// TODO: Consider splitting redirect and popup events earlier on
+let r=n.onEvent(t.authEvent);return{status:r?"ACK"/* GapiOutcome.ACK */:"ERROR"/* GapiOutcome.ERROR */}},gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER),this.eventManagers[e._key()]={manager:n},this.iframes[e._key()]=t,n}_isIframeWebStorageSupported(e,t){let n=this.iframes[e._key()];n.send(iw,{type:iw},n=>{var r;let i=null===(r=null==n?void 0:n[0])||void 0===r?void 0:r[iw];void 0!==i&&t(!!i),t3(e,"internal-error"/* AuthErrorCode.INTERNAL_ERROR */)},gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER)}_originValidation(e){let t=e._key();return this.originValidationPromises[t]||(this.originValidationPromises[t]=is(e)),this.originValidationPromises[t]}get _shouldInitProactively(){// Mobile browsers and Safari need to optimistically initialize
+return nK()||nz()||nW()}};class ik{constructor(e){this.factorId=e}_process(e,t,n){switch(t.type){case"enroll"/* MultiFactorSessionType.ENROLL */:return this._finalizeEnroll(e,t.credential,n);case"signin"/* MultiFactorSessionType.SIGN_IN */:return this._finalizeSignIn(e,t.credential);default:return t9("unexpected MultiFactorSessionType")}}}/**
  * {@inheritdoc PhoneMultiFactorAssertion}
  *
  * @public
- */class ik extends i_{constructor(e){super("phone"/* FactorId.PHONE */),this.credential=e}/** @internal */static _fromCredential(e){return new ik(e)}/** @internal */_finalizeEnroll(e,t,n){return ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaEnrollment:finalize"/* Endpoint.FINALIZE_MFA_ENROLLMENT */,no(e,{idToken:t,displayName:n,phoneVerificationInfo:this.credential._makeVerificationRequest()}))}/** @internal */_finalizeSignIn(e,t){return ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaSignIn:finalize"/* Endpoint.FINALIZE_MFA_SIGN_IN */,no(e,{mfaPendingCredential:t,phoneVerificationInfo:this.credential._makeVerificationRequest()}))}}class iS extends i_{constructor(e,t,n){super("totp"/* FactorId.TOTP */),this.otp=e,this.enrollmentId=t,this.secret=n}/** @internal */static _fromSecret(e,t){return new iS(t,void 0,e)}/** @internal */static _fromEnrollmentId(e,t){return new iS(t,e)}/** @internal */async _finalizeEnroll(e,t,n){return t8(void 0!==this.secret,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaEnrollment:finalize"/* Endpoint.FINALIZE_MFA_ENROLLMENT */,no(e,{idToken:t,displayName:n,totpVerificationInfo:this.secret._makeTotpVerificationInfo(this.otp)}))}/** @internal */async _finalizeSignIn(e,t){t8(void 0!==this.enrollmentId&&void 0!==this.otp,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */);let n={verificationCode:this.otp};return ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaSignIn:finalize"/* Endpoint.FINALIZE_MFA_SIGN_IN */,no(e,{mfaPendingCredential:t,mfaEnrollmentId:this.enrollmentId,totpVerificationInfo:n}))}}/**
+ */class iS extends ik{constructor(e){super("phone"/* FactorId.PHONE */),this.credential=e}/** @internal */static _fromCredential(e){return new iS(e)}/** @internal */_finalizeEnroll(e,t,n){return ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaEnrollment:finalize"/* Endpoint.FINALIZE_MFA_ENROLLMENT */,no(e,{idToken:t,displayName:n,phoneVerificationInfo:this.credential._makeVerificationRequest()}))}/** @internal */_finalizeSignIn(e,t){return ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaSignIn:finalize"/* Endpoint.FINALIZE_MFA_SIGN_IN */,no(e,{mfaPendingCredential:t,phoneVerificationInfo:this.credential._makeVerificationRequest()}))}}class iE extends ik{constructor(e,t,n){super("totp"/* FactorId.TOTP */),this.otp=e,this.enrollmentId=t,this.secret=n}/** @internal */static _fromSecret(e,t){return new iE(t,void 0,e)}/** @internal */static _fromEnrollmentId(e,t){return new iE(t,e)}/** @internal */async _finalizeEnroll(e,t,n){return t8(void 0!==this.secret,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */),ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaEnrollment:finalize"/* Endpoint.FINALIZE_MFA_ENROLLMENT */,no(e,{idToken:t,displayName:n,totpVerificationInfo:this.secret._makeTotpVerificationInfo(this.otp)}))}/** @internal */async _finalizeSignIn(e,t){t8(void 0!==this.enrollmentId&&void 0!==this.otp,e,"argument-error"/* AuthErrorCode.ARGUMENT_ERROR */);let n={verificationCode:this.otp};return ns(e,"POST"/* HttpMethod.POST */,"/v2/accounts/mfaSignIn:finalize"/* Endpoint.FINALIZE_MFA_SIGN_IN */,no(e,{mfaPendingCredential:t,mfaEnrollmentId:this.enrollmentId,totpVerificationInfo:n}))}}/**
  * Provider for generating a {@link TotpMultiFactorAssertion}.
  *
  * Stores the shared secret key and other parameters to generate time-based OTPs.
  * Implements methods to retrieve the shared secret key and generate a QR code URL.
  * @public
- */class iE{// The public members are declared outside the constructor so the docs can be generated.
-constructor(e,t,n,r,i,a,o){this.sessionInfo=a,this.auth=o,this.secretKey=e,this.hashingAlgorithm=t,this.codeLength=n,this.codeIntervalSeconds=r,this.enrollmentCompletionDeadline=i}/** @internal */static _fromStartTotpMfaEnrollmentResponse(e,t){return new iE(e.totpSessionInfo.sharedSecretKey,e.totpSessionInfo.hashingAlgorithm,e.totpSessionInfo.verificationCodeLength,e.totpSessionInfo.periodSec,new Date(e.totpSessionInfo.finalizeEnrollmentTime).toUTCString(),e.totpSessionInfo.sessionInfo,t)}/** @internal */_makeTotpVerificationInfo(e){return{sessionInfo:this.sessionInfo,verificationCode:e}}/**
+ */class iI{// The public members are declared outside the constructor so the docs can be generated.
+constructor(e,t,n,r,i,a,o){this.sessionInfo=a,this.auth=o,this.secretKey=e,this.hashingAlgorithm=t,this.codeLength=n,this.codeIntervalSeconds=r,this.enrollmentCompletionDeadline=i}/** @internal */static _fromStartTotpMfaEnrollmentResponse(e,t){return new iI(e.totpSessionInfo.sharedSecretKey,e.totpSessionInfo.hashingAlgorithm,e.totpSessionInfo.verificationCodeLength,e.totpSessionInfo.periodSec,new Date(e.totpSessionInfo.finalizeEnrollmentTime).toUTCString(),e.totpSessionInfo.sessionInfo,t)}/** @internal */_makeTotpVerificationInfo(e){return{sessionInfo:this.sessionInfo,verificationCode:e}}/**
      * Returns a QR code URL as described in
      * https://github.com/google/google-authenticator/wiki/Key-Uri-Format
      * This can be displayed to the user as a QR code to be scanned into a TOTP app like Google Authenticator.
@@ -2793,7 +2797,7 @@ constructor(e,t,n,r,i,a,o){this.sessionInfo=a,this.auth=o,this.secretKey=e,this.
      * @param accountName the name of the account/app along with a user identifier.
      * @param issuer issuer of the TOTP (likely the app name).
      * @returns A QR code URL string.
-     */generateQrCodeUrl(e,t){var n;let r=!1;return(iI(e)||iI(t))&&(r=!0),r&&(iI(e)&&(e=(null===(n=this.auth.currentUser)||void 0===n?void 0:n.email)||"unknownuser"),iI(t)&&(t=this.auth.name)),`otpauth://totp/${t}:${e}?secret=${this.secretKey}&issuer=${t}&algorithm=${this.hashingAlgorithm}&digits=${this.codeLength}`}}/** @internal */function iI(e){return void 0===e||(null==e?void 0:e.length)===0}var iC="@firebase/auth",iT="1.3.2";/**
+     */generateQrCodeUrl(e,t){var n;let r=!1;return(iC(e)||iC(t))&&(r=!0),r&&(iC(e)&&(e=(null===(n=this.auth.currentUser)||void 0===n?void 0:n.email)||"unknownuser"),iC(t)&&(t=this.auth.name)),`otpauth://totp/${t}:${e}?secret=${this.secretKey}&issuer=${t}&algorithm=${this.hashingAlgorithm}&digits=${this.codeLength}`}}/** @internal */function iC(e){return void 0===e||(null==e?void 0:e.length)===0}var iT="@firebase/auth",ix="1.4.0";/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2808,8 +2812,8 @@ constructor(e,t,n,r,i,a,o){this.sessionInfo=a,this.auth=o,this.secretKey=e,this.
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class ix{constructor(e){this.auth=e,this.internalListeners=new Map}getUid(){var e;return this.assertAuthConfigured(),(null===(e=this.auth.currentUser)||void 0===e?void 0:e.uid)||null}async getToken(e){if(this.assertAuthConfigured(),await this.auth._initializationPromise,!this.auth.currentUser)return null;let t=await this.auth.currentUser.getIdToken(e);return{accessToken:t}}addAuthTokenListener(e){if(this.assertAuthConfigured(),this.internalListeners.has(e))return;let t=this.auth.onIdTokenChanged(t=>{e((null==t?void 0:t.stsTokenManager.accessToken)||null)});this.internalListeners.set(e,t),this.updateProactiveRefresh()}removeAuthTokenListener(e){this.assertAuthConfigured();let t=this.internalListeners.get(e);t&&(this.internalListeners.delete(e),t(),this.updateProactiveRefresh())}assertAuthConfigured(){t8(this.auth._initializationPromise,"dependent-sdk-initialized-before-auth"/* AuthErrorCode.DEPENDENT_SDK_INIT_BEFORE_AUTH */)}updateProactiveRefresh(){this.internalListeners.size>0?this.auth._startProactiveRefresh():this.auth._stopProactiveRefresh()}}let iN=e0("authIdTokenMaxAge")||300,iP=null,iR=e=>async t=>{let n=t&&await t.getIdTokenResult(),r=n&&(new Date().getTime()-Date.parse(n.issuedAtTime))/1e3;if(r&&r>iN)return;// Specifically trip null => undefined when logged out, to delete any existing cookie
-    let i=null==n?void 0:n.token;iP!==i&&(iP=i,await fetch(e,{method:i?"POST":"DELETE",headers:i?{Authorization:`Bearer ${i}`}:{}}))};h="Browser"/* ClientPlatform.BROWSER */,tA(new ti("auth"/* _ComponentName.AUTH */,(e,{options:t})=>{let n=e.getProvider("app").getImmediate(),r=e.getProvider("heartbeat"),i=e.getProvider("app-check-internal"),{apiKey:a,authDomain:o}=n.options;t8(a&&!a.includes(":"),"invalid-api-key"/* AuthErrorCode.INVALID_API_KEY */,{appName:n.name});let s={apiKey:a,authDomain:o,clientPlatform:h,apiHost:"identitytoolkit.googleapis.com"/* DefaultConfig.API_HOST */,tokenApiHost:"securetoken.googleapis.com"/* DefaultConfig.TOKEN_API_HOST */,apiScheme:"https"/* DefaultConfig.API_SCHEME */,sdkClientVersion:nK(h)},l=new nG(n,r,i,s);return function(e,t){let n=(null==t?void 0:t.persistence)||[],r=(Array.isArray(n)?n:[n]).map(nO);(null==t?void 0:t.errorMap)&&e._updateErrorMap(t.errorMap),// This promise is intended to float; auth initialization happens in the
+ */class iN{constructor(e){this.auth=e,this.internalListeners=new Map}getUid(){var e;return this.assertAuthConfigured(),(null===(e=this.auth.currentUser)||void 0===e?void 0:e.uid)||null}async getToken(e){if(this.assertAuthConfigured(),await this.auth._initializationPromise,!this.auth.currentUser)return null;let t=await this.auth.currentUser.getIdToken(e);return{accessToken:t}}addAuthTokenListener(e){if(this.assertAuthConfigured(),this.internalListeners.has(e))return;let t=this.auth.onIdTokenChanged(t=>{e((null==t?void 0:t.stsTokenManager.accessToken)||null)});this.internalListeners.set(e,t),this.updateProactiveRefresh()}removeAuthTokenListener(e){this.assertAuthConfigured();let t=this.internalListeners.get(e);t&&(this.internalListeners.delete(e),t(),this.updateProactiveRefresh())}assertAuthConfigured(){t8(this.auth._initializationPromise,"dependent-sdk-initialized-before-auth"/* AuthErrorCode.DEPENDENT_SDK_INIT_BEFORE_AUTH */)}updateProactiveRefresh(){this.internalListeners.size>0?this.auth._startProactiveRefresh():this.auth._stopProactiveRefresh()}}let iP=e0("authIdTokenMaxAge")||300,iR=null,iO=e=>async t=>{let n=t&&await t.getIdTokenResult(),r=n&&(new Date().getTime()-Date.parse(n.issuedAtTime))/1e3;if(r&&r>iP)return;// Specifically trip null => undefined when logged out, to delete any existing cookie
+    let i=null==n?void 0:n.token;iR!==i&&(iR=i,await fetch(e,{method:i?"POST":"DELETE",headers:i?{Authorization:`Bearer ${i}`}:{}}))};h="Browser"/* ClientPlatform.BROWSER */,tA(new ti("auth"/* _ComponentName.AUTH */,(e,{options:t})=>{let n=e.getProvider("app").getImmediate(),r=e.getProvider("heartbeat"),i=e.getProvider("app-check-internal"),{apiKey:a,authDomain:o}=n.options;t8(a&&!a.includes(":"),"invalid-api-key"/* AuthErrorCode.INVALID_API_KEY */,{appName:n.name});let s={apiKey:a,authDomain:o,clientPlatform:h,apiHost:"identitytoolkit.googleapis.com"/* DefaultConfig.API_HOST */,tokenApiHost:"securetoken.googleapis.com"/* DefaultConfig.TOKEN_API_HOST */,apiScheme:"https"/* DefaultConfig.API_SCHEME */,sdkClientVersion:nq(h)},l=new nY(n,r,i,s);return function(e,t){let n=(null==t?void 0:t.persistence)||[],r=(Array.isArray(n)?n:[n]).map(nL);(null==t?void 0:t.errorMap)&&e._updateErrorMap(t.errorMap),// This promise is intended to float; auth initialization happens in the
 // background, meanwhile the auth object may be used by the app.
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 e._initializeWithPersistence(r,null==t?void 0:t.popupRedirectResolver)}(l,t),l},"PUBLIC"/* ComponentType.PUBLIC */)/**
@@ -2818,7 +2822,7 @@ e._initializeWithPersistence(r,null==t?void 0:t.popupRedirectResolver)}(l,t),l},
          */.setInstantiationMode("EXPLICIT"/* InstantiationMode.EXPLICIT */)/**
          * Because all firebase products that depend on auth depend on auth-internal directly,
          * we need to initialize auth-internal after auth is initialized to make it available to other firebase products.
-         */.setInstanceCreatedCallback((e,t,n)=>{let r=e.getProvider("auth-internal"/* _ComponentName.AUTH_INTERNAL */);r.initialize()})),tA(new ti("auth-internal"/* _ComponentName.AUTH_INTERNAL */,e=>{let t=tr(e.getProvider("auth"/* _ComponentName.AUTH */).getImmediate());return new ix(t)},"PRIVATE"/* ComponentType.PRIVATE */).setInstantiationMode("EXPLICIT"/* InstantiationMode.EXPLICIT */)),tV(iC,iT,/**
+         */.setInstanceCreatedCallback((e,t,n)=>{let r=e.getProvider("auth-internal"/* _ComponentName.AUTH_INTERNAL */);r.initialize()})),tA(new ti("auth-internal"/* _ComponentName.AUTH_INTERNAL */,e=>{let t=tr(e.getProvider("auth"/* _ComponentName.AUTH */).getImmediate());return new iN(t)},"PRIVATE"/* ComponentType.PRIVATE */).setInstantiationMode("EXPLICIT"/* InstantiationMode.EXPLICIT */)),tV(iT,ix,/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -2833,7 +2837,7 @@ e._initializeWithPersistence(r,null==t?void 0:t.popupRedirectResolver)}(l,t),l},
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function(e){switch(e){case"Node"/* ClientPlatform.NODE */:return"node";case"ReactNative"/* ClientPlatform.REACT_NATIVE */:return"rn";case"Worker"/* ClientPlatform.WORKER */:return"webworker";case"Cordova"/* ClientPlatform.CORDOVA */:return"cordova";default:return}}(h)),tV(iC,iT,"esm2017");let iO=tF({apiKey:"AIzaSyAC-lbWPT-60lPwbJGBMKp_1mLKWCljW4A",authDomain:"hnews-f845a.firebaseapp.com",projectId:"hnews-f845a",storageBucket:"hnews-f845a.appspot.com",messagingSenderId:"734364993587",appId:"1:734364993587:web:f0020375ba6ff35b8efb46"}),iL=function(e){let t=/**
+ */function(e){switch(e){case"Node"/* ClientPlatform.NODE */:return"node";case"ReactNative"/* ClientPlatform.REACT_NATIVE */:return"rn";case"Worker"/* ClientPlatform.WORKER */:return"webworker";case"Cordova"/* ClientPlatform.CORDOVA */:return"cordova";default:return}}(h)),tV(iT,ix,"esm2017");let iL=tF({apiKey:"AIzaSyAC-lbWPT-60lPwbJGBMKp_1mLKWCljW4A",authDomain:"hnews-f845a.firebaseapp.com",projectId:"hnews-f845a",storageBucket:"hnews-f845a.appspot.com",messagingSenderId:"734364993587",appId:"1:734364993587:web:f0020375ba6ff35b8efb46"}),iD=function(e){let t=/**
  * Returns the Auth instance associated with the provided {@link @firebase/app#FirebaseApp}.
  * If no instance exists, initializes an Auth instance with platform-specific default dependencies.
  *
@@ -2907,7 +2911,7 @@ e._initializeWithPersistence(r,null==t?void 0:t.popupRedirectResolver)}(l,t),l},
  * ```
  *
  * @public
- */function(e,t){let n=tM(e,"auth");if(n.isInitialized()){let e=n.getImmediate(),r=n.getOptions();if(e5(r,null!=t?t:{}))return e;t3(e,"already-initialized"/* AuthErrorCode.ALREADY_INITIALIZED */)}let r=n.initialize({options:t});return r}(e,{popupRedirectResolver:iw,persistence:[rB,rC,rT]}),r=e0("authTokenSyncURL");if(r){let e=iR(r);tr(n).beforeAuthStateChanged(e,()=>e(n.currentUser)),tr(n).onIdTokenChanged(t=>e(t),void 0,void 0)}let i=eX("auth");return i&&/**
+ */function(e,t){let n=tM(e,"auth");if(n.isInitialized()){let e=n.getImmediate(),r=n.getOptions();if(e5(r,null!=t?t:{}))return e;t3(e,"already-initialized"/* AuthErrorCode.ALREADY_INITIALIZED */)}let r=n.initialize({options:t});return r}(e,{popupRedirectResolver:i_,persistence:[rH,rT,rx]}),r=e0("authTokenSyncURL");if(r){let e=iO(r);tr(n).beforeAuthStateChanged(e,()=>e(n.currentUser)),tr(n).onIdTokenChanged(t=>e(t),void 0,void 0)}let i=eX("auth");return i&&/**
  * Changes the {@link Auth} instance to communicate with the Firebase Auth Emulator, instead of production
  * Firebase Auth services.
  *
@@ -2928,49 +2932,49 @@ e._initializeWithPersistence(r,null==t?void 0:t.popupRedirectResolver)}(l,t),l},
  * `true` to disable the warning banner attached to the DOM.
  *
  * @public
- */function(e,t,n){let r=tr(e);t8(r._canInitEmulator,r,"emulator-config-failed"/* AuthErrorCode.EMULATOR_CONFIG_FAILED */),t8(/^https?:\/\//.test(t),r,"invalid-emulator-scheme"/* AuthErrorCode.INVALID_EMULATOR_SCHEME */);let i=!!(null==n?void 0:n.disableWarnings),a=n3(t),{host:o,port:s}=function(e){let t=n3(e),n=/(\/\/)?([^?#/]+)/.exec(e.substr(t.length));if(!n)return{host:"",port:null};let r=n[2].split("@").pop()||"",i=/^(\[[^\]]+\])(:|$)/.exec(r);// Strip out "username:password@".
-if(i){let e=i[1];return{host:e,port:n4(r.substr(e.length+1))}}{let[e,t]=r.split(":");return{host:e,port:n4(t)}}}(t),l=null===s?"":`:${s}`;// Always replace path with "/" (even if input url had no path at all, or had a different one).
-r.config.emulator={url:`${a}//${o}${l}/`},r.settings.appVerificationDisabledForTesting=!0,r.emulatorConfig=Object.freeze({host:o,port:s,protocol:a.replace(":",""),options:Object.freeze({disableWarnings:i})}),i||function(){function e(){let e=document.createElement("p"),t=e.style;e.innerText="Running in emulator mode. Do not use with production credentials.",t.position="fixed",t.width="100%",t.backgroundColor="#ffffff",t.border=".1em solid #000000",t.color="#b50000",t.bottom="0px",t.left="0px",t.margin="0px",t.zIndex="10000",t.textAlign="center",e.classList.add("firebase-emulator-warning"),document.body.appendChild(e)}"undefined"!=typeof console&&"function"==typeof console.info&&console.info("WARNING: You are using the Auth Emulator, which is intended for local testing only.  Do not use with production credentials."),"undefined"!=typeof window&&"undefined"!=typeof document&&("loading"===document.readyState?window.addEventListener("DOMContentLoaded",e):e())}()}(n,`http://${i}`),n}(e);return{signIn:async function(){let e=new rp;e.setCustomParameters({prompt:"select_account"});try{let n=await r8(t,e,void 0),r=n.user;console.log(r.displayName,r.email,r.photoURL)}catch(n){let e=n.code,t=n.message;console.log(e,t)}},signOut:function(){tr(t).signOut()},onAuthStateChanged:function(e){return tr(t).onAuthStateChanged(e,void 0,void 0)}}}(iO),iD=iL.signIn,iA=iL.signOut,iM=iL.onAuthStateChanged;var D=P("jE8J5");let ij=function(){let e={};return{get:async function(t){return void 0!==e[t]||(e[t]=await (await fetch(`https://hacker-news.firebaseio.com/v0/user/${t}.json`)).json()),e[t]}}}(),iU=function(e){let t=/*@__PURE__*/r(D).useRef(null);return /*@__PURE__*/r(D).useEffect(function(){if(void 0===e)return;let n=new bootstrap.Popover(t.current,{content:`
+ */function(e,t,n){let r=tr(e);t8(r._canInitEmulator,r,"emulator-config-failed"/* AuthErrorCode.EMULATOR_CONFIG_FAILED */),t8(/^https?:\/\//.test(t),r,"invalid-emulator-scheme"/* AuthErrorCode.INVALID_EMULATOR_SCHEME */);let i=!!(null==n?void 0:n.disableWarnings),a=n4(t),{host:o,port:s}=function(e){let t=n4(e),n=/(\/\/)?([^?#/]+)/.exec(e.substr(t.length));if(!n)return{host:"",port:null};let r=n[2].split("@").pop()||"",i=/^(\[[^\]]+\])(:|$)/.exec(r);// Strip out "username:password@".
+if(i){let e=i[1];return{host:e,port:n6(r.substr(e.length+1))}}{let[e,t]=r.split(":");return{host:e,port:n6(t)}}}(t),l=null===s?"":`:${s}`;// Always replace path with "/" (even if input url had no path at all, or had a different one).
+r.config.emulator={url:`${a}//${o}${l}/`},r.settings.appVerificationDisabledForTesting=!0,r.emulatorConfig=Object.freeze({host:o,port:s,protocol:a.replace(":",""),options:Object.freeze({disableWarnings:i})}),i||function(){function e(){let e=document.createElement("p"),t=e.style;e.innerText="Running in emulator mode. Do not use with production credentials.",t.position="fixed",t.width="100%",t.backgroundColor="#ffffff",t.border=".1em solid #000000",t.color="#b50000",t.bottom="0px",t.left="0px",t.margin="0px",t.zIndex="10000",t.textAlign="center",e.classList.add("firebase-emulator-warning"),document.body.appendChild(e)}"undefined"!=typeof console&&"function"==typeof console.info&&console.info("WARNING: You are using the Auth Emulator, which is intended for local testing only.  Do not use with production credentials."),"undefined"!=typeof window&&"undefined"!=typeof document&&("loading"===document.readyState?window.addEventListener("DOMContentLoaded",e):e())}()}(n,`http://${i}`),n}(e);return{signIn:async function(){let e=new rm;e.setCustomParameters({prompt:"select_account"});try{let n=await r9(t,e,void 0),r=n.user;console.log(r.displayName,r.email,r.photoURL)}catch(n){let e=n.code,t=n.message;console.log(e,t)}},signOut:function(){tr(t).signOut()},onAuthStateChanged:function(e){return tr(t).onAuthStateChanged(e,void 0,void 0)}}}(iL),iA=iD.signIn,iM=iD.signOut,ij=iD.onAuthStateChanged;var D=P("jE8J5");let iU=function(){let e={};return{get:async function(t){return void 0!==e[t]||(e[t]=await (await fetch(`https://hacker-news.firebaseio.com/v0/user/${t}.json`)).json()),e[t]}}}(),iz=function(e){let t=/*@__PURE__*/r(D).useRef(null);return /*@__PURE__*/r(D).useEffect(function(){if(void 0===e)return;let n=new bootstrap.Popover(t.current,{content:`
                 <div class="spinner-grow spinner-grow-sm" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
-            `,html:!0,placement:"auto",trigger:"click hover"}),r=async function(){let t=await ij.get(e),r=`
+            `,html:!0,placement:"auto",trigger:"click hover"}),r=async function(){let t=await iU.get(e),r=`
                 <p class="fw-lighter">
                     <small>
-                        <em title=${iF(1e3*t.created)}>${iz(1e3*t.created)}</em>
+                        <em title=${iV(1e3*t.created)}>${iF(1e3*t.created)}</em>
                         <br />
                         ${void 0!==t.about?t.about:""}
                     </small>
                 </p>
             `;null!==n.tip&&(n.tip.getElementsByClassName("popover-body")[0].innerHTML=r)};return t.current.addEventListener("inserted.bs.popover",r),function(){// domEl.current.removeEventListener('inserted.bs.popover', listener);
-n.dispose()}},[]),t},iz=function(e,t=!1){let n;return t?(n=new Date(0)).setUTCSeconds(e):n=new Date(e),/*@__PURE__*/r(ex).relativeTime(n)},iF=function(e,t=!1){let n;return t?(n=new Date(0)).setUTCSeconds(e):n=new Date(e),n.toLocaleString("en-US",{hour12:!1})};(p=C||(C={})).DANGER="danger",p.WARNING="warning",p.SUCCESS="success",p.PRIMARY="primary",p.INFO="info",p.SECONDARY="secondary";let iV=function({score:e}){return/*#__PURE__*/(0,O.jsx)("span",{className:`badge bg-${e>=3200?"danger":e>=1600?"warning":e>=800?"success":e>=400?"primary":e>=200?"info":"secondary"}`,children:e})},i$=function(){let[e,t]=/*@__PURE__*/r(D).useState(null);return /*@__PURE__*/r(D).useEffect(function(){return iM(t)},[]),e},iB=function({user:e}){return null!==e?/*#__PURE__*/(0,O.jsxs)("button",{className:"btn btn-outline-danger",onClick:function(e){e.preventDefault(),iA()},children:[/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-box-arrow-in-left"})," ",/*#__PURE__*/(0,O.jsx)("em",{children:e.displayName})]}):/*#__PURE__*/(0,O.jsx)("button",{className:"btn btn-outline-success",onClick:function(e){e.preventDefault(),iD()},children:/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-box-arrow-in-right"})})},iH=function(){return/*#__PURE__*/(0,O.jsx)("div",{className:"d-flex justify-content-center",children:/*#__PURE__*/(0,O.jsx)("div",{className:"spinner-border",style:{width:"3rem",height:"3rem"},role:"status",children:/*#__PURE__*/(0,O.jsx)("span",{className:"visually-hidden",children:"Loading..."})})})},iW=function({item:e}){let t=new URL("https://twitter.com/intent/tweet");return t.searchParams.append("text",e.title),t.searchParams.append("url",null!==e.url?e.url:`https://news.ycombinator.com/item?id=${e.objectID}`),t.searchParams.append("hashtags","hackernews"),/*#__PURE__*/(0,O.jsx)("a",{href:t.href,children:/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-twitter"})})};P("jE8J5");let iK=function({to:e,disabled:t,children:n}){return t?/*#__PURE__*/(0,O.jsx)(eC,{to:`/${e}`,style:{pointerEvents:"none"},children:n}):/*#__PURE__*/(0,O.jsx)(eC,{to:e,children:n})},iq=function({item:e}){return/*#__PURE__*/(0,O.jsx)(iK,{to:`/${e.objectID}`,disabled:null===e.num_comments,children:/*#__PURE__*/(0,O.jsxs)("span",{className:"btn btn-primary btn-sm position-relative me-4",children:[/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-people-fill"}),/*#__PURE__*/(0,O.jsx)("span",{className:"position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger",children:e.num_comments})]})})},iJ=function({item:e}){let t=/*#__PURE__*/(0,O.jsx)("span",{children:e.url});if(void 0!==e.url){let n=e.url.split("/"),r=n.slice(0,2).join("/"),i=n[2],a=n.slice(3).join("/");t=/*#__PURE__*/(0,O.jsxs)("span",{children:[r,"/",/*#__PURE__*/(0,O.jsx)("strong",{children:i}),"/",a]})}return t},iQ=function({item:e}){return/*#__PURE__*/(0,O.jsxs)(O.Fragment,{children:[null!==e.story_text&&/*#__PURE__*/(0,O.jsx)("p",{children:/*#__PURE__*/(0,O.jsx)("em",{dangerouslySetInnerHTML:{__html:e.story_text}})}),/*#__PURE__*/(0,O.jsx)("p",{className:"card-text text-truncate",children:/*#__PURE__*/(0,O.jsx)("a",{href:e.url,target:"_blank",children:/*#__PURE__*/(0,O.jsx)(iJ,{item:e})})})]})},iG=function({item:e,inModal:t}){let n=iU(e.author);return/*#__PURE__*/(0,O.jsx)("div",{className:"card text-dark bg-light mb-1 shadow rounded",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"card-body",children:[/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)("strong",{className:"card-title",children:e.title}),/*#__PURE__*/(0,O.jsx)("span",{className:"float-end",children:/*#__PURE__*/(0,O.jsx)(iV,{score:e.points})})]}),/*#__PURE__*/(0,O.jsxs)("p",{className:"card-subtitle mb-2 text-muted",children:[/*#__PURE__*/(0,O.jsx)("span",{ref:n,style:{cursor:"pointer"},children:e.author}),/*#__PURE__*/(0,O.jsx)("em",{className:"float-end",title:iF(e.created_at),children:iz(e.created_at)})]}),/*#__PURE__*/(0,O.jsx)(iQ,{item:e}),/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)(iW,{item:e}),/*#__PURE__*/(0,O.jsx)("span",{className:"float-end",children:/*#__PURE__*/(0,O.jsx)(iq,{item:e})})]})]})})};P("jE8J5");var D=(P("jE8J5"),P("jE8J5"),P("jE8J5")),iY={};iY=P("ljK6O");var D=P("jE8J5");// Shared state between server components and client components
-let iX=()=>{},iZ=/*#__NOINLINE__*/iX(),i0=Object,i1=e=>e===iZ,i2=e=>"function"==typeof e,i3=(e,t)=>({...e,...t}),i4=e=>i2(e.then),i6=new WeakMap,i5=0,i8=e=>{let t,n;let r=typeof e,i=e&&e.constructor,a=i==Date;if(i0(e)!==e||a||i==RegExp)t=a?e.toJSON():"symbol"==r?e.toString():"string"==r?JSON.stringify(e):""+e;else{if(// Object/function, not null/date/regexp. Use WeakMap to store the id first.
+n.dispose()}},[]),t},iF=function(e,t=!1){let n;return t?(n=new Date(0)).setUTCSeconds(e):n=new Date(e),/*@__PURE__*/r(ex).relativeTime(n)},iV=function(e,t=!1){let n;return t?(n=new Date(0)).setUTCSeconds(e):n=new Date(e),n.toLocaleString("en-US",{hour12:!1})};(p=C||(C={})).DANGER="danger",p.WARNING="warning",p.SUCCESS="success",p.PRIMARY="primary",p.INFO="info",p.SECONDARY="secondary";let i$=function({score:e}){return/*#__PURE__*/(0,O.jsx)("span",{className:`badge bg-${e>=3200?"danger":e>=1600?"warning":e>=800?"success":e>=400?"primary":e>=200?"info":"secondary"}`,children:e})},iB=function(){let[e,t]=/*@__PURE__*/r(D).useState(null);return /*@__PURE__*/r(D).useEffect(function(){return ij(t)},[]),e},iH=function({user:e}){return null!==e?/*#__PURE__*/(0,O.jsxs)("button",{className:"btn btn-outline-danger",onClick:function(e){e.preventDefault(),iM()},children:[/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-box-arrow-in-left"})," ",/*#__PURE__*/(0,O.jsx)("em",{children:e.displayName})]}):/*#__PURE__*/(0,O.jsx)("button",{className:"btn btn-outline-success",onClick:function(e){e.preventDefault(),iA()},children:/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-box-arrow-in-right"})})},iW=function(){return/*#__PURE__*/(0,O.jsx)("div",{className:"d-flex justify-content-center",children:/*#__PURE__*/(0,O.jsx)("div",{className:"spinner-border",style:{width:"3rem",height:"3rem"},role:"status",children:/*#__PURE__*/(0,O.jsx)("span",{className:"visually-hidden",children:"Loading..."})})})},iK=function({item:e}){let t=new URL("https://twitter.com/intent/tweet");return t.searchParams.append("text",e.title),t.searchParams.append("url",null!==e.url?e.url:`https://news.ycombinator.com/item?id=${e.objectID}`),t.searchParams.append("hashtags","hackernews"),/*#__PURE__*/(0,O.jsx)("a",{href:t.href,children:/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-twitter"})})};P("jE8J5");let iq=function({to:e,disabled:t,children:n}){return t?/*#__PURE__*/(0,O.jsx)(eC,{to:`/${e}`,style:{pointerEvents:"none"},children:n}):/*#__PURE__*/(0,O.jsx)(eC,{to:e,children:n})},iJ=function({item:e}){return/*#__PURE__*/(0,O.jsx)(iq,{to:`/${e.objectID}`,disabled:null===e.num_comments,children:/*#__PURE__*/(0,O.jsxs)("span",{className:"btn btn-primary btn-sm position-relative me-4",children:[/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-people-fill"}),/*#__PURE__*/(0,O.jsx)("span",{className:"position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger",children:e.num_comments})]})})},iQ=function({item:e}){let t=/*#__PURE__*/(0,O.jsx)("span",{children:e.url});if(void 0!==e.url){let n=e.url.split("/"),r=n.slice(0,2).join("/"),i=n[2],a=n.slice(3).join("/");t=/*#__PURE__*/(0,O.jsxs)("span",{children:[r,"/",/*#__PURE__*/(0,O.jsx)("strong",{children:i}),"/",a]})}return t},iG=function({item:e}){return/*#__PURE__*/(0,O.jsxs)(O.Fragment,{children:[null!==e.story_text&&/*#__PURE__*/(0,O.jsx)("p",{children:/*#__PURE__*/(0,O.jsx)("em",{dangerouslySetInnerHTML:{__html:e.story_text}})}),/*#__PURE__*/(0,O.jsx)("p",{className:"card-text text-truncate",children:/*#__PURE__*/(0,O.jsx)("a",{href:e.url,target:"_blank",children:/*#__PURE__*/(0,O.jsx)(iQ,{item:e})})})]})},iY=function({item:e,inModal:t}){let n=iz(e.author);return/*#__PURE__*/(0,O.jsx)("div",{className:"card text-dark bg-light mb-1 shadow rounded",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"card-body",children:[/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)("strong",{className:"card-title",children:e.title}),/*#__PURE__*/(0,O.jsx)("span",{className:"float-end",children:/*#__PURE__*/(0,O.jsx)(i$,{score:e.points})})]}),/*#__PURE__*/(0,O.jsxs)("p",{className:"card-subtitle mb-2 text-muted",children:[/*#__PURE__*/(0,O.jsx)("span",{ref:n,style:{cursor:"pointer"},children:e.author}),/*#__PURE__*/(0,O.jsx)("em",{className:"float-end",title:iV(e.created_at),children:iF(e.created_at)})]}),/*#__PURE__*/(0,O.jsx)(iG,{item:e}),/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)(iK,{item:e}),/*#__PURE__*/(0,O.jsx)("span",{className:"float-end",children:/*#__PURE__*/(0,O.jsx)(iJ,{item:e})})]})]})})};P("jE8J5");var D=(P("jE8J5"),P("jE8J5"),P("jE8J5")),iX={};iX=P("ljK6O");var D=P("jE8J5");// Shared state between server components and client components
+let iZ=()=>{},i0=/*#__NOINLINE__*/iZ(),i1=Object,i2=e=>e===i0,i3=e=>"function"==typeof e,i4=(e,t)=>({...e,...t}),i6=e=>i3(e.then),i5=new WeakMap,i8=0,i9=e=>{let t,n;let r=typeof e,i=e&&e.constructor,a=i==Date;if(i1(e)!==e||a||i==RegExp)t=a?e.toJSON():"symbol"==r?e.toString():"string"==r?JSON.stringify(e):""+e;else{if(// Object/function, not null/date/regexp. Use WeakMap to store the id first.
 // If it's already hashed, directly return the result.
-t=i6.get(e))return t;if(// Store the hash first for circular reference detection before entering the
+t=i5.get(e))return t;if(// Store the hash first for circular reference detection before entering the
 // recursive `stableHash` calls.
 // For other objects like set and map, we use this id directly as the hash.
-t=++i5+"~",i6.set(e,t),i==Array){for(n=0,// Array.
-t="@";n<e.length;n++)t+=i8(e[n])+",";i6.set(e,t)}if(i==i0){// Object, sort keys.
-t="#";let r=i0.keys(e).sort();for(;!i1(n=r.pop());)i1(e[n])||(t+=n+":"+i8(e[n])+",");i6.set(e,t)}}return t},i9=new WeakMap,i7={},ae={},at="undefined",an=typeof window!=at,ar=typeof document!=at,ai=()=>an&&typeof window.requestAnimationFrame!=at,aa=(e,t)=>{let n=i9.get(e);return[// Getter
-()=>!i1(t)&&e.get(t)||i7,// Setter
-r=>{if(!i1(t)){let i=e.get(t);t in ae||(ae[t]=i),n[5](t,i3(i,r),i||i7)}},// Subscriber
+t=++i8+"~",i5.set(e,t),i==Array){for(n=0,// Array.
+t="@";n<e.length;n++)t+=i9(e[n])+",";i5.set(e,t)}if(i==i1){// Object, sort keys.
+t="#";let r=i1.keys(e).sort();for(;!i2(n=r.pop());)i2(e[n])||(t+=n+":"+i9(e[n])+",");i5.set(e,t)}}return t},i7=new WeakMap,ae={},at={},an="undefined",ar=typeof window!=an,ai=typeof document!=an,aa=()=>ar&&typeof window.requestAnimationFrame!=an,ao=(e,t)=>{let n=i7.get(e);return[// Getter
+()=>!i2(t)&&e.get(t)||ae,// Setter
+r=>{if(!i2(t)){let i=e.get(t);t in at||(at[t]=i),n[5](t,i4(i,r),i||ae)}},// Subscriber
 n[6],// Get server cache snapshot
-()=>!i1(t)&&t in ae?ae[t]:!i1(t)&&e.get(t)||i7]}// export { UNDEFINED, OBJECT, isUndefined, isFunction, mergeObjects, isPromiseLike }
-,ao=!0,[as,al]=an&&window.addEventListener?[window.addEventListener.bind(window),window.removeEventListener.bind(window)]:[iX,iX],au={initFocus:e=>(ar&&document.addEventListener("visibilitychange",e),as("focus",e),()=>{ar&&document.removeEventListener("visibilitychange",e),al("focus",e)}),initReconnect:e=>{// revalidate on reconnected
-let t=()=>{ao=!0,e()},n=()=>{ao=!1};return as("online",t),as("offline",n),()=>{al("online",t),al("offline",n)}}},ac=!/*@__PURE__*/r(D).useId,ad=!an||"Deno"in window,af=e=>ai()?window.requestAnimationFrame(e):setTimeout(e,1),ah=ad?D.useEffect:D.useLayoutEffect,ap="undefined"!=typeof navigator&&navigator.connection,am=!ad&&ap&&(["slow-2g","2g"].includes(ap.effectiveType)||ap.saveData),ag=e=>{if(i2(e))try{e=e()}catch(t){// dependencies not ready
+()=>!i2(t)&&t in at?at[t]:!i2(t)&&e.get(t)||ae]}// export { UNDEFINED, OBJECT, isUndefined, isFunction, mergeObjects, isPromiseLike }
+,as=!0,[al,au]=ar&&window.addEventListener?[window.addEventListener.bind(window),window.removeEventListener.bind(window)]:[iZ,iZ],ac={initFocus:e=>(ai&&document.addEventListener("visibilitychange",e),al("focus",e),()=>{ai&&document.removeEventListener("visibilitychange",e),au("focus",e)}),initReconnect:e=>{// revalidate on reconnected
+let t=()=>{as=!0,e()},n=()=>{as=!1};return al("online",t),al("offline",n),()=>{au("online",t),au("offline",n)}}},ad=!/*@__PURE__*/r(D).useId,af=!ar||"Deno"in window,ah=e=>aa()?window.requestAnimationFrame(e):setTimeout(e,1),ap=af?D.useEffect:D.useLayoutEffect,am="undefined"!=typeof navigator&&navigator.connection,ag=!af&&am&&(["slow-2g","2g"].includes(am.effectiveType)||am.saveData),av=e=>{if(i3(e))try{e=e()}catch(t){// dependencies not ready
 e=""}// Use the original key as the argument of fetcher. This can be a string or an
 // array of values.
 let t=e;return[// If key is not falsy, or not an empty array, hash it.
-e="string"==typeof e?e:(Array.isArray(e)?e.length:e)?i8(e):"",t]},av=0,ay=()=>++av;var ab={ERROR_REVALIDATE_EVENT:3,FOCUS_EVENT:0,MUTATE_EVENT:2,RECONNECT_EVENT:1};async function aw(...e){let[t,n,r,i]=e,a=i3({populateCache:!0,throwOnError:!0},"boolean"==typeof i?{revalidate:i}:i||{}),o=a.populateCache,s=a.rollbackOnError,l=a.optimisticData,u=!1!==a.revalidate,c=e=>"function"==typeof s?s(e):!1!==s,d=a.throwOnError;// If the second argument is a key filter, return the mutation results for all
+e="string"==typeof e?e:(Array.isArray(e)?e.length:e)?i9(e):"",t]},ay=0,ab=()=>++ay;var aw={ERROR_REVALIDATE_EVENT:3,FOCUS_EVENT:0,MUTATE_EVENT:2,RECONNECT_EVENT:1};async function a_(...e){let[t,n,r,i]=e,a=i4({populateCache:!0,throwOnError:!0},"boolean"==typeof i?{revalidate:i}:i||{}),o=a.populateCache,s=a.rollbackOnError,l=a.optimisticData,u=!1!==a.revalidate,c=e=>"function"==typeof s?s(e):!1!==s,d=a.throwOnError;// If the second argument is a key filter, return the mutation results for all
 // filtered keys.
-if(i2(n)){let e=[],r=t.keys();for(let i of r)!/^\$(inf|sub)\$/.test(i)&&n(t.get(i)._k)&&e.push(i);return Promise.all(e.map(f))}return f(n);async function f(n){let i;// Serialize key
-let[a]=ag(n);if(!a)return;let[s,f]=aa(t,a),[h,p,m,g]=i9.get(t),v=()=>{let e=h[a];return u&&(// Invalidate the key by deleting the concurrent request markers so new
+if(i3(n)){let e=[],r=t.keys();for(let i of r)!/^\$(inf|sub)\$/.test(i)&&n(t.get(i)._k)&&e.push(i);return Promise.all(e.map(f))}return f(n);async function f(n){let i;// Serialize key
+let[a]=av(n);if(!a)return;let[s,f]=ao(t,a),[h,p,m,g]=i7.get(t),v=()=>{let e=h[a];return u&&(// Invalidate the key by deleting the concurrent request markers so new
 // requests will not be deduped.
 delete m[a],delete g[a],e&&e[0])?e[0](2).then(()=>s().data):s().data};// If there is no new data provided, revalidate the key with current state.
-if(e.length<3)return v();let y=r,b=ay();p[a]=[b,0];let w=!i1(l),_=s(),k=_.data,S=_._c,E=i1(S)?k:S;if(w&&// When we set optimistic data, backup the current committedData data in `_c`.
-f({data:l=i2(l)?l(E,k):l,_c:E}),i2(y))try{y=y(E)}catch(e){// If it throws an error synchronously, we shouldn't update the cache.
+if(e.length<3)return v();let y=r,b=ab();p[a]=[b,0];let w=!i2(l),_=s(),k=_.data,S=_._c,E=i2(S)?k:S;if(w&&// When we set optimistic data, backup the current committedData data in `_c`.
+f({data:l=i3(l)?l(E,k):l,_c:E}),i3(y))try{y=y(E)}catch(e){// If it throws an error synchronously, we shouldn't update the cache.
 i=e}// `data` is a promise/thenable, resolve the final data first.
-if(y&&i4(y)){// Check if other mutations have occurred since we've started this mutation.
+if(y&&i6(y)){// Check if other mutations have occurred since we've started this mutation.
 // If there's a race we don't update cache or broadcast the change,
 // just return the data.
 if(// This means that the mutation is async, we need to check timestamps to
@@ -2978,44 +2982,44 @@ if(// This means that the mutation is async, we need to check timestamps to
 y=await y.catch(e=>{i=e}),b!==p[a][0]){if(i)throw i;return y}i&&w&&c(i)&&(// Rollback. Always populate the cache in this case but without
 // transforming the data.
 o=!0,// Reset data to be the latest committed data, and clear the `_c` value.
-f({data:E,_c:iZ}))}// If we should write back the cache after request.
+f({data:E,_c:i0}))}// If we should write back the cache after request.
 if(o&&!i){// Transform the result into data.
-if(i2(o)){let e=o(y,E);f({data:e,error:iZ,_c:iZ})}else f({data:y,error:iZ,_c:iZ})}// Throw error or return data
+if(i3(o)){let e=o(y,E);f({data:e,error:i0,_c:i0})}else f({data:y,error:i0,_c:i0})}// Throw error or return data
 if(// Reset the timestamp to mark the mutation has ended.
-p[a][1]=ay(),// Update existing SWR Hooks' internal states:
+p[a][1]=ab(),// Update existing SWR Hooks' internal states:
 Promise.resolve(v()).then(()=>{// The mutation and revalidation are ended, we can clear it since the data is
 // not an optimistic value anymore.
-f({_c:iZ})}),i){if(d)throw i;return}return y}}let a_=(e,t)=>{for(let n in e)e[n][0]&&e[n][0](t)},ak=(e,t)=>{// The global state for a specific provider will be used to deduplicate
+f({_c:i0})}),i){if(d)throw i;return}return y}}let ak=(e,t)=>{for(let n in e)e[n][0]&&e[n][0](t)},aS=(e,t)=>{// The global state for a specific provider will be used to deduplicate
 // requests and store listeners. As well as a mutate function that is bound to
 // the cache.
 // The provider's global state might be already initialized. Let's try to get the
 // global state associated with the provider first.
-if(!i9.has(e)){let n=i3(au,t),r={},i=aw.bind(iZ,e),a=iX,o={},s=(e,t)=>{let n=o[e]||[];return o[e]=n,n.push(t),()=>n.splice(n.indexOf(t),1)},l=(t,n,r)=>{e.set(t,n);let i=o[t];if(i)for(let e of i)e(n,r)},u=()=>{if(!i9.has(e)&&(// Update the state if it's new, or if the provider has been extended.
-i9.set(e,[r,{},{},{},i,l,s]),!ad)){// When listening to the native events for auto revalidations,
+if(!i7.has(e)){let n=i4(ac,t),r={},i=a_.bind(i0,e),a=iZ,o={},s=(e,t)=>{let n=o[e]||[];return o[e]=n,n.push(t),()=>n.splice(n.indexOf(t),1)},l=(t,n,r)=>{e.set(t,n);let i=o[t];if(i)for(let e of i)e(n,r)},u=()=>{if(!i7.has(e)&&(// Update the state if it's new, or if the provider has been extended.
+i7.set(e,[r,{},{},{},i,l,s]),!af)){// When listening to the native events for auto revalidations,
 // we intentionally put a delay (setTimeout) here to make sure they are
 // fired after immediate JavaScript executions, which can be
 // React's state updates.
 // This avoids some unnecessary revalidations such as
 // https://github.com/vercel/swr/issues/1680.
-let t=n.initFocus(setTimeout.bind(iZ,a_.bind(iZ,r,0))),i=n.initReconnect(setTimeout.bind(iZ,a_.bind(iZ,r,1)));a=()=>{t&&t(),i&&i(),// When un-mounting, we need to remove the cache provider from the state
+let t=n.initFocus(setTimeout.bind(i0,ak.bind(i0,r,0))),i=n.initReconnect(setTimeout.bind(i0,ak.bind(i0,r,1)));a=()=>{t&&t(),i&&i(),// When un-mounting, we need to remove the cache provider from the state
 // storage too because it's a side-effect. Otherwise, when re-mounting we
 // will not re-register those event listeners.
-i9.delete(e)}}};// This is a new provider, we need to initialize it and setup DOM events
+i7.delete(e)}}};// This is a new provider, we need to initialize it and setup DOM events
 // listeners for `focus` and `reconnect` actions.
 // We might want to inject an extra layer on top of `provider` in the future,
 // such as key serialization, auto GC, etc.
 // For now, it's just a `Map` interface without any modifications.
-return u(),[e,i,u,a]}return[e,i9.get(e)[4]]},[aS,aE]=ak(new Map),aI=i3({// events
-onLoadingSlow:iX,onSuccess:iX,onError:iX,onErrorRetry:(e,t,n,r,i)=>{let a=n.errorRetryCount,o=i.retryCount,s=~~((Math.random()+.5)*(1<<(o<8?o:8)))*n.errorRetryInterval;(i1(a)||!(o>a))&&setTimeout(r,s,i)},onDiscarded:iX,// switches
+return u(),[e,i,u,a]}return[e,i7.get(e)[4]]},[aE,aI]=aS(new Map),aC=i4({// events
+onLoadingSlow:iZ,onSuccess:iZ,onError:iZ,onErrorRetry:(e,t,n,r,i)=>{let a=n.errorRetryCount,o=i.retryCount,s=~~((Math.random()+.5)*(1<<(o<8?o:8)))*n.errorRetryInterval;(i2(a)||!(o>a))&&setTimeout(r,s,i)},onDiscarded:iZ,// switches
 revalidateOnFocus:!0,revalidateOnReconnect:!0,revalidateIfStale:!0,shouldRetryOnError:!0,// timeouts
-errorRetryInterval:am?1e4:5e3,focusThrottleInterval:5e3,dedupingInterval:2e3,loadingTimeout:am?5e3:3e3,compare:(e,t)=>i8(e)==i8(t),isPaused:()=>!1,cache:aS,mutate:aE,fallback:{}},{isOnline:()=>ao,isVisible:()=>{let e=ar&&document.visibilityState;return i1(e)||"hidden"!==e}}),aC=(e,t)=>{// Need to create a new object to avoid mutating the original here.
-let n=i3(e,t);// If two configs are provided, merge their `use` and `fallback` options.
-if(t){let{use:r,fallback:i}=e,{use:a,fallback:o}=t;r&&a&&(n.use=r.concat(a)),i&&o&&(n.fallback=i3(i,o))}return n},aT=(0,D.createContext)({}),ax=an&&window.__SWR_DEVTOOLS_USE__,aN=ax?window.__SWR_DEVTOOLS_USE__:[],aP=e=>i2(e[1])?[e[0],e[1],e[2]||{}]:[e[0],null,(null===e[1]?e[2]:e[1])||{}],aR=()=>i3(aI,(0,D.useContext)(aT)),aO=aN.concat(e=>(t,n,r)=>{// fetcher might be a sync function, so this should not be an async function
-    let i=n&&((...e)=>{let[r]=ag(t),[,,,i]=i9.get(aS);if(r.startsWith("$inf$"))// handling of the PRELOAD cache happens there.
-    return n(...e);let a=i[r];return i1(a)?n(...e):(delete i[r],a)});return e(t,i,r)}),aL=(e,t,n)=>{let r=t[e]||(t[e]=[]);return r.push(n),()=>{let e=r.indexOf(n);e>=0&&(// O(1): faster than splice
-r[e]=r[r.length-1],r.pop())}};ax&&(window.__SWR_DEVTOOLS_REACT__=/*@__PURE__*/r(D));/// <reference types="react/experimental" />
-let aD=/*@__PURE__*/r(D).use||(e=>{if("pending"===e.status)throw e;if("fulfilled"===e.status)return e.value;if("rejected"===e.status)throw e.reason;throw e.status="pending",e.then(t=>{e.status="fulfilled",e.value=t},t=>{e.status="rejected",e.reason=t}),e}),aA={dedupe:!0};i0.defineProperty(e=>{let{value:t}=e,n=(0,D.useContext)(aT),r=i2(t),i=(0,D.useMemo)(()=>r?t(n):t,[r,n,t]),a=(0,D.useMemo)(()=>r?i:aC(n,i),[r,n,i]),o=i&&i.provider,s=(0,D.useRef)(iZ);o&&!s.current&&(s.current=ak(o(a.cache||aS),i));let l=s.current;return l&&(a.cache=l[0],a.mutate=l[1]),// Unsubscribe events.
-ah(()=>{if(l)return l[2]&&l[2](),l[3]},[]),(0,D.createElement)(aT.Provider,i3(e,{value:a}))},"defaultValue",{value:aI});/**
+errorRetryInterval:ag?1e4:5e3,focusThrottleInterval:5e3,dedupingInterval:2e3,loadingTimeout:ag?5e3:3e3,compare:(e,t)=>i9(e)==i9(t),isPaused:()=>!1,cache:aE,mutate:aI,fallback:{}},{isOnline:()=>as,isVisible:()=>{let e=ai&&document.visibilityState;return i2(e)||"hidden"!==e}}),aT=(e,t)=>{// Need to create a new object to avoid mutating the original here.
+let n=i4(e,t);// If two configs are provided, merge their `use` and `fallback` options.
+if(t){let{use:r,fallback:i}=e,{use:a,fallback:o}=t;r&&a&&(n.use=r.concat(a)),i&&o&&(n.fallback=i4(i,o))}return n},ax=(0,D.createContext)({}),aN=ar&&window.__SWR_DEVTOOLS_USE__,aP=aN?window.__SWR_DEVTOOLS_USE__:[],aR=e=>i3(e[1])?[e[0],e[1],e[2]||{}]:[e[0],null,(null===e[1]?e[2]:e[1])||{}],aO=()=>i4(aC,(0,D.useContext)(ax)),aL=aP.concat(e=>(t,n,r)=>{// fetcher might be a sync function, so this should not be an async function
+    let i=n&&((...e)=>{let[r]=av(t),[,,,i]=i7.get(aE);if(r.startsWith("$inf$"))// handling of the PRELOAD cache happens there.
+    return n(...e);let a=i[r];return i2(a)?n(...e):(delete i[r],a)});return e(t,i,r)}),aD=(e,t,n)=>{let r=t[e]||(t[e]=[]);return r.push(n),()=>{let e=r.indexOf(n);e>=0&&(// O(1): faster than splice
+r[e]=r[r.length-1],r.pop())}};aN&&(window.__SWR_DEVTOOLS_REACT__=/*@__PURE__*/r(D));/// <reference types="react/experimental" />
+let aA=/*@__PURE__*/r(D).use||(e=>{if("pending"===e.status)throw e;if("fulfilled"===e.status)return e.value;if("rejected"===e.status)throw e.reason;throw e.status="pending",e.then(t=>{e.status="fulfilled",e.value=t},t=>{e.status="rejected",e.reason=t}),e}),aM={dedupe:!0};i1.defineProperty(e=>{let{value:t}=e,n=(0,D.useContext)(ax),r=i3(t),i=(0,D.useMemo)(()=>r?t(n):t,[r,n,t]),a=(0,D.useMemo)(()=>r?i:aT(n,i),[r,n,i]),o=i&&i.provider,s=(0,D.useRef)(i0);o&&!s.current&&(s.current=aS(o(a.cache||aE),i));let l=s.current;return l&&(a.cache=l[0],a.mutate=l[1]),// Unsubscribe events.
+ap(()=>{if(l)return l[2]&&l[2](),l[3]},[]),(0,D.createElement)(ax.Provider,i4(e,{value:a}))},"defaultValue",{value:aC});/**
  * A hook to fetch data.
  *
  * @link https://swr.vercel.app
@@ -3029,8 +3033,8 @@ ah(()=>{if(l)return l[2]&&l[2](),l[3]},[]),(0,D.createElement)(aT.Provider,i3(e,
  *   return <div>hello {data.name}!</div>
  * }
  * ```
- */let aM=(m=(e,t,n)=>{let{cache:r,compare:i,suspense:a,fallbackData:o,revalidateOnMount:s,revalidateIfStale:l,refreshInterval:u,refreshWhenHidden:c,refreshWhenOffline:d,keepPreviousData:f}=n,[h,p,m,g]=i9.get(r),[v,y]=ag(e),b=(0,D.useRef)(!1),w=(0,D.useRef)(!1),_=(0,D.useRef)(v),k=(0,D.useRef)(t),S=(0,D.useRef)(n),E=()=>S.current,I=()=>E().isVisible()&&E().isOnline(),[C,T,x,N]=aa(r,v),P=(0,D.useRef)({}).current,R=i1(o)?n.fallback[v]:o,O=(e,t)=>{for(let n in P)if("data"===n){if(!i(e[n],t[n])&&(!i1(e[n])||!i($,t[n])))return!1}else if(t[n]!==e[n])return!1;return!0},L=(0,D.useMemo)(()=>{let e=!!v&&!!t&&(i1(s)?!E().isPaused()&&!a&&(!!i1(l)||l):s),n=t=>{// We only select the needed fields from the state.
-let n=i3(t);return(delete n._k,e)?{isValidating:!0,isLoading:!0,...n}:n},r=C(),i=N(),o=n(r),u=r===i?o:n(i),c=o;return[()=>{let e=n(C()),t=O(e,c);return t?(// Mentally, we should always return the `memorizedSnapshot` here
+ */let aj=(m=(e,t,n)=>{let{cache:r,compare:i,suspense:a,fallbackData:o,revalidateOnMount:s,revalidateIfStale:l,refreshInterval:u,refreshWhenHidden:c,refreshWhenOffline:d,keepPreviousData:f}=n,[h,p,m,g]=i7.get(r),[v,y]=av(e),b=(0,D.useRef)(!1),w=(0,D.useRef)(!1),_=(0,D.useRef)(v),k=(0,D.useRef)(t),S=(0,D.useRef)(n),E=()=>S.current,I=()=>E().isVisible()&&E().isOnline(),[C,T,x,N]=ao(r,v),P=(0,D.useRef)({}).current,R=i2(o)?n.fallback[v]:o,O=(e,t)=>{for(let n in P)if("data"===n){if(!i(e[n],t[n])&&(!i2(e[n])||!i($,t[n])))return!1}else if(t[n]!==e[n])return!1;return!0},L=(0,D.useMemo)(()=>{let e=!!v&&!!t&&(i2(s)?!E().isPaused()&&!a&&(!!i2(l)||l):s),n=t=>{// We only select the needed fields from the state.
+let n=i4(t);return(delete n._k,e)?{isValidating:!0,isLoading:!0,...n}:n},r=C(),i=N(),o=n(r),u=r===i?o:n(i),c=o;return[()=>{let e=n(C()),t=O(e,c);return t?(// Mentally, we should always return the `memorizedSnapshot` here
 // as there's no change between the new and old snapshots.
 // However, since the `isEqual` function only compares selected fields,
 // the values of the unselected fields might be changed. That's
@@ -3041,19 +3045,19 @@ let n=i3(t);return(delete n._k,e)?{isValidating:!0,isLoading:!0,...n}:n},r=C(),i
 // even for the unselected fields, but only trigger re-renders when
 // the selected fields are changed.
 c.data=e.data,c.isLoading=e.isLoading,c.isValidating=e.isValidating,c.error=e.error,c):(c=e,e)},()=>u];// eslint-disable-next-line react-hooks/exhaustive-deps
-},[r,v]),A=(0,iY.useSyncExternalStore)((0,D.useCallback)(e=>x(v,(t,n)=>{O(n,t)||e()}),[r,v]),L[0],L[1]),M=!b.current,j=h[v]&&h[v].length>0,U=A.data,z=i1(U)?R:U,F=A.error,V=(0,D.useRef)(z),$=f?i1(U)?V.current:U:z,B=// if a key already has revalidators and also has error, we should not trigger revalidation
-(!j||!!i1(F))&&(M&&!i1(s)?s:!E().isPaused()&&(a?!i1(z)&&l:i1(z)||l)),H=!!(v&&t&&M&&B),W=i1(A.isValidating)?H:A.isValidating,K=i1(A.isLoading)?H:A.isLoading,q=(0,D.useCallback)(async e=>{let t,r;let a=k.current;if(!v||!a||w.current||E().isPaused())return!1;let o=!0,s=e||{},l=!m[v]||!s.dedupe,u=()=>ac?!w.current&&v===_.current&&b.current:v===_.current,c={isValidating:!1,isLoading:!1},d=()=>{T(c)},f=()=>{// Check if it's still the same request before deleting it.
-let e=m[v];e&&e[1]===r&&delete m[v]},g={isValidating:!0};i1(C().data)&&(g.isLoading=!0);try{// If there're other ongoing request(s), started after the current one,
+},[r,v]),A=(0,iX.useSyncExternalStore)((0,D.useCallback)(e=>x(v,(t,n)=>{O(n,t)||e()}),[r,v]),L[0],L[1]),M=!b.current,j=h[v]&&h[v].length>0,U=A.data,z=i2(U)?R:U,F=A.error,V=(0,D.useRef)(z),$=f?i2(U)?V.current:U:z,B=// if a key already has revalidators and also has error, we should not trigger revalidation
+(!j||!!i2(F))&&(M&&!i2(s)?s:!E().isPaused()&&(a?!i2(z)&&l:i2(z)||l)),H=!!(v&&t&&M&&B),W=i2(A.isValidating)?H:A.isValidating,K=i2(A.isLoading)?H:A.isLoading,q=(0,D.useCallback)(async e=>{let t,r;let a=k.current;if(!v||!a||w.current||E().isPaused())return!1;let o=!0,s=e||{},l=!m[v]||!s.dedupe,u=()=>ad?!w.current&&v===_.current&&b.current:v===_.current,c={isValidating:!1,isLoading:!1},d=()=>{T(c)},f=()=>{// Check if it's still the same request before deleting it.
+let e=m[v];e&&e[1]===r&&delete m[v]},g={isValidating:!0};i2(C().data)&&(g.isLoading=!0);try{// If there're other ongoing request(s), started after the current one,
 // we need to ignore the current one to avoid possible race conditions:
 //   req1------------------>res1        (current one)
 //        req2---------------->res2
 // the request that fired later will always be kept.
 // The timestamp maybe be `undefined` or a number
-if(l&&(T(g),n.loadingTimeout&&i1(C().data)&&setTimeout(()=>{o&&u()&&E().onLoadingSlow(v,n)},n.loadingTimeout),// Start the request and save the timestamp.
+if(l&&(T(g),n.loadingTimeout&&i2(C().data)&&setTimeout(()=>{o&&u()&&E().onLoadingSlow(v,n)},n.loadingTimeout),// Start the request and save the timestamp.
 // Key must be truthy if entering here.
-m[v]=[a(y),ay()]),[t,r]=m[v],t=await t,l&&// deduplication interval.
+m[v]=[a(y),ab()]),[t,r]=m[v],t=await t,l&&// deduplication interval.
 setTimeout(f,n.dedupingInterval),!m[v]||m[v][1]!==r)return l&&u()&&E().onDiscarded(v),!1;// Clear error.
-c.error=iZ;// If there're other mutations(s), that overlapped with the current revalidation:
+c.error=i0;// If there're other mutations(s), that overlapped with the current revalidation:
 // case 1:
 //   req------------------>res
 //       mutate------>end
@@ -3065,7 +3069,7 @@ c.error=iZ;// If there're other mutations(s), that overlapped with the current r
 //       mutate-------...---------->
 // we have to ignore the revalidation result (res) because it's no longer fresh.
 // meanwhile, a new revalidation should be triggered when the mutation ends.
-let e=p[v];if(!i1(e)&&// case 1
+let e=p[v];if(!i2(e)&&// case 1
 (r<=e[0]||// case 2
 r<=e[1]||// case 3
 0===e[1]))return d(),l&&u()&&E().onDiscarded(v),!1;// Deep compare with the latest state to avoid extra re-renders.
@@ -3074,9 +3078,9 @@ let s=C().data;// Since the compare fn could be custom fn
 // cacheData might be different from newData even when compare fn returns True
 c.data=i(s,t)?s:t,l&&u()&&E().onSuccess(t,v,n)}catch(n){f();let e=E(),{shouldRetryOnError:t}=e;// Not paused, we continue handling the error. Otherwise, discard it.
 !e.isPaused()&&(// Get a new error, don't use deep comparison for errors.
-c.error=n,l&&u()&&(e.onError(n,v,e),(!0===t||i2(t)&&t(n))&&I()&&// refocusing or reconnecting.
+c.error=n,l&&u()&&(e.onError(n,v,e),(!0===t||i3(t)&&t(n))&&I()&&// refocusing or reconnecting.
 // When retrying, deduplication is always enabled.
-e.onErrorRetry(n,v,e,e=>{let t=h[v];t&&t[0]&&t[0](ab.ERROR_REVALIDATE_EVENT,e)},{retryCount:(s.retryCount||0)+1,dedupe:!0})))}return(// Mark loading as stopped.
+e.onErrorRetry(n,v,e,e=>{let t=h[v];t&&t[0]&&t[0](aw.ERROR_REVALIDATE_EVENT,e)},{retryCount:(s.retryCount||0)+1,dedupe:!0})))}return(// Mark loading as stopped.
 o=!1,// Update the current hook's state.
 d(),!0)},// the deps array.
 //
@@ -3087,29 +3091,29 @@ d(),!0)},// the deps array.
 // So we omit the values from the deps array
 // even though it might cause unexpected behaviors.
 // eslint-disable-next-line react-hooks/exhaustive-deps
-[v,r]),J=(0,D.useCallback)((...e)=>aw(r,_.current,...e),[]);// In Suspense mode, we can't return the empty `data` state.
+[v,r]),J=(0,D.useCallback)((...e)=>a_(r,_.current,...e),[]);// In Suspense mode, we can't return the empty `data` state.
 // If there is an `error`, the `error` needs to be thrown to the error boundary.
 // If there is no `error`, the `revalidation` promise needs to be thrown to
 // the suspense boundary.
-if(ah(()=>{k.current=t,S.current=n,i1(U)||(V.current=U)}),ah(()=>{if(!v)return;let e=q.bind(iZ,aA),t=0,n=aL(v,h,(n,r={})=>{if(n==ab.FOCUS_EVENT){let n=Date.now();E().revalidateOnFocus&&n>t&&I()&&(t=n+E().focusThrottleInterval,e())}else if(n==ab.RECONNECT_EVENT)E().revalidateOnReconnect&&I()&&e();else if(n==ab.MUTATE_EVENT)return q();else if(n==ab.ERROR_REVALIDATE_EVENT)return q(r)});return(// Mark the component as mounted and update corresponding refs.
+if(ap(()=>{k.current=t,S.current=n,i2(U)||(V.current=U)}),ap(()=>{if(!v)return;let e=q.bind(i0,aM),t=0,n=aD(v,h,(n,r={})=>{if(n==aw.FOCUS_EVENT){let n=Date.now();E().revalidateOnFocus&&n>t&&I()&&(t=n+E().focusThrottleInterval,e())}else if(n==aw.RECONNECT_EVENT)E().revalidateOnReconnect&&I()&&e();else if(n==aw.MUTATE_EVENT)return q();else if(n==aw.ERROR_REVALIDATE_EVENT)return q(r)});return(// Mark the component as mounted and update corresponding refs.
 w.current=!1,_.current=v,b.current=!0,// Keep the original key in the cache.
-T({_k:y}),B&&(i1(z)||ad?e():af(e)),()=>{// Mark it as unmounted.
-w.current=!0,n()})},[v]),ah(()=>{let e;function t(){// Use the passed interval
+T({_k:y}),B&&(i2(z)||af?e():ah(e)),()=>{// Mark it as unmounted.
+w.current=!0,n()})},[v]),ap(()=>{let e;function t(){// Use the passed interval
 // ...or invoke the function with the updated data to get the interval
-let t=i2(u)?u(C().data):u;// We only start the next interval if `refreshInterval` is not 0, and:
+let t=i3(u)?u(C().data):u;// We only start the next interval if `refreshInterval` is not 0, and:
 // - `force` is true, which is the start of polling
 // - or `timer` is not 0, which means the effect wasn't canceled
 t&&-1!==e&&(e=setTimeout(n,t))}function n(){// Check if it's OK to execute:
 // Only revalidate when the page is visible, online, and not errored.
-!C().error&&(c||E().isVisible())&&(d||E().isOnline())?q(aA).then(t):t()}return t(),()=>{e&&(clearTimeout(e),e=-1)}},[u,c,d,v]),// Display debug info in React DevTools.
-(0,D.useDebugValue)($),a&&i1(z)&&v){// SWR should throw when trying to use Suspense on the server with React 18,
+!C().error&&(c||E().isVisible())&&(d||E().isOnline())?q(aM).then(t):t()}return t(),()=>{e&&(clearTimeout(e),e=-1)}},[u,c,d,v]),// Display debug info in React DevTools.
+(0,D.useDebugValue)($),a&&i2(z)&&v){// SWR should throw when trying to use Suspense on the server with React 18,
 // without providing any initial data. See:
 // https://github.com/vercel/swr/issues/1832
-if(!ac&&ad)throw Error("Fallback data is required when using suspense in SSR.");// Always update fetcher and config refs even with the Suspense mode.
-k.current=t,S.current=n,w.current=!1;let e=g[v];if(!i1(e)){let t=J(e);aD(t)}if(i1(F)){let e=q(aA);i1($)||(e.status="fulfilled",e.value=!0),aD(e)}else throw F}return{mutate:J,get data(){return P.data=!0,$},get error(){return P.error=!0,F},get isValidating(){return P.isValidating=!0,W},get isLoading(){return P.isLoading=!0,K}}},function(...e){// Get the default and inherited configuration.
-let t=aR(),[n,r,i]=aP(e),a=aC(t,i),o=m,{use:s}=a,l=(s||[]).concat(aO);for(let e=l.length;e--;)o=l[e](o);return o(n,r||a.fetcher||null,a)});P("jE8J5");var D=P("jE8J5"),aj=[0],aU=(g=new Map,{getObserver:function(e){var t=e.root,n=e.rootMargin,r=e.threshold,i=g.get(t);i||(i=new Map,g.set(t,i));var a=JSON.stringify({rootMargin:n,threshold:r}),o=i.get(a);if(!o){var s=new Map;o={observer:new IntersectionObserver(function(e){e.forEach(function(e){var t=s.get(e.target);null==t||t(e)})},{root:t,rootMargin:n,threshold:r}),entryCallbacks:s},i.set(a,o)}return{observe:function(e,t){var n,r;null==(n=o)||n.entryCallbacks.set(e,t),null==(r=o)||r.observer.observe(e)},unobserve:function(e){var t,n;null==(t=o)||t.entryCallbacks.delete(e),null==(n=o)||n.observer.unobserve(e)}}}});function az(){return(az=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}let aF=function(){var e,t,n,r,i,a,o,s,l,u,c,d,f,h,p,m;let[g,{isVisible:v,wasEverVisible:y}]=(c=(e=(0,D.useRef)(null),t=(0,D.useRef)(null),n=(0,D.useRef)(null),i=(r=(0,D.useState)())[0],a=r[1],o=(0,D.useCallback)(function(){var r=e.current;if(!r){a(void 0);return}var i=aU.getObserver({root:t.current,rootMargin:"0px",threshold:aj});i.observe(r,function(e){a(e)}),n.current=i},["0px",aj]),s=(0,D.useCallback)(function(){var t=n.current,r=e.current;r&&(null==t||t.unobserve(r)),n.current=null},[]),u=[(0,D.useCallback)(function(t){s(),e.current=t,o()},[o,s]),{entry:i,rootRef:(0,D.useCallback)(function(e){s(),t.current=e,o()},[o,s])}])[0],f=!!(null==(l=(d=u[1]).entry)?void 0:l.isIntersecting),p=(h=(0,D.useState)(f))[0],m=h[1],f&&!p&&m(!0),[c,az({},d,{isVisible:f,wasEverVisible:p})]);return{ref:g,isVisible:v,wasEverVisible:y}},aV=function({spinner:e,children:t}){let{ref:n,isVisible:r,wasEverVisible:i}=aF();return/*#__PURE__*/(0,O.jsxs)("span",{ref:n,children:[!r&&!i&&e,(r||i)&&t]})},a$=e=>fetch(e).then(e=>e.json()),aB=function(){return/*#__PURE__*/(0,O.jsx)("div",{className:"spinner-grow spinner-grow-sm me-5"})},aH=function({item:e,isItemSelected:t,setSelected:n}){let{data:r,error:i}=aM(`https://hacker-news.firebaseio.com/v0/item/${e}.json`,a$,{dedupingInterval:6e4});return void 0!==i?/*#__PURE__*/(0,O.jsx)("span",{className:"badge rounded-pill bg-danger",children:"error"}):void 0===r?/*#__PURE__*/(0,O.jsx)(aB,{}):t?/*#__PURE__*/(0,O.jsx)("span",{className:"badge rounded-pill bg-secondary",children:r.by}):/*#__PURE__*/(0,O.jsx)("a",{href:`https://news.ycombinator.com/item?id=${e}`,className:"badge rounded-pill bg-light text-dark",onClick:function(e){e.preventDefault(),n()},children:r.by})},aW=function({kids:e,selectComment:t}){let[n,i]=/*@__PURE__*/r(D).useState(null),a=e.map(function(e){return/*#__PURE__*/(0,O.jsx)(aV,{spinner:/*#__PURE__*/(0,O.jsx)(aB,{}),children:/*#__PURE__*/(0,O.jsx)(aH,{item:e,isItemSelected:e===n,setSelected:function(){i(e),t(e)}})},e)});return/*#__PURE__*/(0,O.jsx)("div",{className:"text-muted",style:{overflowX:"auto",whiteSpace:"nowrap"},children:a})};P("jE8J5");let aK=(...e)=>fetch(...e).then(e=>e.json()),aq=function(e){return aM(`https://hacker-news.firebaseio.com/v0/item/${e}.json`,aK)},aJ=function({item:e}){return void 0!==e.text?/*#__PURE__*/(0,O.jsx)("em",{dangerouslySetInnerHTML:{__html:e.text}}):/*#__PURE__*/(0,O.jsx)("p",{className:"card-text text-truncate",children:/*#__PURE__*/(0,O.jsx)("a",{href:e.url,target:"_blank",children:e.url})})},aQ=function({item:e}){return/*#__PURE__*/(0,O.jsxs)("a",{href:`https://news.ycombinator.com/item?id=${e.id}`,target:"_blank",className:"btn btn-primary btn-sm position-relative me-4 float-end",children:[/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-people-fill"}),/*#__PURE__*/(0,O.jsxs)("span",{className:"position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger",children:[e.descendants,/*#__PURE__*/(0,O.jsx)("span",{className:"visually-hidden",children:"comments"})]})]})},aG=function({item:e}){let{data:t,error:n}=aq(e),i=iU(t?.by),[a,o]=/*@__PURE__*/r(D).useState(null);return(/*@__PURE__*/r(D).useEffect(function(){o(null)},[e]),void 0!==n)?/*#__PURE__*/(0,O.jsx)("div",{className:"alert alert-danger",role:"alert",children:n.message}):void 0===t?/*#__PURE__*/(0,O.jsx)(iH,{}):/*#__PURE__*/(0,O.jsxs)(/*@__PURE__*/r(D).Fragment,{children:[/*#__PURE__*/(0,O.jsx)("div",{className:"card text-dark bg-light mb-1 shadow rounded",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"card-body",children:[/*#__PURE__*/(0,O.jsxs)("h6",{className:"card-subtitle mb-2 text-muted",children:[/*#__PURE__*/(0,O.jsx)("span",{ref:i,children:t.by}),/*#__PURE__*/(0,O.jsx)("em",{className:"float-end",title:iF(1e3*t.time),children:iz(1e3*t.time)})]}),/*#__PURE__*/(0,O.jsx)(aJ,{item:t}),/*#__PURE__*/(0,O.jsx)("p",{children:/*#__PURE__*/(0,O.jsxs)("a",{href:`https://news.ycombinator.com/item?id=${t.id}`,target:"_blank",className:"float-end",children:[void 0!==t.kids?t.kids.length:0," Comments"]})}),/*#__PURE__*/(0,O.jsx)(aW,{kids:t.kids||[],selectComment:o})]})}),null!==a&&/*#__PURE__*/(0,O.jsx)(aG,{item:a})]})},aY=function({data:e}){let t=iU(e.by),[n,i]=/*@__PURE__*/r(D).useState(null);return/*#__PURE__*/(0,O.jsxs)(O.Fragment,{children:[/*#__PURE__*/(0,O.jsx)("div",{className:"card text-dark bg-light mb-1 shadow rounded",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"card-body",children:[/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)("strong",{className:"card-title",children:e.title}),/*#__PURE__*/(0,O.jsx)("span",{className:"float-end",children:/*#__PURE__*/(0,O.jsx)(iV,{score:e.score})})]}),/*#__PURE__*/(0,O.jsxs)("p",{className:"card-subtitle mb-2 text-muted",children:[/*#__PURE__*/(0,O.jsx)("span",{ref:t,style:{cursor:"pointer"},children:e.by}),/*#__PURE__*/(0,O.jsx)("em",{className:"float-end",title:iF(1e3*e.time),children:iz(1e3*e.time)})]}),/*#__PURE__*/(0,O.jsx)(aJ,{item:e}),/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)(iW,{item:e}),/*#__PURE__*/(0,O.jsx)(aQ,{item:e})]}),/*#__PURE__*/(0,O.jsx)(aW,{kids:e.kids,selectComment:i})]})}),null!==n&&/*#__PURE__*/(0,O.jsx)(aG,{item:n})]})},aX=function(){let{commentId:e}=/**
+if(!ad&&af)throw Error("Fallback data is required when using suspense in SSR.");// Always update fetcher and config refs even with the Suspense mode.
+k.current=t,S.current=n,w.current=!1;let e=g[v];if(!i2(e)){let t=J(e);aA(t)}if(i2(F)){let e=q(aM);i2($)||(e.status="fulfilled",e.value=!0),aA(e)}else throw F}return{mutate:J,get data(){return P.data=!0,$},get error(){return P.error=!0,F},get isValidating(){return P.isValidating=!0,W},get isLoading(){return P.isLoading=!0,K}}},function(...e){// Get the default and inherited configuration.
+let t=aO(),[n,r,i]=aR(e),a=aT(t,i),o=m,{use:s}=a,l=(s||[]).concat(aL);for(let e=l.length;e--;)o=l[e](o);return o(n,r||a.fetcher||null,a)});P("jE8J5");var D=P("jE8J5"),aU=[0],az=(g=new Map,{getObserver:function(e){var t=e.root,n=e.rootMargin,r=e.threshold,i=g.get(t);i||(i=new Map,g.set(t,i));var a=JSON.stringify({rootMargin:n,threshold:r}),o=i.get(a);if(!o){var s=new Map;o={observer:new IntersectionObserver(function(e){e.forEach(function(e){var t=s.get(e.target);null==t||t(e)})},{root:t,rootMargin:n,threshold:r}),entryCallbacks:s},i.set(a,o)}return{observe:function(e,t){var n,r;null==(n=o)||n.entryCallbacks.set(e,t),null==(r=o)||r.observer.observe(e)},unobserve:function(e){var t,n;null==(t=o)||t.entryCallbacks.delete(e),null==(n=o)||n.observer.unobserve(e)}}}});function aF(){return(aF=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}let aV=function(){var e,t,n,r,i,a,o,s,l,u,c,d,f,h,p,m;let[g,{isVisible:v,wasEverVisible:y}]=(c=(e=(0,D.useRef)(null),t=(0,D.useRef)(null),n=(0,D.useRef)(null),i=(r=(0,D.useState)())[0],a=r[1],o=(0,D.useCallback)(function(){var r=e.current;if(!r){a(void 0);return}var i=az.getObserver({root:t.current,rootMargin:"0px",threshold:aU});i.observe(r,function(e){a(e)}),n.current=i},["0px",aU]),s=(0,D.useCallback)(function(){var t=n.current,r=e.current;r&&(null==t||t.unobserve(r)),n.current=null},[]),u=[(0,D.useCallback)(function(t){s(),e.current=t,o()},[o,s]),{entry:i,rootRef:(0,D.useCallback)(function(e){s(),t.current=e,o()},[o,s])}])[0],f=!!(null==(l=(d=u[1]).entry)?void 0:l.isIntersecting),p=(h=(0,D.useState)(f))[0],m=h[1],f&&!p&&m(!0),[c,aF({},d,{isVisible:f,wasEverVisible:p})]);return{ref:g,isVisible:v,wasEverVisible:y}},a$=function({spinner:e,children:t}){let{ref:n,isVisible:r,wasEverVisible:i}=aV();return/*#__PURE__*/(0,O.jsxs)("span",{ref:n,children:[!r&&!i&&e,(r||i)&&t]})},aB=e=>fetch(e).then(e=>e.json()),aH=function(){return/*#__PURE__*/(0,O.jsx)("div",{className:"spinner-grow spinner-grow-sm me-5"})},aW=function({item:e,isItemSelected:t,setSelected:n}){let{data:r,error:i}=aj(`https://hacker-news.firebaseio.com/v0/item/${e}.json`,aB,{dedupingInterval:6e4});return void 0!==i?/*#__PURE__*/(0,O.jsx)("span",{className:"badge rounded-pill bg-danger",children:"error"}):void 0===r?/*#__PURE__*/(0,O.jsx)(aH,{}):t?/*#__PURE__*/(0,O.jsx)("span",{className:"badge rounded-pill bg-secondary",children:r.by}):/*#__PURE__*/(0,O.jsx)("a",{href:`https://news.ycombinator.com/item?id=${e}`,className:"badge rounded-pill bg-light text-dark",onClick:function(e){e.preventDefault(),n()},children:r.by})},aK=function({kids:e,selectComment:t}){let[n,i]=/*@__PURE__*/r(D).useState(null),a=e.map(function(e){return/*#__PURE__*/(0,O.jsx)(a$,{spinner:/*#__PURE__*/(0,O.jsx)(aH,{}),children:/*#__PURE__*/(0,O.jsx)(aW,{item:e,isItemSelected:e===n,setSelected:function(){i(e),t(e)}})},e)});return/*#__PURE__*/(0,O.jsx)("div",{className:"text-muted",style:{overflowX:"auto",whiteSpace:"nowrap"},children:a})};P("jE8J5");let aq=(...e)=>fetch(...e).then(e=>e.json()),aJ=function(e){return aj(`https://hacker-news.firebaseio.com/v0/item/${e}.json`,aq)},aQ=function({item:e}){return void 0!==e.text?/*#__PURE__*/(0,O.jsx)("em",{dangerouslySetInnerHTML:{__html:e.text}}):/*#__PURE__*/(0,O.jsx)("p",{className:"card-text text-truncate",children:/*#__PURE__*/(0,O.jsx)("a",{href:e.url,target:"_blank",children:e.url})})},aG=function({item:e}){return/*#__PURE__*/(0,O.jsxs)("a",{href:`https://news.ycombinator.com/item?id=${e.id}`,target:"_blank",className:"btn btn-primary btn-sm position-relative me-4 float-end",children:[/*#__PURE__*/(0,O.jsx)("i",{className:"bi bi-people-fill"}),/*#__PURE__*/(0,O.jsxs)("span",{className:"position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger",children:[e.descendants,/*#__PURE__*/(0,O.jsx)("span",{className:"visually-hidden",children:"comments"})]})]})},aY=function({item:e}){let{data:t,error:n}=aJ(e),i=iz(t?.by),[a,o]=/*@__PURE__*/r(D).useState(null);return(/*@__PURE__*/r(D).useEffect(function(){o(null)},[e]),void 0!==n)?/*#__PURE__*/(0,O.jsx)("div",{className:"alert alert-danger",role:"alert",children:n.message}):void 0===t?/*#__PURE__*/(0,O.jsx)(iW,{}):/*#__PURE__*/(0,O.jsxs)(/*@__PURE__*/r(D).Fragment,{children:[/*#__PURE__*/(0,O.jsx)("div",{className:"card text-dark bg-light mb-1 shadow rounded",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"card-body",children:[/*#__PURE__*/(0,O.jsxs)("h6",{className:"card-subtitle mb-2 text-muted",children:[/*#__PURE__*/(0,O.jsx)("span",{ref:i,children:t.by}),/*#__PURE__*/(0,O.jsx)("em",{className:"float-end",title:iV(1e3*t.time),children:iF(1e3*t.time)})]}),/*#__PURE__*/(0,O.jsx)(aQ,{item:t}),/*#__PURE__*/(0,O.jsx)("p",{children:/*#__PURE__*/(0,O.jsxs)("a",{href:`https://news.ycombinator.com/item?id=${t.id}`,target:"_blank",className:"float-end",children:[void 0!==t.kids?t.kids.length:0," Comments"]})}),/*#__PURE__*/(0,O.jsx)(aK,{kids:t.kids||[],selectComment:o})]})}),null!==a&&/*#__PURE__*/(0,O.jsx)(aY,{item:a})]})},aX=function({data:e}){let t=iz(e.by),[n,i]=/*@__PURE__*/r(D).useState(null);return/*#__PURE__*/(0,O.jsxs)(O.Fragment,{children:[/*#__PURE__*/(0,O.jsx)("div",{className:"card text-dark bg-light mb-1 shadow rounded",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"card-body",children:[/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)("strong",{className:"card-title",children:e.title}),/*#__PURE__*/(0,O.jsx)("span",{className:"float-end",children:/*#__PURE__*/(0,O.jsx)(i$,{score:e.score})})]}),/*#__PURE__*/(0,O.jsxs)("p",{className:"card-subtitle mb-2 text-muted",children:[/*#__PURE__*/(0,O.jsx)("span",{ref:t,style:{cursor:"pointer"},children:e.by}),/*#__PURE__*/(0,O.jsx)("em",{className:"float-end",title:iV(1e3*e.time),children:iF(1e3*e.time)})]}),/*#__PURE__*/(0,O.jsx)(aQ,{item:e}),/*#__PURE__*/(0,O.jsxs)("p",{children:[/*#__PURE__*/(0,O.jsx)(iK,{item:e}),/*#__PURE__*/(0,O.jsx)(aG,{item:e})]}),/*#__PURE__*/(0,O.jsx)(aK,{kids:e.kids,selectComment:i})]})}),null!==n&&/*#__PURE__*/(0,O.jsx)(aY,{item:n})]})},aZ=function(){let{commentId:e}=/**
  * Returns an object of key/value pairs of the dynamic params from the current
  * URL that were matched by the route path.
  *
  * @see https://reactrouter.com/hooks/use-params
- */function(){let{matches:e}=D.useContext(ei),t=e[e.length-1];return t?t.params:{}}(),{data:t,error:n}=aq(e);return void 0!==n?/*#__PURE__*/(0,O.jsx)("div",{className:"alert alert-danger",role:"alert",children:n.message}):void 0===t?/*#__PURE__*/(0,O.jsx)(iH,{}):/*#__PURE__*/(0,O.jsx)(aY,{data:t})},aZ=function(){let e=async function(e,t,n){let r=new URLSearchParams({query:"",numericFilters:`created_at_i>${e},created_at_i<=${t}`,hitsPerPage:`${n}`}),i=`https://hn.algolia.com/api/v1/search?${r.toString()}`,a=await fetch(i);if(!a.ok)throw Error("An error occurred while fetching the data.");return(await a.json()).hits};return{getData:function(){return async()=>{let t=Date.now()/1e3,n=await Promise.all([0,1,2,3,4,5,6].map(n=>e(t-(7-n)*86400,t-(6-n)*86400,2**n)));return n.reduce((e,t)=>[...e,...t],[]).sort((e,t)=>e.points<t.points?1:e.points>t.points?-1:0)}}}}(),a0=function({items:e}){let t=e.map(function(e){return/*#__PURE__*/(0,O.jsx)(iG,{item:e,inModal:!1},e.objectID)});return/*#__PURE__*/(0,O.jsx)(O.Fragment,{children:t})},a1=function(){let{data:e,error:t}=aM("HN_ITEMS",aZ.getData(),{dedupingInterval:6e4});return void 0!==t?/*#__PURE__*/(0,O.jsx)("div",{className:"alert alert-danger",role:"alert",children:t.message}):void 0===e?/*#__PURE__*/(0,O.jsx)(iH,{}):/*#__PURE__*/(0,O.jsx)(a0,{items:e})},a2=function(){let e=i$();return/*#__PURE__*/(0,O.jsx)(iB,{user:e})},a3=function(){let e="navbarCollapse";return/*#__PURE__*/(0,O.jsx)("nav",{className:"navbar navbar-expand-lg navbar-dark bg-dark",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"container-fluid",children:[/*#__PURE__*/(0,O.jsxs)("a",{className:"navbar-brand",href:"/",children:[/*#__PURE__*/(0,O.jsx)("strong",{style:{color:"#ff6600"},children:"HN"}),"ews ",/*#__PURE__*/(0,O.jsx)("sub",{children:eT.version})]}),/*#__PURE__*/(0,O.jsx)("button",{className:"navbar-toggler","data-bs-toggle":"collapse","data-bs-target":`#${e}`,children:/*#__PURE__*/(0,O.jsx)("span",{className:"navbar-toggler-icon"})}),/*#__PURE__*/(0,O.jsxs)("div",{className:"collapse navbar-collapse",id:e,children:[/*#__PURE__*/(0,O.jsx)("ul",{className:"navbar-nav me-auto mb-2 mb-md-0"}),/*#__PURE__*/(0,O.jsx)("form",{className:"d-flex",children:/*#__PURE__*/(0,O.jsx)(a2,{})})]})]})})};v(document.getElementById("app")).render(/*#__PURE__*/(0,O.jsx)(function(){return/*#__PURE__*/(0,O.jsxs)(O.Fragment,{children:[/*#__PURE__*/(0,O.jsx)(a3,{}),/*#__PURE__*/(0,O.jsx)("div",{className:"container",style:{paddingTop:"1em"},children:/*#__PURE__*/(0,O.jsx)(eS,{children:/*#__PURE__*/(0,O.jsxs)(ey,{children:[/*#__PURE__*/(0,O.jsx)(eg,{path:"/:commentId",element:/*#__PURE__*/(0,O.jsx)(aX,{})}),/*#__PURE__*/(0,O.jsx)(eg,{path:"/",element:/*#__PURE__*/(0,O.jsx)(a1,{})})]})})})]})},{}))}();
+ */function(){let{matches:e}=D.useContext(ei),t=e[e.length-1];return t?t.params:{}}(),{data:t,error:n}=aJ(e);return void 0!==n?/*#__PURE__*/(0,O.jsx)("div",{className:"alert alert-danger",role:"alert",children:n.message}):void 0===t?/*#__PURE__*/(0,O.jsx)(iW,{}):/*#__PURE__*/(0,O.jsx)(aX,{data:t})},a0=function(){let e=async function(e,t,n){let r=new URLSearchParams({query:"",numericFilters:`created_at_i>${e},created_at_i<=${t}`,hitsPerPage:`${n}`}),i=`https://hn.algolia.com/api/v1/search?${r.toString()}`,a=await fetch(i);if(!a.ok)throw Error("An error occurred while fetching the data.");return(await a.json()).hits};return{getData:function(){return async()=>{let t=Date.now()/1e3,n=await Promise.all([0,1,2,3,4,5,6].map(n=>e(t-(7-n)*86400,t-(6-n)*86400,2**n)));return n.reduce((e,t)=>[...e,...t],[]).sort((e,t)=>e.points<t.points?1:e.points>t.points?-1:0)}}}}(),a1=function({items:e}){let t=e.map(function(e){return/*#__PURE__*/(0,O.jsx)(iY,{item:e,inModal:!1},e.objectID)});return/*#__PURE__*/(0,O.jsx)(O.Fragment,{children:t})},a2=function(){let{data:e,error:t}=aj("HN_ITEMS",a0.getData(),{dedupingInterval:6e4});return void 0!==t?/*#__PURE__*/(0,O.jsx)("div",{className:"alert alert-danger",role:"alert",children:t.message}):void 0===e?/*#__PURE__*/(0,O.jsx)(iW,{}):/*#__PURE__*/(0,O.jsx)(a1,{items:e})},a3=function(){let e=iB();return/*#__PURE__*/(0,O.jsx)(iH,{user:e})},a4=function(){let e="navbarCollapse";return/*#__PURE__*/(0,O.jsx)("nav",{className:"navbar navbar-expand-lg navbar-dark bg-dark",children:/*#__PURE__*/(0,O.jsxs)("div",{className:"container-fluid",children:[/*#__PURE__*/(0,O.jsxs)("a",{className:"navbar-brand",href:"/",children:[/*#__PURE__*/(0,O.jsx)("strong",{style:{color:"#ff6600"},children:"HN"}),"ews ",/*#__PURE__*/(0,O.jsx)("sub",{children:eT.version})]}),/*#__PURE__*/(0,O.jsx)("button",{className:"navbar-toggler","data-bs-toggle":"collapse","data-bs-target":`#${e}`,children:/*#__PURE__*/(0,O.jsx)("span",{className:"navbar-toggler-icon"})}),/*#__PURE__*/(0,O.jsxs)("div",{className:"collapse navbar-collapse",id:e,children:[/*#__PURE__*/(0,O.jsx)("ul",{className:"navbar-nav me-auto mb-2 mb-md-0"}),/*#__PURE__*/(0,O.jsx)("form",{className:"d-flex",children:/*#__PURE__*/(0,O.jsx)(a3,{})})]})]})})};v(document.getElementById("app")).render(/*#__PURE__*/(0,O.jsx)(function(){return/*#__PURE__*/(0,O.jsxs)(O.Fragment,{children:[/*#__PURE__*/(0,O.jsx)(a4,{}),/*#__PURE__*/(0,O.jsx)("div",{className:"container",style:{paddingTop:"1em"},children:/*#__PURE__*/(0,O.jsx)(eS,{children:/*#__PURE__*/(0,O.jsxs)(ey,{children:[/*#__PURE__*/(0,O.jsx)(eg,{path:"/:commentId",element:/*#__PURE__*/(0,O.jsx)(aZ,{})}),/*#__PURE__*/(0,O.jsx)(eg,{path:"/",element:/*#__PURE__*/(0,O.jsx)(a2,{})})]})})})]})},{}))}();
