@@ -1,6 +1,6 @@
 {
     "name": "hnews",
-    "version": "4.6.0",
+    "version": "4.7.0",
     "description": "HNews",
     "private": true,
     "source": "src/index.html",
@@ -33,13 +33,11 @@
         "vueIndentScriptAndStyle": false
     },
     "devDependencies": {
-        "@parcel/packager-raw-url": "^2.10.2",
-        "@parcel/transformer-webmanifest": "^2.10.2",
         "@types/human-date": "^1.4.5",
         "@types/react": "^18.2.37",
         "@types/react-dom": "^18.2.15",
-        "npm-check-updates": "^16.14.6",
-        "parcel": "^2.10.2",
+        "npm-check-updates": "^16.14.11",
+        "parcel": "^2.10.3",
         "process": "^0.11.10"
     },
     "dependencies": {
@@ -48,7 +46,7 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-intersection-observer-hook": "^2.1.1",
-        "react-router-dom": "^6.18.0",
+        "react-router-dom": "^6.19.0",
         "swr": "^2.2.4"
     }
 }
