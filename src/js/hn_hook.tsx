@@ -16,7 +16,11 @@ export interface HNItem {
 
 const Fetch = (function () {
     const getDaysHits = async function (from: number, to: number, hitsPerPage: number) {
-        const searchParams = new URLSearchParams({ query: '', numericFilters: `created_at_i>${from},created_at_i<=${to}`, hitsPerPage: `${hitsPerPage}` });
+        const searchParams = new URLSearchParams({
+            query: '',
+            numericFilters: `created_at_i>${from},created_at_i<=${to}`,
+            hitsPerPage: `${hitsPerPage}`,
+        });
         const url = `https://hn.algolia.com/api/v1/search?${searchParams.toString()}`;
         const res = await fetch(url);
         if (!res.ok) throw new Error('An error occurred while fetching the data.');
@@ -29,7 +33,9 @@ const Fetch = (function () {
                 const NOW = Date.now() / 1000;
                 const DAY = 60 * 60 * 24;
 
-                const res = await Promise.all([0, 1, 2, 3, 4, 5, 6].map(i => getDaysHits(NOW - (7 - i) * DAY, NOW - (6 - i) * DAY, 2 ** i)));
+                const res = await Promise.all(
+                    [0, 1, 2, 3, 4, 5, 6].map((i) => getDaysHits(NOW - (7 - i) * DAY, NOW - (6 - i) * DAY, 2 ** i))
+                );
                 return res
                     .reduce((acc, item) => [...acc, ...item], [])
                     .sort((a, b) => {
@@ -43,5 +49,5 @@ const Fetch = (function () {
 })();
 
 export const useHNItems = function () {
-    return useSWR('HN_ITEMS', Fetch.getData(), { dedupingInterval: 60000 });
+    return useSWR('HN_ITEMS', Fetch.getData(), {dedupingInterval: 60000});
 };
