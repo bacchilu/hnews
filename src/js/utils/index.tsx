@@ -47,7 +47,7 @@ export const Badge = function ({score}: {score: number}) {
 };
 
 export const useUser = function () {
-    const [user, setUser] = React.useState(null);
+    const [user, setUser] = React.useState<string | null>(null);
     React.useEffect(function () {
         return onAuthStateChanged(setUser);
     }, []);
