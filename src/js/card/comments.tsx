@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import {HNItem} from '../fetcher';
+import {HNItem} from '../hn_hook';
 
 const LinkTo = function ({to, disabled, children}: {to: string; disabled: boolean; children: JSX.Element}) {
     return disabled ? (
