@@ -1,6 +1,6 @@
 import {initializeApp} from 'firebase/app';
 
-import {Auth} from './auth.js';
+import {FirebaseAuth} from './auth.js';
 
 // const firebaseConfig = {
 //     apiKey: 'AIzaSyBvHCpKNrfKfc2AZZLP8D0K1AGlUFcX1aE',
@@ -20,8 +20,6 @@ const firebaseConfig = {
     appId: '1:734364993587:web:f0020375ba6ff35b8efb46',
 };
 const firebaseApp = initializeApp(firebaseConfig);
-const auth = Auth(firebaseApp);
+const auth = FirebaseAuth(firebaseApp);
 
-export const signIn = auth.signIn;
-export const signOut = auth.signOut;
-export const onAuthStateChanged = auth.onAuthStateChanged;
+export const Auth = {signIn: auth.signIn, signOut: auth.signOut, onAuthStateChanged: auth.onAuthStateChanged};

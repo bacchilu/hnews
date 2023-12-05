@@ -3,10 +3,11 @@ import {createRoot} from 'react-dom/client';
 import {Route, HashRouter as Router, Routes} from 'react-router-dom';
 
 import {version} from '../../package.json';
-import {Card} from './card';
 import {CommentPage} from './comment_page';
+import {Card} from './components/card';
+import {LoginButton} from './components/login_button';
 import {useHNItems} from './hn_hook';
-import {LoginButton, Spinner, useUser} from './utils';
+import {Spinner, useUser} from './utils';
 
 const ErrorAlert: React.FC<{message: string}> = function ({message}) {
     return (

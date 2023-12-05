@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {Badge, relativeTime, Spinner, toLocaleString, Twitter, useRefUserDetails} from '../utils';
+import {Badge} from '../components/badge';
+import {relativeTime, Spinner, toLocaleString, Twitter, useRefUserDetails} from '../utils';
 import {CommentersList} from './users';
 import {CardText, HNLink, useHNItem} from './utils';
 

@@ -1,7 +1,7 @@
 import {FirebaseApp} from 'firebase/app';
 import {GoogleAuthProvider, User, getAuth, onAuthStateChanged, signInWithRedirect, signOut} from 'firebase/auth';
 
-export const Auth = function (firebaseApp: FirebaseApp) {
+export const FirebaseAuth = function (firebaseApp: FirebaseApp) {
     const auth = getAuth(firebaseApp);
 
     return {

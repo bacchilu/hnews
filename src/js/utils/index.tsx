@@ -2,7 +2,7 @@ import hdate from 'human-date';
 import React from 'react';
 
 import {HNItem} from '../hn_hook';
-import {onAuthStateChanged, signIn, signOut} from '../model';
+import {Auth} from '../model';
 
 export {useRefUserDetails} from './user_details';
 
@@ -24,55 +24,12 @@ export const toLocaleString = function (createdAt: string | number, isEpoch = fa
     return d.toLocaleString('en-US', {hour12: false});
 };
 
-enum COLOR {
-    DANGER = 'danger',
-    WARNING = 'warning',
-    SUCCESS = 'success',
-    PRIMARY = 'primary',
-    INFO = 'info',
-    SECONDARY = 'secondary',
-}
-
-export const Badge = function ({score}: {score: number}) {
-    const getColor = function (points: number) {
-        if (points >= 3200) return COLOR.DANGER;
-        if (points >= 1600) return COLOR.WARNING;
-        if (points >= 800) return COLOR.SUCCESS;
-        if (points >= 400) return COLOR.PRIMARY;
-        if (points >= 200) return COLOR.INFO;
-        return COLOR.SECONDARY;
-    };
-
-    return <span className={`badge bg-${getColor(score)}`}>{score}</span>;
-};
-
 export const useUser = function () {
     const [user, setUser] = React.useState<string | null>(null);
     React.useEffect(function () {
-        return onAuthStateChanged(setUser);
+        return Auth.onAuthStateChanged(setUser);
     }, []);
     return user;
-};
-
-export const LoginButton = function ({user}) {
-    const login = function (e) {
-        e.preventDefault();
-        signIn();
-    };
-    const logout = function (e) {
-        e.preventDefault();
-        signOut();
-    };
-
-    return user !== null ? (
-        <button className="btn btn-outline-danger" onClick={logout}>
-            <i className="bi bi-box-arrow-in-left"></i> <em>{user['displayName']}</em>
-        </button>
-    ) : (
-        <button className="btn btn-outline-success" onClick={login}>
-            <i className="bi bi-box-arrow-in-right"></i>
-        </button>
-    );
 };
 
 export const Spinner: React.FC = function () {
