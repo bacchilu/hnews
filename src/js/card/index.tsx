@@ -38,7 +38,7 @@ const CardText: React.FC<{item: HNItem}> = function ({item}) {
     );
 };
 
-export const Card: React.FC<{item: HNItem; inModal: boolean}> = function ({item, inModal}) {
+export const Card: React.FC<{item: HNItem}> = function ({item}) {
     const userEl = useRefUserDetails(item.author);
 
     return (
@@ -62,7 +62,6 @@ export const Card: React.FC<{item: HNItem; inModal: boolean}> = function ({item,
                 <p>
                     <Twitter item={item} />
                     <span className="float-end">
-                        {/* <Comments item={item} inModal={inModal} /> */}
                         <Comments item={item} />
                     </span>
                 </p>

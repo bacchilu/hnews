@@ -49,5 +49,5 @@ const Fetch = (function () {
 })();
 
 export const useHNItems = function () {
-    return useSWR('HN_ITEMS', Fetch.getData(), {dedupingInterval: 60000});
+    return useSWR<HNItem[], Error>('HN_ITEMS', Fetch.getData(), {dedupingInterval: 60000});
 };

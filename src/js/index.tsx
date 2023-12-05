@@ -1,32 +1,28 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Route, HashRouter as Router, Routes } from 'react-router-dom';
+import {createRoot} from 'react-dom/client';
+import {Route, HashRouter as Router, Routes} from 'react-router-dom';
 
-import { version } from '../../package.json';
-import { Card } from './card';
-import { CommentPage } from './comment_page';
-import { HNItem, useHNItems } from './hn_hook';
-import { LoginButton, Spinner, useUser } from './utils';
+import {version} from '../../package.json';
+import {Card} from './card';
+import {CommentPage} from './comment_page';
+import {useHNItems} from './hn_hook';
+import {LoginButton, Spinner, useUser} from './utils';
 
-const Items = function ({ items }: { items: HNItem[] }) {
-    const res = items.map(function (item) {
-        return <Card key={item.objectID} item={item} inModal={false} />;
-    });
-    return <>{res}</>;
+const ErrorAlert: React.FC<{message: string}> = function ({message}) {
+    return (
+        <div className="alert alert-danger" role="alert">
+            {message}
+        </div>
+    );
 };
 
 const Main = function () {
-    const { data, error } = useHNItems();
+    const {data, error} = useHNItems();
 
-    if (error !== undefined)
-        return (
-            <div className="alert alert-danger" role="alert">
-                {error.message}
-            </div>
-        );
+    if (error !== undefined) return <ErrorAlert message={error.message} />;
     if (data === undefined) return <Spinner />;
 
-    return <Items items={data} />;
+    return data.map((item) => <Card key={item.objectID} item={item} />);
 };
 
 const Auth = function () {
@@ -42,7 +38,7 @@ const NavBar = function () {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
                 <a className="navbar-brand" href="/">
-                    <strong style={{ color: '#ff6600' }}>HN</strong>ews <sub>{version}</sub>
+                    <strong style={{color: '#ff6600'}}>HN</strong>ews <sub>{version}</sub>
                 </a>
                 <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target={`#${id}`}>
                     <span className="navbar-toggler-icon"></span>
@@ -62,7 +58,7 @@ const App = function () {
     return (
         <>
             <NavBar />
-            <div className="container" style={{ paddingTop: '1em' }}>
+            <div className="container pt-3">
                 <Router>
                     <Routes>
                         <Route path="/:commentId" element={<CommentPage />}></Route>
