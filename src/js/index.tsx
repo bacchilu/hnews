@@ -6,7 +6,7 @@ import {version} from '../../package.json';
 import {CommentPage} from './comment_page';
 import {Card} from './components/card';
 import {LoginButton} from './components/login_button';
-import {useHNItems} from './hn_hook';
+import {useHNItems} from './hooks/hn_hook';
 import {Spinner, useUser} from './utils';
 
 const ErrorAlert: React.FC<{message: string}> = function ({message}) {
