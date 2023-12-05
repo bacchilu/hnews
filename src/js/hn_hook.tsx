@@ -24,7 +24,17 @@ const Fetch = (function () {
         const url = `https://hn.algolia.com/api/v1/search?${searchParams.toString()}`;
         const res = await fetch(url);
         if (!res.ok) throw new Error('An error occurred while fetching the data.');
-        return (await res.json()).hits as HNItem[];
+        const data = (await res.json()).hits;
+        return data.map((item: any) => ({
+            objectID: item.objectID,
+            author: item.author,
+            title: item.title,
+            points: item.points,
+            created_at: item.created_at,
+            story_text: item.story_text,
+            url: item.url,
+            num_comments: item.num_comments,
+        })) as HNItem[];
     };
 
     return {
