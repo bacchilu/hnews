@@ -1,6 +1,6 @@
 {
     "name": "hnews",
-    "version": "4.8.1",
+    "version": "4.8.2",
     "description": "HNews",
     "private": true,
     "source": "src/index.html",
@@ -43,7 +43,7 @@
         "process": "^0.11.10"
     },
     "dependencies": {
-        "firebase": "^10.7.0",
+        "firebase": "^10.7.1",
         "human-date": "^1.4.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
