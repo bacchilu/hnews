@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import {HNItem} from '../../hn_hook';
+import {HNItem} from '../../hooks/hn_hook';
 
 const LinkTo: React.FC<{to: string; disabled: boolean; children: JSX.Element}> = function ({to, disabled, children}) {
     return disabled ? (

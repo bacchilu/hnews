@@ -1,13 +1,13 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
 
-import {Spinner} from '../utils';
+import {Spinner} from '../spinner';
 import {CommentCard} from './comment_card';
 import {useHNItem} from './utils';
 
 export const CommentPage = function () {
     const {commentId} = useParams();
-    const {data, error} = useHNItem(commentId);
+    const {data, error} = useHNItem(commentId!);
 
     if (error !== undefined)
         return (

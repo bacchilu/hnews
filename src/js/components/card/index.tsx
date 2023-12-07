@@ -1,8 +1,9 @@
 import React from 'react';
 
-import {HNItem} from '../../hn_hook';
-import {relativeTime, toLocaleString, Twitter, useRefUserDetails} from '../../utils';
+import {HNItem} from '../../hooks/hn_hook';
+import {relativeTime, toLocaleString, useRefUserDetails} from '../../utils';
 import {Badge} from '../badge';
+import {Twitter} from '../twitter';
 import {Comments} from './comments';
 
 const Url: React.FC<{item: HNItem}> = function ({item}) {

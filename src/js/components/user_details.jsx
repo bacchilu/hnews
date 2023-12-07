@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {relativeTime, toLocaleString} from '.';
+import { relativeTime, toLocaleString } from '../utils';
 
 const UserDetails = (function () {
     const cache = {};
