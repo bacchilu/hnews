@@ -1,11 +1,12 @@
+import {Popover} from 'bootstrap';
 import React from 'react';
 
-import { relativeTime, toLocaleString } from '../utils';
+import {relativeTime, toLocaleString} from '../utils';
 
 const UserDetails = (function () {
     const cache = {};
     return {
-        get: async function (id) {
+        get: async function (id: string) {
             if (cache[id] !== undefined) return cache[id];
             cache[id] = await (await fetch(`https://hacker-news.firebaseio.com/v0/user/${id}.json`)).json();
             return cache[id];
@@ -13,11 +14,11 @@ const UserDetails = (function () {
     };
 })();
 
-export const useRefUserDetails = function (user) {
-    const domEl = React.useRef(null);
+export const useRefUserDetails = function (user: string | undefined) {
+    const domEl = React.useRef<HTMLElement | null>(null);
     React.useEffect(function () {
         if (user === undefined) return;
-        const popover = new bootstrap.Popover(domEl.current, {
+        const popover = new Popover(domEl.current!, {
             content: `
                 <div class="spinner-grow spinner-grow-sm" role="status">
                     <span class="visually-hidden">Loading...</span>
@@ -38,9 +39,10 @@ export const useRefUserDetails = function (user) {
                     </small>
                 </p>
             `;
-            if (popover.tip !== null) popover.tip.getElementsByClassName('popover-body')[0].innerHTML = t;
+            // if (popover['tip'] !== null) popover.setContent({'.popover-header': 'another title', '.popover-body': t});
+            if (popover['tip'] !== null) popover['tip'].getElementsByClassName('popover-body')[0].innerHTML = t;
         };
-        domEl.current.addEventListener('inserted.bs.popover', listener);
+        domEl.current!.addEventListener('inserted.bs.popover', listener);
 
         return function () {
             // domEl.current.removeEventListener('inserted.bs.popover', listener);
