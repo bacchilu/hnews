@@ -22,7 +22,7 @@ const ErrorAlert: React.FC<{message: string}> = function ({message}) {
 };
 
 const Main: React.FC<{recents: boolean; setRecents: (v: boolean) => void}> = function ({recents, setRecents}) {
-    const {data, error} = useHNItems(recents);
+    const {data, error} = useHNItems(recents ? 1 : 7);
 
     const changeRecents = function (e: React.ChangeEvent<HTMLInputElement>) {
         setRecents(e.target.checked);

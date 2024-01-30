@@ -38,15 +38,13 @@ const Fetch = (function () {
     };
 
     return {
-        getData: function (recents: boolean) {
+        getData: function () {
             return async () => {
                 const NOW = Date.now() / 1000;
                 const DAY = 60 * 60 * 24;
 
                 const res = await Promise.all(
-                    (recents ? [6] : [0, 1, 2, 3, 4, 5, 6]).map((i) =>
-                        getDaysHits(NOW - (7 - i) * DAY, NOW - (6 - i) * DAY, 2 ** i)
-                    )
+                    [0, 1, 2, 3, 4, 5, 6].map((i) => getDaysHits(NOW - (7 - i) * DAY, NOW - (6 - i) * DAY, 2 ** i))
                 );
                 return res
                     .reduce((acc, item) => [...acc, ...item], [])
@@ -60,8 +58,8 @@ const Fetch = (function () {
     };
 })();
 
-export const useHNItems = function (recents: boolean) {
-    const {data, ...res} = useSWR<HNItem[], Error>('HN_ITEMS', Fetch.getData(recents), {
+export const useHNItems = function (days = 7) {
+    const {data, ...res} = useSWR<HNItem[], Error>('HN_ITEMS', Fetch.getData(), {
         dedupingInterval: 60000,
     });
 
@@ -70,9 +68,8 @@ export const useHNItems = function (recents: boolean) {
         ? {data, ...res}
         : {
               data: data.filter((item) => {
-                  if (!recents) return true;
                   const diff = now.getTime() - new Date(item.created_at).getTime();
-                  return diff < 24 * 60 * 60 * 1000;
+                  return diff <= 24 * 60 * 60 * 1000 * days;
               }),
               ...res,
           };
