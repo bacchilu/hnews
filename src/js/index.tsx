@@ -21,8 +21,7 @@ const ErrorAlert: React.FC<{message: string}> = function ({message}) {
     );
 };
 
-const Main = function () {
-    const [recents, setRecents] = React.useState(false);
+const Main: React.FC<{recents: boolean; setRecents: (v: boolean) => void}> = function ({recents, setRecents}) {
     const {data, error} = useHNItems(recents);
 
     const changeRecents = function (e: React.ChangeEvent<HTMLInputElement>) {
@@ -33,7 +32,6 @@ const Main = function () {
     if (data === undefined) return <Spinner />;
 
     const items = data.map((item) => <Card key={item.objectID} item={item} />);
-
     return (
         <>
             <div className="form-check form-switch">
@@ -83,6 +81,8 @@ const NavBar = function () {
 };
 
 const App = function () {
+    const [recents, setRecents] = React.useState(false);
+
     return (
         <>
             <NavBar />
@@ -90,7 +90,7 @@ const App = function () {
                 <Router>
                     <Routes>
                         <Route path="/:commentId" element={<CommentPage />}></Route>
-                        <Route path="/" element={<Main />}></Route>
+                        <Route path="/" element={<Main recents={recents} setRecents={setRecents} />}></Route>
                     </Routes>
                 </Router>
             </div>
