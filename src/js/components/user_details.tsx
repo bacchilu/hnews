@@ -33,7 +33,9 @@ export const useRefUserDetails = function (user: string | undefined) {
             const t = `
                 <p class="fw-lighter">
                     <small>
-                        <em title=${toLocaleString(res.created * 1000)}>${relativeTime(res.created * 1000)}</em>
+                        <em title=${toLocaleString(new Date(res.created * 1000))}>${relativeTime(
+                new Date(res.created * 1000)
+            )}</em>
                         <br />
                         ${res.about !== undefined ? res.about : ''}
                     </small>

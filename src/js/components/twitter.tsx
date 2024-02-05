@@ -1,8 +1,8 @@
 import React from 'react';
-import { HNItem } from '../hooks/hn_hook';
 
+import {HNItem} from '../model/hn';
 
-export const Twitter = function ({ item }: { item: HNItem; }) {
+export const Twitter = function ({item}: {item: HNItem}) {
     const twitterUrl = new URL('https://twitter.com/intent/tweet');
     twitterUrl.searchParams.append('text', item.title);
     twitterUrl.searchParams.append(

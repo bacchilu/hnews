@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {HNItem} from '../../hooks/hn_hook';
+import {HNItem} from '../../model/hn';
 import {relativeTime, toLocaleString, useRefUserDetails} from '../../utils';
 import {Badge} from '../badge';
 import {Twitter} from '../twitter';

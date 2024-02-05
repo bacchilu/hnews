@@ -33,8 +33,8 @@ const Comment = function ({item}) {
                 <div className="card-body">
                     <h6 className="card-subtitle mb-2 text-muted">
                         <span ref={userEl}>{data.by}</span>
-                        <em className="float-end" title={toLocaleString(data.time * 1000)}>
-                            {relativeTime(data.time * 1000)}
+                        <em className="float-end" title={toLocaleString(new Date(data.time * 1000))}>
+                            {relativeTime(new Date(data.time * 1000))}
                         </em>
                     </h6>
                     <CardText item={data} />
@@ -73,8 +73,8 @@ export const CommentCard = function ({data}) {
                         <span ref={userEl} style={{cursor: 'pointer'}}>
                             {data.by}
                         </span>
-                        <em className="float-end" title={toLocaleString(data.time * 1000)}>
-                            {relativeTime(data.time * 1000)}
+                        <em className="float-end" title={toLocaleString(new Date(data.time * 1000))}>
+                            {relativeTime(new Date(data.time * 1000))}
                         </em>
                     </p>
                     <CardText item={data} />
