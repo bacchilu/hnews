@@ -1,6 +1,6 @@
 {
     "name": "hnews",
-    "version": "4.11.1",
+    "version": "4.11.2",
     "description": "HNews",
     "private": true,
     "source": "src/index.html",
@@ -35,14 +35,14 @@
     "devDependencies": {
         "@types/bootstrap": "^5.2.10",
         "@types/human-date": "^1.4.5",
-        "@types/react": "^18.2.56",
+        "@types/react": "^18.2.57",
         "@types/react-dom": "^18.2.19",
         "npm-check-updates": "^16.14.15",
         "parcel": "^2.11.0",
         "process": "^0.11.10"
     },
     "dependencies": {
-        "bootstrap": "^5.3.2",
+        "bootstrap": "^5.3.3",
         "bootstrap-icons": "^1.11.3",
         "firebase": "^10.8.0",
         "human-date": "^1.4.0",
