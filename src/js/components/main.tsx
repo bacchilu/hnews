@@ -25,7 +25,7 @@ const CardList2: React.FC<{hnItems: HNItem[]}> = function ({hnItems}) {
         return milliseconds <= days * DAY && milliseconds > (days - 1) * DAY;
     };
 
-    return [1, 2, 3, 4, 5, 6, 7].map((day, index, array) => {
+    return [7, 6, 5, 4, 3, 2, 1].map((day, index, array) => {
         const isLast = index + 1 === array.length;
         const filteredHNItems = hnItems.filter((hnItem) => filterLastNDays(hnItem, day));
         return (
