@@ -27,19 +27,6 @@ const Fetch = (function () {
     };
 })();
 
-export const useHNItems = function (days = 7) {
-    const {data, ...res} = useSWR<HNItem[], Error>('HN_ITEMS', Fetch.getData(), {
-        dedupingInterval: 60000,
-    });
-
-    const now = new Date();
-    return data === undefined
-        ? {data, ...res}
-        : {
-              data: data.filter((item) => {
-                  const diff = now.getTime() - new Date(item.created_at).getTime();
-                  return diff <= 24 * 60 * 60 * 1000 * days;
-              }),
-              ...res,
-          };
+export const useHNItems = function () {
+    return useSWR<HNItem[], Error>('HN_ITEMS', Fetch.getData(), {dedupingInterval: 60000});
 };

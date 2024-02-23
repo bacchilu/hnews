@@ -10,7 +10,7 @@ import {Main} from './components/main';
 import {NavBar} from './components/navbar';
 
 const App = function () {
-    const [recents, setRecents] = React.useState(false);
+    const [byDate, setByDate] = React.useState(false);
 
     return (
         <>
@@ -19,7 +19,7 @@ const App = function () {
                 <Router>
                     <Routes>
                         <Route path="/:commentId" element={<CommentPage />}></Route>
-                        <Route path="/" element={<Main recents={recents} setRecents={setRecents} />}></Route>
+                        <Route path="/" element={<Main byDate={byDate} setByDate={setByDate} />}></Route>
                     </Routes>
                 </Router>
             </div>

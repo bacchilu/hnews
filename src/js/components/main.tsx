@@ -17,7 +17,7 @@ const CardList: React.FC<{hnItems: HNItem[]}> = function ({hnItems}) {
     return hnItems.map((item) => <Card key={item.objectID} item={item} />);
 };
 
-const CardList2: React.FC<{hnItems: HNItem[]}> = function ({hnItems}) {
+const CardListGroupedByDate: React.FC<{hnItems: HNItem[]}> = function ({hnItems}) {
     const now = new Date();
     const filterLastNDays = function (hnItem: HNItem, days: number) {
         const DAY = 24 * 60 * 60 * 1000;
@@ -37,17 +37,16 @@ const CardList2: React.FC<{hnItems: HNItem[]}> = function ({hnItems}) {
     });
 };
 
-export const Main: React.FC<{recents: boolean; setRecents: (v: boolean) => void}> = function ({recents, setRecents}) {
-    const {data: hnItems, error} = useHNItems(recents ? 1 : 7);
+export const Main: React.FC<{byDate: boolean; setByDate: (v: boolean) => void}> = function ({byDate, setByDate}) {
+    const {data: hnItems, error} = useHNItems();
 
-    const changeRecents = function (e: React.ChangeEvent<HTMLInputElement>) {
-        setRecents(e.target.checked);
+    const changeByDate = function (e: React.ChangeEvent<HTMLInputElement>) {
+        setByDate(e.target.checked);
     };
 
     if (error !== undefined) return <ErrorAlert message={error.message} />;
     if (hnItems === undefined) return <Spinner />;
 
-    const items = <CardList2 hnItems={hnItems} />;
     return (
         <>
             <div className="form-check form-switch">
@@ -55,14 +54,14 @@ export const Main: React.FC<{recents: boolean; setRecents: (v: boolean) => void}
                     className="form-check-input"
                     type="checkbox"
                     id="flexSwitchCheckDefault"
-                    checked={recents}
-                    onChange={changeRecents}
+                    checked={byDate}
+                    onChange={changeByDate}
                 />
                 <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
-                    Recents only
+                    Group by date
                 </label>
             </div>
-            {items}
+            {(byDate && <CardListGroupedByDate hnItems={hnItems} />) || <CardList hnItems={hnItems} />}
         </>
     );
 };
