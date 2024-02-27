@@ -10,8 +10,6 @@ import {Main} from './components/main';
 import {NavBar} from './components/navbar';
 
 const App = function () {
-    const [byDate, setByDate] = React.useState(false);
-
     return (
         <>
             <NavBar />
@@ -19,7 +17,7 @@ const App = function () {
                 <Router>
                     <Routes>
                         <Route path="/:commentId" element={<CommentPage />}></Route>
-                        <Route path="/" element={<Main byDate={byDate} setByDate={setByDate} />}></Route>
+                        <Route path="/" element={<Main />}></Route>
                     </Routes>
                 </Router>
             </div>

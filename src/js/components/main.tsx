@@ -37,31 +37,57 @@ const CardListGroupedByDate: React.FC<{hnItems: HNItem[]}> = function ({hnItems}
     });
 };
 
-export const Main: React.FC<{byDate: boolean; setByDate: (v: boolean) => void}> = function ({byDate, setByDate}) {
+export const Main = function () {
+    const [byDate, setByDate] = React.useState(false);
+    const [limit30, setLimit30] = React.useState(false);
     const {data: hnItems, error} = useHNItems();
 
     const changeByDate = function (e: React.ChangeEvent<HTMLInputElement>) {
         setByDate(e.target.checked);
     };
 
+    const changeLimit30 = function (e: React.ChangeEvent<HTMLInputElement>) {
+        setLimit30(e.target.checked);
+    };
+
     if (error !== undefined) return <ErrorAlert message={error.message} />;
     if (hnItems === undefined) return <Spinner />;
 
+    const items = limit30 ? hnItems.slice(0, 30) : hnItems;
+
     return (
         <>
-            <div className="form-check form-switch">
-                <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id="flexSwitchCheckDefault"
-                    checked={byDate}
-                    onChange={changeByDate}
-                />
-                <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
-                    Group by date
-                </label>
+            <div className="row">
+                <div className="col">
+                    <div className="form-check form-switch">
+                        <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="byDate"
+                            checked={byDate}
+                            onChange={changeByDate}
+                        />
+                        <label className="form-check-label" htmlFor="byDate">
+                            Group by date
+                        </label>
+                    </div>
+                </div>
+                <div className="col">
+                    <div className="form-check form-switch float-end">
+                        <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id="limit30"
+                            checked={limit30}
+                            onChange={changeLimit30}
+                        />
+                        <label className="form-check-label" htmlFor="limit30">
+                            Max 30 items
+                        </label>
+                    </div>
+                </div>
             </div>
-            {(byDate && <CardListGroupedByDate hnItems={hnItems} />) || <CardList hnItems={hnItems} />}
+            {(byDate && <CardListGroupedByDate hnItems={items} />) || <CardList hnItems={items} />}
         </>
     );
 };
