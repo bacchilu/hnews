@@ -10,10 +10,3 @@ I get the top HN post from the last 7 days, ordered by score: 64 posts from the 
 ## comments
 
 Comments are show in a conversation style view.
-
-## TODO
-
--   Users navbar in comments
--   Firebase Authentication to save preferred
--   React Router?
--   https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/
