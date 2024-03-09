@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React from 'react';
 import {createRoot} from 'react-dom/client';
-import {Route, HashRouter as Router, Routes} from 'react-router-dom';
+import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
 import {CommentPage} from './components/comment_page';
 import {Main} from './components/main';
@@ -17,12 +17,12 @@ const App = function () {
         <>
             <NavBar />
             <div className="container pt-3">
-                <Router>
+                <BrowserRouter>
                     <Routes>
                         <Route path="/:commentId" element={<CommentPage />}></Route>
                         <Route path="/" element={<Main groupByDate={groupByDate} limit={limit} />}></Route>
                     </Routes>
-                </Router>
+                </BrowserRouter>
             </div>
         </>
     );
