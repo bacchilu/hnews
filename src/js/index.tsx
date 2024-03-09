@@ -10,8 +10,8 @@ import {Main} from './components/main';
 import {NavBar} from './components/navbar';
 
 const App = function () {
-    const groupByDate = React.useState(false);
-    const limit = React.useState(false);
+    const groupByDate = React.useState(true);
+    const limit = React.useState(true);
 
     return (
         <>
