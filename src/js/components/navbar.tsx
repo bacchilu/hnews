@@ -14,7 +14,7 @@ export const NavBar = function () {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
-                <a className="navbar-brand" href="/">
+                <a className="navbar-brand" href="/hnews">
                     <strong style={{color: '#ff6600'}}>HN</strong>ews <sub>{version}</sub>
                 </a>
                 <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
