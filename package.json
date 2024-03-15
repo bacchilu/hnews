@@ -1,6 +1,6 @@
 {
     "name": "hnews",
-    "version": "4.13.0",
+    "version": "4.13.1",
     "description": "HNews",
     "private": true,
     "source": "src/index.html",
@@ -37,7 +37,7 @@
         "@types/human-date": "^1.4.5",
         "@types/react": "^18.2.66",
         "@types/react-dom": "^18.2.22",
-        "npm-check-updates": "^16.14.15",
+        "npm-check-updates": "^16.14.16",
         "parcel": "^2.12.0",
         "process": "^0.11.10"
     },
