@@ -44,7 +44,6 @@ export const Card: React.FC<{item: HNItem}> = function ({item}) {
     const userEl = useRefUserDetails(item.author);
 
     const isFresh = new Date().getTime() - item.created_at.getTime() <= 1000 * 60 * 60 * 25;
-
     return (
         <div className="card text-dark bg-light mb-1 shadow rounded">
             <div className="card-body">
