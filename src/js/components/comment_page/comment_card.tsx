@@ -6,7 +6,7 @@ import {Spinner} from '../spinner';
 import {Twitter} from '../twitter';
 import {useRefUserDetails} from '../user_details';
 import {CommentersList} from './users';
-import {CardText, HNLink, useHNItem} from './utils';
+import {CardText, HNItem, HNLink, useHNItem} from './utils';
 
 const Comment = function ({item}) {
     const {data, error} = useHNItem(item);
@@ -55,8 +55,8 @@ const Comment = function ({item}) {
     );
 };
 
-export const CommentCard = function ({data}) {
-    const userEl = useRefUserDetails(data.by);
+export const CommentCard: React.FC<{hnItem: HNItem}> = function ({hnItem}) {
+    const userEl = useRefUserDetails(hnItem.by);
     const [childComment, setChildComment] = React.useState(null);
 
     return (
@@ -64,25 +64,25 @@ export const CommentCard = function ({data}) {
             <div className="card text-dark bg-light mb-1 shadow rounded">
                 <div className="card-body">
                     <p>
-                        <strong className="card-title">{data.title}</strong>
+                        <strong className="card-title">{hnItem.title}</strong>
                         <span className="float-end">
-                            <Badge score={data.score} />
+                            <Badge score={hnItem.score} />
                         </span>
                     </p>
                     <p className="card-subtitle mb-2 text-muted">
                         <span ref={userEl} style={{cursor: 'pointer'}}>
-                            {data.by}
+                            {hnItem.by}
                         </span>
-                        <em className="float-end" title={toLocaleString(new Date(data.time * 1000))}>
-                            {relativeTime(new Date(data.time * 1000))}
+                        <em className="float-end" title={toLocaleString(new Date(hnItem.time * 1000))}>
+                            {relativeTime(new Date(hnItem.time * 1000))}
                         </em>
                     </p>
-                    <CardText item={data} />
+                    <CardText item={hnItem} />
                     <p>
-                        <Twitter item={data} />
-                        <HNLink item={data} />
+                        <Twitter hnItem={hnItem} />
+                        <HNLink hnItem={hnItem} />
                     </p>
-                    <CommentersList kids={data.kids} selectComment={setChildComment} />
+                    <CommentersList kids={hnItem.kids} selectComment={setChildComment} />
                 </div>
             </div>
             {childComment !== null && <Comment item={childComment} />}

@@ -1,9 +1,9 @@
+// https://hn.algolia.com/api
+// https://github.com/minimaxir/hacker-news-undocumented
+
 import useSWR from 'swr';
 
 import {HNItem, getHNItems} from '../model/hn';
-
-// https://hn.algolia.com/api
-// https://github.com/minimaxir/hacker-news-undocumented
 
 const Fetch = (function () {
     return {

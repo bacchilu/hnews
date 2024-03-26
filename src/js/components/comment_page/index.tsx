@@ -17,5 +17,5 @@ export const CommentPage = function () {
         );
     if (data === undefined) return <Spinner />;
 
-    return <CommentCard data={data} />;
+    return <CommentCard hnItem={data} />;
 };

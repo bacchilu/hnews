@@ -65,7 +65,7 @@ export const Card: React.FC<{item: HNItem}> = function ({item}) {
                 </p>
                 <CardText item={item} />
                 <p>
-                    <Twitter item={item} />
+                    <Twitter hnItem={item} />
                     <span className="float-end">
                         <Comments item={item} />
                     </span>
