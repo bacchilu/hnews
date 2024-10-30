@@ -1,6 +1,7 @@
 import React from 'react';
 import useSWR from 'swr';
 
+import {SpinnerGrow} from '../bootstrap';
 import {VisibilityContainer} from './visibility_utils';
 
 interface HNItem {
@@ -13,15 +14,11 @@ const useHNItem = function (id: number) {
     return useSWR(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, fetcher, {dedupingInterval: 60000});
 };
 
-const Spinner = function () {
-    return <div className="spinner-grow spinner-grow-sm me-5"></div>;
-};
-
 const UserBadge = function ({item, isItemSelected, setSelected}) {
     const {data, error} = useHNItem(item);
 
     if (error !== undefined) return <span className="badge rounded-pill bg-danger">error</span>;
-    if (data === undefined) return <Spinner />;
+    if (data === undefined) return <SpinnerGrow />;
 
     const onClick = function (e) {
         e.preventDefault();
@@ -51,7 +48,7 @@ export const CommentersList = function ({kids, selectComment}) {
         };
 
         return (
-            <VisibilityContainer key={item} spinner={<Spinner />}>
+            <VisibilityContainer key={item} spinner={<SpinnerGrow />}>
                 <UserBadge item={item} isItemSelected={item === selectedKid} setSelected={setSelected} />
             </VisibilityContainer>
         );

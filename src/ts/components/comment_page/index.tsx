@@ -1,7 +1,7 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
 
-import {Spinner} from '../spinner';
+import {Spinner} from '../bootstrap';
 import {CommentCard} from './comment_card';
 import {useHNItem} from './utils';
 

@@ -5,6 +5,7 @@ import React from 'react';
 import {createRoot} from 'react-dom/client';
 import {Route, HashRouter as Router, Routes} from 'react-router-dom';
 
+import {Container} from './components/bootstrap';
 import {CommentPage} from './components/comment_page';
 import {Main} from './components/main';
 import {NavBar} from './components/navbar';
@@ -16,14 +17,14 @@ const App = function () {
     return (
         <>
             <NavBar />
-            <div className="container pt-3">
+            <Container>
                 <Router>
                     <Routes>
                         <Route path="/:commentId" element={<CommentPage />}></Route>
                         <Route path="/" element={<Main groupByDate={groupByDate} limit={limit} />}></Route>
                     </Routes>
                 </Router>
-            </div>
+            </Container>
         </>
     );
 };
