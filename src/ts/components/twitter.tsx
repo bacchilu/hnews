@@ -1,13 +1,13 @@
 import React from 'react';
 
-import {HNItem} from './comment_page/utils';
+import {HNItem} from '../model/hn';
 
 export const Twitter: React.FC<{hnItem: HNItem}> = function ({hnItem}) {
     const twitterUrl = new URL('https://twitter.com/intent/tweet');
     twitterUrl.searchParams.append('text', hnItem.title);
     twitterUrl.searchParams.append(
         'url',
-        hnItem.url !== null ? hnItem.url : `https://news.ycombinator.com/item?id=${hnItem.id}`
+        hnItem.url !== null ? hnItem.url : `https://news.ycombinator.com/item?id=${hnItem.objectID}`
     );
     twitterUrl.searchParams.append('hashtags', 'hackernews');
 
