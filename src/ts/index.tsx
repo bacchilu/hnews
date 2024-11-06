@@ -11,8 +11,9 @@ import {Main} from './components/main';
 import {NavBar} from './components/navbar';
 
 const App = function () {
-    const groupByDate = React.useState(true);
-    const limit = React.useState(true);
+    const groupByDate = React.useState(false);
+    const limit = React.useState(false);
+    const reversed = React.useState(false);
 
     return (
         <>
@@ -21,7 +22,10 @@ const App = function () {
                 <Router>
                     <Routes>
                         <Route path="/:commentId" element={<CommentPage />}></Route>
-                        <Route path="/" element={<Main groupByDate={groupByDate} limit={limit} />}></Route>
+                        <Route
+                            path="/"
+                            element={<Main groupByDate={groupByDate} limit={limit} reversed={reversed} />}
+                        ></Route>
                     </Routes>
                 </Router>
             </Container>

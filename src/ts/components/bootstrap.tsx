@@ -8,8 +8,9 @@ export const Row: React.FC<{children: React.ReactNode}> = function ({children}) 
     return <div className="row">{children}</div>;
 };
 
-export const Col: React.FC<{children: React.ReactNode}> = function ({children}) {
-    return <div className="col">{children}</div>;
+export const Col: React.FC<{children: React.ReactNode; span?: number}> = function ({children, span}) {
+    const className = span === undefined ? 'col' : `col-${span}`;
+    return <div className={className}>{children}</div>;
 };
 
 export const FloatEnd: React.FC<{children: React.ReactNode}> = function ({children}) {
