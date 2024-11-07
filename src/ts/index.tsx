@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import React from 'react';
 import {createRoot} from 'react-dom/client';
-import {Route, HashRouter as Router, Routes} from 'react-router-dom';
+import {HashRouter, Route, Routes} from 'react-router-dom';
 
 import {Container} from './components/bootstrap';
 import {CommentPage} from './components/comment_page';
@@ -19,7 +19,7 @@ const App = function () {
         <>
             <NavBar />
             <Container>
-                <Router>
+                <HashRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
                     <Routes>
                         <Route path="/:commentId" element={<CommentPage />}></Route>
                         <Route
@@ -27,7 +27,7 @@ const App = function () {
                             element={<Main groupByDate={groupByDate} limit={limit} reversed={reversed} />}
                         ></Route>
                     </Routes>
-                </Router>
+                </HashRouter>
             </Container>
         </>
     );
