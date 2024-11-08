@@ -1,14 +1,29 @@
 import {Popover} from 'bootstrap';
 import React from 'react';
+import {z} from 'zod';
 
 import {relativeTime, toLocaleString} from '../utils';
 
+const UserDetailsParser = z.object({
+    created: z
+        .number()
+        .int()
+        .positive()
+        .transform((v) => new Date(v * 1000)),
+    about: z.string(),
+});
+type UserDetailsTypeInput = z.input<typeof UserDetailsParser>;
+type UserDetailsType = z.infer<typeof UserDetailsParser>;
+
 const UserDetails = (function () {
-    const cache = {};
+    const cache = {} as {[id: string]: UserDetailsType};
     return {
         get: async function (id: string) {
             if (cache[id] !== undefined) return cache[id];
-            cache[id] = await (await fetch(`https://hacker-news.firebaseio.com/v0/user/${id}.json`)).json();
+            const res = (await (
+                await fetch(`https://hacker-news.firebaseio.com/v0/user/${id}.json`)
+            ).json()) as UserDetailsTypeInput;
+            cache[id] = UserDetailsParser.parse(res);
             return cache[id];
         },
     };
@@ -33,9 +48,7 @@ export const useRefUserDetails = function (user: string | undefined) {
             const t = `
                 <p class="fw-lighter">
                     <small>
-                        <em title=${toLocaleString(new Date(res.created * 1000))}>${relativeTime(
-                new Date(res.created * 1000)
-            )}</em>
+                        <em title=${toLocaleString(res.created)}>${relativeTime(res.created)}</em>
                         <br />
                         ${res.about !== undefined ? res.about : ''}
                     </small>

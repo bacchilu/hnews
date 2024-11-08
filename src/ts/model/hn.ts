@@ -17,6 +17,8 @@ const HNItemParser = z.object({
     num_comments: z.number().int().nonnegative(),
 });
 
+type HNItemType = z.infer<typeof HNItemParser>;
+
 export interface HNItem {
     objectID: string;
     author: string;
@@ -29,7 +31,7 @@ export interface HNItem {
 }
 
 type AssertSameType<T, U> = T extends U ? (U extends T ? true : never) : never;
-type Test = AssertSameType<z.infer<typeof HNItemParser>, HNItem>;
+type Test = AssertSameType<HNItemType, HNItem>;
 const testValue: Test = true;
 
 const HNItemsParser = z.array(HNItemParser);
