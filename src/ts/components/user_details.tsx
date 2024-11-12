@@ -10,7 +10,7 @@ const UserDetailsParser = z.object({
         .int()
         .positive()
         .transform((v) => new Date(v * 1000)),
-    about: z.string(),
+    about: z.string().optional(),
 });
 type UserDetailsTypeInput = z.input<typeof UserDetailsParser>;
 type UserDetailsType = z.infer<typeof UserDetailsParser>;
