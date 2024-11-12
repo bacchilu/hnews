@@ -21,11 +21,11 @@ const App = function () {
             <Container>
                 <HashRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
                     <Routes>
-                        <Route path="/:commentId" element={<CommentPage />}></Route>
                         <Route
                             path="/"
                             element={<Main groupByDate={groupByDate} limit={limit} reversed={reversed} />}
                         ></Route>
+                        <Route path="/:commentId" element={<CommentPage />}></Route>
                     </Routes>
                 </HashRouter>
             </Container>
