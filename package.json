@@ -1,6 +1,6 @@
 {
     "name": "hnews",
-    "version": "6.2.0",
+    "version": "6.2.1",
     "description": "HNews",
     "private": true,
     "source": "src/index.html",
@@ -43,7 +43,7 @@
     "dependencies": {
         "bootstrap": "^5.3.3",
         "bootstrap-icons": "^1.11.3",
-        "firebase": "^11.0.1",
+        "firebase": "^11.0.2",
         "human-date": "^1.4.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
