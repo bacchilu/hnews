@@ -19,7 +19,7 @@ const App = function () {
         <>
             <NavBar />
             <Container>
-                <HashRouter future={{v7_startTransition: true, v7_relativeSplatPath: true}}>
+                <HashRouter>
                     <Routes>
                         <Route
                             path="/"
