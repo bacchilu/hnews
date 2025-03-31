@@ -1,6 +1,6 @@
 {
     "name": "hnews",
-    "version": "8.6.0",
+    "version": "8.7.0",
     "description": "HNews",
     "private": true,
     "source": "src/index.html",
@@ -38,7 +38,7 @@
         "@types/react": "^19.0.12",
         "@types/react-dom": "^19.0.4",
         "npm-check-updates": "^17.1.16",
-        "parcel": "^2.14.2",
+        "parcel": "^2.14.4",
         "process": "^0.11.10"
     },
     "dependencies": {
@@ -46,10 +46,10 @@
         "bootstrap-icons": "^1.11.3",
         "firebase": "^11.5.0",
         "human-date": "^1.4.0",
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0",
+        "react": "^19.1.0",
+        "react-dom": "^19.1.0",
         "react-intersection-observer-hook": "^3.0.1",
-        "react-router-dom": "^7.4.0",
+        "react-router-dom": "^7.4.1",
         "swr": "^2.3.3",
         "zod": "^3.24.2"
     },
