@@ -7,7 +7,7 @@
     "browserslist": "defaults",
     "scripts": {
         "dev": "parcel -p 8000 --lazy",
-        "build": "rm -rf dist && rm -rf docs && parcel build --no-source-maps --dist-dir docs --public-url=/hnews",
+        "build": "rm -rf dist && rm -rf docs && parcel build --no-source-maps --dist-dir docs --public-url=/hnews --no-scope-hoist",
         "update": "ncu -u",
         "watch": "parcel watch"
     },
@@ -33,13 +33,13 @@
         "vueIndentScriptAndStyle": false
     },
     "devDependencies": {
+        "@parcel/transformer-webmanifest": "^2.15.2",
         "@types/bootstrap": "^5.2.10",
         "@types/human-date": "^1.4.5",
         "@types/react": "^19.1.5",
         "@types/react-dom": "^19.1.5",
         "npm-check-updates": "^18.0.1",
-        "parcel": "^2.15.2",
-        "process": "^0.11.10"
+        "parcel": "^2.15.2"
     },
     "dependencies": {
         "bootstrap": "^5.3.6",
