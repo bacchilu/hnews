@@ -1,6 +1,6 @@
 import {Popover} from 'bootstrap';
 import React from 'react';
-import {z} from 'zod';
+import * as z from 'zod';
 
 import {relativeTime, toLocaleString} from '../utils';
 
