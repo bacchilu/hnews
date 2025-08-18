@@ -7,8 +7,7 @@
     "browserslist": "defaults",
     "scripts": {
         "dev": "parcel -p 8000 --lazy",
-        "build": "rm -rf dist && rm -rf docs && parcel build --no-source-maps --dist-dir docs --public-url=/hnews",
-        "build-NO-SCOPE-HOIST": "rm -rf dist && rm -rf docs && parcel build --no-source-maps --dist-dir docs --public-url=/hnews --no-scope-hoist",
+        "build": "rm -rf dist && rm -rf docs && parcel build --no-source-maps --dist-dir docs --public-url=/hnews --no-scope-hoist",
         "update": "ncu -u",
         "watch": "parcel watch"
     },
