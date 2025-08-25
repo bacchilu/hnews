@@ -3,7 +3,6 @@ import React from 'react';
 import {relativeTime, toLocaleString} from '../../utils';
 import {Badge} from '../badge';
 import {Spinner} from '../bootstrap';
-import {Twitter} from '../twitter';
 import {useRefUserDetails} from '../user_details';
 import {CommentersList} from './users';
 import {CardText, HNItem, HNLink, useHNItem} from './utils';
@@ -79,7 +78,7 @@ export const CommentCard: React.FC<{hnItem: HNItem}> = function ({hnItem}) {
                     </p>
                     <CardText item={hnItem} />
                     <p>
-                        <Twitter hnItem={hnItem} />
+                        <span>&nbsp;</span>
                         <HNLink hnItem={hnItem} />
                     </p>
                     <CommentersList kids={hnItem.kids} selectComment={setChildComment} />

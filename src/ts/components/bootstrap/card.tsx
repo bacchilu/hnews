@@ -4,7 +4,6 @@ import {HNItem} from '../../model/hn';
 import {relativeTime, toLocaleString} from '../../utils';
 import {Badge} from '../badge';
 import {Comments} from '../card/comments';
-import {Twitter} from '../twitter';
 import {useRefUserDetails} from '../user_details';
 
 const Card: React.FC<{children: React.ReactNode}> = function ({children}) {
@@ -48,7 +47,6 @@ export const SubTitle: React.FC<{item: HNItem}> = function ({item}) {
 export const Footer: React.FC<{item: HNItem}> = function ({item}) {
     return (
         <div>
-            <Twitter hnItem={item} />
             <span className="float-end">
                 <Comments item={item} />
             </span>

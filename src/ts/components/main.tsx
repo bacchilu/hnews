@@ -35,15 +35,15 @@ export const Main: React.FC<{
     limit: [boolean, (v: boolean) => void];
     reversed: [boolean, (v: boolean) => void];
 }> = function ({groupByDate, limit, reversed}) {
-    const {data: hnItems, error} = useHNItems();
+    const {data, error} = useHNItems();
 
     const [[byDate, setByDate], [limit30, setLimit30], [isReversed, setIsReversed]] = [groupByDate, limit, reversed];
 
     if (error !== undefined) return <DangerAlert message={error.message} />;
-    if (hnItems === undefined) return <Spinner />;
+    if (data === undefined) return <Spinner />;
 
-    const items = limit30 ? hnItems.slice(0, 30) : hnItems;
-    const items2 = isReversed ? [...items].reverse() : items;
+    const items = limit30 ? data.slice(0, 30) : data;
+    const hnItems = isReversed ? [...items].reverse() : items;
 
     return (
         <>
@@ -65,9 +65,9 @@ export const Main: React.FC<{
                 </Col>
             </Row>
             {byDate ? (
-                <CardListGroupedByDate hnItems={items2} isReversed={isReversed} />
+                <CardListGroupedByDate hnItems={hnItems} isReversed={isReversed} />
             ) : (
-                <CardList hnItems={items2} />
+                <CardList hnItems={hnItems} />
             )}
         </>
     );
