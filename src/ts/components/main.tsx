@@ -35,7 +35,7 @@ export const Main: React.FC<{
     limit: [boolean, (v: boolean) => void];
     reversed: [boolean, (v: boolean) => void];
 }> = function ({groupByDate, limit, reversed}) {
-    const [hnItems, error] = useHNItems();
+    const {data: hnItems, error} = useHNItems();
 
     const [[byDate, setByDate], [limit30, setLimit30], [isReversed, setIsReversed]] = [groupByDate, limit, reversed];
 

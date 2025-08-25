@@ -10,24 +10,31 @@ import {CommentPage} from './components/comment_page';
 import {Main} from './components/main';
 import {NavBar} from './components/navbar';
 
+const Router: React.FC<{
+    groupByDate: [boolean, (v: boolean) => void];
+    limit: [boolean, (v: boolean) => void];
+    reversed: [boolean, (v: boolean) => void];
+}> = function ({groupByDate, limit, reversed}) {
+    return (
+        <HashRouter>
+            <Routes>
+                <Route path="/" element={<Main groupByDate={groupByDate} limit={limit} reversed={reversed} />}></Route>
+                <Route path="/:commentId" element={<CommentPage />}></Route>
+            </Routes>
+        </HashRouter>
+    );
+};
+
 const App = function () {
-    const groupByDate = React.useState(false);
-    const limit = React.useState(false);
-    const reversed = React.useState(false);
+    const groupByDate = React.useState<boolean>(false);
+    const limit = React.useState<boolean>(false);
+    const reversed = React.useState<boolean>(false);
 
     return (
         <>
             <NavBar />
             <Container>
-                <HashRouter>
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={<Main groupByDate={groupByDate} limit={limit} reversed={reversed} />}
-                        ></Route>
-                        <Route path="/:commentId" element={<CommentPage />}></Route>
-                    </Routes>
-                </HashRouter>
+                <Router groupByDate={groupByDate} limit={limit} reversed={reversed} />
             </Container>
         </>
     );

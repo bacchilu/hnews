@@ -5,7 +5,7 @@ import useSWR from 'swr';
 
 import {HNItem, getHNItems} from '../model/hn';
 
-const getData = async function () {
+const getData = async function (): Promise<HNItem[]> {
     const NOW = Date.now() / 1000;
     const DAY = 60 * 60 * 24;
 
@@ -21,7 +21,7 @@ const getData = async function () {
         });
 };
 
-export const useHNItems = function () {
+export const useHNItems = function (): {data: HNItem[] | undefined; error: Error | undefined} {
     const {data, error} = useSWR<HNItem[], Error>('HN_ITEMS', getData, {dedupingInterval: 60000});
-    return [data, error] as [HNItem[] | undefined, Error | undefined];
+    return {data, error};
 };

@@ -3,22 +3,6 @@
 
 import {z} from 'zod';
 
-const HNItemParser = z.object({
-    objectID: z.string(),
-    author: z.string(),
-    title: z.string(),
-    points: z.number().int().nonnegative(),
-    created_at: z
-        .string()
-        .datetime()
-        .transform((v) => new Date(v)),
-    story_text: z.string().optional(),
-    url: z.string().optional(),
-    num_comments: z.number().int().nonnegative(),
-});
-
-type HNItemType = z.infer<typeof HNItemParser>;
-
 export interface HNItem {
     objectID: string;
     author: string;
@@ -30,13 +14,20 @@ export interface HNItem {
     num_comments: number;
 }
 
-type AssertSameType<T, U> = T extends U ? (U extends T ? true : never) : never;
-type Test = AssertSameType<HNItemType, HNItem>;
-const testValue: Test = true;
+const HNItemsParser: z.ZodType<HNItem[]> = z.array(
+    z.object({
+        objectID: z.string(),
+        author: z.string(),
+        title: z.string(),
+        points: z.number().int().nonnegative(),
+        created_at: z.string().transform((v) => new Date(v)),
+        story_text: z.string().optional(),
+        url: z.string().optional(),
+        num_comments: z.number().int().nonnegative(),
+    })
+);
 
-const HNItemsParser = z.array(HNItemParser);
-
-export const getHNItems = async function (from: number, to: number, hitsPerPage: number) {
+export const getHNItems = async function (from: number, to: number, hitsPerPage: number): Promise<HNItem[]> {
     const searchParams = new URLSearchParams({
         query: '',
         numericFilters: `created_at_i>${from},created_at_i<=${to}`,
