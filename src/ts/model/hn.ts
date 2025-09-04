@@ -3,6 +3,8 @@
 
 import {z} from 'zod';
 
+import type {HNItemsGateway} from '../hooks/data_gateway';
+
 export interface HNItem {
     objectID: string;
     author: string;
@@ -27,7 +29,11 @@ const HNItemsParser: z.ZodType<HNItem[]> = z.array(
     })
 );
 
-export const getHNItems = async function (from: number, to: number, hitsPerPage: number): Promise<HNItem[]> {
+export const getHNItems: HNItemsGateway = async function (
+    from: number,
+    to: number,
+    hitsPerPage: number
+): Promise<HNItem[]> {
     const searchParams = new URLSearchParams({
         query: '',
         numericFilters: `created_at_i>${from},created_at_i<=${to}`,

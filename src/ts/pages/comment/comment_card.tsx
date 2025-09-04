@@ -1,10 +1,10 @@
 import React from 'react';
 
 import {relativeTime, toLocaleString} from '../../utils';
-import {Badge} from '../badge';
-import {Spinner} from '../bootstrap';
-import CardTemplate from '../bootstrap/card';
-import {useRefUserDetails} from '../user_details';
+import {Badge} from '../../components/badge';
+import {Spinner} from '../../components/bootstrap';
+import CardTemplate from '../../components/bootstrap/card';
+import {useRefUserDetails} from '../../components/user_details';
 import {CommentersList} from './users';
 import {CardText, HNItem, HNLink, useHNItem} from './utils';
 

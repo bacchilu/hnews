@@ -1,7 +1,7 @@
 import React from 'react';
 import useSWR from 'swr';
 
-import {SpinnerGrow} from '../bootstrap';
+import {SpinnerGrow} from '../../components/bootstrap';
 import {VisibilityContainer} from './visibility_utils';
 
 interface HNItem {

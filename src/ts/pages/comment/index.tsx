@@ -1,6 +1,6 @@
 import {useParams} from 'react-router-dom';
 
-import {DangerAlert, Spinner} from '../bootstrap';
+import {DangerAlert, Spinner} from '../../components/bootstrap';
 import {CommentCard} from './comment_card';
 import {useHNItem} from './utils';
 

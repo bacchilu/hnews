@@ -44,3 +44,4 @@ export const HNLink: React.FC<{hnItem: HNItem}> = function ({hnItem}) {
         </a>
     );
 };
+

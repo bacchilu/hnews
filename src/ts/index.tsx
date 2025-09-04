@@ -6,9 +6,9 @@ import {createRoot} from 'react-dom/client';
 import {HashRouter, Route, Routes} from 'react-router-dom';
 
 import {Container} from './components/bootstrap';
-import {CommentPage} from './components/comment_page';
-import {Main} from './components/main';
+import {CommentPage} from './pages/comment';
 import {NavBar} from './components/navbar';
+import {Main} from './pages/main';
 
 const Router: React.FC<{
     groupByDate: [boolean, (v: boolean) => void];
