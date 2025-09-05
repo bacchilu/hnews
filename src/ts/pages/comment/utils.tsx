@@ -1,22 +1,6 @@
 import React from 'react';
-import useSWR from 'swr';
 
-export interface HNItem {
-    by: string;
-    title: string;
-    score: number;
-    time: number;
-    url: string;
-    id: number;
-    kids: number[];
-    descendants: number;
-}
-
-const fetcher = (...args: Parameters<typeof fetch>): Promise<HNItem> => fetch(...args).then((res) => res.json());
-
-export const useHNItem = function (id: string) {
-    return useSWR<HNItem, Error>(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, fetcher);
-};
+import type {HNItem} from './hooks';
 
 export const CardText = function ({item}) {
     if (item['text'] !== undefined) return <em dangerouslySetInnerHTML={{__html: item['text']}}></em>;
@@ -44,4 +28,3 @@ export const HNLink: React.FC<{hnItem: HNItem}> = function ({hnItem}) {
         </a>
     );
 };
-

@@ -6,7 +6,9 @@ import {Spinner} from '../../components/bootstrap';
 import CardTemplate from '../../components/bootstrap/card';
 import {useRefUserDetails} from '../../components/user_details';
 import {CommentersList} from './users';
-import {CardText, HNItem, HNLink, useHNItem} from './utils';
+import {CardText, HNLink} from './utils';
+import type {HNItem} from './hooks';
+import {useHNItem} from './hooks';
 
 const Comment = function ({item}) {
     const {data, error} = useHNItem(item);

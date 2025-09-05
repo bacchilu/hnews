@@ -2,7 +2,7 @@ import {useParams} from 'react-router-dom';
 
 import {DangerAlert, Spinner} from '../../components/bootstrap';
 import {CommentCard} from './comment_card';
-import {useHNItem} from './utils';
+import {useHNItem} from './hooks';
 
 export const CommentPage = function () {
     const {commentId} = useParams();

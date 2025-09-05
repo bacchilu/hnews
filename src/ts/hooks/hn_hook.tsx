@@ -3,7 +3,7 @@
 
 import useSWR from 'swr';
 
-import type {HNItem} from '../model/entities/hn_item';
+import type {HNItem} from '../entities/hn_item';
 import type {HNItemsGateway} from './data_gateway';
 
 export const useHNItems = function (dataMapper: HNItemsGateway): {
