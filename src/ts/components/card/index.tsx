@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {HNItem} from '../../model/hn';
+import type {HNItem} from '../../model/entities/hn_item';
 import CardTemplate, {
     Footer as CardFooter,
     SubTitle as CardSubTitle,

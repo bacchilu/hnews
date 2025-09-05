@@ -3,18 +3,8 @@
 
 import {z} from 'zod';
 
+import type {HNItem} from '../entities/hn_item';
 import type {HNItemsGateway} from '../hooks/data_gateway';
-
-export interface HNItem {
-    objectID: string;
-    author: string;
-    title: string;
-    points: number;
-    created_at: Date;
-    story_text?: string;
-    url?: string;
-    num_comments: number;
-}
 
 const HNItemsParser: z.ZodType<HNItem[]> = z.array(
     z.object({
@@ -42,6 +32,6 @@ export const getHNItems: HNItemsGateway = async function (
     const url = `https://hn.algolia.com/api/v1/search?${searchParams.toString()}`;
     const res = await fetch(url);
     if (!res.ok) throw new Error('An error occurred while fetching the data.');
-    const data: any[] = (await res.json()).hits;
+    const data: unknown[] = (await res.json()).hits;
     return HNItemsParser.parse(data);
 };

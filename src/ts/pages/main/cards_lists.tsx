@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Separator} from '../../components/bootstrap';
 import {Card} from '../../components/card';
-import {HNItem} from '../../model/hn';
+import type {HNItem} from '../../model/entities/hn_item';
 
 export const CardList: React.FC<{hnItems: HNItem[]}> = function ({hnItems}) {
     return hnItems.map((item) => <Card key={item.objectID} item={item} />);
