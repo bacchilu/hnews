@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {version} from '../../../package.json';
 import {useUser} from '../hooks/use_user';
 import {LoginButton} from './login_button';
