@@ -1,6 +1,6 @@
 {
     "name": "hnews",
-    "version": "13.2.1",
+    "version": "13.2.2",
     "description": "HNews",
     "private": true,
     "source": "src/index.html",
@@ -35,7 +35,7 @@
     "devDependencies": {
         "@types/bootstrap": "^5.2.10",
         "@types/human-date": "^1.4.5",
-        "@types/react": "^19.2.3",
+        "@types/react": "^19.2.4",
         "@types/react-dom": "^19.2.3",
         "npm-check-updates": "^19.1.2",
         "parcel": "^2.16.1"
