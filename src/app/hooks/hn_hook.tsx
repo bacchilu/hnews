@@ -10,7 +10,7 @@ export const useHNItems = function (dataMapper: HNItemsGateway): {
     data: HNItem[] | undefined;
     error: Error | undefined;
 } {
-    const getData = async function (): Promise<HNItem[]> {
+    const fetcher = async function (): Promise<HNItem[]> {
         const NOW = Date.now() / 1000;
         const DAY = 60 * 60 * 24;
 
@@ -26,6 +26,6 @@ export const useHNItems = function (dataMapper: HNItemsGateway): {
             });
     };
 
-    const {data, error} = useSWR<HNItem[], Error>('HN_ITEMS', getData, {dedupingInterval: 60000});
+    const {data, error} = useSWR<HNItem[], Error>('HN_ITEMS', fetcher, {dedupingInterval: 60000});
     return {data, error};
 };

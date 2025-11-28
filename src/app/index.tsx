@@ -6,8 +6,8 @@ import {createRoot} from 'react-dom/client';
 import {HashRouter, Route, Routes} from 'react-router-dom';
 
 import {Container} from './components/bootstrap';
-import {CommentPage} from './pages/comment';
 import {NavBar} from './components/navbar';
+import {CommentPage} from './pages/comment';
 import {Main} from './pages/main';
 
 const Router: React.FC<{
