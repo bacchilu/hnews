@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Col, DangerAlert, FloatEnd, Row, Spinner, Switch} from '../../components/bootstrap';
 import {useHNItems} from '../../hooks/hn_hook';
-import {getHNItems} from '../../model/hn';
+import {getHNItems} from '../../api/hn';
 import {CardList, CardListGroupedByDate} from './cards_lists';
 
 export const Main: React.FC<{

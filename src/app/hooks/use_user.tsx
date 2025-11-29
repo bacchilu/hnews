@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Auth} from '../model';
+import {Auth} from '../api';
 
 export const useUser = function () {
     const [user, setUser] = React.useState<string | null>(null);

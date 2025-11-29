@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Auth} from '../model';
+import {Auth} from '../api';
 
 export const LoginButton: React.FC<{user: string | null}> = function ({user}) {
     const login = function (e: React.FormEvent<HTMLButtonElement>) {
