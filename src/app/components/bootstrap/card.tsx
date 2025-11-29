@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type {HNItem} from '../../model/entities/hn_item';
+import type {HNItem} from '../../hooks/entities';
 import {relativeTime, toLocaleString} from '../../utils';
 import {Badge} from '../badge';
 import {Comments} from '../card/comments';

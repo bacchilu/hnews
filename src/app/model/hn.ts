@@ -3,7 +3,7 @@
 
 import {z} from 'zod';
 
-import type {HNItem} from '../entities/hn_item';
+import type {HNItem} from '../hooks/entities';
 import type {HNItemsGateway} from '../hooks/data_gateway';
 
 const HNItemsParser: z.ZodType<HNItem[]> = z.array(
