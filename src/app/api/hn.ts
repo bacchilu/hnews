@@ -3,21 +3,26 @@
 
 import {z} from 'zod';
 
-import type {HNItem} from '../hooks/entities';
 import type {HNItemsGateway} from '../hooks/data_gateway';
+import type {HNItem} from '../hooks/entities';
 
-const HNItemsParser: z.ZodType<HNItem[]> = z.array(
-    z.object({
-        objectID: z.string(),
-        author: z.string(),
-        title: z.string(),
-        points: z.number().int().nonnegative(),
-        created_at: z.string().transform((v) => new Date(v)),
-        story_text: z.string().optional(),
-        url: z.string().optional(),
-        num_comments: z.number().int().nonnegative(),
-    })
-);
+const HNItemSchema = z.object({
+    objectID: z.string(),
+    author: z.string(),
+    title: z.string(),
+    points: z.number().int().nonnegative(),
+    created_at: z.string().transform((v) => new Date(v)),
+    story_text: z.string().optional(),
+    url: z.string().optional(),
+    num_comments: z.number().int().nonnegative(),
+});
+type HNItemInput = z.input<typeof HNItemSchema>;
+type HNItemOutput = z.output<typeof HNItemSchema>;
+
+const parse = function (data: HNItemInput): HNItem {
+    const res: HNItemOutput = HNItemSchema.parse(data);
+    return {...res} as HNItem;
+};
 
 export const getHNItems: HNItemsGateway = async function (
     from: number,
@@ -32,6 +37,6 @@ export const getHNItems: HNItemsGateway = async function (
     const url = `https://hn.algolia.com/api/v1/search?${searchParams.toString()}`;
     const res = await fetch(url);
     if (!res.ok) throw new Error('An error occurred while fetching the data.');
-    const data: unknown[] = (await res.json()).hits;
-    return HNItemsParser.parse(data);
+    const data: HNItemInput[] = (await res.json()).hits;
+    return data.map((item) => parse(item));
 };
