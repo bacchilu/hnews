@@ -3,10 +3,10 @@
 
 import useSWR from 'swr';
 
-import type {HNItem} from './entities';
 import type {HNItemsGateway} from './data_gateway';
+import type {HNItem} from './entities';
 
-export const useHNItems = function (dataMapper: HNItemsGateway): {
+export const useHNItems = function (dataGateway: HNItemsGateway): {
     data: HNItem[] | undefined;
     error: Error | undefined;
 } {
@@ -14,8 +14,8 @@ export const useHNItems = function (dataMapper: HNItemsGateway): {
         const NOW = Date.now() / 1000;
         const DAY = 60 * 60 * 24;
 
-        const res = await Promise.all(
-            [0, 1, 2, 3, 4, 5, 6].map((i) => dataMapper(NOW - (7 - i) * DAY, NOW - (6 - i) * DAY, 2 ** i))
+        const res: HNItem[][] = await Promise.all(
+            [0, 1, 2, 3, 4, 5, 6].map((i) => dataGateway.getData(NOW - (7 - i) * DAY, NOW - (6 - i) * DAY, 2 ** i))
         );
         return res
             .reduce((acc, item) => [...acc, ...item], [])
