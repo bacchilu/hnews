@@ -9,19 +9,24 @@ import type {HNItem} from '../hooks/entities';
 const HNItemSchema = z.object({
     objectID: z.string(),
     author: z.string(),
-    title: z.string(),
+    title: z.string().optional(),
     points: z.number().int().nonnegative(),
     created_at: z.string().transform((v) => new Date(v)),
     story_text: z.string().optional(),
     url: z.string().optional(),
-    num_comments: z.number().int().nonnegative(),
+    num_comments: z.number().int().nonnegative().optional(),
 });
 type HNItemInput = z.input<typeof HNItemSchema>;
 type HNItemOutput = z.output<typeof HNItemSchema>;
 
 const parse = function (data: HNItemInput): HNItem {
-    const res: HNItemOutput = HNItemSchema.parse(data);
-    return {...res} as HNItem;
+    try {
+        const res: HNItemOutput = HNItemSchema.parse(data);
+        return {...res} as HNItem;
+    } catch (error) {
+        console.error('Failed to parse HN item', {id: (data as any)?.objectID, error, data});
+        throw error;
+    }
 };
 
 export const getHNItems: HNItemsGateway = {
