@@ -22,7 +22,16 @@ type HNItemOutput = z.output<typeof HNItemSchema>;
 const parse = function (data: HNItemInput): HNItem {
     try {
         const res: HNItemOutput = HNItemSchema.parse(data);
-        return {...res} as HNItem;
+        return {
+            objectID: res.objectID,
+            author: res.author,
+            title: res.title !== undefined ? res.title : '',
+            points: res.points,
+            created_at: res.created_at,
+            story_text: res.story_text,
+            url: res.url,
+            num_comments: res.num_comments !== undefined ? res.num_comments : 0,
+        };
     } catch (error) {
         console.error('Failed to parse HN item', {id: (data as any)?.objectID, error, data});
         throw error;
