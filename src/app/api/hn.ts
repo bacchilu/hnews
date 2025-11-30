@@ -19,19 +19,22 @@ const HNItemSchema = z.object({
 type HNItemInput = z.input<typeof HNItemSchema>;
 type HNItemOutput = z.output<typeof HNItemSchema>;
 
-const parse = function (data: HNItemInput): HNItem {
+const toEntity = function (item: HNItemOutput): HNItem {
+    return {
+        objectID: item.objectID,
+        author: item.author,
+        title: item.title !== undefined ? item.title : '',
+        points: item.points,
+        created_at: item.created_at,
+        story_text: item.story_text,
+        url: item.url,
+        num_comments: item.num_comments !== undefined ? item.num_comments : 0,
+    };
+};
+
+const parse = function (data: HNItemInput): HNItemOutput {
     try {
-        const res: HNItemOutput = HNItemSchema.parse(data);
-        return {
-            objectID: res.objectID,
-            author: res.author,
-            title: res.title !== undefined ? res.title : '',
-            points: res.points,
-            created_at: res.created_at,
-            story_text: res.story_text,
-            url: res.url,
-            num_comments: res.num_comments !== undefined ? res.num_comments : 0,
-        };
+        return HNItemSchema.parse(data);
     } catch (error) {
         console.error('Failed to parse HN item', {id: (data as any)?.objectID, error, data});
         throw error;
@@ -49,6 +52,6 @@ export const getHNItems: HNItemsGateway = {
         const res = await fetch(url);
         if (!res.ok) throw new Error('An error occurred while fetching the data.');
         const data: HNItemInput[] = (await res.json()).hits;
-        return data.map((item) => parse(item));
+        return data.map((item) => toEntity(parse(item)));
     },
 };
