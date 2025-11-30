@@ -3,13 +3,19 @@ import {Link} from 'react-router-dom';
 
 import type {HNItem} from '../../hooks/entities';
 
-const LinkTo: React.FC<{to: string; disabled: boolean; children: JSX.Element}> = function ({to, disabled, children}) {
+const LinkTo: React.FC<{to: string; disabled: boolean; children: React.ReactNode}> = function ({
+    to,
+    disabled,
+    children,
+}) {
     return disabled ? (
-        <Link to={`/${to}`} style={{pointerEvents: 'none'}}>
+        <Link to={`/${to}`} style={{pointerEvents: 'none'}} target="_blank">
             {children}
         </Link>
     ) : (
-        <Link to={to}>{children}</Link>
+        <Link to={to} target="_blank">
+            {children}
+        </Link>
     );
 };
 
