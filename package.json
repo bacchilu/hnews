@@ -1,6 +1,6 @@
 {
     "name": "hnews",
-    "version": "13.3.1",
+    "version": "13.4.0",
     "description": "HNews",
     "private": true,
     "source": "src/index.html",
@@ -37,20 +37,20 @@
         "@types/human-date": "^1.4.5",
         "@types/react": "^19.2.7",
         "@types/react-dom": "^19.2.3",
-        "npm-check-updates": "^19.1.2",
-        "parcel": "^2.16.1"
+        "npm-check-updates": "^19.2.0",
+        "parcel": "^2.16.3"
     },
     "dependencies": {
         "bootstrap": "^5.3.8",
         "bootstrap-icons": "^1.13.1",
-        "firebase": "^12.6.0",
+        "firebase": "^12.7.0",
         "human-date": "^1.4.0",
-        "react": "^19.2.0",
-        "react-dom": "^19.2.0",
+        "react": "^19.2.3",
+        "react-dom": "^19.2.3",
         "react-intersection-observer-hook": "^4.0.1",
-        "react-router-dom": "^7.9.6",
-        "swr": "^2.3.7",
-        "zod": "^4.1.13"
+        "react-router-dom": "^7.11.0",
+        "swr": "^2.3.8",
+        "zod": "^4.2.1"
     },
     "@parcel/resolver-default": {
         "packageExports": true
