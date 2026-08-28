@@ -1,5 +1,7 @@
-import {FirebaseApp} from 'firebase/app';
-import {GoogleAuthProvider, User, getAuth, onAuthStateChanged, signInWithRedirect, signOut} from 'firebase/auth';
+import {FirebaseError} from 'firebase/app';
+import type {FirebaseApp} from 'firebase/app';
+import {GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithRedirect, signOut} from 'firebase/auth';
+import type {User} from 'firebase/auth';
 
 export const FirebaseAuth = function (firebaseApp: FirebaseApp) {
     const auth = getAuth(firebaseApp);
@@ -14,9 +16,8 @@ export const FirebaseAuth = function (firebaseApp: FirebaseApp) {
                 // const user = result.user;
                 // console.log(user['displayName'], user['email'], user['photoURL']);
             } catch (error) {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode, errorMessage);
+                if (error instanceof FirebaseError) console.log(error.code, error.message);
+                else console.error(error);
             }
         },
         signOut: function () {

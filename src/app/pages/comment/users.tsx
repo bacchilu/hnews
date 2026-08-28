@@ -4,13 +4,17 @@ import {SpinnerGrow} from '../../components/bootstrap';
 import {useHNItem2} from './hooks';
 import {VisibilityContainer} from './visibility_utils';
 
-const UserBadge = function ({item, isItemSelected, setSelected}) {
+const UserBadge: React.FC<{item: number; isItemSelected: boolean; setSelected: () => void}> = function ({
+    item,
+    isItemSelected,
+    setSelected,
+}) {
     const {data, error} = useHNItem2(item);
 
     if (error !== undefined) return <span className="badge rounded-pill bg-danger">error</span>;
     if (data === undefined) return <SpinnerGrow />;
 
-    const onClick = function (e) {
+    const onClick = function (e: React.MouseEvent<HTMLAnchorElement>) {
         e.preventDefault();
         setSelected();
     };
@@ -28,7 +32,10 @@ const UserBadge = function ({item, isItemSelected, setSelected}) {
     );
 };
 
-export const CommentersList = function ({kids, selectComment}) {
+export const CommentersList: React.FC<{kids: number[]; selectComment: (item: number) => void}> = function ({
+    kids,
+    selectComment,
+}) {
     const [selectedKid, setSelectedKid] = React.useState<number | null>(null);
 
     const items = kids.map(function (item: number) {

@@ -31,21 +31,24 @@ const UserDetails = (function () {
 
 export const useRefUserDetails = function (user: string | undefined) {
     const domEl = React.useRef<HTMLElement | null>(null);
-    React.useEffect(function () {
-        if (user === undefined) return;
-        const popover = new Popover(domEl.current!, {
-            content: `
+    React.useEffect(
+        function () {
+            if (user === undefined || domEl.current === null) return;
+
+            const element = domEl.current;
+            const popover = new Popover(element, {
+                content: `
                 <div class="spinner-grow spinner-grow-sm" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
             `,
-            html: true,
-            placement: 'auto',
-            trigger: 'click hover',
-        });
-        const listener = async function () {
-            const res = await UserDetails.get(user);
-            const t = `
+                html: true,
+                placement: 'auto',
+                trigger: 'click hover',
+            });
+            const listener = async function () {
+                const res = await UserDetails.get(user);
+                const t = `
                 <p class="fw-lighter">
                     <small>
                         <em title=${toLocaleString(res.created)}>${relativeTime(res.created)}</em>
@@ -54,16 +57,17 @@ export const useRefUserDetails = function (user: string | undefined) {
                     </small>
                 </p>
             `;
-            // if (popover['tip'] !== null) popover.setContent({'.popover-header': 'another title', '.popover-body': t});
-            if (popover['tip'] !== null) popover['tip'].getElementsByClassName('popover-body')[0].innerHTML = t;
-        };
-        domEl.current!.addEventListener('inserted.bs.popover', listener);
+                popover.setContent({'.popover-body': t});
+            };
+            element.addEventListener('inserted.bs.popover', listener);
 
-        return function () {
-            // domEl.current.removeEventListener('inserted.bs.popover', listener);
-            popover.dispose();
-        };
-    }, []);
+            return function () {
+                element.removeEventListener('inserted.bs.popover', listener);
+                popover.dispose();
+            };
+        },
+        [user]
+    );
 
     return domEl;
 };

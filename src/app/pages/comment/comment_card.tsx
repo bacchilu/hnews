@@ -10,16 +10,10 @@ import {CardText, HNLink} from './utils';
 import type {HNItem} from './hooks';
 import {useHNItem} from './hooks';
 
-const Comment = function ({item}) {
+const Comment: React.FC<{item: number}> = function ({item}) {
     const {data, error} = useHNItem(item);
     const userEl = useRefUserDetails(data?.by);
-    const [childComment, setChildComment] = React.useState(null);
-    React.useEffect(
-        function () {
-            setChildComment(null);
-        },
-        [item]
-    );
+    const [childComment, setChildComment] = React.useState<number | null>(null);
 
     if (error !== undefined)
         return (
@@ -52,14 +46,14 @@ const Comment = function ({item}) {
                     <CommentersList kids={data.kids || []} selectComment={setChildComment} />
                 </div>
             </div>
-            {childComment !== null && <Comment item={childComment} />}
+            {childComment !== null && <Comment key={childComment} item={childComment} />}
         </React.Fragment>
     );
 };
 
 export const CommentCard: React.FC<{hnItem: HNItem}> = function ({hnItem}) {
     const userEl = useRefUserDetails(hnItem.by);
-    const [childComment, setChildComment] = React.useState(null);
+    const [childComment, setChildComment] = React.useState<number | null>(null);
 
     return (
         <>
@@ -85,7 +79,7 @@ export const CommentCard: React.FC<{hnItem: HNItem}> = function ({hnItem}) {
                 </p>
                 <CommentersList kids={hnItem.kids} selectComment={setChildComment} />
             </CardTemplate>
-            {childComment !== null && <Comment item={childComment} />}
+            {childComment !== null && <Comment key={childComment} item={childComment} />}
         </>
     );
 };

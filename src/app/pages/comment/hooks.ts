@@ -5,6 +5,7 @@ export interface HNItem {
     title: string;
     score: number;
     time: number;
+    text?: string;
     url: string;
     id: number;
     kids: number[];
@@ -13,7 +14,7 @@ export interface HNItem {
 
 const fetcher = (...args: Parameters<typeof fetch>): Promise<HNItem> => fetch(...args).then((res) => res.json());
 
-export const useHNItem = function (id: string) {
+export const useHNItem = function (id: string | number) {
     const {data, error} = useSWR<HNItem, Error>(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, fetcher);
     return {data, error};
 };

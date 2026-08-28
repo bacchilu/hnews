@@ -1,13 +1,13 @@
 import React from 'react';
 
-enum COLOR {
-    DANGER = 'danger',
-    WARNING = 'warning',
-    SUCCESS = 'success',
-    PRIMARY = 'primary',
-    INFO = 'info',
-    SECONDARY = 'secondary',
-}
+const COLOR = {
+    DANGER: 'danger',
+    WARNING: 'warning',
+    SUCCESS: 'success',
+    PRIMARY: 'primary',
+    INFO: 'info',
+    SECONDARY: 'secondary',
+} as const;
 
 export const Badge: React.FC<{score: number}> = function ({score}) {
     const getColor = function (points: number) {
