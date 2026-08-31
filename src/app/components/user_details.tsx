@@ -1,4 +1,4 @@
-import {Popover} from 'bootstrap';
+import {Box, CircularProgress, Tooltip, Typography} from '@mui/material';
 import React from 'react';
 import * as z from 'zod';
 
@@ -15,7 +15,7 @@ const UserDetailsParser = z.object({
 type UserDetailsTypeInput = z.input<typeof UserDetailsParser>;
 type UserDetailsType = z.infer<typeof UserDetailsParser>;
 
-const UserDetails = (function () {
+const UserDetailsStore = (function () {
     const cache = {} as {[id: string]: UserDetailsType};
     return {
         get: async function (id: string) {
@@ -29,45 +29,41 @@ const UserDetails = (function () {
     };
 })();
 
-export const useRefUserDetails = function (user: string | undefined) {
-    const domEl = React.useRef<HTMLElement | null>(null);
-    React.useEffect(
-        function () {
-            if (user === undefined || domEl.current === null) return;
+export const UserDetails: React.FC<{user: string | undefined; children: React.ReactElement}> = function ({
+    user,
+    children,
+}) {
+    const [details, setDetails] = React.useState<{user: string; value: UserDetailsType} | null>(null);
 
-            const element = domEl.current;
-            const popover = new Popover(element, {
-                content: `
-                <div class="spinner-grow spinner-grow-sm" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            `,
-                html: true,
-                placement: 'auto',
-                trigger: 'click hover',
-            });
-            const listener = async function () {
-                const res = await UserDetails.get(user);
-                const t = `
-                <p class="fw-lighter">
-                    <small>
-                        <em title=${toLocaleString(res.created)}>${relativeTime(res.created)}</em>
-                        <br />
-                        ${res.about !== undefined ? res.about : ''}
-                    </small>
-                </p>
-            `;
-                popover.setContent({'.popover-body': t});
-            };
-            element.addEventListener('inserted.bs.popover', listener);
+    const handleOpen = function () {
+        if (user === undefined || details?.user === user) return;
 
-            return function () {
-                element.removeEventListener('inserted.bs.popover', listener);
-                popover.dispose();
-            };
-        },
-        [user]
+        void UserDetailsStore.get(user).then((value) => setDetails({user, value}));
+    };
+
+    const value = details !== null && details.user === user ? details.value : null;
+    const content =
+        value === null ? (
+            <CircularProgress color="inherit" size="1rem" />
+        ) : (
+            <Box sx={{maxWidth: 320}}>
+                <Typography component="div" variant="caption">
+                    <em title={toLocaleString(value.created)}>{relativeTime(value.created)}</em>
+                </Typography>
+                {value.about !== undefined && (
+                    <Typography
+                        component="div"
+                        variant="body2"
+                        sx={{mt: 1}}
+                        dangerouslySetInnerHTML={{__html: value.about}}
+                    />
+                )}
+            </Box>
+        );
+
+    return (
+        <Tooltip arrow disableHoverListener={user === undefined} title={content} onOpen={handleOpen}>
+            {children}
+        </Tooltip>
     );
-
-    return domEl;
 };

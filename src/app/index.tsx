@@ -1,11 +1,9 @@
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import {CssBaseline} from '@mui/material';
 import React from 'react';
 import {createRoot} from 'react-dom/client';
 import {HashRouter, Route, Routes} from 'react-router-dom';
 
-import {Container} from './components/bootstrap';
+import {Container} from './components/mui';
 import {NavBar} from './components/navbar';
 import {CommentPage} from './pages/comment';
 import {Main} from './pages/main';
@@ -32,6 +30,7 @@ const App = function () {
 
     return (
         <>
+            <CssBaseline />
             <NavBar />
             <Container>
                 <Router groupByDate={groupByDate} limit={limit} reversed={reversed} />

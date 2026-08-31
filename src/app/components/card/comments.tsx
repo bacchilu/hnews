@@ -1,33 +1,28 @@
+import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import {Chip} from '@mui/material';
 import React from 'react';
 import {Link} from 'react-router-dom';
 
 import type {HNItem} from '../../hooks/entities';
 
-const LinkTo: React.FC<{to: string; disabled: boolean; children: React.ReactNode}> = function ({
-    to,
-    disabled,
-    children,
-}) {
-    return disabled ? (
-        <Link to={`/${to}`} style={{pointerEvents: 'none'}} target="_blank">
-            {children}
-        </Link>
-    ) : (
-        <Link to={to} target="_blank">
-            {children}
-        </Link>
-    );
-};
-
 export const Comments: React.FC<{item: HNItem}> = function ({item}) {
+    const count = item.num_comments ?? 0;
+
     return (
-        <LinkTo to={`/${item.objectID}`} disabled={item.num_comments === null}>
-            <span className="btn btn-primary btn-sm position-relative me-4">
-                <i className="bi bi-people-fill"></i>
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {item.num_comments}
-                </span>
-            </span>
-        </LinkTo>
+        <Chip
+            aria-label={`${count} comments`}
+            clickable
+            color="primary"
+            component={Link}
+            disabled={item.num_comments === null}
+            icon={<ForumOutlinedIcon />}
+            label={count.toLocaleString()}
+            size="small"
+            sx={{fontVariantNumeric: 'tabular-nums', '& .MuiChip-label': {fontWeight: 600}}}
+            target="_blank"
+            title={`${count.toLocaleString()} comments`}
+            to={`/${item.objectID}`}
+            variant="outlined"
+        />
     );
 };

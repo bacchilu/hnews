@@ -1,12 +1,9 @@
-import React from 'react';
+import {Box, CircularProgress} from '@mui/material';
 
-
-export const Spinner: React.FC = function () {
+export const Spinner = function () {
     return (
-        <div className="d-flex justify-content-center">
-            <div className="spinner-border" style={{ width: '3rem', height: '3rem' }} role="status">
-                <span className="visually-hidden">Loading...</span>
-            </div>
-        </div>
+        <Box sx={{display: 'flex', justifyContent: 'center'}}>
+            <CircularProgress size="3rem" />
+        </Box>
     );
 };

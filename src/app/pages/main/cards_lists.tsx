@@ -1,11 +1,12 @@
+import {List} from '@mui/material';
 import React from 'react';
 
-import {Separator} from '../../components/bootstrap';
+import {Separator} from '../../components/mui';
 import {Card} from '../../components/card';
 import type {HNItem} from '../../hooks/entities';
 
 export const CardList: React.FC<{hnItems: HNItem[]}> = function ({hnItems}) {
-    return hnItems.map((item) => <Card key={item.objectID} item={item} />);
+    return <List disablePadding>{hnItems.map((item) => <Card key={item.objectID} item={item} />)}</List>;
 };
 
 export const CardListGroupedByDate: React.FC<{hnItems: HNItem[]; isReversed: boolean}> = function ({

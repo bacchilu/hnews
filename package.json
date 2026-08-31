@@ -15,8 +15,10 @@
   "author": "Luca Bacchi <bacchilu@gmail.com> (http://www.lucabacchi.it)",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^5.3.8",
-    "bootstrap-icons": "^1.13.1",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.4.0",
+    "@mui/material": "^9.4.0",
     "firebase": "^12.18.0",
     "human-date": "^1.4.0",
     "react": "^19.2.8",
@@ -28,7 +30,6 @@
   },
   "devDependencies": {
     "@openai/codex": "^0.151.0",
-    "@types/bootstrap": "^5.2.11",
     "@types/human-date": "^1.4.5",
     "@types/node": "^26.4.0",
     "@types/react": "^19.2.18",

@@ -1,6 +1,7 @@
+import {Box, Chip} from '@mui/material';
 import React from 'react';
 
-import {SpinnerGrow} from '../../components/bootstrap';
+import {SpinnerGrow} from '../../components/mui';
 import {useHNItem2} from './hooks';
 import {VisibilityContainer} from './visibility_utils';
 
@@ -11,7 +12,7 @@ const UserBadge: React.FC<{item: number; isItemSelected: boolean; setSelected: (
 }) {
     const {data, error} = useHNItem2(item);
 
-    if (error !== undefined) return <span className="badge rounded-pill bg-danger">error</span>;
+    if (error !== undefined) return <Chip color="error" label="error" size="small" />;
     if (data === undefined) return <SpinnerGrow />;
 
     const onClick = function (e: React.MouseEvent<HTMLAnchorElement>) {
@@ -20,15 +21,17 @@ const UserBadge: React.FC<{item: number; isItemSelected: boolean; setSelected: (
     };
 
     return !isItemSelected ? (
-        <a
+        <Chip
+            clickable
+            component="a"
             href={`https://news.ycombinator.com/item?id=${item}`}
-            className="badge rounded-pill bg-light text-dark"
+            label={data.by}
+            size="small"
+            sx={{mr: 0.5}}
             onClick={onClick}
-        >
-            {data.by}
-        </a>
+        />
     ) : (
-        <span className="badge rounded-pill bg-secondary">{data.by}</span>
+        <Chip color="default" label={data.by} size="small" sx={{mr: 0.5}} />
     );
 };
 
@@ -52,8 +55,8 @@ export const CommentersList: React.FC<{kids: number[]; selectComment: (item: num
     });
 
     return (
-        <div className="text-muted" style={{overflowX: 'auto', whiteSpace: 'nowrap'}}>
+        <Box sx={{color: 'text.secondary', overflowX: 'auto', whiteSpace: 'nowrap'}}>
             {items}
-        </div>
+        </Box>
     );
 };

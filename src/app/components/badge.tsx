@@ -1,7 +1,8 @@
+import {Chip} from '@mui/material';
 import React from 'react';
 
 const COLOR = {
-    DANGER: 'danger',
+    ERROR: 'error',
     WARNING: 'warning',
     SUCCESS: 'success',
     PRIMARY: 'primary',
@@ -11,7 +12,7 @@ const COLOR = {
 
 export const Badge: React.FC<{score: number}> = function ({score}) {
     const getColor = function (points: number) {
-        if (points >= 3200) return COLOR.DANGER;
+        if (points >= 3200) return COLOR.ERROR;
         if (points >= 1600) return COLOR.WARNING;
         if (points >= 800) return COLOR.SUCCESS;
         if (points >= 400) return COLOR.PRIMARY;
@@ -19,5 +20,5 @@ export const Badge: React.FC<{score: number}> = function ({score}) {
         return COLOR.SECONDARY;
     };
 
-    return <span className={`badge bg-${getColor(score)}`}>{score}</span>;
+    return <Chip color={getColor(score)} label={score} size="small" />;
 };
