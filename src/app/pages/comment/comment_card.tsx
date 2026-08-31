@@ -2,15 +2,16 @@ import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import {Alert, Box, Link, Stack, Typography} from '@mui/material';
 import React from 'react';
 
-import {relativeTime, toLocaleString} from '../../utils';
 import {Badge} from '../../components/badge';
+import {CopyHNLink} from '../../components/copy_hn_link';
 import {Spinner} from '../../components/mui';
 import CardTemplate from '../../components/mui/card';
 import {UserDetails} from '../../components/user_details';
-import {CommentersList} from './users';
-import {CardText, HNLink} from './utils';
+import {relativeTime, toLocaleString} from '../../utils';
 import type {HNItem} from './hooks';
 import {useHNItem} from './hooks';
+import {CommentersList} from './users';
+import {CardText, HNLink} from './utils';
 
 const isFresh = function (time: number) {
     return new Date().getTime() - time * 1000 <= 1000 * 60 * 60 * 25;
@@ -127,6 +128,7 @@ export const CommentCard: React.FC<{hnItem: HNItem}> = function ({hnItem}) {
                     <Stack spacing={0.75} sx={{alignItems: 'center'}}>
                         <Badge score={hnItem.score} />
                         <HNLink hnItem={hnItem} />
+                        <CopyHNLink itemId={hnItem.id} />
                     </Stack>
                 }
             >

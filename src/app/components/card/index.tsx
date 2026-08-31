@@ -4,8 +4,9 @@ import React from 'react';
 import type {HNItem} from '../../hooks/entities';
 import {relativeTime, toLocaleString} from '../../utils';
 import {Badge} from '../badge';
-import {Comments} from './comments';
+import {CopyHNLink} from '../copy_hn_link';
 import {UserDetails} from '../user_details';
+import {Comments} from './comments';
 
 const getDomain = function (url: string | undefined) {
     if (url === undefined) return null;
@@ -44,6 +45,7 @@ export const Card: React.FC<{item: HNItem}> = function ({item}) {
                     <Stack spacing={0.75} sx={{alignItems: 'center'}}>
                         <Badge score={item.points} />
                         <Comments item={item} />
+                        <CopyHNLink itemId={item.objectID} />
                     </Stack>
                 </Box>
 
@@ -102,7 +104,6 @@ export const Card: React.FC<{item: HNItem}> = function ({item}) {
                         />
                     )}
                 </Box>
-
             </Paper>
         </ListItem>
     );
