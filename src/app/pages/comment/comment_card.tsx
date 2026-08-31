@@ -100,6 +100,7 @@ const Comment: React.FC<{item: number}> = function ({item}) {
                         <HNLink hnItem={data} count={data.kids?.length ?? 0} />
                     </Stack>
                 }
+                selected
             >
                 <Metadata by={data.by} time={data.time} />
                 <CardText item={data} />
@@ -129,7 +130,7 @@ export const CommentCard: React.FC<{hnItem: HNItem}> = function ({hnItem}) {
                     </Stack>
                 }
             >
-                <Typography component="h1" variant="subtitle1" sx={{fontWeight: 600, lineHeight: 1.3}} noWrap>
+                <Typography component="h1" variant="subtitle1" sx={{fontWeight: 600, lineHeight: 1.3}}>
                     {hnItem.url === undefined ? (
                         hnItem.title
                     ) : (

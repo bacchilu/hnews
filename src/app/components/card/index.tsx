@@ -48,7 +48,7 @@ export const Card: React.FC<{item: HNItem}> = function ({item}) {
                 </Box>
 
                 <Box sx={{minWidth: 0}}>
-                    <Typography component="h2" variant="subtitle1" sx={{fontWeight: 600, lineHeight: 1.3}} noWrap>
+                    <Typography component="h2" variant="subtitle1" sx={{fontWeight: 600, lineHeight: 1.3}}>
                         {item.url === undefined ? (
                             item.title
                         ) : (

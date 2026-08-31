@@ -31,7 +31,7 @@ const UserBadge: React.FC<{item: number; isItemSelected: boolean; setSelected: (
             onClick={onClick}
         />
     ) : (
-        <Chip color="default" label={data.by} size="small" sx={{mr: 0.5}} />
+        <Chip aria-current="true" color="primary" label={data.by} size="small" sx={{fontWeight: 600, mr: 0.5}} />
     );
 };
 

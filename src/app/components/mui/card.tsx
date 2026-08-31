@@ -6,15 +6,17 @@ const Card: React.FC<{
     footer?: React.ReactNode;
     isFresh?: boolean;
     marker: React.ReactNode;
-}> = function ({children, footer, isFresh = false, marker}) {
+    selected?: boolean;
+}> = function ({children, footer, isFresh = false, marker, selected = false}) {
     return (
         <Paper
             component="article"
             variant="outlined"
             sx={{
                 alignItems: 'start',
-                borderLeftColor: isFresh ? 'success.main' : 'divider',
-                borderLeftWidth: isFresh ? 4 : 1,
+                bgcolor: selected ? 'action.selected' : undefined,
+                borderLeftColor: selected ? 'primary.main' : isFresh ? 'success.main' : 'divider',
+                borderLeftWidth: selected || isFresh ? 4 : 1,
                 display: 'grid',
                 gap: {xs: 1, sm: 2},
                 gridTemplateColumns: 'auto minmax(0, 1fr)',
@@ -22,7 +24,7 @@ const Card: React.FC<{
                 px: 2,
                 py: 1.5,
                 transition: (theme) => theme.transitions.create('background-color'),
-                '&:hover': {bgcolor: 'action.hover'},
+                '&:hover': {bgcolor: selected ? 'action.selected' : 'action.hover'},
             }}
         >
             <Box sx={{gridColumn: 1, gridRow: 1, pt: 0.25}}>{marker}</Box>
