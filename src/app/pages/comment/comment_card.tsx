@@ -79,6 +79,23 @@ const Metadata: React.FC<{by: string; time: number; domain?: string | null}> = f
     );
 };
 
+const CommentFooter: React.FC<{count?: number; hnItem: HNItem; selectComment: (item: number) => void}> = function ({
+    count,
+    hnItem,
+    selectComment,
+}) {
+    const kids = hnItem.kids ?? [];
+
+    return (
+        <>
+            {kids.length > 0 && <CommentersList kids={kids} selectComment={selectComment} />}
+            <Box sx={{display: 'flex', justifyContent: 'flex-end', mt: kids.length > 0 ? 1 : 0}}>
+                <HNLink hnItem={hnItem} count={count} />
+            </Box>
+        </>
+    );
+};
+
 const Comment: React.FC<{item: number}> = function ({item}) {
     const {data, error} = useHNItem(item);
     const [childComment, setChildComment] = React.useState<number | null>(null);
@@ -89,18 +106,9 @@ const Comment: React.FC<{item: number}> = function ({item}) {
     return (
         <React.Fragment>
             <CardTemplate
-                footer={
-                    data.kids?.length > 0 ? (
-                        <CommentersList kids={data.kids} selectComment={setChildComment} />
-                    ) : undefined
-                }
+                footer={<CommentFooter count={data.kids?.length ?? 0} hnItem={data} selectComment={setChildComment} />}
                 isFresh={isFresh(data.time)}
-                marker={
-                    <Stack spacing={0.75} sx={{alignItems: 'center'}}>
-                        <CommentMarker />
-                        <HNLink hnItem={data} count={data.kids?.length ?? 0} />
-                    </Stack>
-                }
+                marker={<CommentMarker />}
                 selected
             >
                 <Metadata by={data.by} time={data.time} />
@@ -118,16 +126,11 @@ export const CommentCard: React.FC<{hnItem: HNItem}> = function ({hnItem}) {
     return (
         <>
             <CardTemplate
-                footer={
-                    hnItem.kids?.length > 0 ? (
-                        <CommentersList kids={hnItem.kids} selectComment={setChildComment} />
-                    ) : undefined
-                }
+                footer={<CommentFooter hnItem={hnItem} selectComment={setChildComment} />}
                 isFresh={isFresh(hnItem.time)}
                 marker={
                     <Stack spacing={0.75} sx={{alignItems: 'center'}}>
                         <Badge score={hnItem.score} />
-                        <HNLink hnItem={hnItem} />
                         <CopyHNLink itemId={hnItem.id} />
                     </Stack>
                 }
