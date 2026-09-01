@@ -8,6 +8,9 @@ const Card: React.FC<{
     marker: React.ReactNode;
     selected?: boolean;
 }> = function ({children, footer, isFresh = false, marker, selected = false}) {
+    const hasMarker = marker !== null && marker !== undefined;
+    const contentColumn = hasMarker ? 2 : 1;
+
     return (
         <Paper
             component="article"
@@ -19,7 +22,7 @@ const Card: React.FC<{
                 borderLeftWidth: selected || isFresh ? 4 : 1,
                 display: 'grid',
                 gap: {xs: 1, sm: 2},
-                gridTemplateColumns: 'auto minmax(0, 1fr)',
+                gridTemplateColumns: hasMarker ? 'auto minmax(0, 1fr)' : 'minmax(0, 1fr)',
                 mb: 1,
                 px: 2,
                 py: 1.5,
@@ -27,13 +30,9 @@ const Card: React.FC<{
                 '&:hover': {bgcolor: selected ? 'action.selected' : 'action.hover'},
             }}
         >
-            <Box sx={{gridColumn: 1, gridRow: 1, pt: 0.25}}>{marker}</Box>
-            <Box sx={{gridColumn: 2, gridRow: 1, minWidth: 0}}>{children}</Box>
-            {footer !== undefined && (
-                <Box sx={{gridColumn: 2, gridRow: 2, minWidth: 0}}>
-                    {footer}
-                </Box>
-            )}
+            {hasMarker && <Box sx={{gridColumn: 1, gridRow: 1, pt: 0.25}}>{marker}</Box>}
+            <Box sx={{gridColumn: contentColumn, gridRow: 1, minWidth: 0}}>{children}</Box>
+            {footer !== undefined && <Box sx={{gridColumn: contentColumn, gridRow: 2, minWidth: 0}}>{footer}</Box>}
         </Paper>
     );
 };

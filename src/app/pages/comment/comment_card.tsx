@@ -1,4 +1,3 @@
-import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import {Alert, Box, Link, Stack, Typography} from '@mui/material';
 import React from 'react';
 
@@ -25,25 +24,6 @@ const getDomain = function (url: string | undefined) {
     } catch {
         return url;
     }
-};
-
-const CommentMarker = function () {
-    return (
-        <Box
-            sx={{
-                alignItems: 'center',
-                bgcolor: 'action.selected',
-                borderRadius: '50%',
-                color: 'text.secondary',
-                display: 'flex',
-                height: 32,
-                justifyContent: 'center',
-                width: 32,
-            }}
-        >
-            <CommentOutlinedIcon fontSize="small" />
-        </Box>
-    );
 };
 
 const Metadata: React.FC<{by: string; time: number; domain?: string | null}> = function ({by, time, domain}) {
@@ -108,7 +88,7 @@ const Comment: React.FC<{item: number}> = function ({item}) {
             <CardTemplate
                 footer={<CommentFooter count={data.kids?.length ?? 0} hnItem={data} selectComment={setChildComment} />}
                 isFresh={isFresh(data.time)}
-                marker={<CommentMarker />}
+                marker={null}
                 selected
             >
                 <Metadata by={data.by} time={data.time} />
