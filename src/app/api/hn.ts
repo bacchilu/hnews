@@ -1,7 +1,7 @@
 // https://hn.algolia.com/api
 // https://github.com/minimaxir/hacker-news-undocumented
 
-import {z} from 'zod';
+import * as z from 'zod/mini';
 
 import type {HNItemsGateway} from '../hooks/data_gateway';
 import type {HNItem} from '../hooks/entities';
@@ -9,12 +9,15 @@ import type {HNItem} from '../hooks/entities';
 const HNItemSchema = z.object({
     objectID: z.string(),
     author: z.string(),
-    title: z.string().optional(),
-    points: z.number().int().nonnegative(),
-    created_at: z.string().transform((v) => new Date(v)),
-    story_text: z.string().optional(),
-    url: z.string().optional(),
-    num_comments: z.number().int().nonnegative().optional(),
+    title: z.optional(z.string()),
+    points: z.int().check(z.nonnegative()),
+    created_at: z.pipe(
+        z.string(),
+        z.transform((v) => new Date(v))
+    ),
+    story_text: z.optional(z.string()),
+    url: z.optional(z.string()),
+    num_comments: z.optional(z.int().check(z.nonnegative())),
 });
 type HNItemInput = z.input<typeof HNItemSchema>;
 type HNItemOutput = z.output<typeof HNItemSchema>;

@@ -1,16 +1,15 @@
 import {Box, CircularProgress, Tooltip, Typography} from '@mui/material';
 import React from 'react';
-import * as z from 'zod';
+import * as z from 'zod/mini';
 
 import {relativeTime, toLocaleString} from '../utils';
 
 const UserDetailsParser = z.object({
-    created: z
-        .number()
-        .int()
-        .positive()
-        .transform((v) => new Date(v * 1000)),
-    about: z.string().optional(),
+    created: z.pipe(
+        z.int().check(z.positive()),
+        z.transform((v) => new Date(v * 1000))
+    ),
+    about: z.optional(z.string()),
 });
 type UserDetailsTypeInput = z.input<typeof UserDetailsParser>;
 type UserDetailsType = z.infer<typeof UserDetailsParser>;
