@@ -3,10 +3,11 @@ import React from 'react';
 import {createRoot} from 'react-dom/client';
 import {HashRouter, Route, Routes} from 'react-router-dom';
 
-import {Container} from './components/mui';
+import {Container, Spinner} from './components/mui';
 import {NavBar} from './components/navbar';
-import {CommentPage} from './pages/comment';
 import {Main} from './pages/main';
+
+const CommentPage = React.lazy(() => import('./pages/comment').then(({CommentPage: Page}) => ({default: Page})));
 
 const Router: React.FC<{
     groupByDate: [boolean, (v: boolean) => void];
@@ -15,10 +16,15 @@ const Router: React.FC<{
 }> = function ({groupByDate, limit, reversed}) {
     return (
         <HashRouter>
-            <Routes>
-                <Route path="/" element={<Main groupByDate={groupByDate} limit={limit} reversed={reversed} />}></Route>
-                <Route path="/:commentId" element={<CommentPage />}></Route>
-            </Routes>
+            <React.Suspense fallback={<Spinner />}>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={<Main groupByDate={groupByDate} limit={limit} reversed={reversed} />}
+                    ></Route>
+                    <Route path="/:commentId" element={<CommentPage />}></Route>
+                </Routes>
+            </React.Suspense>
         </HashRouter>
     );
 };
