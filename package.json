@@ -1,7 +1,7 @@
 {
   "name": "hnews",
   "private": true,
-  "version": "14.2.0",
+  "version": "14.3.0",
   "description": "HNews",
   "type": "module",
   "scripts": {
@@ -29,7 +29,7 @@
     "zod": "^4.5.4"
   },
   "devDependencies": {
-    "@openai/codex": "^0.151.0",
+    "@openai/codex": "^0.152.0",
     "@types/human-date": "^1.4.5",
     "@types/node": "^26.4.0",
     "@types/react": "^19.2.18",
