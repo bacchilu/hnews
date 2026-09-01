@@ -1,4 +1,4 @@
-import {Alert, Box, Link, Stack, Typography} from '@mui/material';
+import {Alert, Box, Link, Typography} from '@mui/material';
 import React from 'react';
 
 import {Badge} from '../../components/badge';
@@ -59,19 +59,31 @@ const Metadata: React.FC<{by: string; time: number; domain?: string | null}> = f
     );
 };
 
-const CommentFooter: React.FC<{count?: number; hnItem: HNItem; selectComment: (item: number) => void}> = function ({
-    count,
-    hnItem,
-    selectComment,
-}) {
+const CommentFooter: React.FC<{
+    controls?: React.ReactNode;
+    count?: number;
+    hnItem: HNItem;
+    selectComment: (item: number) => void;
+}> = function ({controls, count, hnItem, selectComment}) {
     const kids = hnItem.kids ?? [];
 
     return (
         <>
-            {kids.length > 0 && <CommentersList kids={kids} selectComment={selectComment} />}
-            <Box sx={{display: 'flex', justifyContent: 'flex-end', mt: kids.length > 0 ? 1 : 0}}>
+            <Box
+                sx={{
+                    alignItems: 'center',
+                    display: 'flex',
+                    justifyContent: controls === undefined ? 'flex-end' : 'space-between',
+                }}
+            >
+                {controls}
                 <HNLink hnItem={hnItem} count={count} />
             </Box>
+            {kids.length > 0 && (
+                <Box sx={{mt: 1}}>
+                    <CommentersList kids={kids} selectComment={selectComment} />
+                </Box>
+            )}
         </>
     );
 };
@@ -106,14 +118,20 @@ export const CommentCard: React.FC<{hnItem: HNItem}> = function ({hnItem}) {
     return (
         <>
             <CardTemplate
-                footer={<CommentFooter hnItem={hnItem} selectComment={setChildComment} />}
-                isFresh={isFresh(hnItem.time)}
-                marker={
-                    <Stack spacing={0.75} sx={{alignItems: 'center'}}>
-                        <Badge score={hnItem.score} />
-                        <CopyHNLink itemId={hnItem.id} />
-                    </Stack>
+                footer={
+                    <CommentFooter
+                        controls={
+                            <Box sx={{alignItems: 'center', display: 'flex', gap: 0.5}}>
+                                <Badge score={hnItem.score} />
+                                <CopyHNLink itemId={hnItem.id} />
+                            </Box>
+                        }
+                        hnItem={hnItem}
+                        selectComment={setChildComment}
+                    />
                 }
+                isFresh={isFresh(hnItem.time)}
+                marker={null}
             >
                 <Typography component="h1" variant="subtitle1" sx={{fontWeight: 600, lineHeight: 1.3}}>
                     {hnItem.url === undefined ? (

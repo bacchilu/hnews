@@ -1,4 +1,4 @@
-import {Box, Link, ListItem, Paper, Stack, Typography} from '@mui/material';
+import {Box, Link, ListItem, Paper, Typography} from '@mui/material';
 import React from 'react';
 
 import type {HNItem} from '../../hooks/entities';
@@ -33,7 +33,7 @@ export const Card: React.FC<{item: HNItem}> = function ({item}) {
                     borderLeftWidth: isFresh ? 4 : 1,
                     display: 'grid',
                     gap: {xs: 1, sm: 2},
-                    gridTemplateColumns: 'auto minmax(0, 1fr)',
+                    gridTemplateColumns: 'minmax(0, 1fr) auto',
                     px: 2,
                     py: 1.5,
                     transition: (theme) => theme.transitions.create('background-color'),
@@ -41,14 +41,7 @@ export const Card: React.FC<{item: HNItem}> = function ({item}) {
                     '&:hover': {bgcolor: 'action.hover'},
                 }}
             >
-                <Box sx={{alignSelf: 'start', gridColumn: 1, gridRow: '1 / span 2', pt: 0.25}}>
-                    <Stack spacing={0.75} sx={{alignItems: 'center'}}>
-                        <Badge score={item.points} />
-                        <CopyHNLink itemId={item.objectID} />
-                    </Stack>
-                </Box>
-
-                <Box sx={{gridColumn: 2, gridRow: 1, minWidth: 0}}>
+                <Box sx={{gridColumn: '1 / -1', gridRow: 1, minWidth: 0}}>
                     <Typography component="h2" variant="subtitle1" sx={{fontWeight: 600, lineHeight: 1.3}}>
                         {item.url === undefined ? (
                             item.title
@@ -104,7 +97,12 @@ export const Card: React.FC<{item: HNItem}> = function ({item}) {
                     )}
                 </Box>
 
-                <Box sx={{gridColumn: 2, gridRow: 2, justifySelf: 'end'}}>
+                <Box sx={{alignItems: 'center', display: 'flex', gap: 0.5, gridColumn: 1, gridRow: 2}}>
+                    <Badge score={item.points} />
+                    <CopyHNLink itemId={item.objectID} />
+                </Box>
+
+                <Box sx={{alignSelf: 'center', gridColumn: 2, gridRow: 2, justifySelf: 'end'}}>
                     <Comments item={item} />
                 </Box>
             </Paper>
