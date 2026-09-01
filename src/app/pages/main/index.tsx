@@ -1,9 +1,9 @@
-import {Paper, Stack} from '@mui/material';
+import {Stack} from '@mui/material';
 import React from 'react';
 
+import {getHNItems} from '../../api/hn';
 import {DangerAlert, Spinner, Switch} from '../../components/mui';
 import {useHNItems} from '../../hooks/hn_hook';
-import {getHNItems} from '../../api/hn';
 import {CardList, CardListGroupedByDate} from './cards_lists';
 
 export const Main: React.FC<{
@@ -23,13 +23,11 @@ export const Main: React.FC<{
 
     return (
         <>
-            <Paper variant="outlined" sx={{mb: 2, px: 2, py: 1}}>
-                <Stack direction={{xs: 'column', sm: 'row'}} spacing={{xs: 0, sm: 2}}>
-                    <Switch title="By Date" value={byDate} onChange={setByDate} />
-                    <Switch title="Reversed" value={isReversed} onChange={setIsReversed} />
-                    <Switch title="Max 30" value={limit30} onChange={setLimit30} />
-                </Stack>
-            </Paper>
+            <Stack direction="row" spacing={2} sx={{alignItems: 'center', flexWrap: 'wrap', mb: 2, rowGap: 0.5}}>
+                <Switch title="By Date" value={byDate} onChange={setByDate} />
+                <Switch title="Reversed" value={isReversed} onChange={setIsReversed} />
+                <Switch title="Max 30" value={limit30} onChange={setLimit30} />
+            </Stack>
             {byDate ? (
                 <CardListGroupedByDate hnItems={hnItems} isReversed={isReversed} />
             ) : (

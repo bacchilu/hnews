@@ -19,7 +19,15 @@ export const NavBar = function () {
                         <Box component="strong" sx={{color: '#ff6600'}}>
                             HN
                         </Box>
-                        ews <sub>{version}</sub>
+                        ews
+                        <Typography
+                            color="grey.400"
+                            component="span"
+                            variant="caption"
+                            sx={{ml: 0.75, verticalAlign: 'baseline'}}
+                        >
+                            {version}
+                        </Typography>
                     </Typography>
                 </Link>
                 <Auth />

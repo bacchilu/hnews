@@ -1,4 +1,13 @@
-import {Alert, Box, CircularProgress, Container as MuiContainer, Divider, FormControlLabel, Grid} from '@mui/material';
+import {
+    Alert,
+    Box,
+    CircularProgress,
+    Divider,
+    FormControlLabel,
+    Grid,
+    Container as MuiContainer,
+    Typography,
+} from '@mui/material';
 import SwitchControl from '@mui/material/Switch';
 import React from 'react';
 
@@ -29,8 +38,11 @@ export const Switch: React.FC<{title: string; value: boolean; onChange: (value: 
 }) {
     return (
         <FormControlLabel
-            control={<SwitchControl checked={value} onChange={(event) => onChange(event.target.checked)} />}
-            label={title}
+            control={
+                <SwitchControl checked={value} size="small" onChange={(event) => onChange(event.target.checked)} />
+            }
+            label={<Typography variant="body2">{title}</Typography>}
+            sx={{m: 0}}
         />
     );
 };
