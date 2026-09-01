@@ -1,4 +1,4 @@
-import {Box, Chip} from '@mui/material';
+import {Box, Link, Typography} from '@mui/material';
 import React from 'react';
 
 import {SpinnerGrow} from '../../components/mui';
@@ -12,7 +12,12 @@ const UserBadge: React.FC<{item: number; isItemSelected: boolean; setSelected: (
 }) {
     const {data, error} = useHNItem2(item);
 
-    if (error !== undefined) return <Chip color="error" label="error" size="small" />;
+    if (error !== undefined)
+        return (
+            <Typography color="error" component="span" variant="body2">
+                error
+            </Typography>
+        );
     if (data === undefined) return <SpinnerGrow />;
 
     const onClick = function (e: React.MouseEvent<HTMLAnchorElement>) {
@@ -21,17 +26,26 @@ const UserBadge: React.FC<{item: number; isItemSelected: boolean; setSelected: (
     };
 
     return !isItemSelected ? (
-        <Chip
-            clickable
+        <Link
+            color="text.secondary"
             component="a"
             href={`https://news.ycombinator.com/item?id=${item}`}
-            label={data.by}
-            size="small"
-            sx={{mr: 0.5}}
+            underline="hover"
+            variant="body2"
             onClick={onClick}
-        />
+        >
+            {data.by}
+        </Link>
     ) : (
-        <Chip aria-current="true" color="primary" label={data.by} size="small" sx={{fontWeight: 600, mr: 0.5}} />
+        <Typography
+            aria-current="true"
+            color="primary"
+            component="span"
+            variant="body2"
+            sx={{fontWeight: 600, textDecoration: 'underline', textUnderlineOffset: 3}}
+        >
+            {data.by}
+        </Typography>
     );
 };
 
@@ -55,7 +69,16 @@ export const CommentersList: React.FC<{kids: number[]; selectComment: (item: num
     });
 
     return (
-        <Box sx={{color: 'text.secondary', overflowX: 'auto', whiteSpace: 'nowrap'}}>
+        <Box
+            sx={{
+                alignItems: 'center',
+                color: 'text.secondary',
+                display: 'flex',
+                gap: 1.5,
+                overflowX: 'auto',
+                whiteSpace: 'nowrap',
+            }}
+        >
             {items}
         </Box>
     );
