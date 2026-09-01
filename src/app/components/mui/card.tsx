@@ -1,4 +1,4 @@
-import {Box, Paper} from '@mui/material';
+import {Box} from '@mui/material';
 import React from 'react';
 
 const Card: React.FC<{
@@ -12,14 +12,14 @@ const Card: React.FC<{
     const contentColumn = hasMarker ? 2 : 1;
 
     return (
-        <Paper
+        <Box
             component="article"
-            variant="outlined"
             sx={{
                 alignItems: 'start',
                 bgcolor: selected ? 'action.selected' : undefined,
                 borderLeftColor: selected ? 'primary.main' : isFresh ? 'success.main' : 'divider',
-                borderLeftWidth: selected || isFresh ? 4 : 1,
+                borderLeftStyle: 'solid',
+                borderLeftWidth: selected || isFresh ? 4 : 2,
                 display: 'grid',
                 gap: {xs: 1, sm: 2},
                 gridTemplateColumns: hasMarker ? 'auto minmax(0, 1fr)' : 'minmax(0, 1fr)',
@@ -33,7 +33,7 @@ const Card: React.FC<{
             {hasMarker && <Box sx={{gridColumn: 1, gridRow: 1, pt: 0.25}}>{marker}</Box>}
             <Box sx={{gridColumn: contentColumn, gridRow: 1, minWidth: 0}}>{children}</Box>
             {footer !== undefined && <Box sx={{gridColumn: contentColumn, gridRow: 2, minWidth: 0}}>{footer}</Box>}
-        </Paper>
+        </Box>
     );
 };
 

@@ -1,4 +1,4 @@
-import {Box, Link, ListItem, Paper, Typography} from '@mui/material';
+import {Box, Link, ListItem, Typography} from '@mui/material';
 import React from 'react';
 
 import type {HNItem} from '../../hooks/entities';
@@ -24,13 +24,13 @@ export const Card: React.FC<{item: HNItem}> = function ({item}) {
 
     return (
         <ListItem disablePadding sx={{mb: 1}}>
-            <Paper
+            <Box
                 component="article"
-                variant="outlined"
                 sx={{
                     alignItems: 'center',
                     borderLeftColor: isFresh ? 'success.main' : 'divider',
-                    borderLeftWidth: isFresh ? 4 : 1,
+                    borderLeftStyle: 'solid',
+                    borderLeftWidth: isFresh ? 4 : 2,
                     display: 'grid',
                     gap: {xs: 1, sm: 2},
                     gridTemplateColumns: 'minmax(0, 1fr) auto',
@@ -105,7 +105,7 @@ export const Card: React.FC<{item: HNItem}> = function ({item}) {
                 <Box sx={{alignSelf: 'center', gridColumn: 2, gridRow: 2, justifySelf: 'end'}}>
                     <Comments item={item} />
                 </Box>
-            </Paper>
+            </Box>
         </ListItem>
     );
 };
