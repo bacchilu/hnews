@@ -1,7 +1,3 @@
-import {initializeApp} from 'firebase/app';
-
-import {FirebaseAuth} from './auth.js';
-
 // const firebaseConfig = {
 //     apiKey: 'AIzaSyBvHCpKNrfKfc2AZZLP8D0K1AGlUFcX1aE',
 //     authDomain: 'test-budget-38b21.firebaseapp.com',
@@ -19,7 +15,37 @@ const firebaseConfig = {
     messagingSenderId: '734364993587',
     appId: '1:734364993587:web:f0020375ba6ff35b8efb46',
 };
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = FirebaseAuth(firebaseApp);
 
-export const Auth = {signIn: auth.signIn, signOut: auth.signOut, onAuthStateChanged: auth.onAuthStateChanged};
+const loadAuth = async function () {
+    const [{initializeApp}, {FirebaseAuth}] = await Promise.all([import('firebase/app'), import('./auth.js')]);
+    return FirebaseAuth(initializeApp(firebaseConfig));
+};
+
+let authPromise: ReturnType<typeof loadAuth> | undefined;
+
+const getAuth = function () {
+    authPromise ??= loadAuth();
+    return authPromise;
+};
+
+export const Auth = {
+    signIn: async function () {
+        return (await getAuth()).signIn();
+    },
+    signOut: async function () {
+        return (await getAuth()).signOut();
+    },
+    onAuthStateChanged: function (cb: (user: string | null) => void) {
+        let active = true;
+        let unsubscribe: (() => void) | undefined;
+
+        void getAuth().then(function (auth) {
+            if (active) unsubscribe = auth.onAuthStateChanged(cb);
+        });
+
+        return function () {
+            active = false;
+            unsubscribe?.();
+        };
+    },
+};
