@@ -2,7 +2,7 @@ import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import {IconButton, Tooltip} from '@mui/material';
 import React from 'react';
 
-import {useCopyHistory} from '../hooks/use_copy_history';
+import {useMemory} from '../hooks/use_memory';
 
 const getClipboardText = function (itemId: string | number) {
     return `1. Aprire il link del thread.
@@ -103,7 +103,7 @@ https://news.ycombinator.com/item?id=${itemId}`;
 };
 
 export const CopyHNLink: React.FC<{itemId: string | number}> = function ({itemId}) {
-    const {isCopied, markCopied} = useCopyHistory(itemId);
+    const {isCopied, markCopied} = useMemory(itemId);
 
     const copyLink = async function () {
         await navigator.clipboard.writeText(getClipboardText(itemId));

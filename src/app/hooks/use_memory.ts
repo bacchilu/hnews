@@ -2,7 +2,7 @@ import React from 'react';
 
 import {CopyHistoryStorage} from '../copy_history';
 
-interface UseCopyHistoryResult {
+interface UseMemoryResult {
     isCopied: boolean;
     markCopied: () => void;
 }
@@ -11,7 +11,7 @@ const getServerSnapshot = function () {
     return false;
 };
 
-export const useCopyHistory = function (itemId: string | number): UseCopyHistoryResult {
+export const useMemory = function (itemId: string | number): UseMemoryResult {
     const getSnapshot = React.useCallback(
         function () {
             return CopyHistoryStorage.has(itemId);
