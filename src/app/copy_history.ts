@@ -2,6 +2,11 @@ type CopyHistory = Record<string, {date: string}>;
 
 const storageKey = 'hnews:copy-history';
 const changeEvent = 'hnews:copy-history-change';
+const retentionTime = 7 * 24 * 60 * 60 * 1000;
+
+const isCopyHistoryEntry = function (value: unknown): value is CopyHistory[string] {
+    return typeof value === 'object' && value !== null && 'date' in value && typeof value.date === 'string';
+};
 
 const read = function (): CopyHistory {
     try {
@@ -16,6 +21,29 @@ const read = function (): CopyHistory {
     }
 };
 
+const removeOldItems = function () {
+    try {
+        const history: CopyHistory = read();
+        const entries = Object.entries(history);
+        const now: number = Date.now();
+        const currentEntries = entries.filter(function ([, entry]) {
+            if (!isCopyHistoryEntry(entry)) return false;
+
+            const date: number = Date.parse(entry.date);
+            return !Number.isNaN(date) && now - date <= retentionTime;
+        });
+
+        if (currentEntries.length === entries.length) return;
+
+        if (currentEntries.length === 0) localStorage.removeItem(storageKey);
+        else localStorage.setItem(storageKey, JSON.stringify(Object.fromEntries(currentEntries)));
+    } catch (error) {
+        console.error('Failed to remove old copy history items', error);
+    }
+};
+
+removeOldItems();
+
 export const CopyHistoryStorage = {
     add: function (itemId: string | number) {
         try {
@@ -29,7 +57,7 @@ export const CopyHistoryStorage = {
     },
     has: function (itemId: string | number) {
         const entry: unknown = read()[String(itemId)];
-        return typeof entry === 'object' && entry !== null && 'date' in entry && typeof entry.date === 'string';
+        return isCopyHistoryEntry(entry);
     },
     subscribe: function (listener: () => void) {
         const handleStorage = function (event: StorageEvent) {
