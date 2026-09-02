@@ -2,6 +2,9 @@ import ContentCopyOutlinedIcon from '@mui/icons-material/ContentCopyOutlined';
 import {IconButton, Tooltip} from '@mui/material';
 import React from 'react';
 
+import {CopyHistoryStorage} from '../copy_history';
+import {useIsCopied} from '../hooks/use_is_copied';
+
 const getClipboardText = function (itemId: string | number) {
     return `1. Aprire il link del thread.
 
@@ -101,13 +104,21 @@ https://news.ycombinator.com/item?id=${itemId}`;
 };
 
 export const CopyHNLink: React.FC<{itemId: string | number}> = function ({itemId}) {
-    const copyLink = function () {
-        void navigator.clipboard.writeText(getClipboardText(itemId));
+    const isCopied = useIsCopied(itemId);
+
+    const copyLink = async function () {
+        await navigator.clipboard.writeText(getClipboardText(itemId));
+        CopyHistoryStorage.add(itemId);
     };
 
     return (
         <Tooltip title="Copy the analysis prompt">
-            <IconButton aria-label="Copy the analysis prompt" color="primary" size="small" onClick={copyLink}>
+            <IconButton
+                aria-label="Copy the analysis prompt"
+                size="small"
+                sx={{color: isCopied ? 'grey.400' : 'primary.main'}}
+                onClick={copyLink}
+            >
                 <ContentCopyOutlinedIcon fontSize="small" />
             </IconButton>
         </Tooltip>
