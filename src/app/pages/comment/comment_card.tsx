@@ -6,7 +6,6 @@ import {CopyHNLink} from '../../components/copy_hn_link';
 import {Spinner} from '../../components/mui';
 import CardTemplate from '../../components/mui/card';
 import {UserDetails} from '../../components/user_details';
-import {useIsCopied} from '../../hooks/use_is_copied';
 import {relativeTime, toLocaleString} from '../../utils';
 import type {HNItem} from './hooks';
 import {useHNItem} from './hooks';
@@ -115,14 +114,6 @@ const Comment: React.FC<{item: number}> = function ({item}) {
 export const CommentCard: React.FC<{hnItem: HNItem}> = function ({hnItem}) {
     const [childComment, setChildComment] = React.useState<number | null>(null);
     const domain = getDomain(hnItem.url);
-    const isCopied = useIsCopied(hnItem.id);
-
-    React.useEffect(
-        function () {
-            console.log('Item copy status', {itemId: hnItem.id, isCopied});
-        },
-        [hnItem.id, isCopied]
-    );
 
     return (
         <>
