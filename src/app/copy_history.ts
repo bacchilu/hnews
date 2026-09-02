@@ -45,7 +45,7 @@ const removeOldItems = function () {
 removeOldItems();
 
 export const CopyHistoryStorage = {
-    toggle: function (itemId: string | number) {
+    toggle: function (itemId: number) {
         try {
             const history: CopyHistory = read();
             const key = String(itemId);
@@ -61,7 +61,7 @@ export const CopyHistoryStorage = {
             console.error('Failed to update the copy history', error);
         }
     },
-    has: function (itemId: string | number) {
+    has: function (itemId: number) {
         const entry: unknown = read()[String(itemId)];
         return isCopyHistoryEntry(entry);
     },

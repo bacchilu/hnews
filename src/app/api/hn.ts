@@ -7,7 +7,10 @@ import type {HNItemsGateway} from '../hooks/data_gateway';
 import type {HNItem} from '../hooks/entities';
 
 const HNItemSchema = z.object({
-    objectID: z.string(),
+    objectID: z.pipe(
+        z.string(),
+        z.pipe(z.transform(Number), z.int().check(z.nonnegative()))
+    ),
     author: z.string(),
     title: z.optional(z.string()),
     points: z.int().check(z.nonnegative()),

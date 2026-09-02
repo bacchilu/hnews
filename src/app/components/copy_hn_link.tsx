@@ -4,7 +4,7 @@ import React from 'react';
 
 import {useMemory} from '../hooks/use_memory';
 
-const getClipboardText = function (itemId: string | number) {
+const getClipboardText = function (itemId: number) {
     return `1. Aprire il link del thread.
 
 
@@ -102,7 +102,7 @@ Mantieni uno stile chiaro, ordinato e professionale.
 https://news.ycombinator.com/item?id=${itemId}`;
 };
 
-export const CopyHNLink: React.FC<{itemId: string | number}> = function ({itemId}) {
+export const CopyHNLink: React.FC<{itemId: number}> = function ({itemId}) {
     const {isCopied, toggleCopied} = useMemory(itemId);
 
     const copyLink = async function () {

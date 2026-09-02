@@ -11,7 +11,7 @@ const getServerSnapshot = function () {
     return false;
 };
 
-export const useMemory = function (itemId: string | number): UseMemoryResult {
+export const useMemory = function (itemId: number): UseMemoryResult {
     const getSnapshot = React.useCallback(
         function () {
             return CopyHistoryStorage.has(itemId);

@@ -1,5 +1,5 @@
 export interface HNItem {
-    objectID: string;
+    objectID: number;
     author: string;
     title: string;
     points: number;
