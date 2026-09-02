@@ -103,11 +103,11 @@ https://news.ycombinator.com/item?id=${itemId}`;
 };
 
 export const CopyHNLink: React.FC<{itemId: string | number}> = function ({itemId}) {
-    const {isCopied, markCopied} = useMemory(itemId);
+    const {isCopied, toggleCopied} = useMemory(itemId);
 
     const copyLink = async function () {
         await navigator.clipboard.writeText(getClipboardText(itemId));
-        markCopied();
+        toggleCopied();
     };
 
     return (

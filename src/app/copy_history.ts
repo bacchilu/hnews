@@ -45,14 +45,20 @@ const removeOldItems = function () {
 removeOldItems();
 
 export const CopyHistoryStorage = {
-    add: function (itemId: string | number) {
+    toggle: function (itemId: string | number) {
         try {
             const history: CopyHistory = read();
-            history[String(itemId)] = {date: new Date().toISOString()};
-            localStorage.setItem(storageKey, JSON.stringify(history));
+            const key = String(itemId);
+
+            if (isCopyHistoryEntry(history[key])) delete history[key];
+            else history[key] = {date: new Date().toISOString()};
+
+            if (Object.keys(history).length === 0) localStorage.removeItem(storageKey);
+            else localStorage.setItem(storageKey, JSON.stringify(history));
+
             window.dispatchEvent(new Event(changeEvent));
         } catch (error) {
-            console.error('Failed to save the copy history', error);
+            console.error('Failed to update the copy history', error);
         }
     },
     has: function (itemId: string | number) {

@@ -4,7 +4,7 @@ import {CopyHistoryStorage} from '../copy_history';
 
 interface UseMemoryResult {
     isCopied: boolean;
-    markCopied: () => void;
+    toggleCopied: () => void;
 }
 
 const getServerSnapshot = function () {
@@ -18,13 +18,13 @@ export const useMemory = function (itemId: string | number): UseMemoryResult {
         },
         [itemId]
     );
-    const markCopied = React.useCallback(
+    const toggleCopied = React.useCallback(
         function () {
-            CopyHistoryStorage.add(itemId);
+            CopyHistoryStorage.toggle(itemId);
         },
         [itemId]
     );
     const isCopied = React.useSyncExternalStore(CopyHistoryStorage.subscribe, getSnapshot, getServerSnapshot);
 
-    return {isCopied, markCopied};
+    return {isCopied, toggleCopied};
 };
