@@ -1,7 +1,7 @@
 {
   "name": "hnews",
   "private": true,
-  "version": "14.3.0",
+  "version": "14.4.0",
   "description": "HNews",
   "type": "module",
   "scripts": {
@@ -29,14 +29,14 @@
     "zod": "^4.5.4"
   },
   "devDependencies": {
-    "@openai/codex": "^0.152.0",
+    "@openai/codex": "^0.152.1",
     "@types/human-date": "^1.4.5",
-    "@types/node": "^26.4.0",
+    "@types/node": "^26.4.1",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",
     "@vitejs/plugin-react": "^6.1.1",
     "npm-check-updates": "^23.1.0",
-    "oxlint": "^1.80.0",
+    "oxlint": "^1.81.0",
     "typescript": "~7.0.2",
     "vite": "^8.2.2"
   },
