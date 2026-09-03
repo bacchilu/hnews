@@ -105,7 +105,7 @@ https://news.ycombinator.com/item?id=${itemId}`;
 export const CopyHNLink: React.FC<{itemId: number}> = function ({itemId}) {
     const {isCopied, toggleCopied} = useMemory(itemId);
 
-    const copyLink = async function () {
+    const handleClick = async function () {
         await navigator.clipboard.writeText(getClipboardText(itemId));
         toggleCopied();
     };
@@ -116,7 +116,7 @@ export const CopyHNLink: React.FC<{itemId: number}> = function ({itemId}) {
                 aria-label="Copy the analysis prompt"
                 size="small"
                 sx={{color: isCopied ? 'grey.400' : 'primary.main'}}
-                onClick={copyLink}
+                onClick={handleClick}
             >
                 <ContentCopyOutlinedIcon fontSize="small" />
             </IconButton>

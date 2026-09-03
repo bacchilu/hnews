@@ -4,6 +4,7 @@ import React from 'react';
 import type {HNItem} from '../../hooks/entities';
 import {relativeTime, toLocaleString} from '../../utils';
 import {Badge} from '../badge';
+import {BookmarkHNLink} from '../bookmark_hn_link';
 import {CopyHNLink} from '../copy_hn_link';
 import {UserDetails} from '../user_details';
 import {Comments} from './comments';
@@ -100,6 +101,7 @@ export const Card: React.FC<{item: HNItem}> = function ({item}) {
                 <Box sx={{alignItems: 'center', display: 'flex', gap: 0.5, gridColumn: 1, gridRow: 2}}>
                     <Badge score={item.points} />
                     <CopyHNLink itemId={item.objectID} />
+                    <BookmarkHNLink itemId={item.objectID} />
                 </Box>
 
                 <Box sx={{alignSelf: 'center', gridColumn: 2, gridRow: 2, justifySelf: 'end'}}>

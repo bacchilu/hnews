@@ -1,10 +1,12 @@
 import React from 'react';
 
-import {CopyHistoryStorage} from '../copy_history';
+import {MemoryStorage} from '../memory_storage';
 
 interface UseMemoryResult {
     isCopied: boolean;
     toggleCopied: () => void;
+    isBookmarked: boolean;
+    toggleBookmarked: () => void;
 }
 
 const getServerSnapshot = function () {
@@ -12,19 +14,33 @@ const getServerSnapshot = function () {
 };
 
 export const useMemory = function (itemId: number): UseMemoryResult {
-    const getSnapshot = React.useCallback(
+    const getCopiedSnapshot = React.useCallback(
         function () {
-            return CopyHistoryStorage.has(itemId);
+            return MemoryStorage.has(itemId, 'copied');
         },
         [itemId]
     );
     const toggleCopied = React.useCallback(
         function () {
-            CopyHistoryStorage.toggle(itemId);
+            MemoryStorage.toggle(itemId, 'copied');
         },
         [itemId]
     );
-    const isCopied = React.useSyncExternalStore(CopyHistoryStorage.subscribe, getSnapshot, getServerSnapshot);
+    const isCopied = React.useSyncExternalStore(MemoryStorage.subscribe, getCopiedSnapshot, getServerSnapshot);
 
-    return {isCopied, toggleCopied};
+    const getBookmarkedSnapshot = React.useCallback(
+        function () {
+            return MemoryStorage.has(itemId, 'bookmarked');
+        },
+        [itemId]
+    );
+    const toggleBookmarked = React.useCallback(
+        function () {
+            MemoryStorage.toggle(itemId, 'bookmarked');
+        },
+        [itemId]
+    );
+    const isBookmarked = React.useSyncExternalStore(MemoryStorage.subscribe, getBookmarkedSnapshot, getServerSnapshot);
+
+    return {isCopied, toggleCopied, isBookmarked, toggleBookmarked};
 };
