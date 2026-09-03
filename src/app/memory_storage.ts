@@ -5,7 +5,6 @@ type MemoryEntry = Partial<Record<MemoryState, MemoryValue>>;
 type Memory = Record<string, MemoryEntry>;
 
 const storageKey = 'hnews:memory';
-const legacyStorageKey = 'hnews:copy-history';
 const changeEvent = 'hnews:memory-change';
 const retentionTime = 7 * 24 * 60 * 60 * 1000;
 
@@ -13,12 +12,11 @@ const isMemoryValue = function (value: unknown): value is MemoryValue {
     return typeof value === 'object' && value !== null && 'date' in value && typeof value.date === 'string';
 };
 
-const normalizeMemory = function (value: unknown): Memory {
+const parseMemory = function (value: unknown): Memory {
     if (typeof value !== 'object' || value === null || Array.isArray(value)) return {};
 
     return Object.fromEntries(
         Object.entries(value).flatMap(function ([itemId, entry]) {
-            if (isMemoryValue(entry)) return [[itemId, {copied: entry}]];
             if (typeof entry !== 'object' || entry === null || Array.isArray(entry)) return [];
 
             const memoryEntry: MemoryEntry = {};
@@ -35,7 +33,7 @@ const read = function (): Memory {
         const value = localStorage.getItem(storageKey);
         if (value === null) return {};
 
-        return normalizeMemory(JSON.parse(value));
+        return parseMemory(JSON.parse(value));
     } catch (error) {
         console.error('Failed to read the memory', error);
         return {};
@@ -45,26 +43,6 @@ const read = function (): Memory {
 const write = function (memory: Memory) {
     if (Object.keys(memory).length === 0) localStorage.removeItem(storageKey);
     else localStorage.setItem(storageKey, JSON.stringify(memory));
-};
-
-const migrateLegacyMemory = function () {
-    try {
-        const legacyMemory = localStorage.getItem(legacyStorageKey);
-        if (legacyMemory === null) return;
-
-        if (localStorage.getItem(storageKey) === null) localStorage.setItem(storageKey, legacyMemory);
-        localStorage.removeItem(legacyStorageKey);
-    } catch (error) {
-        console.error('Failed to migrate the memory', error);
-    }
-};
-
-const migrateMemoryStructure = function () {
-    try {
-        if (localStorage.getItem(storageKey) !== null) write(read());
-    } catch (error) {
-        console.error('Failed to migrate the memory structure', error);
-    }
 };
 
 const removeOldItems = function () {
@@ -94,8 +72,6 @@ const removeOldItems = function () {
     }
 };
 
-migrateLegacyMemory();
-migrateMemoryStructure();
 removeOldItems();
 
 export const MemoryStorage = {
