@@ -45,14 +45,13 @@ const parse = function (data: HNItemInput): HNItemOutput {
 };
 
 export const getHNItems: HNItemsGateway = {
-    getData: async function (from: Date, to: Date, hitsPerPage: number): Promise<HNItem[]> {
+    getData: async function (hitsPerPage: number, from: Date, to?: Date): Promise<HNItem[]> {
         const fromEpoch: number = Math.floor(from.getTime() / 1000);
-        const toEpoch: number = Math.floor(to.getTime() / 1000);
-        const searchParams = new URLSearchParams({
-            query: '',
-            numericFilters: `created_at_i>${fromEpoch},created_at_i<=${toEpoch}`,
-            hitsPerPage: `${hitsPerPage}`,
-        });
+        const numericFilters =
+            to !== undefined
+                ? `created_at_i>${fromEpoch},created_at_i<=${Math.floor(to.getTime() / 1000)}`
+                : `created_at_i>${fromEpoch}`;
+        const searchParams = new URLSearchParams({numericFilters, hitsPerPage: `${hitsPerPage}`});
         const url = `https://hn.algolia.com/api/v1/search?${searchParams.toString()}`;
         const res = await fetch(url);
         if (!res.ok) throw new Error('An error occurred while fetching the data.');

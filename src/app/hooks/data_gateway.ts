@@ -1,5 +1,5 @@
 import type {HNItem} from './entities';
 
 export interface HNItemsGateway {
-    getData(from: Date, to: Date, hitsPerPage: number): Promise<HNItem[]>;
+    getData(hitsPerPage: number, from: Date, to?: Date): Promise<HNItem[]>;
 }
