@@ -16,7 +16,7 @@ const Card: React.FC<{
             component="article"
             sx={{
                 alignItems: 'start',
-                bgcolor: selected ? 'grey.50' : undefined,
+                bgcolor: selected ? 'grey.50' : '#f6f6ef',
                 borderLeftColor: selected ? 'primary.main' : isFresh ? 'success.main' : 'divider',
                 borderLeftStyle: 'solid',
                 borderLeftWidth: selected || isFresh ? 4 : 2,

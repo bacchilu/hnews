@@ -29,6 +29,7 @@ export const Card: React.FC<{item: HNItem}> = function ({item}) {
                 component="article"
                 sx={{
                     alignItems: 'center',
+                    bgcolor: '#f6f6ef',
                     borderLeftColor: isFresh ? 'success.main' : 'divider',
                     borderLeftStyle: 'solid',
                     borderLeftWidth: isFresh ? 4 : 2,
