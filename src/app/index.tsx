@@ -12,12 +12,16 @@ const CommentPage = React.lazy(() => import('./pages/comment').then(({CommentPag
 const Router: React.FC<{
     groupByDate: [boolean, (v: boolean) => void];
     reversed: [boolean, (v: boolean) => void];
-}> = function ({groupByDate, reversed}) {
+    showUnread: [boolean, (v: boolean) => void];
+}> = function ({groupByDate, reversed, showUnread}) {
     return (
         <HashRouter>
             <React.Suspense fallback={<Spinner />}>
                 <Routes>
-                    <Route path="/" element={<Main groupByDate={groupByDate} reversed={reversed} />}></Route>
+                    <Route
+                        path="/"
+                        element={<Main groupByDate={groupByDate} reversed={reversed} showUnread={showUnread} />}
+                    ></Route>
                     <Route path="/:commentId" element={<CommentPage />}></Route>
                 </Routes>
             </React.Suspense>
@@ -28,13 +32,14 @@ const Router: React.FC<{
 const App = function () {
     const groupByDate = React.useState<boolean>(false);
     const reversed = React.useState<boolean>(false);
+    const showUnread = React.useState<boolean>(false);
 
     return (
         <>
             <CssBaseline />
             <NavBar />
             <Container>
-                <Router groupByDate={groupByDate} reversed={reversed} />
+                <Router groupByDate={groupByDate} reversed={reversed} showUnread={showUnread} />
             </Container>
         </>
     );
