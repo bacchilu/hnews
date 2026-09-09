@@ -1,6 +1,6 @@
 export type MemoryState = 'bookmarked' | 'copied';
 
-type MemoryValue = {date: string};
+type MemoryValue = string;
 type MemoryEntry = Partial<Record<MemoryState, MemoryValue>>;
 type Memory = Record<string, MemoryEntry>;
 
@@ -8,8 +8,13 @@ const storageKey = 'hnews:memory';
 const changeEvent = 'hnews:memory-change';
 const retentionTime = 7 * 24 * 60 * 60 * 1000;
 
-const isMemoryValue = function (value: unknown): value is MemoryValue {
-    return typeof value === 'object' && value !== null && 'date' in value && typeof value.date === 'string';
+const parseMemoryValue = function (value: unknown): MemoryValue | undefined {
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object' && value !== null && 'date' in value && typeof value.date === 'string') {
+        return value.date;
+    }
+
+    return undefined;
 };
 
 const parseMemory = function (value: unknown): Memory {
@@ -20,8 +25,10 @@ const parseMemory = function (value: unknown): Memory {
             if (typeof entry !== 'object' || entry === null || Array.isArray(entry)) return [];
 
             const memoryEntry: MemoryEntry = {};
-            if ('copied' in entry && isMemoryValue(entry.copied)) memoryEntry.copied = entry.copied;
-            if ('bookmarked' in entry && isMemoryValue(entry.bookmarked)) memoryEntry.bookmarked = entry.bookmarked;
+            const copied = 'copied' in entry ? parseMemoryValue(entry.copied) : undefined;
+            const bookmarked = 'bookmarked' in entry ? parseMemoryValue(entry.bookmarked) : undefined;
+            if (copied !== undefined) memoryEntry.copied = copied;
+            if (bookmarked !== undefined) memoryEntry.bookmarked = bookmarked;
 
             return Object.keys(memoryEntry).length === 0 ? [] : [[itemId, memoryEntry]];
         })
@@ -45,6 +52,18 @@ const write = function (memory: Memory) {
     else localStorage.setItem(storageKey, JSON.stringify(memory));
 };
 
+const migrateMemoryValues = function () {
+    try {
+        const value = localStorage.getItem(storageKey);
+        if (value === null) return;
+
+        const memory = parseMemory(JSON.parse(value));
+        if (JSON.stringify(memory) !== value) write(memory);
+    } catch (error) {
+        console.error('Failed to migrate the memory values', error);
+    }
+};
+
 const removeOldItems = function () {
     try {
         const memory: Memory = read();
@@ -56,7 +75,7 @@ const removeOldItems = function () {
 
             if (entry.bookmarked !== undefined) currentEntry.bookmarked = entry.bookmarked;
             if (entry.copied !== undefined) {
-                const date: number = Date.parse(entry.copied.date);
+                const date: number = Date.parse(entry.copied);
                 if (!Number.isNaN(date) && now - date <= retentionTime) currentEntry.copied = entry.copied;
                 else isChanged = true;
             }
@@ -72,6 +91,7 @@ const removeOldItems = function () {
     }
 };
 
+migrateMemoryValues();
 removeOldItems();
 
 export const MemoryStorage = {
@@ -81,7 +101,7 @@ export const MemoryStorage = {
             const key = String(itemId);
             const entry: MemoryEntry = memory[key] ?? {};
 
-            if (entry[state] === undefined) entry[state] = {date: new Date().toISOString()};
+            if (entry[state] === undefined) entry[state] = new Date().toISOString();
             else delete entry[state];
 
             if (Object.keys(entry).length === 0) delete memory[key];
