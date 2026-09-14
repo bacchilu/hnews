@@ -52,18 +52,6 @@ const write = function (memory: Memory) {
     else localStorage.setItem(storageKey, JSON.stringify(memory));
 };
 
-const migrateMemoryValues = function () {
-    try {
-        const value = localStorage.getItem(storageKey);
-        if (value === null) return;
-
-        const memory = parseMemory(JSON.parse(value));
-        if (JSON.stringify(memory) !== value) write(memory);
-    } catch (error) {
-        console.error('Failed to migrate the memory values', error);
-    }
-};
-
 const removeOldItems = function () {
     try {
         const memory: Memory = read();
@@ -91,7 +79,6 @@ const removeOldItems = function () {
     }
 };
 
-migrateMemoryValues();
 removeOldItems();
 
 export const MemoryStorage = {
